@@ -1,0 +1,25 @@
+# 备份数据，勿动
+baseurl: http://172.16.18.67/lim/welcome
+companies:
+- name: guanzhong.zhou
+  password: aA123456
+- name: guoqi.dong
+  password: Aa12345678!@#
+medicalnum_no: P2022012400002
+medicalnuminfo:
+- add_identificationNo: 430424198609196840
+  confirmDate: 2010.01.01
+  durtin: 10
+  endtime: 2020.01.01
+  identificationNo: 430424198609196840
+  medicalnum: P2021072900001
+  name: 崔东山
+  relationship: 祖父
+  remark: 这是备注！！！
+  reportCancertype: 胃癌
+  starttime: 2010.01.01
+  surgeryName: 这是治疗内容测试文字！！！
+patientinfo:
+- identificationNo: ''
+  name: ''
+  sysprompt: 请输入正确的姓名、证件号码

@@ -1,0 +1,470 @@
+[2023-02-21 15:02:21,318] - logs.py[line:44] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:02:21,322] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:02:21,613] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:02:25,025] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:02:25,062] - logs.py[line:44] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 15:02:25,374] - logs.py[line:44] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 15:02:25,434] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:02:25,441] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:02:27,094] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:02:27,158] - logs.py[line:44] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:02:27,192] - logs.py[line:44] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 15:02:27,330] - logs.py[line:44] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 15:02:28,196] - logs.py[line:44] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:02:33,594] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:02:33,601] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:02:35,243] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:02:35,252] - logs.py[line:44] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:02:35,283] - logs.py[line:44] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 15:02:35,384] - logs.py[line:44] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 15:02:35,483] - logs.py[line:44] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:02:44,431] - logs.py[line:44] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:02:51,722] - logs.py[line:44] - fuc:__console- INFO: 点击样本盒列表的搜索按钮
+[2023-02-21 15:02:54,405] - logs.py[line:44] - fuc:__console- INFO: 搜索弹框中输入指定盒子信息
+[2023-02-21 15:02:54,563] - logs.py[line:44] - fuc:__console- INFO: 点击确定，搜索成功
+[2023-02-21 15:02:58,904] - logs.py[line:44] - fuc:__console- INFO: 点击选中指定盒位信息
+[2023-02-21 15:02:59,468] - logs.py[line:44] - fuc:__console- INFO: 校验盒位存在样本，不能删除功能
+[2023-02-21 15:02:59,469] - logs.py[line:44] - fuc:__console- INFO: 点击新增按钮
+[2023-02-21 15:03:00,584] - logs.py[line:44] - fuc:__console- INFO: 输入新建样本盒数量
+[2023-02-21 15:03:01,734] - logs.py[line:44] - fuc:__console- INFO: 点击确定
+[2023-02-21 15:03:02,850] - logs.py[line:44] - fuc:__console- INFO: 输入盒子名称
+[2023-02-21 15:03:04,626] - logs.py[line:44] - fuc:__console- INFO: 选择盒子的规格
+[2023-02-21 15:03:05,352] - logs.py[line:44] - fuc:__console- INFO: 点击下拉框
+[2023-02-21 15:03:06,014] - logs.py[line:44] - fuc:__console- INFO: 选择规格
+[2023-02-21 15:03:12,291] - logs.py[line:44] - fuc:__console- INFO: 开始查询数据库，校验新建的盒子信息
+[2023-02-21 15:06:56,643] - logs.py[line:44] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:06:56,644] - logs.py[line:44] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:06:56,646] - logs.py[line:48] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:06:56,649] - logs.py[line:46] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 15:17:39,579] - logs.py[line:44] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:17:39,580] - logs.py[line:44] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:17:39,581] - logs.py[line:48] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:21:14,118] - logs.py[line:48] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:21:30,065] - logs.py[line:44] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:21:30,066] - logs.py[line:44] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:21:30,066] - logs.py[line:48] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:21:42,906] - logs.py[line:44] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:21:42,907] - logs.py[line:44] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:21:42,907] - logs.py[line:48] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:21:42,908] - logs.py[line:46] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 15:21:59,346] - logs.py[line:44] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:21:59,362] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:21:59,493] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:22:03,898] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:22:03,927] - logs.py[line:44] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 15:22:04,159] - logs.py[line:44] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 15:22:04,228] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:22:04,235] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:22:05,676] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:22:05,690] - logs.py[line:44] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:22:05,734] - logs.py[line:44] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 15:22:05,871] - logs.py[line:44] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 15:22:05,991] - logs.py[line:44] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:22:11,209] - logs.py[line:44] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:22:11,215] - logs.py[line:44] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:22:12,683] - logs.py[line:44] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:22:12,692] - logs.py[line:44] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:22:12,720] - logs.py[line:44] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 15:22:12,827] - logs.py[line:44] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 15:22:13,025] - logs.py[line:44] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:22:21,668] - logs.py[line:44] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:22:29,216] - logs.py[line:44] - fuc:__console- INFO: 点击样本盒列表的搜索按钮
+[2023-02-21 15:22:31,916] - logs.py[line:44] - fuc:__console- INFO: 搜索弹框中输入指定盒子信息
+[2023-02-21 15:22:32,109] - logs.py[line:44] - fuc:__console- INFO: 点击确定，搜索成功
+[2023-02-21 15:22:35,553] - logs.py[line:44] - fuc:__console- INFO: 点击选中指定盒位信息
+[2023-02-21 15:22:36,149] - logs.py[line:44] - fuc:__console- INFO: 校验盒位存在样本，不能删除功能
+[2023-02-21 15:22:36,150] - logs.py[line:44] - fuc:__console- INFO: 点击新增按钮
+[2023-02-21 15:22:37,254] - logs.py[line:44] - fuc:__console- INFO: 输入新建样本盒数量
+[2023-02-21 15:22:38,428] - logs.py[line:44] - fuc:__console- INFO: 点击确定
+[2023-02-21 15:22:39,551] - logs.py[line:44] - fuc:__console- INFO: 输入盒子名称
+[2023-02-21 15:22:41,450] - logs.py[line:44] - fuc:__console- INFO: 选择盒子的规格
+[2023-02-21 15:22:42,051] - logs.py[line:44] - fuc:__console- INFO: 点击下拉框
+[2023-02-21 15:22:42,652] - logs.py[line:44] - fuc:__console- INFO: 选择规格
+[2023-02-21 15:22:49,432] - logs.py[line:44] - fuc:__console- INFO: 开始查询数据库，校验新建的盒子信息
+[2023-02-21 15:33:12,741] - logs.py[line:42] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:33:12,743] - logs.py[line:42] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:33:12,745] - logs.py[line:46] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:33:12,746] - logs.py[line:44] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 15:33:27,455] - logs.py[line:42] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:33:27,456] - logs.py[line:42] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:33:27,456] - logs.py[line:46] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:33:27,457] - logs.py[line:44] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 15:35:32,531] - logs.py[line:46] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:36:56,479] - logs.py[line:42] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:36:56,480] - logs.py[line:42] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:36:56,481] - logs.py[line:46] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:36:56,481] - logs.py[line:44] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 15:42:14,128] - logs.py[line:42] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:42:14,132] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:42:14,279] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:42:18,181] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:42:18,207] - logs.py[line:42] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 15:42:18,456] - logs.py[line:42] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 15:42:18,524] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:42:18,529] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:42:19,960] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:42:19,969] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:42:20,002] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 15:42:20,118] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 15:42:20,230] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:42:25,972] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 15:42:25,978] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 15:42:27,517] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 15:42:27,589] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 15:42:27,639] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 15:42:27,752] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 15:42:27,855] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+[2023-02-21 15:42:36,370] - logs.py[line:42] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 15:42:43,692] - logs.py[line:42] - fuc:__console- INFO: 点击样本盒列表的搜索按钮
+[2023-02-21 15:42:46,373] - logs.py[line:42] - fuc:__console- INFO: 搜索弹框中输入指定盒子信息
+[2023-02-21 15:42:46,553] - logs.py[line:42] - fuc:__console- INFO: 点击确定，搜索成功
+[2023-02-21 15:42:49,902] - logs.py[line:42] - fuc:__console- INFO: 点击选中指定盒位信息
+[2023-02-21 15:42:50,495] - logs.py[line:42] - fuc:__console- INFO: 校验盒位存在样本，不能删除功能
+[2023-02-21 15:42:50,496] - logs.py[line:42] - fuc:__console- INFO: 点击新增按钮
+[2023-02-21 15:42:51,597] - logs.py[line:42] - fuc:__console- INFO: 输入新建样本盒数量
+[2023-02-21 15:42:52,709] - logs.py[line:42] - fuc:__console- INFO: 点击确定
+[2023-02-21 15:42:53,911] - logs.py[line:42] - fuc:__console- INFO: 输入盒子名称
+[2023-02-21 15:42:55,765] - logs.py[line:42] - fuc:__console- INFO: 选择盒子的规格
+[2023-02-21 15:42:56,362] - logs.py[line:42] - fuc:__console- INFO: 点击下拉框
+[2023-02-21 15:42:56,952] - logs.py[line:42] - fuc:__console- INFO: 选择规格
+[2023-02-21 15:43:03,798] - logs.py[line:42] - fuc:__console- INFO: 开始查询数据库，校验新建的盒子信息
+[2023-02-21 15:53:30,031] - logs.py[line:42] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 15:53:30,032] - logs.py[line:42] - fuc:__console- INFO: 输入内容
+[2023-02-21 15:53:30,033] - logs.py[line:46] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 15:53:30,033] - logs.py[line:44] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 16:26:04,774] - logs.py[line:42] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 16:26:04,810] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:26:04,950] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:26:05,032] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:26:09,344] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:26:09,376] - logs.py[line:42] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 16:26:09,719] - logs.py[line:42] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 16:26:41,166] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:26:41,175] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:26:41,177] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:26:42,797] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:26:42,832] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 16:26:42,935] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 16:26:43,063] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 16:26:43,169] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+[2023-02-21 16:27:14,594] - logs.py[line:48] - fuc:__console- ERROR: Message: 
+
+[2023-02-21 16:27:14,597] - logs.py[line:42] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 16:27:14,641] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:27:14,651] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:27:14,652] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:27:16,232] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:27:16,242] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 16:27:16,275] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 16:27:16,402] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 16:27:16,505] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+[2023-02-21 16:27:47,787] - logs.py[line:48] - fuc:__console- ERROR: Message: 
+
+[2023-02-21 16:27:47,789] - logs.py[line:42] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 16:30:35,063] - logs.py[line:42] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 16:30:35,079] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:30:35,225] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:30:35,226] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:30:39,686] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:30:39,753] - logs.py[line:42] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 16:30:40,071] - logs.py[line:42] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 16:31:11,449] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:31:11,463] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:31:11,464] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:31:13,033] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:31:13,059] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 16:31:13,095] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 16:31:13,214] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 16:31:13,337] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+[2023-02-21 16:31:44,719] - logs.py[line:48] - fuc:__console- ERROR: Message: 
+
+[2023-02-21 16:31:44,737] - logs.py[line:42] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 16:31:44,766] - logs.py[line:42] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 16:31:44,773] - logs.py[line:42] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 16:31:44,775] - logs.py[line:42] - fuc:__console- INFO: 访问地址
+[2023-02-21 16:31:46,342] - logs.py[line:42] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 16:31:46,352] - logs.py[line:42] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 16:31:46,386] - logs.py[line:42] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 16:31:46,555] - logs.py[line:42] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 16:31:46,683] - logs.py[line:42] - fuc:__console- INFO: 点击登录
+2023-02-21 16:51:21,399 - logs.py[line:116] - DEBUG: debug 信息
+2023-02-21 16:51:21,399 - logs.py[line:117] - INFO: info 信息
+2023-02-21 16:51:21,399 - logs.py[line:118] - WARNING: 警告 信息
+2023-02-21 16:51:21,400 - logs.py[line:119] - ERROR: 报错 信息
+2023-02-21 16:51:21,400 - logs.py[line:120] - CRITICAL: 严重 信息
+2023-02-21 16:53:29,037 - logs.py[line:118] - DEBUG: debug 信息
+2023-02-21 16:53:29,037 - logs.py[line:119] - INFO: info 信息
+2023-02-21 16:53:29,037 - logs.py[line:120] - WARNING: 警告 信息
+2023-02-21 16:53:29,037 - logs.py[line:121] - ERROR: 报错 信息
+2023-02-21 16:53:29,037 - logs.py[line:122] - CRITICAL: 严重 信息
+2023-02-21 16:55:23,351 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:55:23,351 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:55:23,351 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:55:23,351 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:55:23,357 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,357 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,357 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,357 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,493 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,493 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,493 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,493 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,498 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,498 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,498 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:55:23,498 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:13,564 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:56:13,564 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:56:13,564 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:56:13,564 - setup_teardown.py[line:33] - INFO: ------TestCase Start!------
+2023-02-21 16:56:13,569 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:13,569 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:13,569 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:13,569 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:13,710 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:13,710 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:13,710 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:13,710 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:13,711 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:13,711 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:13,711 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:13,711 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:17,773 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:17,773 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:17,773 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:17,773 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:17,799 - test11_login_row.py[line:35] - INFO: 输入错误账号/密码登录：error/error
+2023-02-21 16:56:17,799 - test11_login_row.py[line:35] - INFO: 输入错误账号/密码登录：error/error
+2023-02-21 16:56:17,799 - test11_login_row.py[line:35] - INFO: 输入错误账号/密码登录：error/error
+2023-02-21 16:56:17,799 - test11_login_row.py[line:35] - INFO: 输入错误账号/密码登录：error/error
+2023-02-21 16:56:18,119 - test11_login_row.py[line:38] - INFO: 点击登录按钮
+2023-02-21 16:56:18,119 - test11_login_row.py[line:38] - INFO: 点击登录按钮
+2023-02-21 16:56:18,119 - test11_login_row.py[line:38] - INFO: 点击登录按钮
+2023-02-21 16:56:18,119 - test11_login_row.py[line:38] - INFO: 点击登录按钮
+2023-02-21 16:56:49,565 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:49,565 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:49,565 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:49,565 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:56:49,576 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:49,576 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:49,576 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:49,576 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:56:49,576 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:49,576 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:49,576 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:49,576 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:56:51,168 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:51,168 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:51,168 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:51,168 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:56:51,192 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:56:51,192 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:56:51,192 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:56:51,192 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:56:51,243 - test11_login_row.py[line:61] - INFO: 输入账号：guanzhong.zhou
+2023-02-21 16:56:51,243 - test11_login_row.py[line:61] - INFO: 输入账号：guanzhong.zhou
+2023-02-21 16:56:51,243 - test11_login_row.py[line:61] - INFO: 输入账号：guanzhong.zhou
+2023-02-21 16:56:51,243 - test11_login_row.py[line:61] - INFO: 输入账号：guanzhong.zhou
+2023-02-21 16:56:51,488 - test11_login_row.py[line:64] - INFO: 输入密码：Ee123456!
+2023-02-21 16:56:51,488 - test11_login_row.py[line:64] - INFO: 输入密码：Ee123456!
+2023-02-21 16:56:51,488 - test11_login_row.py[line:64] - INFO: 输入密码：Ee123456!
+2023-02-21 16:56:51,488 - test11_login_row.py[line:64] - INFO: 输入密码：Ee123456!
+2023-02-21 16:56:51,691 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:56:51,691 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:56:51,691 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:56:51,691 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:57:23,084 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:23,084 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:23,084 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:23,084 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:23,085 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:23,085 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:23,085 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:23,085 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:23,100 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:57:23,100 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:57:23,100 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:57:23,100 - test11_login_row.py[line:20] - INFO: 打开浏览器,窗口最大化
+2023-02-21 16:57:23,106 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:57:23,106 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:57:23,106 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:57:23,106 - basepageTools.py[line:48] - INFO: 最大化浏览器
+2023-02-21 16:57:23,107 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:57:23,107 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:57:23,107 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:57:23,107 - test11_login_row.py[line:22] - INFO: 访问地址
+2023-02-21 16:57:24,593 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:57:24,593 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:57:24,593 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:57:24,593 - test11_login_row.py[line:24] - INFO: 切换登录方式为账号密码登录
+2023-02-21 16:57:24,605 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:57:24,605 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:57:24,605 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:57:24,605 - test11_login_row.py[line:57] - INFO: 清空输入框信息
+2023-02-21 16:57:24,657 - test11_login_row.py[line:61] - INFO: 输入账号：guoqi.dong
+2023-02-21 16:57:24,657 - test11_login_row.py[line:61] - INFO: 输入账号：guoqi.dong
+2023-02-21 16:57:24,657 - test11_login_row.py[line:61] - INFO: 输入账号：guoqi.dong
+2023-02-21 16:57:24,657 - test11_login_row.py[line:61] - INFO: 输入账号：guoqi.dong
+2023-02-21 16:57:24,797 - test11_login_row.py[line:64] - INFO: 输入密码：Cdgq123
+2023-02-21 16:57:24,797 - test11_login_row.py[line:64] - INFO: 输入密码：Cdgq123
+2023-02-21 16:57:24,797 - test11_login_row.py[line:64] - INFO: 输入密码：Cdgq123
+2023-02-21 16:57:24,797 - test11_login_row.py[line:64] - INFO: 输入密码：Cdgq123
+2023-02-21 16:57:24,918 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:57:24,918 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:57:24,918 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:57:24,918 - test11_login_row.py[line:67] - INFO: 点击登录
+2023-02-21 16:57:56,154 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:56,154 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:56,154 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:56,154 - test11_login_row.py[line:71] - ERROR: Message: 
+
+2023-02-21 16:57:56,155 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:56,155 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:56,155 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+2023-02-21 16:57:56,155 - test11_login_row.py[line:73] - INFO: 登录成功后校验当前地址正确
+[2023-02-21 16:58:37,359] - logs.py[line:41] - fuc:__console- INFO: ---测试开始----
+[2023-02-21 16:58:37,360] - logs.py[line:41] - fuc:__console- INFO: 输入内容
+[2023-02-21 16:58:37,361] - logs.py[line:45] - fuc:__console- WARNING: ----测试结束----
+[2023-02-21 16:58:37,361] - logs.py[line:43] - fuc:__console- DEBUG: ----测试结束----
+[2023-02-21 17:00:35,230] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 17:00:35,333] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:00:35,533] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:00:35,565] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:00:39,382] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:00:39,406] - logs.py[line:41] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 17:00:39,756] - logs.py[line:41] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 17:01:11,032] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:01:11,044] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:01:11,045] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:01:12,703] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:01:12,713] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:01:12,746] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 17:01:12,964] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 17:01:13,204] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:01:44,620] - logs.py[line:47] - fuc:__console- ERROR: Message: 
+
+[2023-02-21 17:01:44,622] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 17:01:44,636] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:01:44,642] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:01:44,643] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:01:46,251] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:01:46,262] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:01:46,298] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 17:01:46,430] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 17:01:46,573] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:02:17,919] - logs.py[line:47] - fuc:__console- ERROR: Message: 
+
+[2023-02-21 17:02:17,921] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 17:11:38,357] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 17:11:38,396] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:11:38,558] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:11:38,588] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:11:42,213] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:11:42,271] - logs.py[line:41] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 17:11:42,571] - logs.py[line:41] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 17:11:43,155] - logs.py[line:41] - fuc:__console- INFO: 获取登录失败的提示语：请填写正确的用户名、密码
+[2023-02-21 17:11:43,156] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:11:43,160] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:11:43,161] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:11:44,590] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:11:44,603] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:11:44,644] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 17:11:44,802] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 17:11:44,935] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:11:49,915] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 17:11:49,928] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:11:49,939] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:11:49,940] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:11:51,450] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:11:51,460] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:11:51,490] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 17:11:51,649] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 17:11:51,801] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:11:56,107] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 17:12:00,544] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 17:12:07,884] - logs.py[line:41] - fuc:__console- INFO: 点击样本盒列表的搜索按钮
+[2023-02-21 17:12:10,594] - logs.py[line:41] - fuc:__console- INFO: 搜索弹框中输入指定盒子信息
+[2023-02-21 17:12:10,797] - logs.py[line:41] - fuc:__console- INFO: 点击确定，搜索成功
+[2023-02-21 17:12:14,543] - logs.py[line:41] - fuc:__console- INFO: 点击选中指定盒位信息
+[2023-02-21 17:12:15,134] - logs.py[line:41] - fuc:__console- INFO: 校验盒位存在样本，不能删除功能
+[2023-02-21 17:12:15,135] - logs.py[line:41] - fuc:__console- INFO: 点击新增按钮
+[2023-02-21 17:12:16,239] - logs.py[line:41] - fuc:__console- INFO: 输入新建样本盒数量
+[2023-02-21 17:12:17,371] - logs.py[line:41] - fuc:__console- INFO: 点击确定
+[2023-02-21 17:12:18,508] - logs.py[line:41] - fuc:__console- INFO: 输入盒子名称
+[2023-02-21 17:12:20,286] - logs.py[line:41] - fuc:__console- INFO: 选择盒子的规格
+[2023-02-21 17:12:20,895] - logs.py[line:41] - fuc:__console- INFO: 点击下拉框
+[2023-02-21 17:12:21,523] - logs.py[line:41] - fuc:__console- INFO: 选择规格
+[2023-02-21 17:12:28,227] - logs.py[line:41] - fuc:__console- INFO: 开始查询数据库，校验新建的盒子信息
+[2023-02-21 17:13:42,209] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 17:13:42,249] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:13:42,397] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:13:42,398] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:13:46,907] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:13:46,933] - logs.py[line:41] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 17:13:47,247] - logs.py[line:41] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 17:13:47,829] - logs.py[line:41] - fuc:__console- INFO: 获取登录失败的提示语：请填写正确的用户名、密码
+[2023-02-21 17:13:47,830] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:13:47,836] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:13:47,837] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:13:49,379] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:13:49,388] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:13:49,419] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 17:13:49,572] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 17:13:49,708] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:13:54,683] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 17:13:54,691] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 17:13:54,697] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 17:13:54,698] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 17:13:56,261] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 17:13:56,271] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 17:13:56,301] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 17:13:56,459] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 17:13:56,588] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 17:14:00,843] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 18:02:34,034] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 18:02:34,055] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 18:02:34,197] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 18:02:34,237] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 18:02:38,577] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 18:02:38,601] - logs.py[line:41] - fuc:__console- INFO: 输入错误账号/密码登录：error/error
+[2023-02-21 18:02:38,906] - logs.py[line:41] - fuc:__console- INFO: 点击登录按钮
+[2023-02-21 18:02:39,494] - logs.py[line:41] - fuc:__console- INFO: 获取登录失败的提示语：请填写正确的用户名、密码
+[2023-02-21 18:02:39,495] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 18:02:39,500] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 18:02:39,501] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 18:02:41,065] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 18:02:41,073] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 18:02:41,107] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-02-21 18:02:41,262] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-02-21 18:02:41,402] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 18:02:46,492] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 18:02:46,501] - logs.py[line:41] - fuc:__console- INFO: 打开浏览器,窗口最大化
+[2023-02-21 18:02:46,506] - logs.py[line:41] - fuc:__console- INFO: 最大化浏览器
+[2023-02-21 18:02:46,506] - logs.py[line:41] - fuc:__console- INFO: 访问地址
+[2023-02-21 18:02:48,059] - logs.py[line:41] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-02-21 18:02:48,067] - logs.py[line:41] - fuc:__console- INFO: 清空输入框信息
+[2023-02-21 18:02:48,096] - logs.py[line:41] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-02-21 18:02:48,246] - logs.py[line:41] - fuc:__console- INFO: 输入密码：Cdgq123
+[2023-02-21 18:02:48,384] - logs.py[line:41] - fuc:__console- INFO: 点击登录
+[2023-02-21 18:02:52,752] - logs.py[line:41] - fuc:__console- INFO: 登录成功后校验当前地址正确
+[2023-02-21 18:02:57,398] - logs.py[line:41] - fuc:__console- INFO: ------TestCase Start!------
+[2023-02-21 18:03:04,823] - logs.py[line:41] - fuc:__console- INFO: 点击样本盒列表的搜索按钮
+[2023-02-21 18:03:07,481] - logs.py[line:41] - fuc:__console- INFO: 搜索弹框中输入指定盒子信息
+[2023-02-21 18:03:07,648] - logs.py[line:41] - fuc:__console- INFO: 点击确定，搜索成功
+[2023-02-21 18:03:11,016] - logs.py[line:41] - fuc:__console- INFO: 点击选中指定盒位信息
+[2023-02-21 18:03:11,607] - logs.py[line:41] - fuc:__console- INFO: 校验盒位存在样本，不能删除功能
+[2023-02-21 18:03:11,607] - logs.py[line:41] - fuc:__console- INFO: 点击新增按钮
+[2023-02-21 18:03:12,714] - logs.py[line:41] - fuc:__console- INFO: 输入新建样本盒数量
+[2023-02-21 18:03:13,841] - logs.py[line:41] - fuc:__console- INFO: 点击确定
+[2023-02-21 18:03:14,965] - logs.py[line:41] - fuc:__console- INFO: 输入盒子名称
+[2023-02-21 18:03:16,715] - logs.py[line:41] - fuc:__console- INFO: 选择盒子的规格
+[2023-02-21 18:03:17,312] - logs.py[line:41] - fuc:__console- INFO: 点击下拉框
+[2023-02-21 18:03:17,904] - logs.py[line:41] - fuc:__console- INFO: 选择规格
+[2023-02-21 18:03:24,676] - logs.py[line:41] - fuc:__console- INFO: 开始查询数据库，校验新建的盒子信息

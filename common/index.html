@@ -1,0 +1,65 @@
+<html>
+
+<div id="test1" class="el-loading-mask is-fullscreen" style="background-color: rgba(0, 0, 0, 0.7); z-index: 2032;">
+	<div class="el-loading-spinner">
+		<i class="el-icon-loading">
+		</i>
+		<p class="el-loading-text">Loading</p>
+	</div>
+</div>
+
+
+
+
+<!--	<div class="el-loading-spinner">-->
+<!--		<i class="el-icon-loading">-->
+<!--		</i>-->
+<!--		<p class="el-loading-text">Loading</p>-->
+<!--	</div>-->
+
+
+	<head>
+		<meta charset="UTF-8">
+		<style>
+			#div {
+				background: lightcoral;
+				height: 100px;
+				width: 200px;
+				line-height: 100px;
+				margin: 0 auto;
+				color: #ffffff;
+			}
+		</style>
+
+	</head>
+
+	<body style="text-align:center;">
+		<p style="font-size: 19px; font-weight: bold;">
+			单击按钮，在1秒后隐藏DIV元素。
+		</p>
+		<div id="div"> 一个DIV盒子 </div>
+		<br>
+		<button onClick="Fun()">点击这里</button>
+		<p id="DOWN" style="color: lightcoral; font-size: 24px; font-weight: bold;"></p>
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			function Fun() {
+				setTimeout(function() {
+					$("#test1").fadeOut('fast');
+					// 点击后6秒删除loading
+					var _li=document.getElementById("test1")
+					_li.removeChild(_li.childNodes[1])
+				}, 6000);
+				$("#DOWN").text("DIV元素在1秒后隐藏");
+
+				// document.getElementById("test1").style.display="none";
+
+			}
+		</script>
+	</body>
+
+
+
+</html>
+
+

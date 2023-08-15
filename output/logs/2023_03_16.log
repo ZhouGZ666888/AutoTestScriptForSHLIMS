@@ -1,0 +1,12 @@
+[2023-03-16 17:08:18,267] - logs.py[line:40] - fuc:__console- INFO: ------TestCase Start!------
+[2023-03-16 17:08:18,371] - logs.py[line:40] - fuc:__console- INFO: 打开浏览器
+[2023-03-16 17:08:18,524] - logs.py[line:40] - fuc:__console- INFO: 最大化浏览器
+[2023-03-16 17:08:18,525] - logs.py[line:40] - fuc:__console- INFO: 访问地址
+[2023-03-16 17:08:21,139] - logs.py[line:40] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-03-16 17:08:22,186] - logs.py[line:40] - fuc:__console- INFO: 清空输入框信息
+[2023-03-16 17:08:22,244] - logs.py[line:40] - fuc:__console- INFO: 输入账号：guanzhong.zhou
+[2023-03-16 17:08:23,081] - logs.py[line:40] - fuc:__console- INFO: 输入密码：Ee123456!
+[2023-03-16 17:08:23,786] - logs.py[line:40] - fuc:__console- INFO: 点击登录按钮
+[2023-03-16 17:08:28,961] - logs.py[line:40] - fuc:__console- INFO: 进入样本处理页面
+[2023-03-16 17:08:34,336] - logs.py[line:40] - fuc:__console- INFO: 样本处理首页，点击新建按钮，进入样本待选表，新增样本处理任务
+[2023-03-16 17:09:35,142] - logs.py[line:40] - fuc:__console- INFO: 全选样本，点击生成排序号

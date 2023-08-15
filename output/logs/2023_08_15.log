@@ -1,0 +1,151 @@
+[2023-08-15 09:56:19,961] - logs.py[line:90] - fuc:__console- INFO: ------TestCase Start!------
+[2023-08-15 09:56:19,994] - logs.py[line:90] - fuc:__console- INFO: 打开浏览器
+[2023-08-15 09:56:20,134] - logs.py[line:90] - fuc:__console- INFO: 最大化浏览器
+[2023-08-15 09:56:20,137] - logs.py[line:90] - fuc:__console- INFO: 访问地址
+[2023-08-15 09:56:25,352] - logs.py[line:90] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-08-15 09:56:26,397] - logs.py[line:90] - fuc:__console- INFO: 清空输入框信息
+[2023-08-15 09:56:26,445] - logs.py[line:90] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-08-15 09:56:27,190] - logs.py[line:90] - fuc:__console- INFO: 输入密码：Edgq123
+[2023-08-15 09:56:27,845] - logs.py[line:90] - fuc:__console- INFO: 点击登录按钮
+[2023-08-15 09:56:41,362] - logs.py[line:90] - fuc:__console- INFO: 登录系统，进入上机页面
+[2023-08-15 09:56:41,367] - logs.py[line:90] - fuc:__console- INFO: 新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP
+[2023-08-15 09:56:41,371] - logs.py[line:90] - fuc:__console- INFO: 上机首页，点击新建按钮，进入样本待选表，新增上机任务
+[2023-08-15 09:56:44,516] - logs.py[line:90] - fuc:__console- INFO: 录入上机批次号:2023.08.15 09:56:41批次
+[2023-08-15 09:56:45,025] - logs.py[line:90] - fuc:__console- INFO: 选择测序仪
+[2023-08-15 09:56:49,223] - logs.py[line:90] - fuc:__console- INFO: 运行模式
+[2023-08-15 09:56:50,452] - logs.py[line:90] - fuc:__console- INFO: 实际上机时间
+[2023-08-15 09:56:51,460] - logs.py[line:90] - fuc:__console- INFO: 任务描述
+[2023-08-15 09:56:52,238] - logs.py[line:90] - fuc:__console- INFO: 选择浓度调整SOP弹框
+[2023-08-15 09:56:56,641] - logs.py[line:90] - fuc:__console- INFO:  选择上机SOP
+[2023-08-15 09:57:01,116] - logs.py[line:90] - fuc:__console- INFO:  浓度调整实验员
+[2023-08-15 09:57:05,460] - logs.py[line:90] - fuc:__console- INFO: 选择 上机实验员
+[2023-08-15 09:57:10,302] - logs.py[line:90] - fuc:__console- INFO: 核对样本lims号并选中加入任务单
+[2023-08-15 09:57:13,399] - logs.py[line:90] - fuc:__console- INFO: 调用选择样本方法-----
+[2023-08-15 09:57:15,061] - logs.py[line:90] - fuc:__console- INFO:  从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择
+[2023-08-15 09:57:23,730] - logs.py[line:90] - fuc:__console- INFO:  选中核对后的样本，点击【加入选中样本&保存】
+[2023-08-15 09:57:27,621] - logs.py[line:90] - fuc:__console- INFO: <div><img src='C:\Users\admin\Desktop\工作文件夹\自动化文档\正式脚本\世和LIMS脚本\LIMS_UI_TEST\output\img\20230815095727_上机待选表选择样本加入并保存 .png' width=600 /></div>
+[2023-08-15 09:57:27,626] - logs.py[line:90] - fuc:__console- INFO: 截图说明：上机待选表选择样本加入并保存 
+[2023-08-15 09:57:27,850] - logs.py[line:90] - fuc:__console- INFO: 截图保存成功
+[2023-08-15 09:58:08,751] - logs.py[line:90] - fuc:__console- INFO: 上机浓度调整前明细表自动计算
+[2023-08-15 09:58:08,756] - logs.py[line:90] - fuc:__console- INFO:  明细表使用前取样录入
+[2023-08-15 09:58:14,478] - logs.py[line:90] - fuc:__console- INFO: 页面刷新
+[2023-08-15 10:10:45,960] - logs.py[line:90] - fuc:__console- INFO: ------TestCase Start!------
+[2023-08-15 10:10:45,971] - logs.py[line:90] - fuc:__console- INFO: 打开浏览器
+[2023-08-15 10:10:46,107] - logs.py[line:90] - fuc:__console- INFO: 最大化浏览器
+[2023-08-15 10:10:46,109] - logs.py[line:90] - fuc:__console- INFO: 访问地址
+[2023-08-15 10:10:50,653] - logs.py[line:90] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-08-15 10:10:51,676] - logs.py[line:90] - fuc:__console- INFO: 清空输入框信息
+[2023-08-15 10:10:51,732] - logs.py[line:90] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-08-15 10:10:52,514] - logs.py[line:90] - fuc:__console- INFO: 输入密码：Edgq123
+[2023-08-15 10:10:53,161] - logs.py[line:90] - fuc:__console- INFO: 点击登录按钮
+[2023-08-15 10:11:03,646] - logs.py[line:90] - fuc:__console- INFO: 登录系统，进入上机页面
+[2023-08-15 10:11:03,650] - logs.py[line:90] - fuc:__console- INFO: 新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP
+[2023-08-15 10:11:03,653] - logs.py[line:90] - fuc:__console- INFO: 上机首页，点击新建按钮，进入样本待选表，新增上机任务
+[2023-08-15 10:11:09,481] - logs.py[line:90] - fuc:__console- INFO: 录入上机批次号:2023.08.15 10:11:03批次
+[2023-08-15 10:11:09,989] - logs.py[line:90] - fuc:__console- INFO: 选择测序仪
+[2023-08-15 10:11:14,059] - logs.py[line:90] - fuc:__console- INFO: 运行模式
+[2023-08-15 10:11:15,267] - logs.py[line:90] - fuc:__console- INFO: 实际上机时间
+[2023-08-15 10:11:16,290] - logs.py[line:90] - fuc:__console- INFO: 任务描述
+[2023-08-15 10:11:17,098] - logs.py[line:90] - fuc:__console- INFO: 选择浓度调整SOP弹框
+[2023-08-15 10:11:21,494] - logs.py[line:90] - fuc:__console- INFO:  选择上机SOP
+[2023-08-15 10:11:25,887] - logs.py[line:90] - fuc:__console- INFO:  浓度调整实验员
+[2023-08-15 10:11:30,249] - logs.py[line:90] - fuc:__console- INFO: 选择 上机实验员
+[2023-08-15 10:11:35,144] - logs.py[line:90] - fuc:__console- INFO: 核对样本lims号并选中加入任务单
+[2023-08-15 10:11:37,374] - logs.py[line:90] - fuc:__console- INFO: 调用选择样本方法-----
+[2023-08-15 10:11:38,169] - logs.py[line:90] - fuc:__console- INFO:  从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择
+[2023-08-15 10:11:43,124] - logs.py[line:90] - fuc:__console- INFO:  选中核对后的样本，点击【加入选中样本&保存】
+[2023-08-15 10:11:44,854] - logs.py[line:90] - fuc:__console- INFO: <div><img src='C:\Users\admin\Desktop\工作文件夹\自动化文档\正式脚本\世和LIMS脚本\LIMS_UI_TEST\output\img\20230815101144_上机待选表选择样本加入并保存 .png' width=600 /></div>
+[2023-08-15 10:11:44,858] - logs.py[line:90] - fuc:__console- INFO: 截图说明：上机待选表选择样本加入并保存 
+[2023-08-15 10:11:45,158] - logs.py[line:90] - fuc:__console- INFO: 截图保存成功
+[2023-08-15 10:12:17,485] - logs.py[line:90] - fuc:__console- INFO: 上机浓度调整前明细表自动计算
+[2023-08-15 10:12:17,487] - logs.py[line:90] - fuc:__console- INFO:  明细表使用前取样录入
+[2023-08-15 10:12:22,887] - logs.py[line:90] - fuc:__console- INFO: 页面刷新
+[2023-08-15 10:14:03,494] - logs.py[line:90] - fuc:__console- INFO: 浓度调整后明细表批量数据录入、自动计算
+[2023-08-15 10:14:08,644] - logs.py[line:90] - fuc:__console- INFO: 页面刷新
+[2023-08-15 10:14:11,723] - logs.py[line:90] - fuc:__console- INFO:  批量数据
+[2023-08-15 10:22:54,519] - logs.py[line:90] - fuc:__console- INFO: ------TestCase Start!------
+[2023-08-15 10:22:54,556] - logs.py[line:90] - fuc:__console- INFO: 打开浏览器
+[2023-08-15 10:22:54,694] - logs.py[line:90] - fuc:__console- INFO: 最大化浏览器
+[2023-08-15 10:22:54,699] - logs.py[line:90] - fuc:__console- INFO: 访问地址
+[2023-08-15 10:22:59,822] - logs.py[line:90] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-08-15 10:23:00,853] - logs.py[line:90] - fuc:__console- INFO: 清空输入框信息
+[2023-08-15 10:23:00,915] - logs.py[line:90] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-08-15 10:23:01,638] - logs.py[line:90] - fuc:__console- INFO: 输入密码：Edgq123
+[2023-08-15 10:23:02,277] - logs.py[line:90] - fuc:__console- INFO: 点击登录按钮
+[2023-08-15 10:23:13,715] - logs.py[line:90] - fuc:__console- INFO: 登录系统，进入上机页面
+[2023-08-15 10:23:13,717] - logs.py[line:90] - fuc:__console- INFO: 新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP
+[2023-08-15 10:23:13,720] - logs.py[line:90] - fuc:__console- INFO: 上机首页，点击新建按钮，进入样本待选表，新增上机任务
+[2023-08-15 10:23:20,607] - logs.py[line:90] - fuc:__console- INFO: 录入上机批次号:2023.08.15 10:23:13批次
+[2023-08-15 10:23:21,112] - logs.py[line:90] - fuc:__console- INFO: 选择测序仪
+[2023-08-15 10:23:25,128] - logs.py[line:90] - fuc:__console- INFO: 运行模式
+[2023-08-15 10:23:26,312] - logs.py[line:90] - fuc:__console- INFO: 实际上机时间
+[2023-08-15 10:23:27,277] - logs.py[line:90] - fuc:__console- INFO: 任务描述
+[2023-08-15 10:23:28,025] - logs.py[line:90] - fuc:__console- INFO: 选择浓度调整SOP弹框
+[2023-08-15 10:23:32,415] - logs.py[line:90] - fuc:__console- INFO:  选择上机SOP
+[2023-08-15 10:23:36,761] - logs.py[line:90] - fuc:__console- INFO:  浓度调整实验员
+[2023-08-15 10:23:41,009] - logs.py[line:90] - fuc:__console- INFO: 选择 上机实验员
+[2023-08-15 10:23:45,681] - logs.py[line:90] - fuc:__console- INFO: 核对样本lims号并选中加入任务单
+[2023-08-15 10:23:45,684] - logs.py[line:90] - fuc:__console- INFO: 调用选择样本方法-----
+[2023-08-15 10:23:45,687] - logs.py[line:90] - fuc:__console- INFO:  从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择
+[2023-08-15 10:23:52,714] - logs.py[line:90] - fuc:__console- INFO:  选中核对后的样本，点击【加入选中样本&保存】
+[2023-08-15 10:23:53,506] - logs.py[line:90] - fuc:__console- INFO: <div><img src='C:\Users\admin\Desktop\工作文件夹\自动化文档\正式脚本\世和LIMS脚本\LIMS_UI_TEST\output\img\20230815102353_上机待选表选择样本加入并保存 .png' width=600 /></div>
+[2023-08-15 10:23:53,508] - logs.py[line:90] - fuc:__console- INFO: 截图说明：上机待选表选择样本加入并保存 
+[2023-08-15 10:23:53,733] - logs.py[line:90] - fuc:__console- INFO: 截图保存成功
+[2023-08-15 10:23:57,481] - logs.py[line:90] - fuc:__console- INFO: 保存任务单，进入明细表
+[2023-08-15 10:23:57,547] - logs.py[line:90] - fuc:__console- INFO: 点击按钮进入上机浓度调整前明细表
+[2023-08-15 10:24:04,614] - logs.py[line:90] - fuc:__console- INFO: 上机浓度调整前明细表自动计算
+[2023-08-15 10:24:04,617] - logs.py[line:90] - fuc:__console- INFO:  明细表使用前取样录入
+[2023-08-15 10:24:09,142] - logs.py[line:90] - fuc:__console- INFO: 页面刷新
+[2023-08-15 10:24:50,477] - logs.py[line:90] - fuc:__console- INFO: ------TestCase Start!------
+[2023-08-15 10:24:50,488] - logs.py[line:90] - fuc:__console- INFO: 打开浏览器
+[2023-08-15 10:24:50,618] - logs.py[line:90] - fuc:__console- INFO: 最大化浏览器
+[2023-08-15 10:24:50,650] - logs.py[line:90] - fuc:__console- INFO: 访问地址
+[2023-08-15 10:24:54,475] - logs.py[line:90] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-08-15 10:24:55,503] - logs.py[line:90] - fuc:__console- INFO: 清空输入框信息
+[2023-08-15 10:24:55,556] - logs.py[line:90] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-08-15 10:24:56,352] - logs.py[line:90] - fuc:__console- INFO: 输入密码：Edgq123
+[2023-08-15 10:24:57,000] - logs.py[line:90] - fuc:__console- INFO: 点击登录按钮
+[2023-08-15 10:25:07,668] - logs.py[line:90] - fuc:__console- INFO: 登录系统，进入上机页面
+[2023-08-15 10:25:07,672] - logs.py[line:90] - fuc:__console- INFO: 新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP
+[2023-08-15 10:25:07,676] - logs.py[line:90] - fuc:__console- INFO: 上机首页，点击新建按钮，进入样本待选表，新增上机任务
+[2023-08-15 10:25:13,440] - logs.py[line:90] - fuc:__console- INFO: 录入上机批次号:2023.08.15 10:25:07批次
+[2023-08-15 10:25:13,955] - logs.py[line:90] - fuc:__console- INFO: 选择测序仪
+[2023-08-15 10:25:17,961] - logs.py[line:90] - fuc:__console- INFO: 运行模式
+[2023-08-15 10:25:19,174] - logs.py[line:90] - fuc:__console- INFO: 实际上机时间
+[2023-08-15 10:25:20,173] - logs.py[line:90] - fuc:__console- INFO: 任务描述
+[2023-08-15 10:25:20,936] - logs.py[line:90] - fuc:__console- INFO: 选择浓度调整SOP弹框
+[2023-08-15 10:25:25,352] - logs.py[line:90] - fuc:__console- INFO:  选择上机SOP
+[2023-08-15 10:25:29,726] - logs.py[line:90] - fuc:__console- INFO:  浓度调整实验员
+[2023-08-15 10:25:34,071] - logs.py[line:90] - fuc:__console- INFO: 选择 上机实验员
+[2023-08-15 10:25:38,986] - logs.py[line:90] - fuc:__console- INFO: 核对样本lims号并选中加入任务单
+[2023-08-15 10:25:52,509] - logs.py[line:90] - fuc:__console- INFO: 调用选择样本方法-----
+[2023-08-15 10:25:53,040] - logs.py[line:90] - fuc:__console- INFO:  从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择
+[2023-08-15 10:26:00,914] - logs.py[line:90] - fuc:__console- INFO:  选中核对后的样本，点击【加入选中样本&保存】
+[2023-08-15 10:27:07,130] - logs.py[line:90] - fuc:__console- INFO: ------TestCase Start!------
+[2023-08-15 10:27:07,140] - logs.py[line:90] - fuc:__console- INFO: 打开浏览器
+[2023-08-15 10:27:07,281] - logs.py[line:90] - fuc:__console- INFO: 最大化浏览器
+[2023-08-15 10:27:07,283] - logs.py[line:90] - fuc:__console- INFO: 访问地址
+[2023-08-15 10:27:12,264] - logs.py[line:90] - fuc:__console- INFO: 切换登录方式为账号密码登录
+[2023-08-15 10:27:13,300] - logs.py[line:90] - fuc:__console- INFO: 清空输入框信息
+[2023-08-15 10:27:13,351] - logs.py[line:90] - fuc:__console- INFO: 输入账号：guoqi.dong
+[2023-08-15 10:27:14,125] - logs.py[line:90] - fuc:__console- INFO: 输入密码：Edgq123
+[2023-08-15 10:27:14,766] - logs.py[line:90] - fuc:__console- INFO: 点击登录按钮
+[2023-08-15 10:27:25,482] - logs.py[line:90] - fuc:__console- INFO: 登录系统，进入上机页面
+[2023-08-15 10:27:25,485] - logs.py[line:90] - fuc:__console- INFO: 新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP
+[2023-08-15 10:27:25,487] - logs.py[line:90] - fuc:__console- INFO: 上机首页，点击新建按钮，进入样本待选表，新增上机任务
+[2023-08-15 10:27:31,252] - logs.py[line:90] - fuc:__console- INFO: 录入上机批次号:2023.08.15 10:27:25批次
+[2023-08-15 10:27:31,769] - logs.py[line:90] - fuc:__console- INFO: 选择测序仪
+[2023-08-15 10:27:35,737] - logs.py[line:90] - fuc:__console- INFO: 运行模式
+[2023-08-15 10:27:36,951] - logs.py[line:90] - fuc:__console- INFO: 实际上机时间
+[2023-08-15 10:27:37,987] - logs.py[line:90] - fuc:__console- INFO: 任务描述
+[2023-08-15 10:27:38,779] - logs.py[line:90] - fuc:__console- INFO: 选择浓度调整SOP弹框
+[2023-08-15 10:27:43,152] - logs.py[line:90] - fuc:__console- INFO:  选择上机SOP
+[2023-08-15 10:27:47,603] - logs.py[line:90] - fuc:__console- INFO:  浓度调整实验员
+[2023-08-15 10:27:51,941] - logs.py[line:90] - fuc:__console- INFO: 选择 上机实验员
+[2023-08-15 10:27:56,759] - logs.py[line:90] - fuc:__console- INFO: 核对样本lims号并选中加入任务单
+[2023-08-15 10:28:02,763] - logs.py[line:90] - fuc:__console- INFO: 调用选择样本方法-----
+[2023-08-15 10:28:03,006] - logs.py[line:90] - fuc:__console- INFO:  从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择
+[2023-08-15 10:28:10,891] - logs.py[line:90] - fuc:__console- INFO:  选中核对后的样本，点击【加入选中样本&保存】
+[2023-08-15 10:28:12,369] - logs.py[line:90] - fuc:__console- INFO: <div><img src='C:\Users\admin\Desktop\工作文件夹\自动化文档\正式脚本\世和LIMS脚本\LIMS_UI_TEST\output\img\20230815102812_上机待选表选择样本加入并保存 .png' width=600 /></div>
+[2023-08-15 10:28:12,371] - logs.py[line:90] - fuc:__console- INFO: 截图说明：上机待选表选择样本加入并保存 
+[2023-08-15 10:28:12,681] - logs.py[line:90] - fuc:__console- INFO: 截图保存成功

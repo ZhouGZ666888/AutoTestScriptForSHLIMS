@@ -1,0 +1,6 @@
+baseurl: http://172.16.18.67/lim/welcome
+companies:
+- name: guanzhong.zhou
+  password: Gg123456!
+- name: guoqi.dong
+  password: Edgq123

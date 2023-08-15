@@ -1,0 +1,118 @@
+--报告视图刷新脚本，开始报告任务用例前执行该脚本
+
+
+INSERT INTO lims.order_report_task_t
+(task_id,
+order_code,
+preinstall_pooling_date,
+is_process,
+task_status,
+is_valid,
+creation_date,
+created_by,
+created_by_name,
+mod_date,
+mod_by,
+mod_by_name)
+WITH ta AS
+( -- 非SR未生成的订单
+SELECT t.order_code,
+to_char(t.estimated_generated_time, 'YYYY-MM-DD') AS preinstall_pooling_date,
+case
+when date_part('day', date_trunc('day', t.estimated_generated_time) - current_date) >= 360 then '0'
+else '1' end AS is_process
+FROM lims.sample_info_t t
+WHERE t.current_step = 'pooling'
+AND t.workflow_status in ('02', '03', '04')
+AND t.sr_type = '03'
+and t.is_valid = '1'
+AND date_trunc('day', t.estimated_generated_time) >= current_date
+AND t.order_code IS NOT NULL
+GROUP BY t.order_code,
+to_char(t.estimated_generated_time, 'YYYY-MM-DD'),
+case
+when date_part('day',
+date_trunc('day', t.estimated_generated_time) - current_date) >=
+360 then '0'
+else '1' end
+UNION ALL
+-- SR未生成的订单
+SELECT t.order_code,
+to_char(t.estimated_generated_time, 'YYYY-MM-DD') AS preinstall_pooling_date,
+'0' AS is_process
+FROM lims.sample_info_t t
+WHERE t.current_step = 'pooling'
+AND t.workflow_status in ('02', '03','04')
+AND t.sr_type <> '03'
+and t.is_valid='1'
+AND date_trunc('day', t.estimated_generated_time) >= current_date
+and t.order_code is not null
+GROUP BY t.order_code,to_char(t.estimated_generated_time, 'YYYY-MM-DD')
+union all
+-- 21基因订单基本信息任务 20210115反馈暂停该任务生成
+SELECT t.order_code,
+to_char(t.creation_date, 'YYYY-MM-DD') AS preinstall_pooling_date,
+'1' AS is_process
+FROM lims.sample_info_t t
+WHERE t.current_step = 'twentyonegene'
+AND t.workflow_status in ('02', '03','04')
+AND t.sr_type = '03'
+and t.is_valid='1'
+and date_trunc('day',t.creation_date)>=current_date
+AND t.order_code IS NOT NULL
+GROUP BY t.order_code,to_char(t.creation_date, 'YYYY-MM-DD')
+union all
+-- 最近1天已完成富集的订单基本信息任务
+SELECT t.order_code,
+to_char(t.actual_generated_time, 'YYYY-MM-DD') AS preinstall_pooling_date,
+'1' AS is_process
+FROM lims.sample_info_t t
+WHERE t.current_step = 'pooling'
+AND t.workflow_status ='01'
+AND t.sr_type = '03'
+and t.is_valid ='1'
+AND t.actual_generated_time >=(now() - interval '1 day')
+AND t.order_code IS NOT NULL
+GROUP BY t.order_code,to_char(t.actual_generated_time, 'YYYY-MM-DD')
+union all
+-- 最近1天接样的mIHC样本 2021-10-25新增
+select t.order_code,
+to_char((date_trunc('day', t.creation_date)::date +1),'YYYY-MM-DD') as preinstall_pooling_date,
+'1' AS is_process
+from sample_receive_item_t t
+where t.task_status = '03'
+and exists(select 1
+from order_product_t op
+where t.order_code = op.order_code
+and op.product_id in ('F004','F011','F010','H019','H020','H021','H022')
+and op.is_valid = '1')
+and date_trunc('day',t.mod_date) >= current_date-1
+and not exists(select 1 from order_report_task_t rt where t.order_code=rt.order_code and (date_trunc('day', t.creation_date)::date +1)=rt.preinstall_pooling_date)
+group by t.order_code, (date_trunc('day', t.creation_date)::date +1)
+),
+tc as (
+select ta.order_code,
+ta.preinstall_pooling_date,
+ta.is_process
+from ta
+group by ta.order_code,
+ta.preinstall_pooling_date,
+ta.is_process
+)
+SELECT lims.get_order_report_task_id_f() AS task_id,
+tc.order_code,
+tc.preinstall_pooling_date::DATE AS preinstall_pooling_date,
+tc.is_process,
+case tc.is_process when '0' then '05' else '01' end as task_status,
+'1' AS is_valid,
+NOW() AS creation_date,
+'admin' AS created_by,
+'管理员' AS created_by_name,
+NOW() AS mod_date,
+'admin' AS mod_by,
+'管理员' AS mod_by_name
+FROM tc
+WHERE NOT EXISTS (SELECT 1
+FROM lims.order_report_task_t tb
+WHERE tc.order_code = tb.order_code
+AND tc.preinstall_pooling_date::date = tb.preinstall_pooling_date);
