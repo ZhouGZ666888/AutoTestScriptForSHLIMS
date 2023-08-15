@@ -32,7 +32,6 @@ class SampleProcessing(MyTest):
         """
 
         self.spp.sample_detail()  # 样本数据录入，入库类型、库位选择
-
         self.spp.enter_result_list(goResult, '结果表')
 
     def test03_product_result(self):
