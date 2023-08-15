@@ -43,7 +43,6 @@ class SampleProcessing(MyTest):
         # 写入样本lims号和实验室号存入Excel进行数据流转，并返回明细表
         self.spp.write_data_to_excel()
         self.spp.goback_detail()
-
         self.assertEqual(save_info1, '是', '提交失败!')
 
     def test04_detail_submit(self):
