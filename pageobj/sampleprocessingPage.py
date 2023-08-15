@@ -93,8 +93,8 @@ class SampleProcessingPage(BasePage):
 
         self.clicks('css', ele)
         log.info('点击按钮进入{}'.format(page))
-        eles = self.findelement('css', goback_page_info)
-        if self.isDisPlayed('css', eles):
+        # eles = self.findelement('css', goback_page_info)
+        if self.isDisPlayed('css', goback_page_info):
             self.clicks('css', goback_page_info)
             self.wait_loading()
         else:
