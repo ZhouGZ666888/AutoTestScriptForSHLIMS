@@ -139,6 +139,12 @@ one_by_one_chioce_sample = (
 laboratory_process_temp_btn = (
     '//*[@aria-label="实验流程配置/预设探针"]/descendant::button[child::span[text()="实验流程模板"]]')
 
+#实验流程Illumina模板
+Illumina='.multi-table-dialog .el-dialog__body .sequencing-type label:nth-child(1) input'
+
+#实验流程华大模板
+huada='.multi-table-dialog .el-dialog__body .sequencing-type label:nth-child(2) input'
+
 # 实验流程探针选择按钮
 laboratory_process_planned_btn = (
     '//*[@aria-label="实验流程配置/预设探针"]/descendant::button[child::span[text()="预设探针"]]')

@@ -22,7 +22,6 @@ class SampleReceivePage(BasePage):
     样本接收类页面基础方法
     """
 
-
     def search_order(self):
         """
         查询已存在订单号，对该订单号进行接样
@@ -88,8 +87,8 @@ class SampleReceivePage(BasePage):
             self.clicks('xpath', open_product)
             self.clicks('xpath', choice_product)
             self.sleep(0.5)
-            if self.isElementExists('css',tipInfo):
-                self.clicks('css',tipInfo)
+            if self.isElementExists('css', tipInfo):
+                self.clicks('css', tipInfo)
             self.wait_loading()
             self.wait_loading()
             self.clicks('xpath', close_button)
@@ -274,14 +273,16 @@ class SampleReceivePage(BasePage):
                         specimen_type = self.get_text('xpath', template_sample_type.format(j))
                         if specimen_type == 'EDTA抗凝血':
                             self.clicks('xpath', one_by_one_chioce_sample.format(j))  # 先选中对应样本
-                    self.clicks('xpath', laboratory_process_temp_btn)
-                    ele = LibProcessVisible.format('样本处理-样本分离')
-                    self.clicks('xpath', ele)
+                    self.clicks('xpath', laboratory_process_temp_btn)  # 点击实验流程模板按钮
+                    self.sleep(0.5)
+                    self.clicks('css', Illumina)#切换到Illumina模版
+                    self.sleep(0.5)
+                    self.clicks('xpath', LibProcessVisible.format('样本处理-样本分离'))
                     print("选中")
                     self.sleep(0.5)
                     self.clicks('xpath', LibProcessVisible_btn)
                     self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_btn)
+                    self.clicks('xpath', laboratory_process_planned_btn)#选择探针
                     self.sleep(0.5)
                     self.clicks('xpath', laboratory_process_planned_chioce)
                     self.sleep(0.5)
@@ -299,6 +300,9 @@ class SampleReceivePage(BasePage):
                         if specimen_type == '骨冷冻组织':
                             self.clicks('xpath', one_by_one_chioce_sample.format(j))
                     self.clicks('xpath', laboratory_process_temp_btn)
+                    self.sleep(0.5)
+                    self.clicks('css', Illumina)#切换到Illumina模版
+                    self.sleep(0.5)
                     self.clicks('xpath', LibProcessVisible.format('21基因'))
                     print("选中")
                     self.sleep(0.5)
@@ -318,6 +322,9 @@ class SampleReceivePage(BasePage):
                         if specimen_type == 'DNA文库':
                             self.clicks('xpath', one_by_one_chioce_sample.format(j))
                     self.clicks('xpath', laboratory_process_temp_btn)
+                    self.sleep(0.5)
+                    self.clicks('css', Illumina)#切换到Illumina模版
+                    self.sleep(0.5)
                     ele = LibProcessVisible.format('文库定量')
                     self.clicks('xpath', ele)
                     print("选中")
@@ -340,8 +347,10 @@ class SampleReceivePage(BasePage):
                         if specimen_type == '外部血浆':
                             self.clicks('xpath', one_by_one_chioce_sample.format(j))
                     self.clicks('xpath', laboratory_process_temp_btn)
-                    ele = LibProcessVisible.format('提取-质谱仪上机')
-                    self.clicks('xpath', ele)
+                    self.sleep(0.5)
+                    self.clicks('css', Illumina)#切换到Illumina模版
+                    self.sleep(0.5)
+                    self.clicks('xpath', LibProcessVisible.format('提取-质谱仪上机'))
                     print("选中")
                     self.sleep(0.5)
                     self.clicks('xpath', LibProcessVisible_btn)
