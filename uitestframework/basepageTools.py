@@ -180,11 +180,6 @@ class BasePage:
                 return True
         except ElementNotClickable:
             return False
-        # try:
-        #     WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(locator))
-        #     return True
-        # except:
-        #     return False
 
     def isElementExists(self, stype, element_loc):
         """
