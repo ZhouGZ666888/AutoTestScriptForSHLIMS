@@ -10,7 +10,7 @@ test_limsbasdb_database = "basdb"
 test_limsbasdb_port = 3306
 
 # # ==================27-pg-lims数据库信息==================
-# test_limsdb_ip = "172.16.18.27"
+# test_limsdb_ip = "172.16.18.27"d
 # test_limsdb_user = "lims_geneseeq"
 # test_limsdb_password = "7O32kEL14O"
 # test_limsdb_database = "lims"
