@@ -12,7 +12,7 @@ from common.all_path import zpy_file_path, position_in_box_path
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, get_firstDownloadFile, pandas_write_excel, read_excel_col
-from data.execute_sql_action import Massspectr_sample_no, Massspectr
+from data.sql_action.execute_sql_action import Massspectr_sample_no, Massspectr
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 import pandas as pd

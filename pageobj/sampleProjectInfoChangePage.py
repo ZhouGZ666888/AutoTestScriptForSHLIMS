@@ -6,7 +6,7 @@ from PageElemens.sampleProjectInfoChange_ele import *
 from common.all_path import sampleprocessing_file_path
 from common.screenshot import Screenshot
 from common.xlsx_excel import read_excel_col, get_firstDownloadFile
-from data.execute_sql_action import project_id, sampleProId
+from data.sql_action.execute_sql_action import project_id, sampleProId
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 import pandas as pd

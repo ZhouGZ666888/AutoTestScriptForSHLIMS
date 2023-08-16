@@ -8,7 +8,7 @@ from common import editYaml
 from common.all_path import functionpageURL_path, sampledata_path
 from common.screenshot import Screenshot
 from common.xlsx_excel import get_lims_for_excel, read_excel_col
-from data.execute_sql_action import next_step_sql, ybcl_detail_sql
+from data.sql_action.execute_sql_action import next_step_sql, ybcl_detail_sql
 from uitestframework.basepageTools import BasePage
 from conf.config import *
 from common.logs import log

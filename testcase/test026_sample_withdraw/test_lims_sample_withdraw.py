@@ -4,7 +4,7 @@
 # 样本出库测试用例封装
 import unittest
 from common.enter_tab import EnterTab
-from data.execute_sql_action import *
+from data.sql_action.execute_sql_action import *
 from pageobj.ybckPage import GetSampleCK
 from common.logs import log
 from common.Main import MyTest

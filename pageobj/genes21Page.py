@@ -11,7 +11,7 @@ from common import editYaml
 from common.all_path import esyjy_file_path, functionpageURL_path, sampledata_path, twentyonegene_file_path
 from common.screenshot import Screenshot
 from common.xlsx_excel import get_lims_for_excel, read_excel_col
-from data.execute_sql_action import twentyonegene_sql1, twentyonegene_sql2
+from data.sql_action.execute_sql_action import twentyonegene_sql1, twentyonegene_sql2
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

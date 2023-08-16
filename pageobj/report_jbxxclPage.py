@@ -7,7 +7,7 @@ from PageElemens.report_jbxxcl_ele import *
 from common.editYaml import *
 from common.all_path import sampledata_path, orderNub_path
 from common.screenshot import Screenshot
-from data.execute_sql_action import ybcl_detail_sql2
+from data.sql_action.execute_sql_action import ybcl_detail_sql2
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

@@ -10,7 +10,7 @@ from common.all_path import sj_file_path, functionpageURL_path, position_in_box_
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import read_excel_col, pandas_write_excel
-from data.execute_sql_action import *
+from data.sql_action.execute_sql_action import *
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

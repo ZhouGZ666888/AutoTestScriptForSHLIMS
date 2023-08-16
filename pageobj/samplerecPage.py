@@ -2,19 +2,22 @@
 # @Time    : 2021/11/11
 # @Author  : guanzhong.zhou
 # @File    : 样本接收页面功能封装
-from datetime import datetime
+
 from openpyxl import load_workbook
 from PageElemens.sampleRec_ele import *
+from common.DataBaseConfig import executeSql
 from common.editYaml import *
 from common.all_path import pathologycheck_file_path, hstq_file_path, sampleprocessing_file_path, \
-    wkdl_sr_file_path, sr_sample_imp_file, sr_sample_sublibrary_imp_file, sampledata_path, orderNub_path
+    wkdl_sr_file_path, sr_sample_imp_file, sr_sample_sublibrary_imp_file, orderNub_path, \
+    app_a_file_path, SR_sample_for_import_path
 from common.screenshot import Screenshot
 from common.xlsx_excel import add_write_excel_xlsx
 from conf.config import create_lab_excel, specimen_list
-from data.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external
+from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external
 from uitestframework.basepageTools import BasePage
 from common.logs import log
-from uitestframework.exceptionsTools import MyBaseFailure, TimeOutError
+from uitestframework.exceptionsTools import TimeOutError
+import re
 
 
 class SampleReceivePage(BasePage):
@@ -51,7 +54,7 @@ class SampleReceivePage(BasePage):
         except TimeOutError as error1:
             log.warning('进入接样详情页面超时，刷新页面。{}'.format(error1))
             self.refresh()
-        except Exception as error2 :
+        except Exception as error2:
             log.warning('进入接样详情页面报错，刷新页面。{}'.format(error2))
             self.refresh()
 
@@ -122,18 +125,17 @@ class SampleReceivePage(BasePage):
         骨冷冻组织
         DNA文库
         外部血浆
+        cDNA文库
         """
 
         def set_sampleType():
             """设置样本类型方法封装"""
-            for i in range(tips+1, (tips + num)+1):
-
-                self.click_by_js('css', one_by_one_samples.format(i))  # 先选中对应样本
+            for index in range(tips + 1, (tips + num) + 1):
+                self.click_by_js('css', one_by_one_samples.format(index))  # 先选中对应样本
                 self.sleep(0.5)
             self.chioce_specimen(s_type)
-            for i in range(tips, tips + num):
-                j = i + 1
-                self.click_by_js('css', one_by_one_samples.format(j))
+            for b in range(tips + 1, (tips + num) + 1):
+                self.click_by_js('css', one_by_one_samples.format(b))
             self.sleep(1)
 
         log.info('添加5种样本，')
@@ -193,7 +195,7 @@ class SampleReceivePage(BasePage):
             elif s_type == '外部血浆':
                 set_sampleType()
 
-            elif s_type == 'Streck抗凝血':
+            elif s_type == 'cDNA文库':
                 set_sampleType()
             tips += num  # 每次循环取不同样本，所以各样本数量相加，取其排序下标，在页面中根据对应下标进行定位
 
@@ -214,7 +216,7 @@ class SampleReceivePage(BasePage):
         """
 
         def expProcess_planne(sampleTotal, sampleType, expTemp, expType):
-            """把生成实验流程方法封装，此方法设置探针"""
+            """把生成实验流程方法封装"""
             for ic in range(1, len(sampleTotal) + 1):  # 从所有存在于实验流程弹框中的样本，根据样本类型值，与列表取值进行比对
                 specimenType = self.get_text('xpath', template_sample_type.format(ic))
                 if specimenType == sampleType:  # 如果页面列表中，样本类型值与列表循环出的一致，则在页面弹框选中
@@ -230,10 +232,16 @@ class SampleReceivePage(BasePage):
             self.clicks('xpath', LibProcessVisible_btn)  # 选择实验流程弹框确认按钮
             self.sleep(0.5)
             self.clicks('xpath', laboratory_process_planned_btn)  # 选择探针
-            self.sleep(0.5)
-            self.clicks('xpath', laboratory_process_planned_chioce)
-            self.sleep(0.5)
-            self.clicks('xpath', laboratory_process_planned_comfirm)
+            if re.search(r'当前模板不需预设探针', self.get_source):
+                for ib in range(1, len(sampleTotal) + 1):
+                    specimenType = self.get_text('xpath', template_sample_type.format(ib))
+                    if specimenType == sampleType:
+                        self.clicks('xpath', one_by_one_chioce_sample.format(ib))
+            else:
+                self.sleep(0.5)
+                self.clicks('xpath', laboratory_process_planned_chioce)
+                self.sleep(0.5)
+                self.clicks('xpath', laboratory_process_planned_comfirm)
             self.sleep(0.5)
             # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
             for ib in range(1, len(sampleTotal) + 1):
@@ -287,19 +295,16 @@ class SampleReceivePage(BasePage):
                     expProcess_planne(lists, 'EDTA抗凝血', Illumina, '样本处理-样本分离')
 
                 elif s_type == '骨冷冻组织':
-                    expProcess_non_planne(lists, '骨冷冻组织', Illumina, '21基因')
+                    expProcess_planne(lists, '骨冷冻组织', Illumina, '21基因')
 
                 elif s_type == 'DNA文库':
-
-                    expProcess_non_planne(lists, 'DNA文库', Illumina, '文库定量')
+                    expProcess_planne(lists, 'DNA文库', Illumina, '文库定量')
 
                 elif s_type == '外部血浆':
+                    expProcess_planne(lists, '外部血浆', Illumina, '提取-质谱仪上机')
 
-                    expProcess_non_planne(lists, '外部血浆', Illumina, '提取-质谱仪上机')
-
-                elif s_type == 'Streck抗凝血':
-
-                    expProcess_planne(lists, 'Streck抗凝血', huada, '华大-样本处理-样本分离')
+                elif s_type == 'cfDNA文库':
+                    expProcess_planne(lists, 'cfDNA文库', huada, '华大-APP-A')
 
         # 获取当前窗口句柄
         now_handle = self.get_current_window_handle()
@@ -327,54 +332,48 @@ class SampleReceivePage(BasePage):
         """
         把所有样本信息保存到Excel中
         """
+        log.info('样本信息保存到对应流程的Excel中')
         create_lab_excel()
         lists = self.findelements('xpath', all_samples)
+
+        def write_excel(filePath):
+            """写入Excel方法封装"""
+            data = []
+            sample_lims = self.get_text('xpath', one_lims_num.format(i))  # lism号
+            sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
+            data.append(sample_lims)
+            data.append(sample_lab)
+            lims_list_values.append(data)
+            add_write_excel_xlsx(filePath, lims_list_values)
 
         for i in range(1, len(lists) + 1):
             lims_list_values = []
             samples_type = self.get_text('xpath', one_sample_type.format(i))
             self.sleep(0.5)
             if samples_type == "FFPE白片":
-                data1 = []
-                sample_lims = self.get_text('xpath', one_lims_num.format(i))
-                data1.append(sample_lims)
-                lims_list_values.append(data1)
+                write_excel(hstq_file_path)
                 add_write_excel_xlsx(pathologycheck_file_path, lims_list_values)
-                add_write_excel_xlsx(hstq_file_path, lims_list_values)
-
             elif samples_type == "EDTA抗凝血":
-                data2 = []
-                sample_lims = self.get_text('xpath', one_lims_num.format(i))
-                sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
-                data2.append(sample_lims)
-                data2.append(sample_lab)
-                lims_list_values.append(data2)
-                add_write_excel_xlsx(sampleprocessing_file_path, lims_list_values)
+                write_excel(sampleprocessing_file_path)
+                # data2 = []
+                # sample_lims = self.get_text('xpath', one_lims_num.format(i))
+                # sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
+                # data2.append(sample_lims)
+                # data2.append(sample_lab)
+                # lims_list_values.append(data2)
+                # add_write_excel_xlsx(sampleprocessing_file_path, lims_list_values)
 
             elif samples_type == "骨冷冻组织":
-                data3 = []
-                sample_lims = self.get_text('xpath', one_lims_num.format(i))  # lism号
-                sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
-                data3.append(sample_lims)
-                data3.append(sample_lab)
-                lims_list_values.append(data3)
-                add_write_excel_xlsx(hstq_file_path, lims_list_values)
+                write_excel(hstq_file_path)
 
             elif samples_type == "DNA文库":
-                data4 = []
-                sample_lims = self.get_text('xpath', one_lims_num.format(i))
-                data4.append(sample_lims)
-                lims_list_values.append(data4)
-                add_write_excel_xlsx(wkdl_sr_file_path, lims_list_values)
+                write_excel(wkdl_sr_file_path)
 
             elif samples_type == "外部血浆":
-                data5 = []
-                sample_lims = self.get_text('xpath', one_lims_num.format(i))  # lism号
-                sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
-                data5.append(sample_lims)
-                data5.append(sample_lab)
-                lims_list_values.append(data5)
-                add_write_excel_xlsx(hstq_file_path, lims_list_values)
+                write_excel(hstq_file_path)
+
+            elif samples_type == "cfDNA文库":
+                write_excel(app_a_file_path)
 
     def input_sampleamt(self):
         """
@@ -409,35 +408,36 @@ class SampleReceivePage(BasePage):
         """
         order = read_yaml(orderNub_path)  # 获取订单号
         log.info('录入样本备注')
-
         self.updata_sql(ybjs_sql.format(order['order_number']))
-        log.info('录入一条sr样本的外部样本编号')
-        now_time = datetime.now()
-        sr_sample_id_external = now_time.strftime('%Y%m%d%H%M') + '_TEST_SR'  # 按时间规则生成外部样本编号
+        log.info('获取订单接样表中所有的SR样本')
+        sr_sample = executeSql.test_select_limsdb(get_sr_sample_lims.format(order['order_number']))
+        sr_sampleLims = [list(i.values()) for i in sr_sample]
+        print('接样的SR样本：', sr_sampleLims)
+        lims = []
+        for i in range(len(sr_sampleLims)):
+            sr_sample_id_external = sr_sampleLims[i][0] + '_TEST_SR'  # 设置sr样本样本外部编号
+            # print(sr_sample_id_external)
 
-        log.info('把样本外部编号写入SR样本信息导入模板')
-        wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
-        ws = wb.active
-        ws.cell(2, 2, sr_sample_id_external)  # 修改第k行，第index列值
-        wb.save(sr_sample_imp_file)
+            log.info('把样本外部编号写入SR样本信息导入模板')
+            wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
+            ws = wb.active
+            ws.cell(2 + i, 2, sr_sample_id_external)  # 修改第k行，第index列值
+            wb.save(sr_sample_imp_file)
 
-        log.info('把样本外部编号写入SR样本子文库导入模板')
-        wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
-        ws = wb.active
-        ws.cell(2, 1, sr_sample_id_external)  # 修改第k行，第index列值
-        wb.save(sr_sample_sublibrary_imp_file)
+            log.info('把样本外部编号写入SR样本子文库导入模板')
+            wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
+            ws = wb.active
+            ws.cell(2 + i, 1, sr_sample_id_external)  # 修改第k行，第index列值
+            wb.save(sr_sample_sublibrary_imp_file)
 
-        # 数据库先获取一条sr样本的lims号，再根据lims号在数据库设置外部样本编号
-        sr_sample_nubs = self.select_sql(get_sr_sample_lims.format(order['order_number']))
-        sr_sample_nub = [list(i.values()) for i in sr_sample_nubs]
-        print('选中的SR样本：', sr_sample_nub[0][0])
-        self.updata_sql(set_sr_sample_id_external.format(sr_sample_id_external, sr_sample_nub[0][0]))
+            # 把样本外部编号写入到对应的SR样本在接样表的字段
+            executeSql.test_updateByParam(set_sr_sample_id_external.format(sr_sample_id_external, sr_sampleLims[i][0]))
 
-        # 将修改后的sr样本的lims号，存到临时文件，在SR样本信息登记模块使用
-        datas = read_yaml(sampledata_path)
-        datas["rec_sr_sample_for_sr_import"] = sr_sample_nub[0][0]
-        with open(sampledata_path, 'w', encoding='utf-8') as fs:  # 写入模式
-            yaml.safe_dump(datas, fs, allow_unicode=True)
+            lims.append(sr_sampleLims[i][0])
+        # 将sr样本保存到yaml文件，在SR样本信息登记模块使用
+        datas = read_yaml(SR_sample_for_import_path)
+        datas["rec_sr_sample_for_sr_import"] = lims
+        save_yaml(SR_sample_for_import_path, datas)
 
     def submit_sample_for_review(self):
         """

@@ -2,12 +2,13 @@
 # *************#
 from common.all_path import pathologycheck_file_path, sampleprocessing_file_path, hstq_file_path, csps_file_path, \
     wkgj_file_path, wkfj_file_path, wkdl_sr_file_path, wkdl_non_sr_file_path, sj_file_path, esyjy_file_path, \
-    mgmt_file_path, ybrk_file_path, report_basic_info_process_path, zpy_file_path
+    mgmt_file_path, ybrk_file_path, report_basic_info_process_path, zpy_file_path, app_a_file_path, \
+    cyclization_file_path, postcyclmix_file_path, dnbpremix_file_path
 from common.xlsx_excel import write_excel_xlsx_by_openpyxl
 
 # #样本接收模块生成样本数量
-# specimen_list = {'FFPE白片': 8, 'EDTA抗凝血': 8, '骨冷冻组织': 8, 'DNA文库': 8, '外部血浆': 8,'Streck抗凝血':2}
-specimen_list = {'FFPE白片': 1, 'EDTA抗凝血': 1, '骨冷冻组织': 2, 'DNA文库': 1, '外部血浆': 1,'Streck抗凝血':1}
+# specimen_list = {'FFPE白片': 8, 'EDTA抗凝血': 8, '骨冷冻组织': 8, 'DNA文库': 8, '外部血浆': 8,'cfDNA文库':2}
+specimen_list = {'FFPE白片': 1, 'EDTA抗凝血': 1, '骨冷冻组织': 2, 'DNA文库': 1, '外部血浆': 1,'cfDNA文库':1}
 
 """
 数据库配置
@@ -62,6 +63,10 @@ def create_lab_excel():
     write_excel_xlsx_by_openpyxl(ybrk_file_path, all_laboratorys[10], value)  # 样本入库数据流转Excel
     write_excel_xlsx_by_openpyxl(report_basic_info_process_path, all_laboratorys[11], value)  # 写入报告样本数据流转Excel
     write_excel_xlsx_by_openpyxl(zpy_file_path, all_laboratorys[12], value)  # 质谱仪样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(app_a_file_path, all_laboratorys[13], value)  # APP-A样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(cyclization_file_path, all_laboratorys[14], value)  # 环化样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(postcyclmix_file_path, all_laboratorys[15], value)  # 环化后混合样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(dnbpremix_file_path, all_laboratorys[16], value)  # DNB制备样本数据流转Excel
 
 
 if __name__ == '__main__':

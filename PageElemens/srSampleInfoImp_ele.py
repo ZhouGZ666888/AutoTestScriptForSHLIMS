@@ -37,16 +37,22 @@ sr_sample_imp_upload=(
 
 #sr样本导入列表，第一条数据
 choice_imp_sr_sample=(
-    '.sample_receive_detail .el-table__body-wrapper tbody tr:nth-child(1)')
+    '.sample_receive_detail .el-table__body-wrapper tbody tr:nth-child(1) td:nth-child(4)')
 
 # 子文库信息导入
 sr_childrenImport = (
     '.app-container .filter-container .baseClass-btn-childrenImport')
 
+#一键匹配LIMS号
+matchLimsId='.app-container .filter-container .baseClass-btn-matchLimsId'
+
 #页面列表样本
 sample_page_list = (
     '//*[@class="sample_receive_detail"]/descendant::tbody/tr')
 
+#导入提示信息
+save_info = (
+    '.el-message.el-message--success')
 """
 外部样本信息登记详情页
 """

@@ -17,7 +17,7 @@ from common.DataBaseConfig import executeSql
 from common.xlsx_excel import read_excel_col, pandas_write_excel
 from PageElemens.libraryquantification_ele import *
 from conf.config import libquant_result
-from data.execute_sql_action import wkdl_detail_sql1, wkdl_detail_sql2, wkdl_detail_sql3, wkdl_result_sql1, dl_next_step
+from data.sql_action.execute_sql_action import wkdl_detail_sql1, wkdl_detail_sql2, wkdl_detail_sql3, wkdl_result_sql1, dl_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

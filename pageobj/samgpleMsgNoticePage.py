@@ -11,7 +11,7 @@ from common.enter_tab import EnterTab
 from PageElemens.nucleicAcidExtraction_ele import *
 from pageobj.nucleicAcidExtractionPage import NucleicAcidExtractionPage
 from PageElemens.samplemsgnotice_ele import *
-from data.execute_sql_action import sampleMsgNotice
+from data.sql_action.execute_sql_action import sampleMsgNotice
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

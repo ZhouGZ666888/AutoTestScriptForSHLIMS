@@ -13,7 +13,7 @@ from common.DataBaseConfig import executeSql
 from common import editYaml
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from conf.config import libconstruction_result
-from data.execute_sql_action import *
+from data.sql_action.execute_sql_action import *
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

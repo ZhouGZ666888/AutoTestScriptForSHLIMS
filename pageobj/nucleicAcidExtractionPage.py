@@ -11,7 +11,7 @@ from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from conf.config import extraction_result
 from PageElemens.nucleicAcidExtraction_ele import *
-from data.execute_sql_action import hstq_detail_sql, hstq_detail_sql2, hstq_result_sql, next_step_sql
+from data.sql_action.execute_sql_action import hstq_detail_sql, hstq_detail_sql2, hstq_result_sql, next_step_sql
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

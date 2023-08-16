@@ -1,19 +1,17 @@
-import json
+import datetime
 
-import xlrd
-import yaml
 from openpyxl import load_workbook
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from common.all_path import *
+
 from common.DataBaseConfig import executeSql
 from common.editYaml import read_yaml, save_yaml
 from common.xlsx_excel import read_excel_col
-from data.execute_sql_action import yk_sample_info,yk_sample_search
-# from pageobj.pathologycheckPage import now_time
 
-import time
+
+# from pageobj.pathologycheckPage import now_time
+from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external
 
 
 def wait_loading():
@@ -164,7 +162,6 @@ ybcl_detail_sql = "UPDATE exp_preparation_item_t set position_in_box='1' where t
 #         }
 # df = pd.DataFrame(dic1, dtype=object)
 # df.to_excel(order_file_path, index=False)
-import datetime
 # order_nub = read_excel_col(order_file_path, 'order_number')  # 订单Excel获取订单号
 # enrichment_nub = read_excel_col(wkdl_sr_file_path, 'lims号')
 # print(enrichment_nub)
@@ -239,8 +236,6 @@ def get_data(max):
 
         yield a
         a+=1
-
-import pytest
 
 
 def my_openpyxl(sheet):
@@ -331,17 +326,71 @@ def find_key_new(key, json_obj):
     return result
 
 testdata = read_yaml(sampledata_path)
-
+order = read_yaml(orderNub_path)  # 获取订单号
 import pandas as pd
 def wer():
     df = pd.read_csv(mutation_file_path, encoding='utf-8', )
     print(df.loc[:, 'id'])
 
+
+
+def sr_sample_import():
+    """
+    准备sr样本数据，在sr信息登记模块使用。选取一条sr样本，设置sr样本的外部样本编号，并存入对应的导入模板
+    """
+
+
+
+    now_time = datetime.datetime.now()
+    sr_sample_id_external = now_time.strftime('%Y%m%d%H%M') + '_TEST_SR'  # 按时间规则生成外部样本编号
+
+
+    wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
+    ws = wb.active
+    ws.cell(2, 2, sr_sample_id_external)  # 修改第k行，第index列值
+    wb.save(sr_sample_imp_file)
+
+    wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
+    ws = wb.active
+    ws.cell(2, 1, sr_sample_id_external)  # 修改第k行，第index列值
+    wb.save(sr_sample_sublibrary_imp_file)
+
+    # 数据库先获取sr样本的lims号，再根据lims号在数据库设置外部样本编号
+    sr_sample_nubs = executeSql.test_select_limsdb(get_sr_sample_lims.format(order['order_number']))
+    sr_sample_nub = [list(i.values()) for i in sr_sample_nubs]
+    print('选中的SR样本：', sr_sample_nub[0][0])
+    executeSql.test_updateByParam(set_sr_sample_id_external.format(sr_sample_id_external, sr_sample_nub[0][0]))
+
+    # 将修改后的sr样本的lims号，存到临时文件，在SR样本信息登记模块使用
+    datas = read_yaml(sampledata_path)
+    datas["rec_sr_sample_for_sr_import"] = sr_sample_nub[0][0]
+    save_yaml(sampledata_path,datas)
+
+
+
 def test1():
-    lims_nub = read_excel_col(sampleprocessing_file_path, '实验室号')
-    print(lims_nub)
+    sr_sample = executeSql.test_select_limsdb(get_sr_sample_lims.format('99991489'))
+    sr_sampleLims = [list(i.values()) for i in sr_sample]
+    print('选中的SR样本：', sr_sampleLims)
+    lims=[]
+    for i in range(len(sr_sampleLims)):
+        sr_sample_id_external= sr_sampleLims[i][0] + '_TEST_SR'
+        print(sr_sample_id_external)
 
+        wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
+        ws = wb.active
+        ws.cell(2+i, 2, sr_sample_id_external)  # 修改第k行，第index列值
+        wb.save(sr_sample_imp_file)
 
+        wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
+        ws = wb.active
+        ws.cell(2+i, 1, sr_sample_id_external)  # 修改第k行，第index列值
+        wb.save(sr_sample_sublibrary_imp_file)
+        executeSql.test_updateByParam(set_sr_sample_id_external.format(sr_sample_id_external, sr_sampleLims[i][0]))
+        lims.append(sr_sampleLims[i][0])
+    datas = read_yaml(SR_sample_for_import_path)
+    datas["rec_sr_sample_for_sr_import"] = lims
+    save_yaml(SR_sample_for_import_path, datas)
 
 
 if __name__ == '__main__':

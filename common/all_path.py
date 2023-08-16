@@ -12,7 +12,8 @@ log_path = os.path.join(os.path.join(dir_name, "output"), 'logs')
 img_path = os.path.join(os.path.join(dir_name, "output"), 'img')
 
 # 指定输出截图文件到目录
-fileshot = os.path.join(os.path.join(os.path.join(dir_name, "output"), "wordFile"),"回归测试记录{}.docx").format(time.strftime('%Y%m%d', time.localtime(time.time())))
+fileshot = os.path.join(os.path.join(os.path.join(dir_name, "output"), "wordFile"), "回归测试记录{}.docx").format(
+    time.strftime('%Y%m%d', time.localtime(time.time())))
 # print(fileshot)
 
 # 测试文件路径
@@ -35,7 +36,7 @@ conffile_path = os.path.join(os.path.join(dir_name, "data"))
 excel_doc_file_path = os.path.join(os.path.join(dir_name, "data"), 'download_file')
 
 # ===========================sql执行数据================================
-report_views_refresh_sql = os.path.join(os.path.join(dir_name, "data"),'report_view_refresh.txt')  # 配置文件路径
+report_views_refresh_sql = os.path.join(os.path.join(dir_name, "data"), 'report_view_refresh.txt')  # 配置文件路径
 # 批量粘贴盒内位置导入文件
 position_in_box_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'),
                                     'position_in_box_lims.xlsx')
@@ -52,6 +53,9 @@ sampledata_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'yam
 
 # 记录订单号文件
 orderNub_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'yaml_doc'), 'MedicalOrderInfo.yaml')
+
+# 记录接样的SR样本文件
+SR_sample_for_import_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'yaml_doc'), 'SR_sample_for_import.yaml')
 
 # 各实验流程存储明细表、结果表URL路径，以便浏览器直接调用直接访问
 functionpageURL_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'yaml_doc'), 'functionPage_url.yaml')
@@ -110,6 +114,20 @@ esyjy_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'exc
 
 # MGMT结果记录表
 mgmt_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'mgmt_id_lims.xlsx')
+
+# APP-A样本记录表
+app_a_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'appa_id_lims.xlsx')
+
+# 环节环节样本记录表
+cyclization_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'),
+                                     'cyclization_lims_id.xlsx')
+
+# 环节后混合环节样本记录表
+postcyclmix_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'),
+                                     'postcyclmix_lims_id.xlsx')
+
+# DNB制备环节样本记录表
+dnbpremix_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'dnbpremix_lims_id.xlsx')
 
 # 样本入库类型样本lims号
 ybrk_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'ybrk_id_lims.xlsx')
@@ -179,4 +197,4 @@ sr_sample_sublibrary_imp_file = os.path.join(os.path.join(os.path.join(dir_name,
 
 # 移库样本明细表导入模板
 yk_sample_detail_imp_file = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'import_excel'),
-                                             '移库样本明细表.xlsx')
+                                         '移库样本明细表.xlsx')

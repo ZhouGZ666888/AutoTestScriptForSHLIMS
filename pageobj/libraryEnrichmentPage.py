@@ -14,7 +14,7 @@ from conf.config import pooling_result
 from common import editYaml
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.libraryEnrichment_ele import *
-from data.execute_sql_action import wkfj_detail_sql1, fj_next_step
+from data.sql_action.execute_sql_action import wkfj_detail_sql1, fj_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

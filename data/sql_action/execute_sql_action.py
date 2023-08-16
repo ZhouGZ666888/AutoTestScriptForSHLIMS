@@ -10,8 +10,8 @@ order_isexists_sql = "select count(*) from order_info_t where order_code='{}'; "
 # 接样写入备注
 ybjs_sql = "UPDATE sample_receive_item_t set remarks='自动化测试数据' where order_code='{}';"
 
-# 获取一条sr样本lims号
-get_sr_sample_lims = "select sample_id_lims from sample_receive_item_t where order_code='{}' and sample_type='C2016120700002' limit 1;"
+# 获取sr样本lims号
+get_sr_sample_lims = "select sample_id_lims from sample_receive_item_t where order_code='{}' and  sample_type in ('C2016120700002','C2017042000002');"
 
 # 修改获取sr样本的外部样本编号
 set_sr_sample_id_external = "update sample_receive_item_t set sample_id_external='{}' where sample_id_lims='{}';"

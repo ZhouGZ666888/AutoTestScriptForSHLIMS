@@ -6,7 +6,7 @@ from PageElemens.orderlist_ele import *
 from common.editYaml import *
 from common.all_path import  orderNub_path
 from common.screenshot import Screenshot
-from data.execute_sql_action import order_isexists_sql
+from data.sql_action.execute_sql_action import order_isexists_sql
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

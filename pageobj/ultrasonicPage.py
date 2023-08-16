@@ -14,7 +14,7 @@ from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from conf.config import ultrafrac_result
 from PageElemens.ultrasonic_ele import *
-from data.execute_sql_action import csps_result_sql, csps_detail_sql, next_step_sql
+from data.sql_action.execute_sql_action import csps_result_sql, csps_detail_sql, next_step_sql
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 

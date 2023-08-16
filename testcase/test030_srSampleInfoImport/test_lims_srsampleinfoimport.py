@@ -16,30 +16,24 @@ class SrSampleInfoImport(MyTest):
         """
         self.SrImpt = SrSampleInfoImp(self.driver)
 
-    def test01_add_sr_sample_info_import(self):
-        """
-        测试导入sr样本信息，并编辑外部样本信息登记详情
-        """
+    def test01_sr_sample_import(self):
+        """测试导入sr样本信息"""
         self.initialize()
 
-        EnterTab.enter_sr_record(self.basepage)  # 点击样本项目信息修改按钮
+        EnterTab.enter_sr_record(self.basepage)  # 点击SR样本信息登记按钮
         log.info('导入sr样本外部信息')
         self.SrImpt.sr_sample_import()
 
-        log.info(' 对上传的sr信息进行编辑，进入信息登记详情页')
-        self.SrImpt.edit_upload_sample()
-
-        log.info('外部样本信息登记详情页，上传子文库信息，选择sr样本')
-        self.SrImpt.sr_sample_detail()
-
-    def test02_search_sample_info(self):
-        """
-        测试根据lims号查询样本登记信息
-        """
+    def test02_sr_sample_childrenImport(self):
+        """测试导入sr样本子文库信息信息"""
         log.info(' 测试根据lims号查询样本登记信息')
-        EnterTab.enter_sr_record(self.basepage)
-        lists = self.SrImpt.search_lims()
-        self.assertNotEqual(lists, 0, msg='样本信息修改成功')
+        self.SrImpt.sr_sample_childrenImport()
+
+    def test03_sr_sample_match_lims(self):
+        """测试一键匹配LIMS号"""
+        log.info(' 测试根据lims号查询样本登记信息')
+        info = self.SrImpt.match_lims()
+        self.assertIsNotNone(info)
 
 
 if __name__ == '__main__':

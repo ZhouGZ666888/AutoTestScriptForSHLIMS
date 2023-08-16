@@ -11,7 +11,7 @@ from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.mgmt_ele import *
-from data.execute_sql_action import mgmt_sql1, mgmt_sql2, mgmt_sql3
+from data.sql_action.execute_sql_action import mgmt_sql1, mgmt_sql2, mgmt_sql3
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
