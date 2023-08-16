@@ -6,8 +6,8 @@ from common.all_path import pathologycheck_file_path, sampleprocessing_file_path
 from common.xlsx_excel import write_excel_xlsx_by_openpyxl
 
 # #样本接收模块生成样本数量
-# specimen_list = {'FFPE白片': 8, 'EDTA抗凝血': 8, '骨冷冻组织': 8, 'DNA文库': 8, '外部血浆': 8}
-specimen_list = {'FFPE白片': 1, 'EDTA抗凝血': 1, '骨冷冻组织': 2, 'DNA文库': 1, '外部血浆': 1}
+# specimen_list = {'FFPE白片': 8, 'EDTA抗凝血': 8, '骨冷冻组织': 8, 'DNA文库': 8, '外部血浆': 8,'Streck抗凝血':2}
+specimen_list = {'FFPE白片': 1, 'EDTA抗凝血': 1, '骨冷冻组织': 2, 'DNA文库': 1, '外部血浆': 1,'Streck抗凝血':1}
 
 """
 数据库配置

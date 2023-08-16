@@ -51,7 +51,7 @@ class SampleReceivePage(BasePage):
         except TimeOutError as error1:
             log.warning('进入接样详情页面超时，刷新页面。{}'.format(error1))
             self.refresh()
-        except MyBaseFailure as error2:
+        except Exception as error2 :
             log.warning('进入接样详情页面报错，刷新页面。{}'.format(error2))
             self.refresh()
 
@@ -106,13 +106,10 @@ class SampleReceivePage(BasePage):
         self.input('xpath', original_specimen_type, specimenList)
         print('选择样本类型：', specimenList)
         self.sleep(0.5)
-
         self.clicks('xpath', search_type_button)
         log.info('输入样本类型，点击查询按钮，进行检索')
-        # print(ele)
         self.wait_loading()
         self.clicks('xpath', chioce_search_result)
-        # print('选中')
         self.sleep(0.5)
         self.clicks('xpath', specimen_type_comfirm)
         self.sleep(0.5)
@@ -126,6 +123,19 @@ class SampleReceivePage(BasePage):
         DNA文库
         外部血浆
         """
+
+        def set_sampleType():
+            """设置样本类型方法封装"""
+            for i in range(tips+1, (tips + num)+1):
+
+                self.click_by_js('css', one_by_one_samples.format(i))  # 先选中对应样本
+                self.sleep(0.5)
+            self.chioce_specimen(s_type)
+            for i in range(tips, tips + num):
+                j = i + 1
+                self.click_by_js('css', one_by_one_samples.format(j))
+            self.sleep(1)
+
         log.info('添加5种样本，')
 
         total = specimen_list.values()
@@ -140,75 +150,52 @@ class SampleReceivePage(BasePage):
             self.wait_loading()
             s += 1
         lists = self.findelements('xpath', all_samples)
+        print("统计新增样本总数：", len(lists))
         # 添加样本类型
-        if lists:
-            tips = 0
-            for s_type, num in specimen_list.items():  # 从字典取值，样本类型以及对应的要添加的数量
-                if s_type == 'FFPE白片':  # 跟据取值依次判断
-                    for i in range(tips, tips + num):  # 样本类型数量，循环选中多少数量的样本
-                        j = i + 1
-                        self.clicks('css', one_by_one_samples.format(j))  # 先选中对应样本
-                    self.chioce_specimen(s_type)  # 执行添加样本类型方法
-                    self.sleep(1)
-                    self.moved_to_element('css', add_pathology_worksheet)  # 移动鼠标至病理任务，添加HE任务
-                    self.sleep(1.5)
-                    self.clicks('xpath', pathology_worksheet_HE)
-                    s = self.get_text('xpath', pathology_worksheet_HE)
+        tips = 0
+        for s_type, num in specimen_list.items():  # 从字典取值，样本类型以及对应的要添加的数量
+            if s_type == 'FFPE白片':  # 跟据取值依次判断
+                for i in range(tips, tips + num):  # 样本类型数量，循环选中多少数量的样本
+                    j = i + 1
+                    self.clicks('css', one_by_one_samples.format(j))  # 先选中对应样本
+                self.chioce_specimen(s_type)  # 执行添加样本类型方法
+                self.sleep(1)
+                self.moved_to_element('css', add_pathology_worksheet)  # 移动鼠标至病理任务，添加HE任务
+                self.sleep(1.5)
+                self.clicks('xpath', pathology_worksheet_HE)
+                s = self.get_text('xpath', pathology_worksheet_HE)
 
-                    print(s)
-                    self.wait_loading()
-                    self.sleep(1)
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.clicks('css', one_by_one_samples.format(j))
-                        self.sleep(0.2)
-                    self.moved_to_element('css', add_pathology_worksheet)  # 移动鼠标至病理任务，添加HE任务
-                    self.sleep(1)
-                    self.click_by_js('xpath', pathology_worksheet_PD)
-                    s = self.get_text('xpath', pathology_worksheet_PD)
-                    print(s)
-                    self.wait_loading()
-                    self.sleep(1)
-                    print('添加病理成功')
+                print(s)
+                self.wait_loading()
+                self.sleep(1)
+                for i in range(tips, tips + num):
+                    j = i + 1
+                    self.clicks('css', one_by_one_samples.format(j))
+                    self.sleep(0.2)
+                self.moved_to_element('css', add_pathology_worksheet)  # 移动鼠标至病理任务，添加HE任务
+                self.sleep(1)
+                self.click_by_js('xpath', pathology_worksheet_PD)
+                s = self.get_text('xpath', pathology_worksheet_PD)
+                print(s)
+                self.wait_loading()
+                self.sleep(1)
+                print('添加病理成功')
 
-                elif s_type == 'EDTA抗凝血':
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))  # 先选中对应样本
-                        self.sleep(0.5)
-                    self.chioce_specimen(s_type)
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))
-                    self.sleep(1)
-                elif s_type == '骨冷冻组织':
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))  # 先选中对应样本
-                    self.chioce_specimen(s_type)
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))
-                    self.sleep(1)
-                elif s_type == 'DNA文库':
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))  # 先选中对应样本
-                    self.chioce_specimen(s_type)
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))
-                    self.sleep(1)
-                elif s_type == '外部血浆':
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))  # 先选中对应样本
-                    self.chioce_specimen(s_type)
-                    for i in range(tips, tips + num):
-                        j = i + 1
-                        self.click_by_js('css', one_by_one_samples.format(j))
-                    self.sleep(1)
-                tips += num  # 每次循环取不同样本，所以各样本数量相加，取其排序下标，在页面中根据对应下标进行定位
+            elif s_type == 'EDTA抗凝血':
+                set_sampleType()
+
+            elif s_type == '骨冷冻组织':
+                set_sampleType()
+
+            elif s_type == 'DNA文库':
+                set_sampleType()
+
+            elif s_type == '外部血浆':
+                set_sampleType()
+
+            elif s_type == 'Streck抗凝血':
+                set_sampleType()
+            tips += num  # 每次循环取不同样本，所以各样本数量相加，取其排序下标，在页面中根据对应下标进行定位
 
         self.sleep(1)
         self.clicks('css', save_btn)
@@ -226,6 +213,58 @@ class SampleReceivePage(BasePage):
         DNA文库-文库定量；
         """
 
+        def expProcess_planne(sampleTotal, sampleType, expTemp, expType):
+            """把生成实验流程方法封装，此方法设置探针"""
+            for ic in range(1, len(sampleTotal) + 1):  # 从所有存在于实验流程弹框中的样本，根据样本类型值，与列表取值进行比对
+                specimenType = self.get_text('xpath', template_sample_type.format(ic))
+                if specimenType == sampleType:  # 如果页面列表中，样本类型值与列表循环出的一致，则在页面弹框选中
+                    self.clicks('xpath', one_by_one_chioce_sample.format(ic))  # 先选中对应样本
+            self.clicks('xpath', laboratory_process_temp_btn)  # 点击选择实验流程按钮
+            self.sleep(1)
+            self.click_by_js('css', expTemp)  # 切换到Illumina或华大模版
+            self.sleep(0.5)
+            # 选中样本类型对应的实验流程
+            self.clicks('xpath', LibProcessVisible.format(expType))
+            print("选中")
+            self.sleep(0.5)
+            self.clicks('xpath', LibProcessVisible_btn)  # 选择实验流程弹框确认按钮
+            self.sleep(0.5)
+            self.clicks('xpath', laboratory_process_planned_btn)  # 选择探针
+            self.sleep(0.5)
+            self.clicks('xpath', laboratory_process_planned_chioce)
+            self.sleep(0.5)
+            self.clicks('xpath', laboratory_process_planned_comfirm)
+            self.sleep(0.5)
+            # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
+            for ib in range(1, len(sampleTotal) + 1):
+                specimenType = self.get_text('xpath', template_sample_type.format(ib))
+                if specimenType == sampleType:
+                    self.clicks('xpath', one_by_one_chioce_sample.format(ib))
+            self.sleep(0.5)
+
+        def expProcess_non_planne(sampleTotal, sampleType, expTemp, expType):
+            """把生成实验流程方法封装，此方法不设置探针"""
+            for ic in range(1, len(sampleTotal) + 1):  # 从所有存在于实验流程弹框中的样本，根据样本类型值，与列表取值进行比对
+                specimenType = self.get_text('xpath', template_sample_type.format(ic))
+                if specimenType == sampleType:  # 如果页面列表中，样本类型值与列表循环出的一致，则在页面弹框选中
+                    self.clicks('xpath', one_by_one_chioce_sample.format(ic))  # 先选中对应样本
+            self.clicks('xpath', laboratory_process_temp_btn)  # 点击选择实验流程按钮
+            self.sleep(1)
+            self.click_by_js('css', expTemp)  # 切换到Illumina或华大模版
+            self.sleep(0.5)
+            # 选中样本类型对应的实验流程
+            self.clicks('xpath', LibProcessVisible.format(expType))
+            print("选中")
+            self.sleep(0.5)
+            self.clicks('xpath', LibProcessVisible_btn)  # 选择实验流程弹框确认按钮
+            self.sleep(0.5)
+            # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
+            for ib in range(1, len(sampleTotal) + 1):
+                specimenType = self.get_text('xpath', template_sample_type.format(ib))
+                if specimenType == sampleType:
+                    self.clicks('xpath', one_by_one_chioce_sample.format(ib))
+            self.sleep(0.5)
+
         # laboratory_pro = ['核酸提取-破碎', '样本处理-样本分离', '21基因', '文库定量']
         log.info('选中样本生成实验流程')
         self.clicks('css', all_chioce)  # 全选样本
@@ -242,125 +281,25 @@ class SampleReceivePage(BasePage):
         if lists:
             for s_type, num in specimen_list.items():  # 取出样本类型及其数量
                 if s_type == 'FFPE白片':  # 判断从列表循环取出本的类型
-                    for i in range(len(lists)):  # 从所有存在于实验流程弹框中的样本，根据样本类型值，与列表取值进行比对
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'FFPE白片':  # 如果页面列表中，样本类型值与列表循环出的一致，则在页面弹框选中
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))  # 先选中对应样本
-                    self.clicks('xpath', laboratory_process_temp_btn)  # 点击选择实验流程按钮
-                    ele = LibProcessVisible.format('核酸提取-破碎')  # 选中样本类型对应的实验流程
-                    self.clicks('xpath', ele)
-                    print("选中")
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible_btn)  # 选择实验流程弹框确认按钮
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_btn)  # 选择探针
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_chioce)
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_comfirm)
-                    self.sleep(0.5)
-                    # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'FFPE白片':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
+                    expProcess_planne(lists, 'FFPE白片', Illumina, '核酸提取-破碎')
 
                 elif s_type == 'EDTA抗凝血':
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'EDTA抗凝血':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))  # 先选中对应样本
-                    self.clicks('xpath', laboratory_process_temp_btn)  # 点击实验流程模板按钮
-                    self.sleep(0.5)
-                    self.clicks('css', Illumina)#切换到Illumina模版
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible.format('样本处理-样本分离'))
-                    print("选中")
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible_btn)
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_btn)#选择探针
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_chioce)
-                    self.sleep(0.5)
-                    self.clicks('xpath', laboratory_process_planned_comfirm)
-                    self.sleep(0.5)
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'EDTA抗凝血':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
+                    expProcess_planne(lists, 'EDTA抗凝血', Illumina, '样本处理-样本分离')
+
                 elif s_type == '骨冷冻组织':
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == '骨冷冻组织':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
-                    self.clicks('xpath', laboratory_process_temp_btn)
-                    self.sleep(0.5)
-                    self.clicks('css', Illumina)#切换到Illumina模版
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible.format('21基因'))
-                    print("选中")
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible_btn)
-                    self.sleep(0.5)
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == '骨冷冻组织':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
+                    expProcess_non_planne(lists, '骨冷冻组织', Illumina, '21基因')
 
                 elif s_type == 'DNA文库':
-                    # 选中
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'DNA文库':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
-                    self.clicks('xpath', laboratory_process_temp_btn)
-                    self.sleep(0.5)
-                    self.clicks('css', Illumina)#切换到Illumina模版
-                    self.sleep(0.5)
-                    ele = LibProcessVisible.format('文库定量')
-                    self.clicks('xpath', ele)
-                    print("选中")
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible_btn)
-                    self.sleep(0.5)
-                    # 取消选中
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == 'DNA文库':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
 
+                    expProcess_non_planne(lists, 'DNA文库', Illumina, '文库定量')
 
                 elif s_type == '外部血浆':
-                    # 选中
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == '外部血浆':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
-                    self.clicks('xpath', laboratory_process_temp_btn)
-                    self.sleep(0.5)
-                    self.clicks('css', Illumina)#切换到Illumina模版
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible.format('提取-质谱仪上机'))
-                    print("选中")
-                    self.sleep(0.5)
-                    self.clicks('xpath', LibProcessVisible_btn)
-                    self.sleep(0.5)
-                    # 取消选中
-                    for i in range(len(lists)):
-                        j = i + 1
-                        specimen_type = self.get_text('xpath', template_sample_type.format(j))
-                        if specimen_type == '外部血浆':
-                            self.clicks('xpath', one_by_one_chioce_sample.format(j))
+
+                    expProcess_non_planne(lists, '外部血浆', Illumina, '提取-质谱仪上机')
+
+                elif s_type == 'Streck抗凝血':
+
+                    expProcess_planne(lists, 'Streck抗凝血', huada, '华大-样本处理-样本分离')
 
         # 获取当前窗口句柄
         now_handle = self.get_current_window_handle()
