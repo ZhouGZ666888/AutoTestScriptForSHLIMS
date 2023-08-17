@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2023/08/08
 # @Author  : guanzhong.zhou
-# @File    : AAP-A页面元素定位
+# @File    : 环化后混合页面元素定位
 # -*-*************************************************************************************-*-
 """
-APP-A首页列表元素定位
+环化后混合首页列表元素定位
 """
 # lims号检索文本录入框
 lims_input = '.sample_receive_detail .el-table__body-wrapper tbody tr:nth-child(1) td:nth-child(4)'
@@ -19,13 +19,13 @@ add_task = '.table-list .table-header button'
 sample_page_list = '//*[@class="sample_receive_detail"]/descendant::tbody/tr'
 
 """
-APP-A待选表列表元素定位
+环化后混合待选表列表元素定位
 """
 # 选择sop下拉框
 sop_btn = '.task_info_form >form >div >div:nth-child(1) input'
 
 # 选择sop下拉框值
-sop_choice = '//*[@class="el-select-dropdown el-popper"]/descendant::span[text()="APP-A"]'
+sop_choice = '//*[@class="el-select-dropdown el-popper"]/descendant::span[text()="环化后混合"]'
 
 # 任务描述文本框
 task_des = '.task_info_form >form >div >div:nth-child(3) input'
@@ -55,7 +55,7 @@ enter_detail_list_btn = '.head-list button:nth-child(2)'
 page_success_info = '//*[@class="el-message el-message--success"]/descendant::p'
 
 """
-APP-A明细表列表元素定位
+环化后混合明细表列表元素定位
 """
 # 明细表全选按钮
 detail_all_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
@@ -201,16 +201,13 @@ detail_enter_result = ''
 
 
 """
-APP-A结果表列表元素定位
+环化后混合结果表列表元素定位
 """
 # 结果表全选按钮
 result_all_choice=''
 
 # 结果表生成AAP-A产物名称按钮
 result_generate_app=''
-
-# 结果表AAP-A产物表单
-result_generate_name=''
 
 # 结果表批量粘贴导入按钮
 result_batch_paste_import_package=''

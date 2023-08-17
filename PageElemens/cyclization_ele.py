@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2023/08/08
 # @Author  : guanzhong.zhou
-# @File    : AAP-A页面元素定位
+# @File    : 环化页面元素定位
 # -*-*************************************************************************************-*-
 """
-APP-A首页列表元素定位
+环化首页列表元素定位
 """
 # lims号检索文本录入框
 lims_input = '.sample_receive_detail .el-table__body-wrapper tbody tr:nth-child(1) td:nth-child(4)'
@@ -19,7 +19,7 @@ add_task = '.table-list .table-header button'
 sample_page_list = '//*[@class="sample_receive_detail"]/descendant::tbody/tr'
 
 """
-APP-A待选表列表元素定位
+环化待选表列表元素定位
 """
 # 选择sop下拉框
 sop_btn = '.task_info_form >form >div >div:nth-child(1) input'
@@ -55,7 +55,7 @@ enter_detail_list_btn = '.head-list button:nth-child(2)'
 page_success_info = '//*[@class="el-message el-message--success"]/descendant::p'
 
 """
-APP-A明细表列表元素定位
+环化明细表列表元素定位
 """
 # 明细表全选按钮
 detail_all_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
@@ -78,19 +78,7 @@ aliquot_sample_numb_choice = '.batch-divided .el-input-number__increase'
 # 明细表分管弹框选择分管数量确认按钮
 aliquot_sample_numb_confirm = '.common-task-schedule-new >div:nth-child(4) .el-dialog__footer .el-button--primary'
 
-# 明细表分管弹框下一步填写分管信息按钮
-aliquot_sample_next_step = '//span[text()="下一步填写分管信息"]'
-
-# 明细表分管弹框下一步填写分管信息弹框全选按钮
-aliquot_sample_next_step_all_choice = '.common-task-schedule-new >div:nth-child(4) >div:nth-child(3) .divided-drawer .el-drawer__body .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
-
-# 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框
-aliquot_sample_next_step_choice = '//span[text()=" 最后步骤 "]'
-
-# 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框选择下拉值
-aliquot_sample_next_step_choice_value = '//body/ul[2]/li[1]'
-
-# 明细表分管弹框下一步填写分管信息完成按钮
+# 明细表分管弹框完成按钮
 aliquot_sample_next_step_finsh = '//span[text()="完 成"]'
 
 # 明细表生成产物按钮
@@ -201,16 +189,13 @@ detail_enter_result = ''
 
 
 """
-APP-A结果表列表元素定位
+环化结果表列表元素定位
 """
 # 结果表全选按钮
 result_all_choice=''
 
 # 结果表生成AAP-A产物名称按钮
 result_generate_app=''
-
-# 结果表AAP-A产物表单
-result_generate_name=''
 
 # 结果表批量粘贴导入按钮
 result_batch_paste_import_package=''
