@@ -11,9 +11,9 @@ from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.app_a_ele import *
+from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt
 from uitestframework.basepageTools import BasePage
 from common.logs import log
-
 
 
 class APPAage(BasePage):
@@ -30,16 +30,14 @@ class APPAage(BasePage):
         self.clicks('css', add_task)
         self.wait_loading()
 
-
-        log.info ("选择sop")
+        log.info("选择sop")
         self.clicks('css', sop_btn)
         self.sleep(0.5)
         self.clicks('xpath', sop_choice)
         self.wait_loading()
 
         log.info("APP-A录入任务描述")
-        self.input('css', task_des,'APP-A自动化测试任务')
-
+        self.input('css', task_des, 'APP-A自动化测试任务')
 
     # 待选表校验lims号
     def check_lims_num(self):
@@ -48,7 +46,7 @@ class APPAage(BasePage):
         """
         log.info("APP-A待选表核对lims号功能，并保存任务单号")
         lims_id_str = get_lims_for_excel(app_a_file_path)
-        log.info ('获取接样流程中的lims样本号,核对lims号是否存在')
+        log.info('获取接样流程中的lims样本号,核对lims号是否存在')
         self.clicks('css', check_lims_sample_num)
         self.sleep(1)
         self.input('css', check_lims_sample_number_textarea, lims_id_str)
@@ -57,7 +55,7 @@ class APPAage(BasePage):
         self.wait_loading()
         self.sleep(1)
 
-        log.info ('选中核对后的样本，点击【加入选中样本&保存】')
+        log.info('选中核对后的样本，点击【加入选中样本&保存】')
         self.clicks('css', all_choice)
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
@@ -82,8 +80,6 @@ class APPAage(BasePage):
         self.clicks('css', ele)
         ('点击按钮进入{}'.format(page))
         self.wait_loading()
-        self.wait_loading()
-        self.sleep(2)
 
         url = self.get_current_url()  # 获取当前页面URL地址
         print('获取的URL地址', url)
@@ -92,96 +88,214 @@ class APPAage(BasePage):
             yaml.safe_dump(urldata, fs, allow_unicode=True)
         print("写入后的URL地址", urldata)
 
-    def detail_APP-A_edit(self):
-        """
-        录入批量入库类型、自动计算
-        """
+    def detail_app_a_aliquot_sample(self):
+        """样本分管操作"""
 
-        # 全选
-        self.clicks('css', detail_all_choice)
+        # 选择一条样本进行分管
+        self.clicks('css', detail_choice_one_sample)
         self.sleep(0.5)
-        log.info("录入批量入库类型")
-        self.moved_to_element('css', detail_batch_storage_type)
+        log.info("APP-A样本分管")
+        self.clicks('xpath', detail_aliquot_sample)
+        self.wait_loading()
+        self.clicks('css', aliquot_sample_all_choice)
         self.sleep(0.5)
-        self.clicks('xpath', detail_batch_storage_type_choice)
+        log.info("APP-A样本分管选择分管数量")
+        self.clicks('xpath', aliquot_sample_numb)
+        self.clicks('css', aliquot_sample_numb_confirm)
+        self.sleep(0.5)
+        log.info("APP-A样本分管下一步填写分管信息")
+        self.clicks('xpath', aliquot_sample_next_step)
+        self.sleep(1)
+        # 明细表分管弹框下一步填写分管信息弹框全选按钮
+        self.clicks('css', aliquot_sample_next_step_all_choice)
+        self.sleep(0.5)
+        # 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框
+        self.clicks('xpath', aliquot_sample_next_step_choice)
+        # 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框选择下拉值
+        self.clicks('css', aliquot_sample_next_step_choice_value)
+        # 明细表分管弹框下一步填写分管信息完成按钮
+        self.clicks('css', aliquot_sample_next_step_finsh)
+
+        # 样本分管成功
+
+    def detail_generate_product(self):
+        """明细生成产物"""
+        self.clicks('css', detail_part_choice)  # 全选样本
+        log.info("APP-A样本生成产物信息")
+        self.clicks('css', detail_generate_product_btn)
+        self.wait_loading()
+        self.clicks('css', detail_generate_product_all_choice)
+        self.sleep(0.5)
+        log.info("APP-A样本生成产物设置生成产物数量")
+        # 明细表生成产物弹框批量生成产物数量按钮
+        self.clicks('xpath', detail_generate_product_numb_btn)
+        # 明细表生成产物弹框批量生成产物数量确认按钮
+        self.clicks('css', generate_product_numb_confirm)
+        # 明细表生成产物弹框确认按钮
+        self.clicks('css', generate_product_confirm)
+        # 生成产物成功
+
+    def detail_batch_storage_type(self):
+        """明细表选择批量入库类型"""
+        log.info("文库定量明细表，样本入库选择入库类型临时库")
+        self.moved_to_element('css', detail_batch_storage_type_btn)  # 入库弹框选择入库类型下拉框
+        self.sleep(1)
+        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（临时库）
         self.sleep(0.5)
 
-        log.info("点击自动计算")
-        self.clicks('css', autoComplete)
-        # 判断是否有弹框提示
-        ele = self.isElementExists('css', autoComplete_tip)
-        if ele:
-            self.clicks('css', autoComplete_tip)
+    def detail_remaining_pkg_amt(self):
+        """批量包装余量"""
+        log.info("APP-A批量包装余量")
+        self.clicks('css', detail_remaining_sample_pkg_amt)
+        self.sleep(0.5)
+        self.input('css', detail_remaining_sample_pkg_amt_input, 1)
+        self.sleep(0.5)
+        self.clicks('css', detail_remaining_sample_pkg_amt_confirm)
         self.sleep(0.5)
 
-        self.clicks('css', detail_save_result)
+    def detail_batch_paste_import_package_btn(self):
+        """明细表批量粘贴导入"""
+        taskId = self.get_text('css', detail_task_id)
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskId))  # 从数据库获取当前任务单号下样本lims号
+        executeSql.test_updateByParam(updata_detail_sample_pkg_amt.format(taskId))  # 更新分管样本文库包装量
+        lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
+        list1 = [5, 5, 25, 5, 1]  # 批量导入文库浓度、文库体积、文库总量、文库长度bp、余样体积值
+        impData = []
+        for i in lims_list:
+            new_list = [i] + list1
+            impData.append(new_list)
+        pandas_write_excel(impData, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
+        data = xlrd.open_workbook(position_in_box_path)  # 从Excel读取模板样本号和盒内位置编号
+        num_list = []
+        for index in range(0, len(lims_list)):
+            tables = data.sheets()[0]
+            vals = tables.row_values(index)
+            imp_data = '\t'.join(map(str, vals))
+            num_list.append(imp_data)
+        print("\n".join(map(str, num_list)))
+        pyperclip.copy("\n".join(map(str, num_list)))
+
+        log.info("APP-A明细表批量粘贴导入")
+        self.clicks('css', detail_batch_paste_import_package_btn)
+        self.findelement('css', detail_batch_paste_import_package_input).send_keys(Keys.CONTROL, 'v')
+        self.sleep(0.5)
+        Screenshot(self.driver).get_img("APP-A明细表批量粘贴导入")
+        self.clicks('css', detail_batch_paste_import_package_input_confirm)
+        self.sleep(1)
+
+    def detail_autoComplete(self):
+        """明细表自动计算"""
+        log.info("APP-A明细表明细表自动计算")
+        self.clicks('css', detail_autoComplete_btn)
         self.wait_loading()
 
-        log.info("设置包装余量")
-        taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
-        self.updata_sql(APP-A_sql3.format(taskstatus[5:].strip()))  # 设置包装余量
+    def detail_save(self):
+        """明细表保存"""
+        log.info("APP-A明细表保存")
+        self.clicks('css', detail_save)
+        self.wait_loading()
+
+    def detail_enter_result(self):
+        """进入结果表"""
+        log.info("APP-A进入结果表")
+        self.clicks('css', detail_enter_result)
+        self.wait_loading()
+
+    def result_generate_appname(self):
+        """结果表生成APP-A产物名称"""
+        log.info("结果表生成APP产物名称")
+        self.clicks('css', result_all_choice)
         self.sleep(0.5)
+        self.clicks('css', result_generate_app)
+        self.wait_loading()
+
+    def result_batch_paste_import_package(self):
+        """结果表批量粘贴导入"""
+        taskId = self.get_text('css', result_task_id)
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskId))  # 从数据库获取当前任务单号下样本lims号
+        executeSql.test_updateByParam(updata_result_sample_pkg_amt.format(taskId))  # 更新分管样本文库包装量
+        # 把获取的lims号转换为一维列表
+        blist = [[item[i] for i in item] for item in lims_id]
+        list1 = [5, 3, 4, 7, 5, 4, 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
+
+        impData = []
+        for i in blist:
+            new_list = i + list1
+            impData.append(new_list)
+        pandas_write_excel(impData, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
+        data = xlrd.open_workbook(position_in_box_path)  # 从Excel读取模板样本号和盒内位置编号
+        num_list = []
+        for index in range(0, len(blist)):
+            tables = data.sheets()[0]
+            vals = tables.row_values(index)
+            imp_data = '\t'.join(map(str, vals))
+            num_list.append(imp_data)
+        print("\n".join(map(str, num_list)))
+        pyperclip.copy("\n".join(map(str, num_list)))
+
+        log.info("APP-A结果表批量粘贴导入")
+        self.clicks('css', result_batch_paste_import_package)
+        self.findelement('css', result_batch_paste_import_package_input).send_keys(Keys.CONTROL, 'v')
+        self.sleep(0.5)
+        Screenshot(self.driver).get_img("APP-A结果表批量粘贴导入")
+        self.clicks('css', result_batch_paste_import_package_confirm)
+        self.sleep(1)
+        log.info("结果表保存")
+        self.clicks('css', result_save)
+        self.wait_loading()
         self.refresh()
-        self.wait_loading()
+
+    def result_autoComplete(self):
+        """APP-A结果表自动计算"""
+        log.info("APP-A结果表自动计算")
+        self.clicks('css', result_all_choice)
         self.sleep(0.5)
+        self.clicks('css', result_autoComplete)
+        self.wait_loading()
 
-    def detail_sumbit(self):
-        """
-        明细表提交操作
-        :return:样本提交状态
-        """
+    # 自动计算成功
 
-        log.info("提交样本")
+    def result_commit(self):
+        """结果表提交"""
+        log.info("APP-A结果表提交")
+        self.clicks('css', result_commit)
+        self.wait_loading()
+        self.clicks('css', result_commit_confirm)
+        self.wait_loading()
+
+    def detail_commit(self):
+        """明细表提交、入库"""
+        log.info("结果表返回明细表")
+        self.clicks('css', result_return_detail)
+        self.sleep(0.5)
+        self.clicks('css', result_return_detail_confirm)
+        self.wait_loading()
+        log.info("APP-A明细表提交")
         self.clicks('css', detail_all_choice)
         self.sleep(0.5)
-        self.clicks('css', detail_submit_btn)
+        self.clicks('css', detail_commit)
         self.wait_loading()
-
-        # 调用自定义截图方法
-        Screenshot(self.driver).get_img("APP-A明细表提交 ")
-
-        self.clicks('css', detail_submit_comfirm)
+        self.clicks('css', detail_commit_confirm)
         self.wait_loading()
-        self.sleep(0.5)
-
-    def detail_into_storage(self):
-        """
-        明细表入库操作
-        :return:样本提交状态
-        """
-        log.info('APP-A明细表，样本入库操作')
-        self.clicks('css', detail_all_choice)  # 列表全选按钮
-        self.sleep(0.5)
-        self.clicks('css', deposit_into_storage)  # 入库按钮
-        self.sleep(0.5)
+        log.info("APP-A明细表入库")
+        self.clicks('css', deposit_into_storage)
+        self.sleep(1)
         self.clicks('css', storage_all_choice)  # 入库弹框全选按钮
-
-        log.info('APP-A明细表，样本入库选择入库类型临时库')
-        self.moved_to_element('css', target_storage_type)  # 入库弹框选择入库类型下拉框
-        self.sleep(0.5)
-        self.clicks('xpath', target_storage_type_value)  # 入库弹框选择入库类型下拉值（临时库）
-        self.sleep(0.5)
-
-        log.info('APP-A明细表，样本入库选择入样本盒')
         self.clicks('css', batch_paste_sample_box)  # 入库弹框选择样本盒按钮
-        self.wait_loading()
-        self.input('css', target_storage, '自动化测试用(勿删)')
         self.sleep(0.5)
-        self.clicks('css', select_sample_box_search)
+        self.input('css', target_storage, '自动化测试用(勿删)')  # 入库弹框选择样本盒弹框t搜索文本录入框
+        self.clicks('css', select_sample_box_search)  # 入库弹框选择样本盒弹框t搜索按钮
         self.wait_loading()
         self.clicks('css', select_sample_box_choice)  # 入库弹框选选择样本盒值，默认选择列表第一条数据
         self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
-        self.sleep(1)
-
-        log.info('APP-A明细表，样本入库录入盒内位置')
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
-        lims_id = executeSql.test_select_limsdb(APP-A_sql1.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
 
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
         nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用
         res = [list(i) for i in zip(lims_list, nub_list)]  # 将lims号和数字编号转换为二维列表格式，写入Excel
-        print(res)
+
         pandas_write_excel(res, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
 
         data = xlrd.open_workbook(position_in_box_path)  # 从Excel读取模板样本号和盒内位置编号
@@ -196,138 +310,44 @@ class APPAage(BasePage):
         pyperclip.copy("\n".join(map(str, num_list)))
 
         # 粘贴到【批量粘贴盒内位置】文本框
-        self.clicks('css', batch_copy_BoxPosition)
+        self.clicks('css', batch_copy_BoxPosition_btn)
         self.findelement('css', batch_copy_BoxPosition_input).send_keys(Keys.CONTROL, 'v')
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
-        # 调用自定义截图方法
         Screenshot(self.driver).get_img("APP-A明细表入库")
 
         self.clicks('css', storage_next)
         self.wait_loading()
 
-        log.info('APP-A明细表，获取样本提交状态')
-        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=1400')
-        self.sleep(0.5)
-        pageinfo = self.get_text('css', detail_sumbit_status)
-        print(pageinfo)
-        return pageinfo
-
-    def result_edit(self):
-        """
-        结果表数据录入，批量计算
-        :return:
-        """
-        log.info("结果表数据录入")
-        self.clicks('css', result_all_choice)
-        self.sleep(0.5)
-
-        log.info("批量质检结果选择")
-        self.moved_to_element('css', ultrafracResults)
-        self.sleep(0.5)
-        self.clicks('xpath', ultrafracResults_chioice)
-        self.sleep(0.5)
-
-        log.info("批量结果判读")
-        self.moved_to_element('css', judgeResult)
-        self.sleep(0.5)
-        self.clicks('xpath', judgeResult_choice)
-        self.sleep(0.5)
-
-        self.clicks('css', result_save)
-        self.sleep(0.5)
-
-    def result_data(self):
-        """
-        结果表表单转化后浓度、进入总量、总油滴数、FAM信号油滴数、HEX信号油滴数录入，进行自动计算
-        :return:
-        """
-
-        log.info("表单转化后浓度、进入总量、总油滴数、FAM信号油滴数、HEX信号油滴数录入，进行自动计算")
-        taskstatus = self.get_text('css', result_task_id)  # 获取明细表任务单号
-        sql1 = APP-A_sql2.format(taskstatus[5:].strip())
-        self.updata_sql(sql1)
-        self.sleep(0.5)
-        self.refresh()
-        self.wait_loading()
-        self.sleep(0.5)
-
-        log.info("点击自动计算")
-        self.clicks('css', result_all_choice)
-        self.sleep(0.5)
-        self.clicks('css', result_autoComplete)
-        ele = self.isElementExists('css', result_autoComplete_tips)
-        if ele:
-            self.clicks('css', result_autoComplete_tips)
-            self.sleep(0.5)
-        self.sleep(0.5)
-
-    def result_sumbit(self):
-        """
-        结果表提交操作
-        :return: 提交状态
-        """
-        log.info("点击提交按钮")
-        self.clicks('css', result_sumbit)
-
-        self.wait_loading()
-
-        # 调用自定义截图方法
-        Screenshot(self.driver).get_img("APP-A结果表提交")
-
-        ele = self.isElementExists('css', laboratory_auditor)
-        if ele:
-            log.info("选择实验室审核人")
-            self.clicks('css', laboratory_auditor)
-            self.input('css', laboratory_auditor, 'dgq')
-            self.wait_loading()
-
-            self.clicks('css', laboratory_auditor_choice)
-            self.sleep(1)
-        # 提交确认按钮
-        self.clicks('css', result_sumbit_comfirm)
-        self.wait_loading()
-
-        log.info("获取表单是否已提交字段")
-        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=2000')
-        self.sleep(0.5)
-        samplestatue = self.get_text('css', sample_statue)
-        self.sleep(0.5)
-        return samplestatue
+        # 完成任务单
 
     def complete_task(self):
-        """
-        完成任务单
-        :return:任务单状态
-        """
-        log.info("完成任务单")
-        self.clicks('css', complete_task)
+        """完成任务单"""
+        log.info(' APP-A明细表进入结果表,完成任务单')
+        self.clicks('css', detail_enter_result)
         self.wait_loading()
-
+        self.clicks('css', result_complete_task_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("APP-A结果表完成任务单")
-
-        self.sleep(1)
-
-        taskstatus = self.get_text('css', detail_task_status)
-        return taskstatus[6:].strip()
-
-        # 21基因任务列表查询样本所在任务单
+        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
+        self.clicks('css', result_complete_task_confirm_btn)
+        self.wait_loading()
+        taskstatus = self.get_text('css', result_task_status)
+        log.info('APP-A结果表完成任务单，任务单状态:%s' % taskstatus)
+        return taskstatus
 
     def serach_task(self):
         """
         首页面查询已完成的样本任务单
         """
-        lims_id = read_excel_col(APP-A_file_path,  'lims号')
-
-        self.clicks('css', search)
+        lims_id = read_excel_col(app_a_file_path, 'lims号')
+        log.info(' APP-A首页面查询已完成的样本任务单')
+        self.clicks('css', search_btn)
         self.sleep(0.5)
-        self.input('css', search_lims_sample_num, lims_id[0])
+        self.input('css', lims_input, lims_id[0])
         self.sleep(0.5)
-        self.clicks('css', search_confirm)
+        self.clicks('css', search_btn)
         self.wait_loading()
         self.sleep(0.5)
         samples = self.findelements('xpath', sample_page_list)
-        print(len(samples))
         return len(samples)

@@ -1,4 +1,4 @@
-import datetime
+import datetime,xlrd
 
 from openpyxl import load_workbook
 from selenium import webdriver
@@ -7,11 +7,11 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from common.DataBaseConfig import executeSql
 from common.editYaml import read_yaml, save_yaml
-from common.xlsx_excel import read_excel_col
-
+from common.xlsx_excel import read_excel_col, pandas_write_excel
 
 # from pageobj.pathologycheckPage import now_time
-from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external
+from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external, \
+    wkfj_detail_sql1, app_get_lims
 
 
 def wait_loading():
@@ -391,10 +391,41 @@ def test1():
     datas = read_yaml(SR_sample_for_import_path)
     datas["rec_sr_sample_for_sr_import"] = lims
     save_yaml(SR_sample_for_import_path, datas)
+from itertools import product
 
 
+def eee():
+    lims_id = executeSql.test_select_limsdb("SELECT sample_id_lims,appa_name FROM exp_appa_result_t WHERE task_id = 'APPA2023081700003' ;")  # 从数据库获取当前任务单号下样本lims号
+
+    lims_list = [item[key] for item in lims_id for key in item]
+    # 把获取的lims号转换为一维列表
+    blist = [[item[i] for i in item] for item in lims_id]
+    list1 = [5, 3, 4, 7, 5, 4, 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
+
+    impData = []
+    for i in blist:
+        new_list = i + list1
+        impData.append(new_list)
+    pandas_write_excel(impData, position_in_box_path)
+
+def redf():
+    data = [['GS2307210003J001', 'KA237L0003-L000J006-APP-A-1'],
+            ['GS2307210003J004', 'KA237L0003-L000J006-APP-A-4'],
+            ['GS2307210003J007', 'KA237L0003-L000J006-APP-A-7']]
+
+    # Create a DataFrame
+    df = pd.DataFrame(data)
+
+    # Write to Excel
+    df.to_excel("my_data.xlsx",  index=False, header=False)
+
+    # Read from Excel
+    new_df = pd.read_excel("my_data.xlsx",header=None)
+    # for i in new_df:
+    #     imp_data = '\t'.join(map(str, i))
+    print(new_df)
 if __name__ == '__main__':
-    test1()
+    eee()
 
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)

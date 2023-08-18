@@ -26,9 +26,7 @@ class LibraryenrichmentPage(BasePage):
 
     # 打开指定页面
     def enter_function_page(self, url):
-        """
-        进入指定url页面
-        """
+        """进入指定url页面"""
         js = 'window.open("{}");'
         self.executeJscript(js.format(url))
         self.wait_loading()
@@ -47,17 +45,13 @@ class LibraryenrichmentPage(BasePage):
 
     # 新增任务单
     def add_task(self):
-        """
-        新建文库富集任务单
-        """
+        """新建文库富集任务单"""
         # 判断是否存在建库电子实验记录待签字交接提示信息
         if self.isElementExists('css', electronic_experiment_record_signed_tips):
             self.clicks('css', electronic_experiment_record_signed_tips)
-
         log.info("文库富集首页，点击新建按钮，进入样本待选表，新增文库富集任务")
         self.clicks('xpath', add_sample_process_task)
         self.wait_loading()
-
         log.info("任务描述")
         self.input('css', task_description, '文库富集自动化测试')
         self.sleep(0.5)
@@ -79,9 +73,7 @@ class LibraryenrichmentPage(BasePage):
 
     # 待选表校验lims号
     def check_lims_num(self):
-        """
-        待选表核对lims号功能，并保存任务单号
-        """
+        """待选表核对lims号功能，并保存任务单号"""
         lims_id_str = get_lims_for_excel(wkfj_file_path)
         log.info('获取接样流程中的lims样本号,核对lims号是否存在')
         self.clicks('css', check_lims_sample_num)

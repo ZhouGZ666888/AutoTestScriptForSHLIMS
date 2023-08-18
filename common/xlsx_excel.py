@@ -23,7 +23,6 @@ def write_excel_xlsx(path, value1, value2, colname1, colname2):
         company_name_list.append([i.text, j.text])
 
     df = pd.DataFrame(company_name_list, columns=[colname1, colname2])
-    print(company_name_list)
     # 保存到本地excel
     df.to_excel(path, index=False)
     print("表格写入数据成功！")

@@ -57,8 +57,12 @@ page_success_info = '//*[@class="el-message el-message--success"]/descendant::p'
 """
 APP-A明细表列表元素定位
 """
+#明细表任务单号
+detail_task_id=''
 # 明细表全选按钮
 detail_all_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
+detail_part_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper ' \
+                  '.vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
 
 # 明细表选择第一条样本进行分管操作
 detail_choice_one_sample = '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tr:nth-child(1) td:nth-child(2)'
@@ -94,7 +98,7 @@ aliquot_sample_next_step_choice_value = '//body/ul[2]/li[1]'
 aliquot_sample_next_step_finsh = '//span[text()="完 成"]'
 
 # 明细表生成产物按钮
-detail_generate_product = '.button-list .btn-row-btns button:nth-child(2)'
+detail_generate_product_btn = '.button-list .btn-row-btns button:nth-child(2)'
 
 # 明细表生成产物弹框全选按钮
 detail_generate_product_all_choice = '.common-task-schedule-new >div:nth-child(5) >div:nth-child(1) .divided-drawer ' \
@@ -122,7 +126,7 @@ detail_remaining_sample_pkg_amt_input = ''
 detail_remaining_sample_pkg_amt_confirm = ''
 
 # 明细表批量入库类型下拉框
-detail_batch_storage_type = ''
+detail_batch_storage_type_btn = ''
 
 # 明细表批量入库类型下拉值,选余样入库
 detail_batch_storage_type_choice = '//ul[@class="el-dropdown-menu el-popper el-dropdown-menu--medium"]/descendant::li[text()="余样入库" and preceding-sibling::li[text()="不入库（样本用尽）"]]'
@@ -163,8 +167,8 @@ detail_position_in_box = '.dialog-check-storage .vxe-table--main-wrapper .vxe-ta
 # 入库弹框盒内位置文本框
 detail_position_in_box_input = '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7) input'
 
-# 批量粘贴盒内位置
-batch_copy_BoxPosition = '.dialog-check-storage .checkStorageDialog-btn-batchCopyBoxPosition'
+# 批量粘贴盒内位置按钮
+batch_copy_BoxPosition_btn = '.dialog-check-storage .checkStorageDialog-btn-batchCopyBoxPosition'
 
 # 批量粘贴盒内位置确认按钮
 batch_copy_BoxPosition_comfirm = '.dialog-position-box .dialog-footer .baseClass-btn-confirm'
@@ -178,14 +182,17 @@ storage_next = '.dialog-check-storage .dialog-footer .baseClass-btn-next'
 # 明细表提交按钮
 detail_commit = ''
 
+# 明细表提交确认提示
+detail_commit_confirm = ''
+
 #明细表提交状态
 detail_commit_status=''
 
 # 明细表自动计算按钮
-detail_autoComplete = ''
+detail_autoComplete_btn = ''
 
 # 明细表批量粘贴导入按钮
-detail_batch_paste_import_package = ''
+detail_batch_paste_import_package_btn = ''
 
 # 明细表批量粘贴导入弹框文本录入框
 detail_batch_paste_import_package_input = ''
@@ -205,6 +212,10 @@ APP-A结果表列表元素定位
 """
 # 结果表全选按钮
 result_all_choice=''
+
+
+#结果表任务单号
+result_task_id=''
 
 # 结果表生成AAP-A产物名称按钮
 result_generate_app=''
@@ -237,8 +248,10 @@ result_task_status=''
 result_save=''
 
 # 结果表完成任务单按钮
-result_complete_task=''
+result_complete_task_btn=''
 
+# 结果表完成任务单确认按钮
+result_complete_task_confirm_btn=''
 # 结果表返回明细表按钮
 result_return_detail=''
 

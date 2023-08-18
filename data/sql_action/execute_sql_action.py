@@ -76,8 +76,15 @@ wkgj_result_sql6 = "UPDATE  exp_libconstruction_result_t set index_id ='1' WHERE
 # 文库富集明细表,获取lims号
 wkfj_detail_sql1 = "SELECT sample_id_lims from exp_pooling_item_t WHERE task_id = '{}';"
 
-# 文库富集结果表
+# APP-A获取明细表样本lims号
+app_get_lims="SELECT sample_id_lims FROM exp_appa_item_t WHERE task_id = '{}' ;"
 
+#APP-A更新分管样本文库包装量
+updata_detail_sample_pkg_amt="UPDATE exp_appa_item_t set actual_sample_pkg_amt=1 where actual_sample_pkg_amt IS NULL " \
+                           "AND " \
+                      "task_id ='{}';"
+# APP-A更新结果表产物包装量
+updata_result_sample_pkg_amt="UPDATE exp_appa_result_t set sample_pkg_amt=1 where  task_id ='{}';"
 
 # 文库定量明细表
 # 获取样本总数
