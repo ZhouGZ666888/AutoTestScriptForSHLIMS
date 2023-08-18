@@ -210,6 +210,46 @@ class EnterTab(BasePage):
             raise ElementNotFound(e)
 
     @retry(stop_max_attempt_number=2)
+    def enter_APPA(self):
+        """点击APPAtab封装"""
+        try:
+            self.click_by_js('xpath', "//span[text()='APP-A']")
+            self.wait_loading()
+        except Exception as e:
+            print("无法进入APP-A列表,尝试重新进入...")
+            raise ElementNotFound(e)
+
+    @retry(stop_max_attempt_number=2)
+    def enter_cyclization(self):
+        """点击环化tab封装"""
+        try:
+            self.click_by_js('xpath', "//span[text()='环化']")
+            self.wait_loading()
+        except Exception as e:
+            print("无法进入环化列表,尝试重新进入...")
+            raise ElementNotFound(e)
+
+    @retry(stop_max_attempt_number=2)
+    def enter_postcyclmix(self):
+        """点击环化后混合tab封装"""
+        try:
+            self.click_by_js('xpath', "//span[text()='环化后混合']")
+            self.wait_loading()
+        except Exception as e:
+            print("无法进入环化后混合列表,尝试重新进入...")
+            raise ElementNotFound(e)
+
+    @retry(stop_max_attempt_number=2)
+    def enter_dnbpremix(self):
+        """点击DNB制备tab封装"""
+        try:
+            self.click_by_js('xpath', "//span[text()='DNB制备']")
+            self.wait_loading()
+        except Exception as e:
+            print("无法进入DNB制备列表,尝试重新进入...")
+            raise ElementNotFound(e)
+
+    @retry(stop_max_attempt_number=2)
     def enter_21gene(self):
         """点击21基因分析tab封装"""
         try:

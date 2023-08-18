@@ -5,7 +5,7 @@ from common.logs import log
 from common.Main import MyTest
 
 
-class SjSequecing(MyTest):
+class Massspectr(MyTest):
     def setUp(self) -> None:
         """
         初始化浏览器驱动

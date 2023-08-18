@@ -59,6 +59,8 @@ page_success_info = '//*[@class="el-message el-message--success"]/descendant::p'
 """
 # 明细表全选按钮
 detail_all_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
+detail_part_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper ' \
+                  '.vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
 
 # 明细表选择第一条样本进行分管操作
 detail_choice_one_sample = '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tr:nth-child(1) td:nth-child(2)'
@@ -79,10 +81,10 @@ aliquot_sample_numb_choice = '.batch-divided .el-input-number__increase'
 aliquot_sample_numb_confirm = '.common-task-schedule-new >div:nth-child(4) .el-dialog__footer .el-button--primary'
 
 # 明细表分管弹框完成按钮
-aliquot_sample_next_step_finsh = '//span[text()="完 成"]'
+aliquot_sample_next_step_finsh = ''
 
 # 明细表生成产物按钮
-detail_generate_product = '.button-list .btn-row-btns button:nth-child(2)'
+detail_generate_product_btn = '.button-list .btn-row-btns button:nth-child(2)'
 
 # 明细表生成产物弹框全选按钮
 detail_generate_product_all_choice = '.common-task-schedule-new >div:nth-child(5) >div:nth-child(1) .divided-drawer ' \
@@ -100,20 +102,21 @@ generate_product_numb_confirm = '.common-task-schedule-new >div:nth-child(5) .el
 # 明细表生成产物弹框确认按钮
 generate_product_confirm = ''
 
-# 明细表批量包装余量按钮
-detail_remaining_sample_pkg_amt = ''
+#明细表批量数据按钮
+detail_batch_data_btn=''
 
 # 明细表批量包装余量文本录入框
 detail_remaining_sample_pkg_amt_input = ''
 
-# 明细表批量包装余量文本录入确认按钮
-detail_remaining_sample_pkg_amt_confirm = ''
 
 # 明细表批量入库类型下拉框
 detail_batch_storage_type = ''
 
 # 明细表批量入库类型下拉值,选余样入库
 detail_batch_storage_type_choice = '//ul[@class="el-dropdown-menu el-popper el-dropdown-menu--medium"]/descendant::li[text()="余样入库" and preceding-sibling::li[text()="不入库（样本用尽）"]]'
+
+# 明细表批量数据确认按钮
+detail_batch_data_btn_confirm = ''
 
 # 明细表入库按钮
 deposit_into_storage = ''
@@ -170,7 +173,7 @@ detail_commit = ''
 detail_commit_status=''
 
 # 明细表自动计算按钮
-detail_autoComplete = ''
+detail_autoComplete_btn = ''
 
 # 明细表批量粘贴导入按钮
 detail_batch_paste_import_package = ''
