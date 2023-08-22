@@ -77,14 +77,30 @@ wkgj_result_sql6 = "UPDATE  exp_libconstruction_result_t set index_id ='1' WHERE
 wkfj_detail_sql1 = "SELECT sample_id_lims from exp_pooling_item_t WHERE task_id = '{}';"
 
 # APP-A获取明细表样本lims号
-app_get_lims="SELECT sample_id_lims FROM exp_appa_item_t WHERE task_id = '{}' ;"
+app_get_lims = "SELECT sample_id_lims FROM exp_appa_item_t WHERE task_id = '{}' ;"
 
-#APP-A更新分管样本文库包装量
-updata_detail_sample_pkg_amt="UPDATE exp_appa_item_t set actual_sample_pkg_amt=1 where actual_sample_pkg_amt IS NULL " \
-                           "AND " \
-                      "task_id ='{}';"
+# APP-A更新分管样本文库包装量
+updata_detail_sample_pkg_amt = "UPDATE exp_appa_item_t set actual_sample_pkg_amt=1 where actual_sample_pkg_amt IS NULL " \
+                               "AND " \
+                               "task_id ='{}';"
 # APP-A更新结果表产物包装量
-updata_result_sample_pkg_amt="UPDATE exp_appa_result_t set sample_pkg_amt=1 where  task_id ='{}';"
+updata_result_sample_pkg_amt = "UPDATE exp_appa_result_t set sample_pkg_amt=1 where  task_id ='{}';"
+
+# 环化更新自动计算数据
+cyclization_update = "UPDATE exp_cyclization_item_t SET fragment_len =150 WHERE task_id ='{}';UPDATE " \
+                     "exp_cyclization_result_t SET " \
+                     "fragment_len =150,sample_type_id='C2023042500008',used_volume_amt=5, sup_volume_amt=5 ," \
+                     "consistence_amt =5,volume_amt=5 ,cyclization_data_amt=1.51,next_step='01' WHERE task_id ='{}';"
+
+# 环化获取明细表lims号
+cyclization_get_lims="SELECT sample_id_lims from exp_cyclization_item_t WHERE task_id='{}';"
+
+# 环化下一步
+cyclization_next_step="SELECT sample_id_lims, cyclization_name, CASE WHEN next_step = '01' THEN '环化后混合'WHEN next_step = '02' THEN " \
+ "'DNB制备'ELSE next_step END AS next_step FROM {}  WHERE task_id = '{}';"
+
+
+
 
 # 文库定量明细表
 # 获取样本总数

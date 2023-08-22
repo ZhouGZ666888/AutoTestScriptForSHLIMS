@@ -1,4 +1,5 @@
 import datetime,xlrd
+import re
 
 from openpyxl import load_workbook
 from selenium import webdriver
@@ -424,8 +425,14 @@ def redf():
     # for i in new_df:
     #     imp_data = '\t'.join(map(str, i))
     print(new_df)
+
+def test22():
+    sf=' 任务单  HHCL2023082100002 '
+    sss=sf[5:].strip()
+    task_number = re.findall(r'HHCL\d+', sf)[0]
+    print(sss)
 if __name__ == '__main__':
-    eee()
+    test22()
 
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)

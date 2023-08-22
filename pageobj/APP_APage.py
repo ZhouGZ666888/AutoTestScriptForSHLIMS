@@ -10,12 +10,14 @@ from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.app_a_ele import *
-from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt
+from conf.config import appa_result
+from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt, \
+    next_step_sql, cyclization_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
 
-class APPAage(BasePage):
+class APPAPage(BasePage):
     """APPA页面方法封装"""
 
     # 获取页面提示信息
@@ -89,7 +91,7 @@ class APPAage(BasePage):
         # 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框
         self.clicks('xpath', aliquot_sample_next_step_choice)
         # 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框选择下拉值
-        self.clicks('css', aliquot_sample_next_step_choice_value)
+        self.clicks('xpath', aliquot_sample_next_step_choice_value)
         # 明细表分管弹框下一步填写分管信息完成按钮
         self.clicks('css', aliquot_sample_next_step_finsh)
         self.wait_loading()
@@ -241,7 +243,6 @@ class APPAage(BasePage):
         self.clicks('css', result_autoComplete)
         self.wait_loading()
 
-    # 自动计算成功
 #结果表提交
     def result_commit(self):
         """结果表提交"""
@@ -250,6 +251,15 @@ class APPAage(BasePage):
         self.wait_loading()
         self.clicks('css', result_commit_confirm)
         self.wait_loading()
+
+    # 结果表样本流程环节写入Excel
+    def write_data_to_excel(self):
+        """
+         根据结果表样本下一步流程，把对应的样本lims号、实验室号、下一步流程以追加形式写入该流程的Excel
+        """
+        self.add_excel_xlxs(cyclization_next_step, appa_result, result_task_id)
+
+        print('下一步流程写入成功')
 
     #明细表提交、入库
     def detail_commit(self):
@@ -309,7 +319,7 @@ class APPAage(BasePage):
         self.clicks('css', storage_next)
         self.wait_loading()
 
-        # 完成任务单
+
 
     #完成任务单
     def complete_task(self):

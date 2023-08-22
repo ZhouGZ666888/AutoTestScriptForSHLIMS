@@ -36,6 +36,17 @@ libquant_result = 'exp_libquant_result_t'
 # 质谱仪上机明细表
 massspectro_item = 'exp_mass_spectro_item_t'
 
+#APP-A结果表
+appa_result='exp_appa_result_t'
+
+#环化结果表
+cyclization_result='exp_cyclization_result_t'
+
+#环化后混合结果表
+postcyclmix_result='exp_postcyclmix_result_t'
+
+#DNB制备结果表
+dnbpremix='exp_dnbpostmix_result_t'
 
 def create_lab_excel():
     """

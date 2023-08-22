@@ -103,6 +103,9 @@ wkdl_non_sr_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data")
 # 文库定量结果记录表
 wkdl_sr_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'wkdl_sr_id_lims.xlsx')
 
+# 文库定量华大sr样本结果记录表
+wkdl_hdsr_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'wkdl_sr_huada_lims.xlsx')
+
 # 上机结果记录表
 sj_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'sj_id_lims.xlsx')
 
@@ -118,7 +121,7 @@ mgmt_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'exce
 # APP-A样本记录表
 app_a_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'appa_id_lims.xlsx')
 
-# 环节环节样本记录表
+# 环化环节样本记录表
 cyclization_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'),
                                      'cyclization_lims_id.xlsx')
 

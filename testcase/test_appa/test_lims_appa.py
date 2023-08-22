@@ -3,7 +3,7 @@
 # @Author  : guanzhong.zhou
 # @File    : APP-A模块测试用例
 import unittest
-from pageobj.APP_APage import APPAage
+from pageobj.APP_APage import APPAPage
 from common.enter_tab import EnterTab
 from common.logs import log
 from common.Main import MyTest
@@ -12,7 +12,7 @@ from common.Main import MyTest
 class AppA(MyTest):
     def setUp(self) -> None:
         """初始化浏览器驱动"""
-        self.ap = APPAage(self.driver)
+        self.ap = APPAPage(self.driver)
 
     def test01_add_appa_task(self):
         """测试新建APP-A任务单"""
@@ -84,6 +84,8 @@ class AppA(MyTest):
         """测试APP-A结果表提交"""
         log.info('APP-A结果表提交')
         self.ap.result_commit()
+        log.info('APP-A结果表数据写入下一步')
+        self.ap.write_data_to_excel()
 
     def test13_detail_commit(self):
         """测试APP-A明细表提交、入库"""

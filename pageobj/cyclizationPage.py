@@ -5,18 +5,19 @@
 import pyperclip
 import xlrd
 from selenium.webdriver.common.keys import Keys
-from common.all_path import app_a_file_path, position_in_box_path
+from common.all_path import app_a_file_path, position_in_box_path, cyclization_file_path
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.cyclization_ele import *
-from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt
+from conf.config import cyclization_result
+from data.sql_action.execute_sql_action import cyclization_update, cyclization_get_lims, cyclization_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
 
-class APPAage(BasePage):
-    """APPA页面方法封装"""
+class CycliPage(BasePage):
+    """环化页面方法封装"""
 
     # 获取页面提示信息
     def get_pageinfo(self):
@@ -103,6 +104,8 @@ class APPAage(BasePage):
         # 明细表生成产物弹框确认按钮
         self.clicks('css', generate_product_confirm)
         self.wait_loading()
+        taskId = self.get_text('css', detail_task_id)
+        executeSql.test_updateByParam(cyclization_update.format(taskId, taskId))  # 更新数据库，结果表自动计算数据，设置下一步流向
         # 生成产物成功
 
     # 批量数据
@@ -121,7 +124,6 @@ class APPAage(BasePage):
         self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（临时库）
         self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn_confirm)
-
 
     # 明细表自动计算
     def detail_autoComplete(self):
@@ -144,62 +146,21 @@ class APPAage(BasePage):
         self.clicks('css', detail_enter_result)
         self.wait_loading()
 
-    # 结果表生成环化产物名称
-    def result_generate_appname(self):
-        """结果表生成环化产物名称"""
-        log.info("结果表生成APP产物名称")
-        self.clicks('css', result_all_choice)
-        self.sleep(0.5)
-        self.clicks('css', result_generate_app)
-        self.wait_loading()
-
-    # 结果表批量粘贴导入
-    def result_batch_paste_import_package(self):
-        """结果表批量粘贴导入"""
-        taskId = self.get_text('css', result_task_id)
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskId))  # 从数据库获取当前任务单号下样本lims号
-        executeSql.test_updateByParam(updata_result_sample_pkg_amt.format(taskId))  # 更新分管样本文库包装量
-        # 把获取的lims号转换为一维列表
-        blist = [[item[i] for i in item] for item in lims_id]
-        list1 = [5, 3, 4, 7, 5, 4, 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
-
-        impData = []
-        for i in blist:
-            new_list = i + list1
-            impData.append(new_list)
-        pandas_write_excel(impData, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
-        data = xlrd.open_workbook(position_in_box_path)  # 从Excel读取模板样本号和盒内位置编号
-        num_list = []
-        for index in range(0, len(blist)):
-            tables = data.sheets()[0]
-            vals = tables.row_values(index)
-            imp_data = '\t'.join(map(str, vals))
-            num_list.append(imp_data)
-        print("\n".join(map(str, num_list)))
-        pyperclip.copy("\n".join(map(str, num_list)))
-
-        log.info("环化结果表批量粘贴导入")
-        self.clicks('css', result_batch_paste_import_package)
-        self.findelement('css', result_batch_paste_import_package_input).send_keys(Keys.CONTROL, 'v')
-        self.sleep(0.5)
-        Screenshot(self.driver).get_img("环化结果表批量粘贴导入")
-        self.clicks('css', result_batch_paste_import_package_confirm)
-        self.sleep(1)
-        log.info("结果表保存")
-        self.clicks('css', result_save)
-        self.wait_loading()
-        self.refresh()
-
     # 自动计算
     def result_autoComplete(self):
-        """环化结果表自动计算"""
+        """环化结果表自动计算,计算两遍"""
         log.info("环化结果表自动计算")
         self.clicks('css', result_all_choice)
         self.sleep(0.5)
         self.clicks('css', result_autoComplete)
-        self.wait_loading()
+        self.sleep(0.5)
+        self.clicks('css', result_autoComplete_tip)
+        self.sleep(0.5)
+        self.clicks('css', result_autoComplete)
+        self.sleep(0.5)
+        self.clicks('css', result_autoComplete_tip)
+        self.sleep(0.5)
 
-    # 自动计算成功
     # 结果表提交
     def result_commit(self):
         """结果表提交"""
@@ -237,7 +198,7 @@ class APPAage(BasePage):
         self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+        lims_id = executeSql.test_select_limsdb(cyclization_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
 
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
         nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用
@@ -281,15 +242,23 @@ class APPAage(BasePage):
         self.clicks('css', result_complete_task_confirm_btn)
         self.wait_loading()
         taskstatus = self.get_text('css', result_task_status)
-        log.info('环化结果表完成任务单，任务单状态:%s' % taskstatus)
-        return taskstatus
+        log.info('环化结果表完成任务单，任务单状态:%s' % taskstatus.strip())
+        return taskstatus.strip()
+
+    # 结果表样本流程环节写入Excel
+    def write_data_to_excel(self):
+        """
+         根据结果表样本下一步流程，把对应的样本lims号、实验室号、下一步流程以追加形式写入该流程的Excel
+        """
+        self.add_excel_xlxs(cyclization_next_step, cyclization_result, result_task_id)
+        print('下一步流程写入成功')
 
     # 首页面查询已完成的样本任务单
     def serach_task(self):
         """
         首页面查询已完成的样本任务单
         """
-        lims_id = read_excel_col(app_a_file_path, 'lims号')
+        lims_id = read_excel_col(cyclization_file_path, 'lims号')
         log.info(' 环化首页面查询已完成的样本任务单')
         self.clicks('css', search_btn)
         self.sleep(0.5)
