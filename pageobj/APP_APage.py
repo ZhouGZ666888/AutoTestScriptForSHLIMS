@@ -12,7 +12,7 @@ from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel
 from PageElemens.app_a_ele import *
 from conf.config import appa_result
 from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt, \
-    next_step_sql, cyclization_next_step
+    next_step_sql
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
@@ -64,7 +64,7 @@ class APPAPage(BasePage):
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
-        self.sleep(0.5)
+        self.clicks('css', enter_detail_list_btn)  # 进入明细表
         return pageinfo
 
     # 样本分管操作
@@ -257,7 +257,7 @@ class APPAPage(BasePage):
         """
          根据结果表样本下一步流程，把对应的样本lims号、实验室号、下一步流程以追加形式写入该流程的Excel
         """
-        self.add_excel_xlxs(cyclization_next_step, appa_result, result_task_id)
+        self.add_excel_xlxs(next_step_sql, appa_result, result_task_id)
 
         print('下一步流程写入成功')
 

@@ -5,7 +5,7 @@
 import pyperclip
 import xlrd
 from selenium.webdriver.common.keys import Keys
-from common.all_path import app_a_file_path, position_in_box_path, cyclization_file_path
+from common.all_path import  position_in_box_path, cyclization_file_path
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
@@ -43,7 +43,7 @@ class CycliPage(BasePage):
         待选表核对lims号功能，并保存任务单号
         """
         log.info("环化待选表核对lims号功能，并保存任务单号")
-        lims_id_str = get_lims_for_excel(app_a_file_path)
+        lims_id_str = get_lims_for_excel(cyclization_file_path)
         log.info('获取接样流程中的lims样本号,核对lims号是否存在')
         self.clicks('css', check_lims_sample_num)
         self.sleep(1)
@@ -63,7 +63,7 @@ class CycliPage(BasePage):
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
-        self.sleep(0.5)
+        self.clicks('css', enter_detail_list_btn)  # 进入明细表
         return pageinfo
 
     # 样本分管操作

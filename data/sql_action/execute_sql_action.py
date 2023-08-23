@@ -90,7 +90,7 @@ updata_result_sample_pkg_amt = "UPDATE exp_appa_result_t set sample_pkg_amt=1 wh
 cyclization_update = "UPDATE exp_cyclization_item_t SET fragment_len =150 WHERE task_id ='{}';UPDATE " \
                      "exp_cyclization_result_t SET " \
                      "fragment_len =150,sample_type_id='C2023042500008',used_volume_amt=5, sup_volume_amt=5 ," \
-                     "consistence_amt =5,volume_amt=5 ,cyclization_data_amt=1.51,next_step='01' WHERE task_id ='{}';"
+                     "consistence_amt =5,volume_amt=5 ,cyclization_data_amt=5,next_step='01' WHERE task_id ='{}';"
 
 # 环化获取明细表lims号
 cyclization_get_lims="SELECT sample_id_lims from exp_cyclization_item_t WHERE task_id='{}';"
@@ -99,9 +99,16 @@ cyclization_get_lims="SELECT sample_id_lims from exp_cyclization_item_t WHERE ta
 cyclization_next_step="SELECT sample_id_lims, cyclization_name, CASE WHEN next_step = '01' THEN '环化后混合'WHEN next_step = '02' THEN " \
  "'DNB制备'ELSE next_step END AS next_step FROM {}  WHERE task_id = '{}';"
 
+#环化后混合结果表更新数据
+postcyclmixSchedule_result_date=" UPDATE exp_postcyclmix_result_t SET sample_type_id='C2023042500013'," \
+                           "actual_throughput=10,conversion_rate=5,actual_molar_total_amt=5,theoretical_concentration=5,original_volume_amt=5,added_volume_amt=1,actual_consistence_amt=5,volume_amt=21,fragment_len=50,used_volume_amt=1,remaining_volume_amt=20,postcyclmix_data_amt=10 where task_id='{}';"
 
+# 环化后混合获取明细表lims号
+postcyclmixSchedul_get_lims="SELECT sample_id_lims from exp_postcyclmix_item_t WHERE task_id='{}';"
 
-
+#环化后混合下一步
+postcyclmixSchedul_next_step="SELECT sample_id_lims, postcyclmix_name, 'DNB制备' as next_step FROM  " \
+                             "exp_postcyclmix_result_t WHERE task_id = '{}';"
 # 文库定量明细表
 # 获取样本总数
 wkdl_detail_sql1 = "SELECT count(*) from exp_libquant_item_t WHERE task_id = '{}';"

@@ -60,6 +60,7 @@ def create_lab_excel():
     value1 = [["富集lims号", "上机分组号", "当前节点", "任务单号"]]  # 上机
     value2 = [["富集lims号", "富集名称", "当前节点", "任务单号"]]  # 定量sr
     value3 = [["lims号", "富集名称", "当前节点", "任务单号"]]  # 定量非sr
+    value4 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量非sr
     write_excel_xlsx_by_openpyxl(pathologycheck_file_path, all_laboratorys[0], value)  # 病理检验数据流转Excel
     write_excel_xlsx_by_openpyxl(sampleprocessing_file_path, all_laboratorys[1], value)  # 样本处理数据流转Excel
     write_excel_xlsx_by_openpyxl(hstq_file_path, all_laboratorys[2], value)  # 核酸提取数据流转Excel
@@ -75,9 +76,9 @@ def create_lab_excel():
     write_excel_xlsx_by_openpyxl(report_basic_info_process_path, all_laboratorys[11], value)  # 写入报告样本数据流转Excel
     write_excel_xlsx_by_openpyxl(zpy_file_path, all_laboratorys[12], value)  # 质谱仪样本数据流转Excel
     write_excel_xlsx_by_openpyxl(app_a_file_path, all_laboratorys[13], value)  # APP-A样本数据流转Excel
-    write_excel_xlsx_by_openpyxl(cyclization_file_path, all_laboratorys[14], value)  # 环化样本数据流转Excel
-    write_excel_xlsx_by_openpyxl(postcyclmix_file_path, all_laboratorys[15], value)  # 环化后混合样本数据流转Excel
-    write_excel_xlsx_by_openpyxl(dnbpremix_file_path, all_laboratorys[16], value)  # DNB制备样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(cyclization_file_path, all_laboratorys[14], value4)  # 环化样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(postcyclmix_file_path, all_laboratorys[15], value4)  # 环化后混合样本数据流转Excel
+    write_excel_xlsx_by_openpyxl(dnbpremix_file_path, all_laboratorys[16], value4)  # DNB制备样本数据流转Excel
 
 
 if __name__ == '__main__':
