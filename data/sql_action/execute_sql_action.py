@@ -87,6 +87,10 @@ updata_detail_sample_pkg_amt = "UPDATE exp_appa_item_t set actual_sample_pkg_amt
 # APP-A更新结果表产物包装量
 updata_result_sample_pkg_amt = "UPDATE exp_appa_result_t set sample_pkg_amt=1 where  task_id ='{}';"
 
+#appa下一步
+appa_next_step="SELECT appa_lims_id, appa_name, '华大文库定量' as next_step FROM  {} WHERE task_id ='{}';"
+
+
 # 环化更新自动计算数据
 cyclization_update = "UPDATE exp_cyclization_item_t SET fragment_len =150 WHERE task_id ='{}';UPDATE " \
                      "exp_cyclization_result_t SET " \

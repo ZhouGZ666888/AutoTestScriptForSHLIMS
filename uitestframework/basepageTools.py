@@ -523,7 +523,7 @@ class BasePage:
                 data_list.append(result[item])
                 add_write_excel_xlsx(zpy_file_path, data_list)
 
-            elif next_step == 'libquant':  # 华大文库定量
+            elif next_step == '华大文库定量':  # 华大文库定量
                 result[item][2] = '华大文库定量'
                 data_list.append(result[item])
                 add_write_excel_xlsx(wkdl_hdsr_file_path, data_list)

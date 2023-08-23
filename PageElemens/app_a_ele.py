@@ -127,55 +127,47 @@ detail_remaining_sample_pkg_amt_confirm = '.edit-batch-remainingSamplePkgAmt .ba
 detail_batch_storage_type_btn = '.button-list .baseClass-btn-deposit-type'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '//li[text()="余样入库"]'
+detail_batch_storage_type_choice = '//li[contains(text(),"余样入库")]'
 
 # 明细表入库按钮
 deposit_into_storage = '.button-list .baseClass-btn-deposit'
 
 # 入库弹框全选按钮
-storage_all_choice = '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
+storage_all_choice = '.deposit-drawer .vxe-table--main-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
 
 # 入库弹框选择入库类型下拉框
-target_storage_type = '.dialog-check-storage .checkStorageDialog-btn-targetLocation'
+target_storage_type = '.deposit-drawer .checkStorageDialog-btn-targetLocation'
 
 # 入库弹框选择入库类型下拉值（临时库）
 target_storage_type_value = '//ul[@class="el-dropdown-menu el-popper el-dropdown-menu--medium"]/descendant::li[text()="临时库"]'
 
 # 入库弹框选择样本盒按钮
-batch_paste_sample_box = '.dialog-check-storage .checkStorageDialog-btn-selectBox'
+batch_paste_sample_box = '.deposit-drawer .deposit-btn-chose-sample-box'
 
 # 入库弹框选择样本盒弹框target storage 搜索文本录入框
-target_storage = '.boxSearch-boxSearchDialogForm-boxName input'
+target_storage = '.boxSearch-boxName input'
 
 # 入库弹框选择样本盒弹框t搜索按钮
-select_sample_box_search = '.dialog-box-search .baseClass-btn-search'
+select_sample_box_search = '.boxSearch-btn-search'
 
 # 入库弹框选选择样本盒值，默认选择列表第一条数据
-select_sample_box_choice = '.dialog-box-search .el-dialog__body .el-table__body-wrapper tbody tr:nth-child(1)'
+select_sample_box_choice = '.deposit-drawer  .el-table__body-wrapper tbody tr:nth-child(1)'
 
 # 入库弹框选选择样本盒弹框，确认按钮
-select_sample_box_comfirm = '.dialog-box-search .dialog-footer .baseClass-btn-confirm'
+select_sample_box_comfirm = '//*[@aria-label="选择样本盒"]/descendant::div[@class="dialog-footer"]/button[2]'
 
-# 入库弹框样本总数
-all_select_sample_box = '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr td:nth-child(7)'
-
-# 入库弹框盒内位置
-detail_position_in_box = '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7)'
-
-# 入库弹框盒内位置文本框
-detail_position_in_box_input = '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7) input'
 
 # 批量粘贴盒内位置按钮
-batch_copy_BoxPosition_btn = '.dialog-check-storage .checkStorageDialog-btn-batchCopyBoxPosition'
+batch_copy_BoxPosition_btn = '//span[text()="批量粘贴盒内位置"]'
 
 # 批量粘贴盒内位置确认按钮
-batch_copy_BoxPosition_comfirm = '.dialog-position-box .dialog-footer .baseClass-btn-confirm'
+batch_copy_BoxPosition_comfirm = '.dialog-positionBoxCopy .dialog-footer .baseClass-btn-confirm'
 
 # 批量粘贴盒内位置文本录入
-batch_copy_BoxPosition_input = '.dialog-position-box textarea'
+batch_copy_BoxPosition_input = '.dialog-positionBoxCopy textarea'
 
 # 入库弹框下一步按钮
-storage_next = '.dialog-check-storage .dialog-footer .baseClass-btn-next'
+storage_next = '//*[@aria-label="填写入库信息"]/descendant::div[@class="dialog-footer"]/button[2]'
 
 # 明细表提交按钮
 detail_commit = '.button-list .baseClass-btn-commit'
@@ -249,7 +241,7 @@ result_task_status='.head-list .el-button--warning'
 result_save='.head-list .baseClass-btn-save'
 
 # 结果表完成任务单按钮
-result_complete_task_btn='.head-list .baseClass-btn-complete-task'
+result_complete_task_btn='.head-list .baseClass-btn-complete'
 
 # 结果表完成任务单确认按钮
 result_complete_task_confirm_btn='.el-message-box__wrapper .el-message-box__btns button:nth-child(2)'

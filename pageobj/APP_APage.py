@@ -11,7 +11,7 @@ from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.app_a_ele import *
 from conf.config import appa_result
-from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt,next_step_sql, app_get_result_lims
+from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, app_get_result_lims, appa_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
@@ -121,7 +121,7 @@ class APPAPage(BasePage):
         log.info("文库定量明细表，样本入库选择入库类型余样入库")
         self.moved_to_element('css', detail_batch_storage_type_btn)  # 入库弹框选择入库类型下拉框
         self.sleep(1)
-        self.click_by_js('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（余样入库）
+        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（余样入库）
         self.sleep(1)
 
     # 批量包装余量
@@ -134,16 +134,19 @@ class APPAPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', detail_remaining_sample_pkg_amt_confirm)
         self.sleep(1)
+        self.clicks('css',detail_save)
+        self.wait_loading()
 
     # 明细表批量粘贴导入
     def detail_batch_paste_import_package_btn(self):
         """明细表批量粘贴导入"""
         taskId = self.get_text('css', detail_task_id)
         taskid=re.findall(r'[A-Za-z0-9]+', taskId)[0]
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskid))  # 从数据库获取当前任务单号下样本lims号
         executeSql.test_updateByParam(updata_detail_sample_pkg_amt.format(taskid))  # 更新分管样本文库包装量
+        self.refresh()
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskid))  # 从数据库获取当前任务单号下样本lims号
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
-        list1 = [5, "5", 25, 5, 1]  # 批量导入文库浓度、文库体积、文库总量、文库长度bp、余样体积值
+        list1 = [5, "5", 25, "5", 1]  # 批量导入文库浓度、文库体积、文库总量、文库长度bp、余样体积值
         impData = []
         for i in lims_list:
             new_list = [i] + list1
@@ -171,6 +174,8 @@ class APPAPage(BasePage):
     def detail_autoComplete(self):
         """明细表自动计算"""
         log.info("APP-A明细表明细表自动计算")
+        self.clicks('css',detail_all_choice)
+        self.sleep(0.5)
         self.clicks('css', detail_autoComplete_btn)
         self.wait_loading()
 
@@ -249,7 +254,7 @@ class APPAPage(BasePage):
         """
          根据结果表样本下一步流程，把对应的样本lims号、实验室号、下一步流程以追加形式写入该流程的Excel
         """
-        self.add_excel_xlxs(next_step_sql, appa_result, result_task_id)
+        self.add_excel_xlxs(appa_next_step, appa_result, result_task_id)
 
         print('下一步流程写入成功')
 
@@ -278,7 +283,7 @@ class APPAPage(BasePage):
         self.clicks('css', select_sample_box_search)  # 入库弹框选择样本盒弹框t搜索按钮
         self.wait_loading()
         self.clicks('css', select_sample_box_choice)  # 入库弹框选选择样本盒值，默认选择列表第一条数据
-        self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
+        self.clicks('xpath', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
         lims_id = executeSql.test_select_limsdb(app_get_lims.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0]))  # 从数据库获取当前任务单号下样本lims号
@@ -301,14 +306,14 @@ class APPAPage(BasePage):
         pyperclip.copy("\n".join(map(str, num_list)))
 
         # 粘贴到【批量粘贴盒内位置】文本框
-        self.clicks('css', batch_copy_BoxPosition_btn)
+        self.clicks('xpath', batch_copy_BoxPosition_btn)
         self.findelement('css', batch_copy_BoxPosition_input).send_keys(Keys.CONTROL, 'v')
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
         Screenshot(self.driver).get_img("APP-A明细表入库")
 
-        self.clicks('css', storage_next)
+        self.clicks('xpath', storage_next)
         self.wait_loading()
 
 
