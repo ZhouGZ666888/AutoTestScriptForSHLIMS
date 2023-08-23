@@ -109,6 +109,9 @@ wkdl_hdsr_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 
 # 上机结果记录表
 sj_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'sj_id_lims.xlsx')
 
+# 华大上机结果记录表
+hd_sj_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'hdsj_id_lims.xlsx')
+
 # 质谱仪记录表
 zpy_file_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'), 'zpy_id_lims.xlsx')
 

@@ -83,6 +83,7 @@ class Postcyclmix(MyTest):
 
     def test12_serach_task(self):
         """测试环化后混合首页面查询已完成的样本任务单"""
+        EnterTab.enter_postcyclmix(self.basepage)  # 点击环化后混合导航树
         log.info('环化后混合首页面查询已完成的样本任务单')
         self.pc.serach_task()
 

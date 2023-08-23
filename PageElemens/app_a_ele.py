@@ -58,7 +58,7 @@ page_success_info = '//*[@class="el-message el-message--success"]/descendant::p'
 APP-A明细表列表元素定位
 """
 #明细表任务单号
-detail_task_id=''
+detail_task_id='.header_test'
 # 明细表全选按钮
 detail_all_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon'
 detail_part_choice = '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--indeterminate-icon'
@@ -127,7 +127,7 @@ detail_remaining_sample_pkg_amt_confirm = '.edit-batch-remainingSamplePkgAmt .ba
 detail_batch_storage_type_btn = '.button-list .baseClass-btn-deposit-type'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '.btn-deposit-type-val li:nth-child(2)'
+detail_batch_storage_type_choice = '//li[text()="余样入库"]'
 
 # 明细表入库按钮
 deposit_into_storage = '.button-list .baseClass-btn-deposit'
@@ -178,31 +178,31 @@ batch_copy_BoxPosition_input = '.dialog-position-box textarea'
 storage_next = '.dialog-check-storage .dialog-footer .baseClass-btn-next'
 
 # 明细表提交按钮
-detail_commit = ''
+detail_commit = '.button-list .baseClass-btn-commit'
 
 # 明细表提交确认提示
-detail_commit_confirm = ''
+detail_commit_confirm = '.dialog-commit .baseClass-btn-confirm'
 
 #明细表提交状态
 detail_commit_status=''
 
 # 明细表自动计算按钮
-detail_autoComplete_btn = ''
+detail_autoComplete_btn = '.button-list .baseClass-btn-autoComplete'
 
 # 明细表批量粘贴导入按钮
-detail_batch_paste_import_package_btn = ''
+detail_batch_paste_import_package_btn = '.button-list .baseClass-btn-paste'
 
 # 明细表批量粘贴导入弹框文本录入框
-detail_batch_paste_import_package_input = ''
+detail_batch_paste_import_package_input = '.dialog-channel textarea'
 
 # 明细表批量粘贴导入弹框确定按钮
-detail_batch_paste_import_package_input_confirm = ''
+detail_batch_paste_import_package_input_confirm = '.dialog-channel .el-dialog__footer .qcResult-btn-confirm'
 
 # 明细表保存按钮
-detail_save = ''
+detail_save = '.head-list .baseClass-btn-save'
 
 # 明细表进入结果表按钮
-detail_enter_result = ''
+detail_enter_result = '.head-list .baseClass-btn-go-result'
 
 
 """
@@ -237,16 +237,16 @@ result_autoComplete='.button-list .baseClass-btn-autoComplete'
 result_autoComplete_tip='.el-message-box__wrapper .el-message-box__btns button'
 
 # 结果表提交样本按钮
-result_commit='.button-list .baseClass-btn-commit-sample'
+result_commit='.button-list .baseClass-btn-commit'
 
 # 结果表提交样本确认弹框按钮
 result_commit_confirm='.dialog-result-commit .baseClass-btn-confirm'
 
 # 结果表任务状态
-result_task_status='.header_status'
+result_task_status='.head-list .el-button--warning'
 
 # 结果表保存按钮
-result_save='.head-list .baseClass-btn-save-result'
+result_save='.head-list .baseClass-btn-save'
 
 # 结果表完成任务单按钮
 result_complete_task_btn='.head-list .baseClass-btn-complete-task'

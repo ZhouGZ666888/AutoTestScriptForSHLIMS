@@ -83,6 +83,7 @@ class Cyclization(MyTest):
 
     def test12_serach_task(self):
         """测试环化首页面查询已完成的样本任务单"""
+        EnterTab.enter_cyclization(self.basepage)  # 点击环化导航树
         log.info('环化首页面查询已完成的样本任务单')
         self.cy.serach_task()
 

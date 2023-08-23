@@ -4,7 +4,7 @@
 # @File    : 21基因模块页面功能封装
 
 
-import pyperclip, xlrd, yaml
+import pyperclip, xlrd, yaml,re
 from selenium.webdriver.common.keys import Keys
 from PageElemens.genes_21_ele import *
 from common import editYaml
@@ -120,7 +120,7 @@ class Genes21Page(BasePage):
         """
         log.info(" 21基因明细表，录入Qubit浓度、体积、总量")
         taskstatus = self.get_text('css', detail_task_id)  # 获取明细表任务单号
-        sql1 = twentyonegene_sql1.format(taskstatus[5:].strip())
+        sql1 = twentyonegene_sql1.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0])
         self.updata_sql(sql1)
         self.sleep(0.5)
         self.refresh()
@@ -185,7 +185,7 @@ class Genes21Page(BasePage):
         """
         log.info(" 21基因结果表，进入体积、进入总量")
         taskstatus = self.get_text('css', result_task_id)  # 获取明细表任务单号
-        sql1 = twentyonegene_sql2.format(taskstatus[5:].strip())
+        sql1 = twentyonegene_sql2.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0])
         self.updata_sql(sql1)
         self.sleep(0.5)
         self.refresh()

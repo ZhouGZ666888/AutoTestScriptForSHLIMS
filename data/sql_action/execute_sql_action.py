@@ -78,11 +78,12 @@ wkfj_detail_sql1 = "SELECT sample_id_lims from exp_pooling_item_t WHERE task_id 
 
 # APP-A获取明细表样本lims号
 app_get_lims = "SELECT sample_id_lims FROM exp_appa_item_t WHERE task_id = '{}' ;"
+# APP-A获取结果表样本lims、产物文库名称号
+app_get_result_lims = "SELECT sample_id_lims,appa_name FROM exp_appa_result_t WHERE task_id = '{}';"
 
 # APP-A更新分管样本文库包装量
-updata_detail_sample_pkg_amt = "UPDATE exp_appa_item_t set actual_sample_pkg_amt=1 where actual_sample_pkg_amt IS NULL " \
-                               "AND " \
-                               "task_id ='{}';"
+updata_detail_sample_pkg_amt = "UPDATE exp_appa_item_t set actual_sample_pkg_amt=1 where actual_sample_pkg_amt IS NULL AND task_id ='{}';"
+
 # APP-A更新结果表产物包装量
 updata_result_sample_pkg_amt = "UPDATE exp_appa_result_t set sample_pkg_amt=1 where  task_id ='{}';"
 
@@ -107,8 +108,24 @@ postcyclmixSchedule_result_date=" UPDATE exp_postcyclmix_result_t SET sample_typ
 postcyclmixSchedul_get_lims="SELECT sample_id_lims from exp_postcyclmix_item_t WHERE task_id='{}';"
 
 #环化后混合下一步
-postcyclmixSchedul_next_step="SELECT sample_id_lims, postcyclmix_name, 'DNB制备' as next_step FROM  " \
-                             "exp_postcyclmix_result_t WHERE task_id = '{}';"
+postcyclmixSchedul_next_step="SELECT sample_id_lims, postcyclmix_name, 'DNB制备' as next_step FROM  {} WHERE task_id = " \
+                             "'{}';"
+
+# DNB制备中间表数据更新
+dnbPremixResults_mid_data="UPDATE exp_dnbpremix_result_t SET actual_molar_concentration=5," \
+                          "ssdna_molar_concentration=5," \
+ "actual_consistence_amt=5,pooling_consistence_amt=5,is_meet_sequencing=1 ,actual_mixed_volume=5 WHERE task_id='{}'"
+
+#DNB制备结果表表数据更新
+dnbPremixResults_result_data="UPDATE exp_dnbpostmix_result_t SET sample_type_id='C2023042500016',final_consistence_amt=20 WHERE task_id='{}';"
+
+# DNB制备获取明细表样本lims
+dnbPremixResults_get_lims="SELECT sample_id_lims from exp_dnbpremix_item_t WHERE task_id='{}';"
+
+#DNB制备结果下一步
+dnbPremixResults_next_step="SELECT sample_id_lims, dnbpostmix_name, '华大上机' as next_step FROM  {} WHERE task_id = '{}';"
+
+
 # 文库定量明细表
 # 获取样本总数
 wkdl_detail_sql1 = "SELECT count(*) from exp_libquant_item_t WHERE task_id = '{}';"

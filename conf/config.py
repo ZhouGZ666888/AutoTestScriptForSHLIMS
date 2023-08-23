@@ -3,7 +3,7 @@
 from common.all_path import pathologycheck_file_path, sampleprocessing_file_path, hstq_file_path, csps_file_path, \
     wkgj_file_path, wkfj_file_path, wkdl_sr_file_path, wkdl_non_sr_file_path, sj_file_path, esyjy_file_path, \
     mgmt_file_path, ybrk_file_path, report_basic_info_process_path, zpy_file_path, app_a_file_path, \
-    cyclization_file_path, postcyclmix_file_path, dnbpremix_file_path
+    cyclization_file_path, postcyclmix_file_path, dnbpremix_file_path, hd_sj_file_path, wkdl_hdsr_file_path
 from common.xlsx_excel import write_excel_xlsx_by_openpyxl
 
 # #样本接收模块生成样本数量
@@ -46,7 +46,7 @@ cyclization_result='exp_cyclization_result_t'
 postcyclmix_result='exp_postcyclmix_result_t'
 
 #DNB制备结果表
-dnbpremix='exp_dnbpostmix_result_t'
+dnbpremix_result='exp_dnbpostmix_result_t'
 
 def create_lab_excel():
     """
@@ -68,8 +68,10 @@ def create_lab_excel():
     write_excel_xlsx_by_openpyxl(wkgj_file_path, all_laboratorys[4], value)  # 文库构建数据流转Excel
     write_excel_xlsx_by_openpyxl(wkfj_file_path, all_laboratorys[5], value)  # 文库富集数据流转Excel
     write_excel_xlsx_by_openpyxl(wkdl_sr_file_path, all_laboratorys[6], value3)  # 文库定量sr样本数据数据流转Excel
+    write_excel_xlsx_by_openpyxl(wkdl_hdsr_file_path, all_laboratorys[6], value4)  # 华大文库定量sr样本数据数据流转Excel
     write_excel_xlsx_by_openpyxl(wkdl_non_sr_file_path, all_laboratorys[6], value2)  # 文库定量非sr数据数据流转Excel
     write_excel_xlsx_by_openpyxl(sj_file_path, all_laboratorys[7], value1)  # 上机数据流转Excel
+    write_excel_xlsx_by_openpyxl(hd_sj_file_path, all_laboratorys[7], value1)  # 华大上机数据流转Excel
     write_excel_xlsx_by_openpyxl(esyjy_file_path, all_laboratorys[8], value)  # 21基因分析数据流转Excel
     write_excel_xlsx_by_openpyxl(mgmt_file_path, all_laboratorys[9], value)  # MGMT数据流转Excel
     write_excel_xlsx_by_openpyxl(ybrk_file_path, all_laboratorys[10], value)  # 样本入库数据流转Excel

@@ -113,7 +113,7 @@ detail_remaining_sample_pkg_amt_input = '.formBatchData-remainingSamplePkgAmt in
 detail_batch_storage_type = '.formBatchData-depositType input'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '//span[text()="余样入库"]'
+detail_batch_storage_type_choice = '//li[text()="余样入库"]'
 
 # 明细表批量数据确认按钮
 detail_batch_data_btn_confirm = '.edit-batch-remainingSamplePkgAmt .el-dialog__footer .baseClass-btn-confirm'

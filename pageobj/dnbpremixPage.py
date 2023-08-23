@@ -3,16 +3,15 @@
 # @Author  : guanzhong.zhou
 # @File    : DNB制备模块页面功能封装
 import pyperclip
-import xlrd
+import xlrd,re
 from selenium.webdriver.common.keys import Keys
 from common.all_path import position_in_box_path, postcyclmix_file_path
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.dnbpremix_ele import *
-from conf.config import postcyclmix_result
-from data.sql_action.execute_sql_action import postcyclmixSchedule_result_date, \
-    postcyclmixSchedul_next_step, postcyclmixSchedul_get_lims
+from conf.config import  dnbpremix_result
+from data.sql_action.execute_sql_action import  dnbPremixResults_mid_data, dnbPremixResults_result_data, dnbPremixResults_get_lims, dnbPremixResults_next_step
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
@@ -33,12 +32,12 @@ class DnbpremixPage(BasePage):
         log.info("选择sop")
         self.clicks('css', sop_btn)
         self.sleep(0.5)
-        self.clicks('xpath', sop_choice)
+        self.clicks('css', sop_choice)
         self.wait_loading()
         log.info("DNB制备录入任务描述")
         self.input('css', task_des, 'DNB制备自动化测试任务')
 
-    # 待选表校验lims号
+    # DNB制备待选表校验lims号
     def check_lims_num(self):
         """
         待选表核对lims号功能，并保存任务单号
@@ -50,7 +49,7 @@ class DnbpremixPage(BasePage):
         self.sleep(1)
         self.input('css', check_lims_sample_number_textarea, lims_id_str)
         self.sleep(0.5)
-        self.clicks('xpath', check_lims_sample_number_confirm)
+        self.clicks('css', check_lims_sample_number_confirm)
         self.wait_loading()
         self.sleep(1)
 
@@ -67,19 +66,19 @@ class DnbpremixPage(BasePage):
         self.clicks('css', enter_detail_list_btn)  # 进入明细表
         return pageinfo
 
-    # 样本分管操作
+    # DNB制备明细表样本分管操作
     def detail_app_a_aliquot_sample(self):
-        """样本分管操作"""
+        """DNB制备明细表样本分管操作"""
         # 选择一条样本进行分管
         self.clicks('css', detail_choice_one_sample)
         self.sleep(0.5)
-        log.info("DNB制备样本分管")
-        self.clicks('xpath', detail_aliquot_sample)
+        log.info("DNB制备明细表样本分管操作")
+        self.clicks('css', detail_aliquot_sample)
         self.wait_loading()
         self.clicks('css', aliquot_sample_all_choice)
         self.sleep(0.5)
         log.info("DNB制备样本分管选择分管数量")
-        self.clicks('xpath', aliquot_sample_numb)
+        self.clicks('css', aliquot_sample_numb)
         self.sleep(0.5)
         self.clicks('css', aliquot_sample_numb_confirm)
         self.sleep(0.5)
@@ -89,7 +88,7 @@ class DnbpremixPage(BasePage):
         self.wait_loading()
         # 样本分管成功
 
-    # 明细表生成中间产物
+    # DNB制备明细表生成中间产物
     def detail_generate_product(self):
         """明细表生成中间产物"""
         self.clicks('css', detail_part_choice)  # 全选样本
@@ -100,7 +99,7 @@ class DnbpremixPage(BasePage):
         self.sleep(0.5)
         log.info("环化样本生成产物设置生成产物数量")
         # 明细表生成产物弹框批量生成产物数量按钮
-        self.clicks('xpath', detail_generate_product_numb_btn)
+        self.clicks('css', detail_generate_product_numb_btn)
         # 明细表生成产物弹框批量生成产物数量确认按钮
         self.clicks('css', generate_product_numb_confirm)
         # 明细表生成产物弹框确认按钮
@@ -109,7 +108,7 @@ class DnbpremixPage(BasePage):
 
         # 生成产物成功
 
-    # 批量数据
+    # DNB制备明细表批量数据
     def detail_batch_data(self):
         """批量数据"""
 
@@ -126,51 +125,90 @@ class DnbpremixPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn_confirm)
 
-    # 明细表自动计算
+    # DNB制备明细表自动计算
     def detail_autoComplete(self):
         """明细表自动计算"""
         log.info("DNB制备明细表明细表自动计算")
         self.clicks('css', detail_autoComplete_btn)
         self.wait_loading()
 
-    # 明细表保存
+    # DNB制备明细表保存
     def detail_save(self):
         """明细表保存"""
         log.info("DNB制备明细表保存")
         self.clicks('css', detail_save)
         self.wait_loading()
 
-    # 进入结果表
-    def detail_enter_result(self):
-        """进入结果表"""
-        log.info("DNB制备进入结果表")
-        self.clicks('css', detail_enter_result)
+    # DNB制备进入中间表
+    def detail_enter_middle(self):
+        """进入中间表"""
+        log.info("DNB制备进入中间表")
+        self.clicks('css', detail_enter_middle)
+        self.wait_loading()
+#DNB制备中间表样本录入产物文库名称
+    def middle_dnbpremix_name(self):
+        """DNB制备中间表样本录入产物文库名称"""
+        taskid = self.get_text('css', mid_task_id)
+        executeSql.test_updateByParam(dnbPremixResults_mid_data.format(re.findall(r'[A-Za-z0-9]+', taskid)[0]))  # 更新自动计算数据库数据
+        self.refresh()
+        log.info("DNB制备中间表样本录入产物文库名称")
+        all_samples = self.findelements('css', dnbPremixResults_detail_all)
+        for i in range(1, len(all_samples) + 1):
+            self.clicks('css', dnbPremixResults.format(i))
+            self.sleep(0.5)
+            self.input('css', dnbPremixResults_input.format(i), 'test_dnbPremixResults_' + str(i))
+            self.sleep(0.5)
+
+    # DNB制备中间表自动计算
+    def middle_autoComplete(self):
+        """DNB制备中间表自动计算"""
+        log.info("DNB制备中间表自动计算")
+        self.clicks('css', mid_generate_product)
+
+    # DNB制备中间表生成混合后DNB产物文库
+    def middle_generate_product(self):
+        """DNB制备中间表生成混合后DNB产物文库"""
+        log.info("DNB制备中间表生成混合后DNB产物文库")
+        self.clicks('css', mid_generate_product)
         self.wait_loading()
 
-    # 自动计算
-    def result_autoComplete(self):
-        """DNB制备结果表自动计算,计算两遍"""
-        log.info("DNB制备结果表自动计算")
-        taskid = self.get_text('css', result_task_id)
-        executeSql.test_updateByParam(postcyclmixSchedule_result_date.format(taskid[5:].strip()))
-        self.refresh()
+    # DNB制备进入结果表
+    def middle_enter_resutl(self):
+        """进入中间表"""
+        log.info("DNB制备进入中间表")
+        self.clicks('css', middle_enter_result_btn)
+        self.wait_loading()
 
-    # 结果表提交
+
+
+
+
+    # DNB制备结果表提交
     def result_commit(self):
         """结果表提交"""
+        taskid = self.get_text('css', result_task_id)
+        executeSql.test_updateByParam(dnbPremixResults_result_data.format(re.findall(r'[A-Za-z0-9]+', taskid)[0]))  #更新自动计算数据库数据
+        self.refresh()
         log.info("DNB制备结果表提交")
         self.clicks('css', result_all_choice)
         self.clicks('css', result_commit)
         self.wait_loading()
 
-    # 明细表提交、入库
+    # DNB制备明细表提交、入库
     def detail_commit(self):
         """明细表提交、入库"""
         log.info("结果表返回明细表")
-        self.clicks('css', result_return_detail)
+        self.clicks('css', result_return_mid)
         self.sleep(0.5)
-        self.clicks('css', result_return_detail_confirm)
+        self.clicks('css', result_return_mid_confirm)
         self.wait_loading()
+
+        self.clicks('css', middle_enter_detail_btn)
+        self.sleep(0.5)
+        self.clicks('css', middle_enter_detail_confirm)
+        self.wait_loading()
+
+
         log.info("DNB制备明细表提交")
         self.clicks('css', detail_all_choice)
         self.sleep(0.5)
@@ -192,7 +230,7 @@ class DnbpremixPage(BasePage):
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
         lims_id = executeSql.test_select_limsdb(
-            postcyclmixSchedul_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+            dnbPremixResults_get_lims.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0]))  # 从数据库获取当前任务单号下样本lims号
 
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
         nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用
@@ -219,35 +257,21 @@ class DnbpremixPage(BasePage):
         self.sleep(1)
         Screenshot(self.driver).get_img("DNB制备明细表入库")
 
-        self.clicks('css', storage_next)
+        self.clicks('xpath', storage_next)
         self.wait_loading()
 
         # 完成任务单
 
-    # 完成任务单
-    def complete_task(self):
-        """完成任务单"""
-        log.info(' DNB制备明细表进入结果表,完成任务单')
-        self.clicks('css', detail_enter_result)
-        self.wait_loading()
-        self.clicks('css', result_complete_task_btn)
-        # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
-        self.clicks('css', result_complete_task_confirm_btn)
-        self.wait_loading()
-        taskstatus = self.get_text('css', result_task_status)
-        log.info('DNB制备结果表完成任务单，任务单状态:%s' % taskstatus.strip())
-        return taskstatus.strip()
 
-    # 结果表样本流程环节写入Excel
+    # DNB制备样本流程环节写入Excel
     def write_data_to_excel(self):
         """
          根据结果表样本下一步流程，把对应的样本lims号、实验室号、下一步流程以追加形式写入该流程的Excel
         """
-        self.add_excel_xlxs(postcyclmixSchedul_next_step, postcyclmix_result, result_task_id)
+        self.add_excel_xlxs(dnbPremixResults_next_step, dnbpremix_result, result_task_id)
         print('下一步流程写入成功')
 
-    # 首页面查询已完成的样本任务单
+    # DNB制备首页面查询已完成的样本任务单
     def serach_task(self):
         """
         首页面查询已完成的样本任务单

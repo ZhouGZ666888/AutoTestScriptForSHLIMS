@@ -1,10 +1,10 @@
-import pyperclip, time
+import pyperclip, time,re
 from retrying import retry
 from selenium.webdriver.support.select import Select
 from common import editYaml
 from common.all_path import hstq_file_path, wkgj_file_path, csps_file_path, wkfj_file_path, wkdl_non_sr_file_path, \
     sj_file_path, esyjy_file_path, mgmt_file_path, zpy_file_path, testdata_path, functionpageURL_path, \
-    wkdl_hdsr_file_path, cyclization_file_path, postcyclmix_file_path, dnbpremix_file_path
+    wkdl_hdsr_file_path, cyclization_file_path, postcyclmix_file_path, dnbpremix_file_path, hd_sj_file_path
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import add_write_excel_xlsx
 from .exceptionsTools import ElementNotFound, ElementNotTextAttr, ElementNotClickable
@@ -466,7 +466,7 @@ class BasePage:
         """
         # 获取任务单号
         taskidstr = self.get_text('css', task_id)
-        taskid = taskidstr[5:].strip()
+        taskid = re.findall(r'[A-Za-z0-9]+', taskidstr)[0]
 
         # 执行SQL，获取二维列表，lims号和下一步流向
         dada = self.select_sql(sql.format(table_name, taskid))
@@ -518,28 +518,35 @@ class BasePage:
                 data_list.append(result[item])
                 add_write_excel_xlsx(mgmt_file_path, data_list)
 
-            elif next_step == 'mass_spectro':  # MGMT
+            elif next_step == 'mass_spectro':  # 质谱仪上机
                 result[item][2] = '质谱仪上机'
                 data_list.append(result[item])
                 add_write_excel_xlsx(zpy_file_path, data_list)
 
-            elif next_step == 'libquant':  # MGMT
+            elif next_step == 'libquant':  # 华大文库定量
                 result[item][2] = '华大文库定量'
                 data_list.append(result[item])
                 add_write_excel_xlsx(wkdl_hdsr_file_path, data_list)
-            elif next_step == '环化':  # MGMT
+
+            elif next_step == '环化':  # 华大环化
                 result[item][2] = '华大环化'
                 data_list.append(result[item])
                 add_write_excel_xlsx(cyclization_file_path, data_list)
-            elif next_step == '环化后混合':  # MGMT
+
+            elif next_step == '环化后混合':  # 华大环化后混合
                 result[item][2] = '华大环化后混合'
                 data_list.append(result[item])
                 add_write_excel_xlsx(postcyclmix_file_path, data_list)
-            elif next_step == 'DNB制备':  # MGMT
+
+            elif next_step == 'DNB制备':  # 华大DNB制备
                 result[item][2] = '华大DNB制备'
                 data_list.append(result[item])
                 add_write_excel_xlsx(dnbpremix_file_path, data_list)
 
+            elif next_step == '华大上机':  # 华大上机
+                result[item][2] = '华大上机'
+                data_list.append(result[item])
+                add_write_excel_xlsx(hd_sj_file_path, data_list)
             else:
                 pass
 

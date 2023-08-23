@@ -3,7 +3,7 @@
 # @Author  : guanzhong.zhou
 # @File    : 环化模块页面功能封装
 import pyperclip
-import xlrd
+import xlrd,re
 from selenium.webdriver.common.keys import Keys
 from common.all_path import  position_in_box_path, cyclization_file_path
 from common.screenshot import Screenshot
@@ -32,7 +32,7 @@ class CycliPage(BasePage):
         log.info("选择sop")
         self.clicks('css', sop_btn)
         self.sleep(0.5)
-        self.clicks('xpath', sop_choice)
+        self.clicks('css', sop_choice)
         self.wait_loading()
         log.info("环化录入任务描述")
         self.input('css', task_des, '环化自动化测试任务')
@@ -49,7 +49,7 @@ class CycliPage(BasePage):
         self.sleep(1)
         self.input('css', check_lims_sample_number_textarea, lims_id_str)
         self.sleep(0.5)
-        self.clicks('xpath', check_lims_sample_number_confirm)
+        self.clicks('css', check_lims_sample_number_confirm)
         self.wait_loading()
         self.sleep(1)
 
@@ -73,12 +73,12 @@ class CycliPage(BasePage):
         self.clicks('css', detail_choice_one_sample)
         self.sleep(0.5)
         log.info("环化样本分管")
-        self.clicks('xpath', detail_aliquot_sample)
+        self.clicks('css', detail_aliquot_sample)
         self.wait_loading()
         self.clicks('css', aliquot_sample_all_choice)
         self.sleep(0.5)
         log.info("环化样本分管选择分管数量")
-        self.clicks('xpath', aliquot_sample_numb)
+        self.clicks('css', aliquot_sample_numb)
         self.clicks('css', aliquot_sample_numb_confirm)
         self.sleep(0.5)
         log.info("环化样本明细表分管完成")
@@ -98,14 +98,16 @@ class CycliPage(BasePage):
         self.sleep(0.5)
         log.info("环化样本生成产物设置生成产物数量")
         # 明细表生成产物弹框批量生成产物数量按钮
-        self.clicks('xpath', detail_generate_product_numb_btn)
+        self.clicks('css', detail_generate_product_numb_btn)
         # 明细表生成产物弹框批量生成产物数量确认按钮
         self.clicks('css', generate_product_numb_confirm)
         # 明细表生成产物弹框确认按钮
         self.clicks('css', generate_product_confirm)
         self.wait_loading()
         taskId = self.get_text('css', detail_task_id)
-        executeSql.test_updateByParam(cyclization_update.format(taskId, taskId))  # 更新数据库，结果表自动计算数据，设置下一步流向
+        taskid=re.findall(r'[A-Za-z0-9]+', taskId)[0]
+
+        executeSql.test_updateByParam(cyclization_update.format(taskid, taskid))  # 更新数据库，结果表自动计算数据，设置下一步流向
         # 生成产物成功
 
     # 批量数据
@@ -195,10 +197,10 @@ class CycliPage(BasePage):
         self.clicks('css', select_sample_box_search)  # 入库弹框选择样本盒弹框t搜索按钮
         self.wait_loading()
         self.clicks('css', select_sample_box_choice)  # 入库弹框选选择样本盒值，默认选择列表第一条数据
-        self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
+        self.clicks('xpath', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
-        lims_id = executeSql.test_select_limsdb(cyclization_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+        lims_id = executeSql.test_select_limsdb(cyclization_get_lims.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0]))  # 从数据库获取当前任务单号下样本lims号
 
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
         nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用
@@ -218,14 +220,14 @@ class CycliPage(BasePage):
         pyperclip.copy("\n".join(map(str, num_list)))
 
         # 粘贴到【批量粘贴盒内位置】文本框
-        self.clicks('css', batch_copy_BoxPosition_btn)
+        self.clicks('xpath', batch_copy_BoxPosition_btn)
         self.findelement('css', batch_copy_BoxPosition_input).send_keys(Keys.CONTROL, 'v')
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
         Screenshot(self.driver).get_img("环化明细表入库")
 
-        self.clicks('css', storage_next)
+        self.clicks('xpath', storage_next)
         self.wait_loading()
 
         # 完成任务单

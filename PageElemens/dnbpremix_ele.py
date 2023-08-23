@@ -92,26 +92,23 @@ detail_generate_product_all_choice = '.common-task-schedule-new >div:nth-child(5
 # 明细表生成产物弹框批量生成产物数量按钮
 detail_generate_product_numb_btn = '.divided-drawer-class .btn-batch-generate'
 
-
 # 明细表生成产物弹框批量生成产物数量确认按钮
 generate_product_numb_confirm = '.common-task-schedule-new >div:nth-child(5) .el-dialog.batch-divided .batch-divided-confirm'
 
 # 明细表生成产物弹框确认按钮
 generate_product_confirm = '.common-task-schedule-new >div:nth-child(5) .divided-drawer-class .baseClass-btn-confirm'
 
-
-#明细表批量数据按钮
-detail_batch_data_btn='.button-list .btn-batch-data'
+# 明细表批量数据按钮
+detail_batch_data_btn = '.button-list .btn-batch-data'
 
 # 明细表批量包装余量文本录入框
 detail_remaining_sample_pkg_amt_input = '.batch-data-remainingSamplePkgAmt input'
-
 
 # 明细表批量入库类型下拉框
 detail_batch_storage_type = '.batch-formBatchData-depositType input'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '//span[text()="余样入库"]'
+detail_batch_storage_type_choice = '//li[text()="余样入库"]'
 
 # 明细表批量数据确认按钮
 detail_batch_data_btn_confirm = '.batch-edit-dialog .baseClass-btn-confirm'
@@ -137,7 +134,6 @@ select_sample_box_choice = '.deposit-drawer .el-table .el-table__body-wrapper tb
 # 入库弹框选选择样本盒弹框，确认按钮
 select_sample_box_comfirm = '//*[@aria-label="选择样本盒"]/descendant::div[@class="dialog-footer"]/button[2]'
 
-
 # 批量粘贴盒内位置
 batch_copy_BoxPosition_btn = '//span[text()="批量粘贴盒内位置"]'
 
@@ -156,8 +152,8 @@ detail_commit = '.button-list .btn-submit'
 # 明细表提交确认提示
 detail_commit_confirm = '.dialog-commit .baseClass-btn-confirm'
 
-#明细表提交状态
-detail_commit_status=''
+# 明细表提交状态
+detail_commit_status = ''
 
 # 明细表自动计算按钮
 detail_autoComplete_btn = '.button-list .btn-first'
@@ -166,55 +162,64 @@ detail_autoComplete_btn = '.button-list .btn-first'
 detail_save = '.head-list .btn-save'
 
 # 明细表进入中间表按钮
-detail_enter_result = '.head-list .btn-go-results'
+detail_enter_middle = '.head-list .btn-go-results'
 
 # 明细表任务单号
-detail_task_id='.header_test'
+detail_task_id = '.header_test'
 """
 DNB制备中间表列表元素定位
 """
+# 中间表全选按钮
+middle_all_choice = '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper ' \
+                    '.vxe-checkbox--unchecked-icon'
 
+# 混合后产物名称表单定位
 
+dnbPremixResults_detail_all = '.dnbPremixResults-tableCol-dnbpostmixName'
 
+# 混合后环化产物名称表单
+dnbPremixResults = '.vxe-table--body-wrapper tr:nth-child({}) .dnbPremixResults-tableCol-dnbpostmixName'
 
+# 混合后环化产物名称表单录入
+dnbPremixResults_input = '.vxe-table--body-wrapper tr:nth-child({}) .dnbPremixResults-tableCol-dnbpostmixName input'
 
+# DNB制备中间表生成混合后DNB产物文库
+dnbPremix_generate_product = '.button-list .btn-generate'
 
+# 中间表任务单号
+mid_task_id = '.header_test'
 
+# 中间表自动计算
+mid_autoComplete_btn = '.button-list .btn-first'
+
+# 生成混合后DNB产物文库
+mid_generate_product = '.button-list .btn-generate'
+
+# 中间表进入结果表按钮
+middle_enter_result_btn = '.head-list .btn-go-results'
+
+# 中间表进入明细表按钮
+middle_enter_detail_btn = '.head-list .btn-go-schedule'
+
+# 中间表进入明细表确认
+middle_enter_detail_confirm = '.btn-go-back'
 """
 DNB制备结果表列表元素定位
 """
 # 结果表全选按钮
-result_all_choice='.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
-
-# 结果表自动计算按钮
-result_autoComplete='.button-list .baseClass-btn-auto-complete'
-
-# 结果表自动计算规则不完整提示
-result_autoComplete_tip='.el-message-box__wrapper .el-message-box__btns button'
+result_all_choice = '.createTask_content_table  .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
 
 # 结果表提交样本按钮
-result_commit='.button-list .postcyclmixResult-btn-commitSample'
-
-# 结果表提交样本确认弹框按钮
-result_commit_confirm='.dialog-result-commit .baseClass-btn-confirm'
+result_commit = '.button-list .btn-submit'
 
 # 结果表任务状态
-result_task_status='.header_status'
+result_task_status = '.header_status'
 
-#结果表任务单号
-result_task_id='.header_test'
+# 结果表任务单号
+result_task_id = '.header_test'
 
-# 结果表保存按钮
-result_save='.head-list .postcyclmixResult-btn-saveResult'
+# 结果表返回中间产物表按钮
+result_return_mid = '.head-list .btn-go-premix'
 
-# 结果表完成任务单按钮
-result_complete_task_btn='.head-list .postcyclmixResult-btn-completeTask'
-
-# 结果表完成任务单确认按钮
-result_complete_task_confirm_btn='.el-message-box__wrapper .el-message-box__btns button:nth-child(2)'
-
-# 结果表返回明细表按钮
-result_return_detail='.head-list .postcyclmixResult-btn-backToSchedule'
-
-# 结果表返回明细表确认
-result_return_detail_confirm='.dialog-back .baseClass-btn-continue'
+# 结果表返回中间产物表确认
+result_return_mid_confirm = '.dialog-back .baseClass-btn-continue'

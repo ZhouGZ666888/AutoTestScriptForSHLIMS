@@ -12,7 +12,7 @@ from common.xlsx_excel import read_excel_col, pandas_write_excel
 
 # from pageobj.pathologycheckPage import now_time
 from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external, \
-    wkfj_detail_sql1, app_get_lims
+    wkfj_detail_sql1, app_get_lims, app_get_result_lims
 
 
 def wait_loading():
@@ -396,19 +396,17 @@ from itertools import product
 
 
 def eee():
-    lims_id = executeSql.test_select_limsdb("SELECT sample_id_lims,appa_name FROM exp_appa_result_t WHERE task_id = 'APPA2023081700003' ;")  # 从数据库获取当前任务单号下样本lims号
-
-    lims_list = [item[key] for item in lims_id for key in item]
+    lims_id = executeSql.test_select_limsdb(
+        app_get_result_lims.format('APPA2023082300008'))  # 从数据库获取当前任务单号下样本lims号
     # 把获取的lims号转换为一维列表
     blist = [[item[i] for i in item] for item in lims_id]
+    print(blist)
     list1 = [5, 3, 4, 7, 5, 4, 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
-
     impData = []
     for i in blist:
         new_list = i + list1
         impData.append(new_list)
-    pandas_write_excel(impData, position_in_box_path)
-
+    pandas_write_excel(impData, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
 def redf():
     data = [['GS2307210003J001', 'KA237L0003-L000J006-APP-A-1'],
             ['GS2307210003J004', 'KA237L0003-L000J006-APP-A-4'],
@@ -427,12 +425,13 @@ def redf():
     print(new_df)
 
 def test22():
-    sf=' 任务单  HHCL2023082100002 '
+    sf=' 任务单 APPA2023082300003 '
     sss=sf[5:].strip()
-    task_number = re.findall(r'HHCL\d+', sf)[0]
-    print(sss)
+    task_number = re.findall(r'[A-Za-z0-9]+', sf)[0]
+    print(task_number,type(task_number))
+
 if __name__ == '__main__':
-    test22()
+    eee()
 
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)

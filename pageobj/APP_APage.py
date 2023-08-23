@@ -3,7 +3,7 @@
 # @Author  : guanzhong.zhou
 # @File    : APP-A模块页面功能封装
 import pyperclip
-import xlrd
+import xlrd,re
 from selenium.webdriver.common.keys import Keys
 from common.all_path import app_a_file_path, position_in_box_path
 from common.screenshot import Screenshot
@@ -11,8 +11,7 @@ from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
 from PageElemens.app_a_ele import *
 from conf.config import appa_result
-from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt, updata_result_sample_pkg_amt, \
-    next_step_sql
+from data.sql_action.execute_sql_action import app_get_lims, updata_detail_sample_pkg_amt,next_step_sql, app_get_result_lims
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
@@ -33,7 +32,7 @@ class APPAPage(BasePage):
         log.info("选择sop")
         self.clicks('css', sop_btn)
         self.sleep(0.5)
-        self.clicks('xpath', sop_choice)
+        self.clicks('css', sop_choice)
         self.wait_loading()
         log.info("APP-A录入任务描述")
         self.input('css', task_des, 'APP-A自动化测试任务')
@@ -50,7 +49,7 @@ class APPAPage(BasePage):
         self.sleep(1)
         self.input('css', check_lims_sample_number_textarea, lims_id_str)
         self.sleep(0.5)
-        self.clicks('xpath', check_lims_sample_number_confirm)
+        self.clicks('css', check_lims_sample_number_confirm)
         self.wait_loading()
         self.sleep(1)
 
@@ -74,12 +73,12 @@ class APPAPage(BasePage):
         self.clicks('css', detail_choice_one_sample)
         self.sleep(0.5)
         log.info("APP-A样本分管")
-        self.clicks('xpath', detail_aliquot_sample)
+        self.clicks('css', detail_aliquot_sample)
         self.wait_loading()
         self.clicks('css', aliquot_sample_all_choice)
         self.sleep(0.5)
         log.info("APP-A样本分管选择分管数量")
-        self.clicks('xpath', aliquot_sample_numb)
+        self.clicks('css', aliquot_sample_numb)
         self.clicks('css', aliquot_sample_numb_confirm)
         self.sleep(0.5)
         log.info("APP-A样本分管下一步填写分管信息")
@@ -93,7 +92,7 @@ class APPAPage(BasePage):
         # 明细表分管弹框下一步填写分管信息弹框最后步骤下拉框选择下拉值
         self.clicks('xpath', aliquot_sample_next_step_choice_value)
         # 明细表分管弹框下一步填写分管信息完成按钮
-        self.clicks('css', aliquot_sample_next_step_finsh)
+        self.clicks('xpath', aliquot_sample_next_step_finsh)
         self.wait_loading()
         # 样本分管成功
 
@@ -119,11 +118,11 @@ class APPAPage(BasePage):
     # 明细表选择批量入库类型
     def detail_batch_storage_type(self):
         """明细表选择批量入库类型"""
-        log.info("文库定量明细表，样本入库选择入库类型临时库")
+        log.info("文库定量明细表，样本入库选择入库类型余样入库")
         self.moved_to_element('css', detail_batch_storage_type_btn)  # 入库弹框选择入库类型下拉框
         self.sleep(1)
-        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（临时库）
-        self.sleep(0.5)
+        self.click_by_js('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（余样入库）
+        self.sleep(1)
 
     # 批量包装余量
     def detail_remaining_pkg_amt(self):
@@ -134,16 +133,17 @@ class APPAPage(BasePage):
         self.input('css', detail_remaining_sample_pkg_amt_input, 1)
         self.sleep(0.5)
         self.clicks('css', detail_remaining_sample_pkg_amt_confirm)
-        self.sleep(0.5)
+        self.sleep(1)
 
     # 明细表批量粘贴导入
     def detail_batch_paste_import_package_btn(self):
         """明细表批量粘贴导入"""
         taskId = self.get_text('css', detail_task_id)
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskId))  # 从数据库获取当前任务单号下样本lims号
-        executeSql.test_updateByParam(updata_detail_sample_pkg_amt.format(taskId))  # 更新分管样本文库包装量
+        taskid=re.findall(r'[A-Za-z0-9]+', taskId)[0]
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskid))  # 从数据库获取当前任务单号下样本lims号
+        executeSql.test_updateByParam(updata_detail_sample_pkg_amt.format(taskid))  # 更新分管样本文库包装量
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
-        list1 = [5, 5, 25, 5, 1]  # 批量导入文库浓度、文库体积、文库总量、文库长度bp、余样体积值
+        list1 = [5, "5", 25, 5, 1]  # 批量导入文库浓度、文库体积、文库总量、文库长度bp、余样体积值
         impData = []
         for i in lims_list:
             new_list = [i] + list1
@@ -201,12 +201,10 @@ class APPAPage(BasePage):
     def result_batch_paste_import_package(self):
         """结果表批量粘贴导入"""
         taskId = self.get_text('css', result_task_id)
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskId))  # 从数据库获取当前任务单号下样本lims号
-        executeSql.test_updateByParam(updata_result_sample_pkg_amt.format(taskId))  # 更新分管样本文库包装量
+        lims_id = executeSql.test_select_limsdb(app_get_result_lims.format(re.findall(r'[A-Za-z0-9]+', taskId)[0]))  # 从数据库获取当前任务单号下样本lims号
         # 把获取的lims号转换为一维列表
         blist = [[item[i] for i in item] for item in lims_id]
-        list1 = [5, 3, 4, 7, 5, 4, 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
-
+        list1 = [5, 3, "4", "7", 5, "4", 32]  # 批量导入文库投入量、实际取样体积、补Buffer体积、PCR循环数、产物浓度、产物体积、产物总量
         impData = []
         for i in blist:
             new_list = i + list1
@@ -229,17 +227,11 @@ class APPAPage(BasePage):
         Screenshot(self.driver).get_img("APP-A结果表批量粘贴导入")
         self.clicks('css', result_batch_paste_import_package_confirm)
         self.sleep(1)
-        log.info("结果表保存")
-        self.clicks('css', result_save)
-        self.wait_loading()
-        self.refresh()
 
     #自动计算
     def result_autoComplete(self):
         """APP-A结果表自动计算"""
         log.info("APP-A结果表自动计算")
-        self.clicks('css', result_all_choice)
-        self.sleep(0.5)
         self.clicks('css', result_autoComplete)
         self.wait_loading()
 
@@ -289,7 +281,7 @@ class APPAPage(BasePage):
         self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
 
         taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
-        lims_id = executeSql.test_select_limsdb(app_get_lims.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+        lims_id = executeSql.test_select_limsdb(app_get_lims.format(re.findall(r'[A-Za-z0-9]+', taskstatus)[0]))  # 从数据库获取当前任务单号下样本lims号
 
         lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
         nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用

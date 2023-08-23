@@ -72,7 +72,7 @@ class AppA(MyTest):
 
     def test10_result_batch_paste_import_package(self):
         """测试APP-A结果表批量粘贴导入"""
-        log.info('APP-A明细表选择批量入库类型')
+        log.info('APP-A结果表批量粘贴导入')
         self.ap.result_batch_paste_import_package()
 
     def test11_result_autoComplete(self):
@@ -99,6 +99,7 @@ class AppA(MyTest):
 
     def test15_serach_task(self):
         """测试APP-A首页面查询已完成的样本任务单"""
+        EnterTab.enter_APPA(self.basepage)
         log.info('APP-A首页面查询已完成的样本任务单')
         self.ap.serach_task()
 
