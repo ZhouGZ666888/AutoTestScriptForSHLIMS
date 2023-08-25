@@ -6,7 +6,7 @@ import pyperclip, xlrd, yaml, time
 from selenium.webdriver.common.keys import Keys
 from PageElemens.sj_sequecing_ele import *
 from common import editYaml
-from common.all_path import sj_file_path, functionpageURL_path, position_in_box_path, sj_fc_quality_control_result
+from common.all_path import  functionpageURL_path, position_in_box_path, sj_fc_quality_control_result
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import read_excel_col, pandas_write_excel
@@ -28,22 +28,21 @@ class SjSequecingPage(BasePage):
         Submit successfully---提交成功
         sample in storage successfully---入库成功
         """
-
         return self.get_text('xpath', page_success_info)
 
     # 新增任务单
-    def add_task(self):
-        """
-        新建上机任务单
-        """
-
+    def add_illumina_task(self):
+        """新建illumina上机任务单"""
         # 获取当前时间
         str_time = time.strftime("%Y.%m.%d %H:%M:%S", time.localtime())
-
         log.info("上机首页，点击新建按钮，进入样本待选表，新增上机任务")
         self.clicks('css', add_task)
         self.wait_loading()
-
+        log.info('选择上机任务类型：illumina上机')
+        self.clicks('css', task_type)
+        self.sleep(0.5)
+        self.clicks('xpath', task_type_choice_illumina)
+        self.wait_loading()
 
         self.input('css', sequencing_batch_number, str_time + "批次")
         log.info("录入上机批次号:%s" % str_time + "批次")
@@ -98,33 +97,12 @@ class SjSequecingPage(BasePage):
         self.clicks('css', sequencing_laboratory_personnel_choice)
         self.sleep(1)
 
-    # 根据数据流转Excel中的上机样本lims号，在待选表中进行比对并选择
-    def get_sequecing_sample_from_excel(self):
-        """
-         从对应的Excel中获取上一步流传下来的本节点的待选表lims样本号
-        """
-
-        log.info(" 从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择")
-        lims_nub = read_excel_col(sj_file_path, 'lims号')
-        print(lims_nub)
-        if lims_nub:
-            for lims in lims_nub:
-                print(lims_number.format(lims))
-                self.sleep(0.5)
-                self.clicks('css', lims_number.format(lims))
-        else:
-            raise Exception("没找到样本")
-
     # 通过判断上机样本所在位置，进行滚动条的下拉来选择样本
-    def get_sequecing_sample_from_excel_by_scoll(self):
-        """
-         从对应的Excel中获取上一步流传下来的本节点的待选表lims样本号,g根据没页显示13条时，通过滚动下拉进度条，依次判断选取样本
-        """
+    def get_sequecing_sample_from_excel_by_scoll(self, path):
+        """从对应的Excel中获取上一步流传下来的本节点的待选表lims样本号,g根据没页显示13条时，通过滚动下拉进度条，依次判断选取样本"""
         log.info(" 从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择")
-
-        lims_nub = read_excel_col(sj_file_path, 'lims号')
+        lims_nub = read_excel_col(path, 'lims号')
         print(lims_nub)
-
         # 下面为滚动下拉进行判断
         used_list = []  # 滚动计数，前面滚动了100像素（每行50像素，共两行），这里从3*50开始，即第三行开始校验，后面依次增加1行
         nubs = 1
@@ -134,7 +112,8 @@ class SjSequecingPage(BasePage):
             for i in range(0, 13):
                 try:
                     laboratorys = self.get_text('css', lims_number.format(i + 1))
-                except:
+                except Exception as a:
+                    log.error(a)
                     scoll = False
                     break
                 # 判断是否符合条件
@@ -156,44 +135,46 @@ class SjSequecingPage(BasePage):
             nubs += 1
 
     # 加入选中样本&保存任务单
-    def addSelect_or_save_task(self):
+    def addSelect_or_save_task(self, path):
         """
         加入选中样本&保存任务单
         """
         log.info("调用选择样本方法-----")
-        self.get_sequecing_sample_from_excel_by_scoll()
+        self.get_sequecing_sample_from_excel_by_scoll(path)
         log.info(" 选中核对后的样本，点击【加入选中样本&保存】")
         self.clicks('css', addSelect_or_save_btn)
         pageinfo = self.get_pageinfo()
         # 调用自定义截图方法
         Screenshot(self.driver).get_img("上机待选表选择样本加入并保存 ")
         self.wait_loading()
-        if self.isClickable('css',sopSampleNumber1):
-            self.set_sopSampleNumber(sopSampleNumber1)
-        if self.isClickable('css',sopSampleNumber2):
-            self.set_sopSampleNumber(sopSampleNumber2)
+        if self.isElementExists('css', sopSampleNumber1):
+            if self.isClickable('css', sopSampleNumber1):
+                self.set_sopSampleNumber(sopSampleNumber1)
+        if self.isElementExists('css', sopSampleNumber2):
+            if self.isClickable('css', sopSampleNumber2):
+                self.set_sopSampleNumber(sopSampleNumber2)
         return pageinfo
 
-    def set_sopSampleNumber(self,sopSampleNumber):
+    def set_sopSampleNumber(self, sopSampleNumber):
         """设置子SOP样本数量"""
         log.info("设置子SOP样本数量")
         # 点击子SOP样本数量按钮
-        self.clicks('css',sopSampleNumber)
+        self.clicks('css', sopSampleNumber)
         self.sleep(0.5)
         # 子SOP样本数量弹框全选按钮
-        self.clicks('css',sopnub_all_choice)
+        self.clicks('css', sopnub_all_choice)
         self.sleep(0.5)
         # 子SOP批量样本数量
-        self.clicks('css',showEProVisible)
+        self.clicks('css', showEProVisible)
         self.sleep(0.5)
         # 子sop批量样本数量录入
-        self.input('css',sopsampleNumInput,5)
+        self.input('css', sopsampleNumInput, 5)
         self.sleep(0.5)
         # 子sop批量样本数量录入后确认
-        self.clicks('css',sopsampleNumInput_confirm)
+        self.clicks('css', sopsampleNumInput_confirm)
         self.sleep(0.5)
         # 子SOP样本数量弹框保存按钮
-        self.clicks('css',sopSampleNumber_confirm)
+        self.clicks('css', sopSampleNumber_confirm)
         self.wait_loading()
 
     # 进入明细表或结果表
@@ -393,7 +374,8 @@ class SjSequecingPage(BasePage):
             self.wait_loading()
             # 调用自定义截图方法
             Screenshot(self.driver).get_img("浓度调整后明细表确认上机 ")
-        except:
+        except Exception as a:
+            log.error(a)
             self.refresh()
             self.wait_loading()
         self.sleep(1)
@@ -507,9 +489,7 @@ class SjSequecingPage(BasePage):
 
     # 结果表导入FC质控结果表
     def import_fc_quality_control_result(self):
-        """
-
-        """
+        """结果表导入FC质控结果表"""
         log.info("上机结果表导入FC质控结果表")
         self.clicks('css', result_submit_result_btn)
         # 执行修改元素属性js
@@ -525,39 +505,171 @@ class SjSequecingPage(BasePage):
 
     # 完成任务单
     def complete_task(self):
-        """
-        完成任务单
-        """
+        """完成任务单"""
         log.info(" 上机结果表,点击完成任务单")
         self.clicks('css', result_complete_task_btn)
         try:
             self.wait_loading()
             # 调用自定义截图方法
             Screenshot(self.driver).get_img("上机结果表完成任务单 ")
-        except:
+        except Exception as a:
+            log.error(a)
             self.refresh()
         self.wait_loading()
-        self.sleep(0.5)
-        print('ss')
-
         taskstatus = self.get_text('css', task_status)
         print(taskstatus)
         return taskstatus
 
-    # 上机任务列表根据上机批次号查询样本所在任务单
-    # def serach_task(self):
-    #     """
-    #     首页面查询已完成的样本任务单
-    #     """
-    #     lims_id = read_excel_xlsx_list_col(all_path.wkdl_file_path, 0, '实验室号')
-    # 
-    #     self.clicks('css', search)
-    #     self.sleep(1)
-    #     self.input('xpath', search_task_sample_num, lims_id[0][0])
-    #     self.sleep(1)
-    #     self.clicks('xpath', search_confirm)
-    #     self.wait_loading()
-    #     self.sleep(1)
-    #     samples = self.findelements('xpath', sample_page_list)
-    #     print(len(samples))
-    #     return len(samples)
+    # -------------------------华大上机模块----------------------------
+    # 新建华大上机任务单
+    def add_hd_task(self):
+        """新建华大上机任务单"""
+
+        # 获取当前时间
+        str_time = time.strftime("%Y.%m.%d %H:%M:%S", time.localtime())
+        log.info("上机首页，点击新建按钮，进入样本待选表，新增上机任务")
+        self.clicks('css', add_task)
+        self.wait_loading()
+        log.info('选择上机任务类型：illumina上机')
+        self.clicks('css', task_type)
+        self.sleep(0.5)
+        self.clicks('xpath', task_type_choice_huada)
+        self.wait_loading()
+        self.input('css', sequencing_batch_number, str_time + "批次")
+        log.info("录入上机批次号:%s" % str_time + "批次")
+        self.sleep(0.5)
+
+        log.info("选择测序仪")
+        self.clicks('css', instrument)
+        self.wait_loading()
+        self.clicks('css', instrument_choice)
+        self.clicks('css', instrument_comfirm)
+        self.sleep(0.5)
+
+        log.info("运行模式")
+        self.click_by_js('css', runningMode)
+        self.sleep(0.5)
+        self.clicks('css', runningMode_choice)
+        self.sleep(0.5)
+
+        log.info("实际上机时间")
+        self.input('css', seqStartTime, str_time)
+        self.sleep(0.5)
+
+        log.info("任务描述")
+        self.input('css', task_des, '自动化测试任务')
+        self.sleep(0.5)
+
+        log.info(" 选择上机SOP")
+        self.clicks('css', select_sequecing_sop)
+        self.sleep(0.5)
+        self.clicks('css', select_sequecing_sop_choice)
+        self.wait_loading()
+        self.sleep(0.5)
+
+        log.info(" 浓度调整实验员")
+        self.clicks('css', concentration_adjustment_laboratory_personnel)
+        self.input('css', concentration_adjustment_laboratory_personnel, 'dgq')
+        self.wait_loading()
+        self.clicks('css', concentration_adjustment_laboratory_personnel_choice)
+        self.sleep(0.5)
+
+        log.info("选择 上机实验员")
+        self.clicks('css', sequencing_laboratory_personnel)
+        self.input('css', sequencing_laboratory_personnel, 'dgq')
+        self.wait_loading()
+        self.clicks('css', sequencing_laboratory_personnel_choice)
+        self.sleep(1)
+
+    # 华大上机明细表表单数据录入
+    def hd_detail_data_input(self):
+        """华大上机明细表表单数据录入"""
+        taskstatus = self.get_text('css', after_concentration_detail_task_id)
+        executeSql.test_updateByParam(hd_sj_data_update.format(taskstatus[5:].strip()))
+        self.refresh()
+        log.info(" 华大上机明细表选择FC代码")
+        self.clicks('css', after_concentration_adjustment_all_choice)
+        self.sleep(0.5)
+        self.clicks('css', ha_showFC)
+        self.sleep(0.5)
+        self.clicks('xpath', ha_showFC_choice)
+
+    # 华大上机明细表批量数据录入
+    def hd_detail_datch_data(self):
+        """华大上机明细表批量数据录入"""
+        log.info(" 华大上机明细表批量数据")
+
+        self.clicks('css', hd_detail_adjustment_datch_data)  # 浓度调整后明细表批量数据按钮
+        self.sleep(0.5)
+        log.info(" 华大上机明细表批量数据录入耗用量")
+        self.input('css', after_concentration_adjustment_datch_data_used_amount, 1)  # 浓度调整后明细表批量数据,耗用量录入
+        log.info(" 华大上机明细表批量数据录入测序读长")
+        self.input('css', after_concentration_adjustment_datch_data_sequencer_read_length, 150)  # 浓度调整后明细表批量数据,测序读长
+        self.clicks('css', after_concentration_adjustment_datch_data_comfirm)  # 浓度调整后明细表批量数据弹框确认
+        info = self.get_pageinfo()
+        self.sleep(0.5)
+        return info
+
+    # 华大上机明细表自动计算标签
+    def hd_detail_autoCompleteLabel(self):
+        """自动计算标签"""
+        log.info(" 华大上机明细表自动计算标签")
+        self.clicks('css',hd_autoCompleteLabel)
+        self.wait_loading()
+        return self.get_text('css','tr:nth-child(1) .sequencingSchedule-tableCol-labelType')
+
+    # 华大上机明细表生成上机分组号
+    def hd_detail_generateNo(self):
+        """华大上机生成上机分组号"""
+        self.clicks('css',hd_generateNo)
+        info = self.get_pageinfo()
+        self.sleep(0.5)
+        return info
+
+
+    # 华大上机明细表确认上机
+    def hd_detail_confirm(self):
+        """华大上机确认上机"""
+        self.clicks('css',hd_sequencingSchedule_confirm)
+        self.wait_loading()
+
+
+    # 华大上机明细表生成samplesheet
+    def hd_detail_create_samplesheet(self):
+        """华大上机生成samplesheet"""
+        log.info(" 全选并点击生成samplesheet")
+        self.clicks('css', after_concentration_adjustment_all_choice)  # 全选样本
+        self.sleep(1)
+        self.clicks('css', hd_sequencingSchedule_sampleSheet)
+        self.wait_loading()
+        self.clicks('xpath', hd_create_samplesheet_choice)
+        self.sleep(0.5)
+        self.clicks('css', after_concentration_adjustment_create_samplesheet_comfirm)
+        self.wait_loading()
+        if self.isElementExists('css', after_concentration_adjustment_create_samplesheet_info_comfirm):
+            print('True')
+            self.clicks('css', after_concentration_adjustment_create_samplesheet_info_comfirm)
+            self.sleep(1)
+
+    # 华大上机明细表明细表提交
+    def hd_detail_sumbit(self):
+        """华大上机明细表提交"""
+        self.clicks('css',hd_detail_sumbit)
+        self.sleep(1)
+        self.clicks('css',hd_detail_sumbit_confirm)
+        info = self.get_pageinfo()
+        self.sleep(0.5)
+        return info
+
+    # 华大上机结果表
+    def hd_sj_result(self):
+        """华大上机结果表"""
+        log.info('进入上机结果表')
+        self.clicks('css',after_concentration_adjustment_submit_enter_the_result_list)
+        self.wait_loading()
+        log.info('上机结果表添加条目')
+        self.clicks('css',hd_result_add_tips)
+        self.sleep(1)
+        log.info('上机结果表完成任务单')
+        self.clicks('css',hd_result_complete_task)
+        self.wait_loading()

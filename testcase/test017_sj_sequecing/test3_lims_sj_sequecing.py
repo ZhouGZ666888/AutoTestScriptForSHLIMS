@@ -1,4 +1,6 @@
 import unittest
+
+from common.all_path import sj_file_path
 from pageobj.sjsequecingPage import SjSequecingPage
 from common.enter_tab import EnterTab
 from common.logs import log
@@ -24,9 +26,9 @@ class SjSequecing(MyTest):
         log.info('登录系统，进入上机页面')
         # 传入驱动
         log.info('新建任务单，录入上机批次号，FC SN码，浓度调整SOP,上机SOP')
-        self.sj.add_task()
+        self.sj.add_illumina_task()
         log.info('核对样本lims号并选中加入任务单')
-        info = self.sj.addSelect_or_save_task()  # 核对lims，添加至任务单
+        info = self.sj.addSelect_or_save_task(sj_file_path)  # 核对lims，添加至任务单
         log.info('保存任务单，进入明细表')
         self.sj.enter_result_list('css', enter_detail_list_btn, '上机浓度调整前明细表')  # 保存任务单，进入明细表
         self.assertEqual(info, "任务单保存成功", "保存样本到明细表失败！！")
@@ -48,7 +50,7 @@ class SjSequecing(MyTest):
 
     def test03_after_before_concentration_adjustment(self):
         """
-           测试上机结果表批量粘贴导入实验数据、生成上机分组号，提交，完成任务单
+           测试上机浓度调整后明细表批量粘贴导入实验数据、生成上机分组号，提交，完成任务单
         """
         log.info("浓度调整后明细表批量数据录入、自动计算")
         self.sj.detail_after_concentration_adjustment_auto_calculate()
@@ -63,7 +65,7 @@ class SjSequecing(MyTest):
         log.info('浓度调整后明细表 入库')
         pageinfo = self.sj.detail_after_concentration_adjustment_deposit_into_Storage()
         self.sj.enter_result_list('css', after_concentration_adjustment_submit_enter_the_result_list,
-                                  '浓度调整后样本明细')  # 进入上机结果表
+                                  '上机结果表')  # 进入上机结果表
         self.assertEqual(pageinfo, "完成", "入库失败！！")
 
     def test04_importFile_and_CompletedResult(self):

@@ -189,12 +189,11 @@ class BasePage:
         :param element_loc:
         :return:flag
         """
-        flag = True
         try:
             self.findelement(stype, element_loc)
         except ElementNotFound as a:
-            flag = False
-        return flag
+            return False
+        return True
 
     def isDisplayed(self, ele_type, element_loc):
         """

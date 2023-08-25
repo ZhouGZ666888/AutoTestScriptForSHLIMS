@@ -171,6 +171,11 @@ sj_detail_after_concentration_sql3 = "UPDATE exp_sequencing_item_adjusted_t SET 
 # 获取样本lims号
 sj_detail_after_concentration_sql2 = "SELECT sample_id_lims from exp_sequencing_item_adjusted_t WHERE task_id='{}';"
 
+#华大上机数据更新
+hd_sj_data_update="UPDATE exp_sequencing_item_adjusted_t set actual_lane_num='5',index_seq_digits=5," \
+               "i5_seq_direction='01' ,no_of_labels=1 WHERE task_id='{}';"
+
+
 # 21基因
 # 明细表设置样本浓度、体积、总量
 twentyonegene_sql1 = "UPDATE exp_twentyonegene_item_t set actual_consistence_amt=5,actual_volume_amt=10,actual_total_amt=50 WHERE task_id='{}';"

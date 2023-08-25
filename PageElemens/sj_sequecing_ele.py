@@ -32,6 +32,13 @@ sample_page_list = (
 """
 待选表元素定位
 """
+# 任务类型
+task_type = '.el-form--label-left >div:nth-child(1) input'
+
+# 任务类型选择
+task_type_choice_illumina = '//span[text()="illumina上机"]'
+task_type_choice_huada = '//span[text()="华大上机"]'
+
 # 上机批次号
 sequencing_batch_number = (
     '.sequencingDetail-form-seqBatchNo input')
@@ -40,28 +47,28 @@ sequencing_batch_number = (
 instrument = (
     '.createTask_content_choose .baseClass-btn-instrument')
 
-#选择测序仪弹框，选择第一条
-instrument_choice=(
+# 选择测序仪弹框，选择第一条
+instrument_choice = (
     '.multi-table-dialog .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1)')
 
-#选择测序仪弹框，确认按钮
-instrument_comfirm=(
+# 选择测序仪弹框，确认按钮
+instrument_comfirm = (
     '.multi-table-dialog .dialog-footer .qcResult-btn-confirm')
 
-#运行模式
-runningMode=(
+# 运行模式
+runningMode = (
     '.sequencingDetail-form-runningMode input')
 
-#运行模式选择第一条
-runningMode_choice=(
+# 运行模式选择第一条
+runningMode_choice = (
     '.running-mode-unique .el-scrollbar__view.el-select-dropdown__list li:nth-child(1)')
 
-#实际上机时间
-seqStartTime=(
+# 实际上机时间
+seqStartTime = (
     '.sequencingDetail-form-seqStartTime input')
 
-#任务描述
-task_des=(
+# 任务描述
+task_des = (
     '.sequencingDetail-form-taskDesc input')
 
 # 选择浓度调整SOP弹框按钮
@@ -105,26 +112,26 @@ lims_numbers = (
 addSelect_or_save_btn = (
     '.commonTaskDetail-commonTaskDetailBtn-submit')
 
-#点击子SOP样本数量按钮,浓度调整SOP
-sopSampleNumber1='.createTask_content_choose  div:nth-child(9) .commonTaskDetail-commonTaskDetailBtn-sopSampleNumber'
+# 点击子SOP样本数量按钮,浓度调整SOP
+sopSampleNumber1 = '.createTask_content_choose  div:nth-child(10) .commonTaskDetail-commonTaskDetailBtn-sopSampleNumber'
 
-#点击子SOP样本数量按钮,上机SOP
-sopSampleNumber2='.createTask_content_choose  div:nth-child(12) .commonTaskDetail-commonTaskDetailBtn-sopSampleNumber'
+# 点击子SOP样本数量按钮,上机SOP
+sopSampleNumber2 = '.createTask_content_choose  div:nth-child(13) .commonTaskDetail-commonTaskDetailBtn-sopSampleNumber'
 
-#子SOP样本数量弹框全选按钮
-sopnub_all_choice='.dialog-sop-sample-number .el-dialog__body .vxe-table--main-wrapper .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
+# 子SOP样本数量弹框全选按钮
+sopnub_all_choice = '.dialog-sop-sample-number .el-dialog__body .vxe-table--main-wrapper .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
 
-#子SOP批量样本数量
-showEProVisible='.dialog-sop-sample-number .taskInitial-btn-showEProVisible'
+# 子SOP批量样本数量
+showEProVisible = '.dialog-sop-sample-number .taskInitial-btn-showEProVisible'
 
-#子sop批量样本数量录入
-sopsampleNumInput='.dialog-sample-number input'
+# 子sop批量样本数量录入
+sopsampleNumInput = '.dialog-sample-number input'
 
-#子sop批量样本数量录入后确认
-sopsampleNumInput_confirm='.dialog-sample-number .baseClass-btn-confirm'
+# 子sop批量样本数量录入后确认
+sopsampleNumInput_confirm = '.dialog-sample-number .baseClass-btn-confirm'
 
-#子SOP样本数量弹框确认按钮
-sopSampleNumber_confirm='.dialog-sop-sample-number .taskInitial-form-currentStepName'
+# 子SOP样本数量弹框确认按钮
+sopSampleNumber_confirm = '.dialog-sop-sample-number .taskInitial-form-currentStepName'
 
 # 进入明细表按钮，元素定位
 enter_detail_list_btn = (
@@ -137,7 +144,6 @@ page_success_info = (
 # 页面失败提示信息
 page_failed_info = (
     '//*[@class="el-message el-message--success"]')
-
 
 """
 上机明细表浓度调整前元素定位
@@ -166,10 +172,9 @@ before_concentration_adjustment_submit_comfirm = (
 before_concentration_adjustment_next = (
     '.createTask_content .baseClass-btn-next')
 
-#提交状态表单定位
-before_concentration_sumbit_status=(
+# 提交状态表单定位
+before_concentration_sumbit_status = (
     '.createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(12)')
-
 
 # /************************入库******************************************************************************
 
@@ -295,6 +300,40 @@ after_concentration_adjustment_enter_sequencing_information = (
 after_concentration_adjustment_datch_data = (
     '.sampleDetail_header .button-list .sequencingResults-btn-batchData')
 
+# 浓度调整后明细表批量数据
+hd_detail_adjustment_datch_data = (
+    '.sampleDetail_header .button-list .sequencingSchedule-btn-batchData')
+
+# 华大选择FC代码下拉框
+ha_showFC = '.sampleDetail_header .button-list .sequencingSchedule-btn-showFC'
+
+#华大自动计算标签
+hd_autoCompleteLabel='.sampleDetail_header .button-list .baseClass-btn-autoCompleteLabel'
+
+#华大生成上机分组号
+hd_generateNo='.sampleDetail_header .button-list .sequencingSchedule-btn-generateNo'
+
+#华大上机确认上机按钮
+hd_sequencingSchedule_confirm='.sampleDetail_header .button-list .sequencingSchedule-btn-confirm'
+
+#华大上机生成samplesheet
+hd_sequencingSchedule_sampleSheet='.sampleDetail_header .button-list .sequencingSchedule-btn-sampleSheet'
+
+#华大上机提交
+hd_detail_sumbit='.sampleDetail_header .button-list .baseClass-btn-submit'
+
+#华大上机提交确认
+hd_detail_sumbit_confirm='.dialog-commit-confirm .qcResult-btn-confirm'
+
+# 华大选择FC代码
+ha_showFC_choice = '//li[text()="A"]'
+
+#华大结果表添加条目
+hd_result_add_tips='.createTask_content_1 .qcResult-btn-add'
+
+#华大结果表完成任务单
+hd_result_complete_task='.baseClass-btn-completeTask'
+
 # 浓度调整后明细表批量数据,耗用量录入
 after_concentration_adjustment_datch_data_used_amount = (
     '.dialogSequenceData-dialogSequenceDataForm-seqUsedVolumeAmt input')
@@ -327,6 +366,10 @@ after_concentration_adjustment_create_samplesheet = (
 after_concentration_adjustment_create_samplesheet_choice = (
     '//div[contains(text(),"XP模式双标签")]')
 
+# 华大上机选择模版
+hd_create_samplesheet_choice = (
+    '//div[contains(text(),"华大T7标准模式双标签")]')
+
 # 浓度调整后明细表生成Samplesheet弹框确认按钮
 after_concentration_adjustment_create_samplesheet_comfirm = (
     '.dialog-sample-sheet .el-dialog__footer .qcResult-btn-confirm')
@@ -351,15 +394,13 @@ after_concentration_adjustment_submit_comfirm = (
 after_concentration_adjustment_deposit_into_Storage = (
     '.sampleDetail_header .button-list .sequencingResults-btn-storage')
 
-#提交状态表单定位
-after_concentration_sumbit_status=(
+# 提交状态表单定位
+after_concentration_sumbit_status = (
     '.vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(15)')
 
 # 浓度调整后明细表进入结果表按钮
 after_concentration_adjustment_submit_enter_the_result_list = (
     '.createTask .baseClass-btn-goResult')
-
-
 
 # **************************************************************************#
 #                                                                           #
@@ -387,8 +428,6 @@ result_samples_upload = (
 # 完成任务单按钮
 result_complete_task_btn = (
     '.createTask .is-justify-end .baseClass-btn-completeTask')
-
-
 
 # 浓度调整前明细表任务单号
 before_concentration_detail_task_id = (
