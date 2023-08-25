@@ -87,8 +87,7 @@ aliquot_sample_next_step_finsh = '.divided-drawer-class .baseClass-btn-confirm'
 detail_generate_product_btn = '.button-list .baseClass-btn-generate'
 
 # 明细表生成产物弹框全选按钮
-detail_generate_product_all_choice = '.common-task-schedule-new >div:nth-child(5) >div:nth-child(1) .divided-drawer ' \
-                                     '.el-drawer__body .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
+detail_generate_product_all_choice = '.generate-drawer-class .el-drawer__body .vxe-table--header-wrapper .vxe-checkbox--unchecked-icon'
 
 # 明细表生成产物弹框批量生成产物数量按钮
 detail_generate_product_numb_btn = '.generate-drawer-class .baseClass-btn-batch-choose'
@@ -113,7 +112,7 @@ detail_remaining_sample_pkg_amt_input = '.formBatchData-remainingSamplePkgAmt in
 detail_batch_storage_type = '.formBatchData-depositType input'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '//li[text()="余样入库"]'
+detail_batch_storage_type_choice = '//span[text()="余样入库"]'
 
 # 明细表批量数据确认按钮
 detail_batch_data_btn_confirm = '.edit-batch-remainingSamplePkgAmt .el-dialog__footer .baseClass-btn-confirm'
@@ -203,6 +202,9 @@ result_commit='.button-list .baseClass-btn-commit-sample'
 
 # 结果表提交样本确认弹框按钮
 result_commit_confirm='.dialog-result-commit .baseClass-btn-confirm'
+
+#结果表提交状态
+submitType='tr:nth-child(1) .cyclizationResult-tableCol-isSubmit'
 
 # 结果表任务状态
 result_task_status='.header_status'

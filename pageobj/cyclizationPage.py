@@ -84,7 +84,9 @@ class CycliPage(BasePage):
         log.info("环化样本明细表分管完成")
         # 明细表分管完成按钮
         self.clicks('css', aliquot_sample_next_step_finsh)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
         # 样本分管成功
 
     # 明细表生成产物
@@ -103,17 +105,19 @@ class CycliPage(BasePage):
         self.clicks('css', generate_product_numb_confirm)
         # 明细表生成产物弹框确认按钮
         self.clicks('css', generate_product_confirm)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
         taskId = self.get_text('css', detail_task_id)
         taskid=re.findall(r'[A-Za-z0-9]+', taskId)[0]
-
         executeSql.test_updateByParam(cyclization_update.format(taskid, taskid))  # 更新数据库，结果表自动计算数据，设置下一步流向
-        # 生成产物成功
+        self.refresh()
+        return pageinfo
 
     # 批量数据
     def detail_batch_data(self):
         """批量数据"""
-
+        self.clicks('css', detail_all_choice)  # 全选样本
+        self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn)
         self.sleep(0.5)
         log.info("环化批量数据，录入包装余量")
@@ -123,23 +127,27 @@ class CycliPage(BasePage):
 
         self.clicks('css', detail_batch_storage_type)  # 入库弹框选择入库类型下拉框
         self.sleep(0.5)
-        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（临时库）
+        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（余样入库）
         self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn_confirm)
-
+        depositType=self.get_text('css','tr:nth-child(1) .cylizationScheduletableCol-depositType')
+        return depositType
     # 明细表自动计算
     def detail_autoComplete(self):
         """明细表自动计算"""
         log.info("环化明细表明细表自动计算")
         self.clicks('css', detail_autoComplete_btn)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
-
+        return pageinfo
     # 明细表保存
     def detail_save(self):
         """明细表保存"""
         log.info("环化明细表保存")
         self.clicks('css', detail_save)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
 
     # 进入结果表
     def detail_enter_result(self):
@@ -171,7 +179,8 @@ class CycliPage(BasePage):
         self.wait_loading()
         self.clicks('css', result_commit_confirm)
         self.wait_loading()
-
+        info=self.get_text('css',submitType)
+        return info
     # 明细表提交、入库
     def detail_commit(self):
         """明细表提交、入库"""
@@ -229,7 +238,8 @@ class CycliPage(BasePage):
 
         self.clicks('xpath', storage_next)
         self.wait_loading()
-
+        info=self.get_text('css','tr:nth-child(1) .cyclizationSchedule-tableCol-submitStatus')
+        return info
         # 完成任务单
 
     # 完成任务单
