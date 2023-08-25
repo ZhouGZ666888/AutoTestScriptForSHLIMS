@@ -56,7 +56,7 @@ def create_lab_excel():
                        '写入报告样本', '质谱仪上机','APP-A','环化','环化后混合','DNB制备']
 
     value = [["lims号", "实验室号", "当前节点", "任务单号"]]  # 其他
-
+    HUADASJ = [["lims号", "文库名称", "当前节点", "任务单号"]]
     value1 = [["lims号", "上机分组号", "当前节点", "任务单号"]]  # 上机
     value2 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量sr
     value3 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量非sr
@@ -71,7 +71,7 @@ def create_lab_excel():
     write_excel_xlsx_by_openpyxl(wkdl_hdsr_file_path, all_laboratorys[6], value4)  # 华大文库定量sr样本数据数据流转Excel
     write_excel_xlsx_by_openpyxl(wkdl_non_sr_file_path, all_laboratorys[6], value2)  # 文库定量非sr数据数据流转Excel
     write_excel_xlsx_by_openpyxl(sj_file_path, all_laboratorys[7], value1)  # 上机数据流转Excel
-    write_excel_xlsx_by_openpyxl(hd_sj_file_path, all_laboratorys[7], value1)  # 华大上机数据流转Excel
+    write_excel_xlsx_by_openpyxl(hd_sj_file_path, all_laboratorys[7], HUADASJ)  # 华大上机数据流转Excel
     write_excel_xlsx_by_openpyxl(esyjy_file_path, all_laboratorys[8], value)  # 21基因分析数据流转Excel
     write_excel_xlsx_by_openpyxl(mgmt_file_path, all_laboratorys[9], value)  # MGMT数据流转Excel
     write_excel_xlsx_by_openpyxl(ybrk_file_path, all_laboratorys[10], value)  # 样本入库数据流转Excel

@@ -3,9 +3,9 @@
 # @Author  : guanzhong.zhou
 # @File    : 环化后混合模块页面功能封装
 import pyperclip
-import xlrd,re
+import xlrd, re
 from selenium.webdriver.common.keys import Keys
-from common.all_path import  position_in_box_path, postcyclmix_file_path
+from common.all_path import position_in_box_path, postcyclmix_file_path
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import get_lims_for_excel, pandas_write_excel, read_excel_col
@@ -80,18 +80,22 @@ class PostcyclmixPage(BasePage):
         self.sleep(0.5)
         log.info("环化后混合样本分管选择分管数量")
         self.clicks('css', aliquot_sample_numb)
+        self.sleep(0.5)
         self.clicks('css', aliquot_sample_numb_confirm)
         self.sleep(0.5)
         log.info("环化后混合样本明细表分管完成")
         # 明细表分管完成按钮
         self.clicks('css', aliquot_sample_next_step_finsh)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
         # 样本分管成功
 
     # 批量数据
     def detail_batch_data(self):
         """批量数据"""
-
+        self.clicks('css', detail_all_choice)
+        self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn)
         self.sleep(0.5)
         log.info("环化后混合批量数据，录入包装余量")
@@ -101,11 +105,13 @@ class PostcyclmixPage(BasePage):
 
         self.clicks('css', detail_batch_storage_type)  # 入库弹框选择入库类型下拉框
         self.sleep(0.5)
-        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（临时库）
+        self.clicks('xpath', detail_batch_storage_type_choice)  # 入库弹框选择入库类型下拉值（余样入库）
         self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn_confirm)
+        depositType = self.get_text('css', 'tr:nth-child(1) .postcyclmixSchedule-tableCol-depositType')
+        return depositType
+        # 明细表生成产物
 
-    # 明细表生成产物
     def detail_generate_product(self):
         """明细表生成混合产物产物"""
         log.info("环化后混合样本录入产物名称")
@@ -118,8 +124,11 @@ class PostcyclmixPage(BasePage):
 
         log.info("环化后混合样本生成产物信息")
         self.clicks('css', detail_generate_product_btn)
+        self.sleep(0.5)
         self.clicks('css', generate_product_confirm)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
 
         # 生成产物成功
 
@@ -128,14 +137,18 @@ class PostcyclmixPage(BasePage):
         """明细表自动计算"""
         log.info("环化后混合明细表明细表自动计算")
         self.clicks('css', detail_autoComplete_btn)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
 
     # 明细表保存
     def detail_save(self):
         """明细表保存"""
         log.info("环化后混合明细表保存")
         self.clicks('css', detail_save)
+        pageinfo = self.get_pageinfo()
         self.wait_loading()
+        return pageinfo
 
     # 进入结果表
     def detail_enter_result(self):
@@ -159,6 +172,9 @@ class PostcyclmixPage(BasePage):
         self.clicks('css', result_all_choice)
         self.clicks('css', result_commit)
         self.wait_loading()
+        info = self.get_text('css', submitType)
+        log.info("环化后混合结果表提交状态:%s" % info)
+        return info
 
     # 明细表提交、入库
     def detail_commit(self):

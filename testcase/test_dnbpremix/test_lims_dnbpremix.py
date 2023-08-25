@@ -2,7 +2,7 @@
 # @Time    : 2023/08/22
 # @Author  : guanzhong.zhou
 # @File    : DNB制备模块测试用例
-import unittest
+import unittest, re
 from pageobj.dnbpremixPage import DnbpremixPage
 from common.enter_tab import EnterTab
 from common.logs import log
@@ -32,32 +32,40 @@ class Postcyclmix(MyTest):
     def test02_detail_app_a_aliquot_sample(self):
         """测试DNB制备样本分管操作"""
         log.info("DNB制备浓度调整前明细表自动计算")
-        self.db.detail_app_a_aliquot_sample()
+        info = self.db.detail_app_a_aliquot_sample()
+        self.assertEqual(info, "样本分管成功", "样本分管失败！！")
 
     def test03_detail_generate_product(self):
         """测试DNB制备明细表生成中间产物"""
         log.info("测试明细表生成中间产物")
-        self.db.detail_generate_product()
+        info = self.db.detail_generate_product()
+
+        self.assertEqual(info, "生成中间产物成功", "生成产物失败！！")
 
     def test04_detail_batch_data(self):
         """测试DNB制备明细表批量数据"""
         log.info('DNB制备明细表选择批量数据')
-        self.db.detail_batch_data()
+        info = self.db.detail_batch_data()
+        self.assertEqual(info, "余样入库", "余样入库失败！！")
 
     def test05_detail_autoComplete(self):
         """测试DNB制备明细表自动计算"""
         log.info('DNB制备明细表自动计算')
-        self.db.detail_autoComplete()
+        info = self.db.detail_autoComplete()
+
+        self.assertEqual(info, "自动计算成功", "自动计算失败！！")
 
     def test06_detail_save(self):
         """测试DNB制备明细表保存"""
         log.info('DNB制备明细表保存')
-        self.db.detail_save()
+        info = self.db.detail_save()
+        self.assertEqual(info, "结果保存成功", "结果保存失败！！")
 
     def test07_detail_enter_middle(self):
         """测试DNB制备明细表进入中间表"""
-        log.info('DNB制备明细表进入结果表')
+        log.info('DNB制备明细表进入中间表')
         self.db.detail_enter_middle()
+        self.assertIsNotNone(re.search(r'返回明细表', self.db.get_source))
 
     def test08_middle_dnbpremix_name(self):
         """测试DDNB制备中间表样本录入产物文库名称"""
@@ -71,31 +79,36 @@ class Postcyclmix(MyTest):
 
     def test10_middle_generate_product(self):
         """测试DNB制备中间表生成混合后DNB产物文库"""
-        log.info('DNB制备中间表自动计算')
-        self.db.middle_generate_product()
+        log.info('DNB制备中间表生成混合后DNB产物文库')
+        info = self.db.middle_generate_product()
+        self.assertEqual(info, "是", "生成产物失败！！")
 
     def test11_middle_enter_resutl(self):
         """测试DNB制备进入结果表"""
         log.info('DNB制备进入结果表')
         self.db.middle_enter_resutl()
+        self.assertIsNotNone(re.search(r'返回中间产物表', self.db.get_source))
 
     def test12_result_commit(self):
         """测试DNB制备结果表提交"""
         log.info('DNB制备结果表提交')
-        self.db.result_commit()
+        info = self.db.result_commit()
         log.info('DNB制备结果表数据写入下一步')
         self.db.write_data_to_excel()
+        self.assertEqual(info, "是", "结果表提交失败！！")
 
     def test13_detail_commit(self):
         """测试DNB制备明细表提交、入库"""
         log.info('DNB制备明细表提交、入库')
         self.db.detail_commit()
+        self.assertIsNotNone(re.search(r'完成', self.db.get_source))
 
-    def test12_serach_task(self):
+    def test14_serach_task(self):
         """测试DNB制备首页面查询已完成的样本任务单"""
         EnterTab.enter_dnbpremix(self.basepage)  # 点击DNB制备导航树
         log.info('DNB制备首页面查询已完成的样本任务单')
-        self.db.serach_task()
+        info = self.db.serach_task()
+        self.assertNotEqual(info, 0, "查询结果错误，查询失败！")
 
 
 if __name__ == '__main__':

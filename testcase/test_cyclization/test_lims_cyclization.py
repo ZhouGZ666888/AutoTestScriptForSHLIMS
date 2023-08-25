@@ -64,8 +64,7 @@ class Cyclization(MyTest):
         """测试环化明细表进入结果表"""
         log.info('环化明细表进入结果表')
         self.cy.detail_enter_result()
-        result = re.search(r'返回明细表', self.cy.get_source)
-        self.assertIsNotNone(result)
+        self.assertIsNotNone(re.search(r'返回明细表', self.cy.get_source))
 
     def test08_result_autoComplete(self):
         """测试环化结果表自动计算"""

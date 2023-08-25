@@ -109,7 +109,7 @@ detail_remaining_sample_pkg_amt_input = '.expPostcyclmixSchedule-formBatchData-r
 detail_batch_storage_type = '.expPostcyclmixSchedule-formBatchData-depositType input'
 
 # 明细表批量入库类型下拉值,选余样入库
-detail_batch_storage_type_choice = '//li[text()="余样入库"]'
+detail_batch_storage_type_choice = '//span[text()="余样入库"]'
 
 # 明细表批量数据确认按钮
 detail_batch_data_btn_confirm = '.edit-batch-remainingSamplePkgAmt .el-dialog__footer .baseClass-btn-confirm'
@@ -161,7 +161,7 @@ detail_commit_status=''
 detail_autoComplete_btn = '.button-list .btn-first'
 
 # 明细表保存按钮
-detail_save = '.head-list .baseClass-btn-save-result'
+detail_save = '.head-list .postcyclmixSchedule-btn-saveResult'
 
 # 明细表进入结果表按钮
 detail_enter_result = '.head-list .postcyclmixSchedule-btn-goResults'
@@ -182,7 +182,8 @@ result_autoComplete_tip='.el-message-box__wrapper .el-message-box__btns button'
 
 # 结果表提交样本按钮
 result_commit='.button-list .postcyclmixResult-btn-commitSample'
-
+#结果表提交状态
+submitType='tr:nth-child(1) .postcyclmixResult-col-isSubmit'
 # 结果表提交样本确认弹框按钮
 result_commit_confirm='.dialog-result-commit .baseClass-btn-confirm'
 
