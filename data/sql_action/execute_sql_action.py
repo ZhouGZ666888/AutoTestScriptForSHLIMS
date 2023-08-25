@@ -144,6 +144,12 @@ wkdl_detail_sql3 = "SELECT sample_id_lims from exp_libquant_item_t WHERE task_id
 # 获取样本总数
 wkdl_result_sql1 = "SELECT count(*) from exp_libquant_result_t WHERE task_id ='{}';"
 
+#文库定量设置华大产物文库类型
+update_wkdl_result_hd_data= "UPDATE exp_libquant_result_t SET sample_type_id='C2023042500004' WHERE task_id='{}';"
+
+#文库定量设置非华大产物文库类型
+update_wkdl_result_data= "UPDATE exp_libquant_result_t SET sample_type_id='YBLX0034' WHERE task_id='{}';"
+
 # 上机
 # 浓度调整前样本明细
 # 更新浓度调整前样本明细【取样】值

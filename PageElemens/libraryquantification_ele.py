@@ -124,7 +124,7 @@ enrichment_name = (
 
 # 样本数据获取样本上机分组号
 all_Sequencing_group_number = (
-    '.normal-table .createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(4)')
+    '.normal-table .createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) .libquantSchedule-tableCol-sqcGroupNum')
 
 #  余样包装量表单
 remaining_sample_package_amount = (
@@ -375,7 +375,7 @@ storage_next = (
 
 # 提交状态文本定位
 detail_sumbit_status = (
-    '.createTask_content .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(15)')
+    '.createTask_content .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(14)')
 
 # 样本列表滚动条
 scroll_line = (

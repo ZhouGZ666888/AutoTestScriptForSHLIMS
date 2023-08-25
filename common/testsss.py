@@ -8,12 +8,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from common.DataBaseConfig import executeSql
 from common.editYaml import read_yaml, save_yaml
-from common.xlsx_excel import read_excel_col, pandas_write_excel
+from common.xlsx_excel import *
 
 # from pageobj.pathologycheckPage import now_time
-from data.sql_action.execute_sql_action import ybjs_sql, get_sr_sample_lims, set_sr_sample_id_external, \
-    wkfj_detail_sql1, app_get_lims, app_get_result_lims
-
+from data.sql_action.execute_sql_action import *
 
 def wait_loading():
     """
@@ -425,13 +423,70 @@ def redf():
     print(new_df)
 
 def test22():
-    sf=' 任务单 APPA2023082300003 '
-    sss=sf[5:].strip()
-    task_number = re.findall(r'[A-Za-z0-9]+', sf)[0]
-    print(task_number,type(task_number))
+    # enrichment_nub = read_excel_col(wkdl_sr_file_path, 'lims号')
+    enrichment_nub = read_excel_col(wkdl_sr_file_path, 'lims号')
+    print(enrichment_nub)
+    if enrichment_nub:
+        sample_datas = str(enrichment_nub).replace('[', '').replace(']', '')  # 把取出的列表转换成sql条件中的元组格式
+        # 根据接样lims号，到数据库中（sample_info_t表）获取定量富集lims号
+        sa = executeSql.test_select_limsdb(
+            "SELECT DISTINCT (pooling_lims_id) FROM sample_info_t t1 WHERE t1.original_sample_id_lims IN ({})AND "
+            "t1.sr_type = '02'".format(sample_datas))
+        print(sa)
+        result_sql = [item[key] for item in sa for key in item]  # sql返回值是列表套字典，这里取出字典的值
+        while None in result_sql:  # 取出字典值中的空值None
+            result_sql.remove(None)
+        print('样本接收定量流程SR样本', result_sql)
+        return result_sql
+    lims_id = executeSql.test_select_limsdb(wkdl_result_sql1.format('WKDL2023082400003'))  # 从数据库获取当前任务单号下样本总数
+    lims_count = [item[key] for item in lims_id for key in item]
+    sr_samples = read_excel_col(wkdl_hdsr_file_path, 'lims号')
+    print(enrichment_nub)
 
+def read_sr_import_data():
+    """
+    根据sr样本数量，修改sr类型导入模板
+    """
+    sr_samples = read_excel_col(wkdl_hdsr_file_path, 'lims号')
+
+    wb = load_workbook(filename=wkdl_detail_sr_import_path)  # 打开excel文件
+    # 把流程中的样本号写入待导入模板
+    for i in range(0, len(sr_samples)):
+        k = i + 2
+
+        ws = wb.active
+        # 根据需要修改表格数据
+        ws.cell(k, 1, sr_samples[i])  # 修改第k行，第index列值
+    wb.save(wkdl_detail_sr_import_path)
+
+    # 从模板中复制出修改后的待导入数据
+    data = xlrd.open_workbook(wkdl_detail_sr_import_path)
+    num_list = []
+    for index in range(0, len(sr_samples)):
+        h = index + 1
+        tables = data.sheets()[0]
+        # allrows = tables.nrows
+        vals = tables.row_values(h)
+        imp_data = '\t'.join(map(str, vals))
+        num_list.append(imp_data)
+    print("\n".join(map(str, num_list)))
+
+def get_non_sr_sample_from_excel(col_name):
+    """
+     从对应的Excel中获取上一步流传下来的本节点的待选表lims样本号
+    :param col_name: excel列名
+    :return:lims_nub
+    """
+
+
+    lims_nub = read_excel_col(wkdl_non_sr_file_path, col_name)
+    print(lims_nub)
+    if lims_nub:
+        return lims_nub
+    else:
+        return None
 if __name__ == '__main__':
-    eee()
+    get_non_sr_sample_from_excel('文库名称')
 
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)

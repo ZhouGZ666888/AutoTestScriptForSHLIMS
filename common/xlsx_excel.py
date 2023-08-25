@@ -1,7 +1,7 @@
 # coding=UTF-8
 import openpyxl, os
 from xlrd import sheet
-from common.all_path import excel_doc_file_path
+from common.all_path import excel_doc_file_path, wkdl_hdsr_file_path
 import pandas as pd
 
 
@@ -138,9 +138,9 @@ values = [['Es', 'Xs', 'Cs'],
           ['e', 'f', 'g']]
 
 if __name__ == '__main__':
-    c = get_firstDownloadFile()
-    print(c)
 
+    a=read_excel_col(wkdl_hdsr_file_path,'lims号')
+    print(len(a))
     # for i in lims_nub1:
     #     # st = lims_nub1[i] + "\n" + lims_nub1[1] + "\n" + lims_nub1[2] + "\n" + lims_nub1[3]
     #     sl.append(i[0])

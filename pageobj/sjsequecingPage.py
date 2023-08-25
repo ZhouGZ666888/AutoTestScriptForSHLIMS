@@ -105,7 +105,7 @@ class SjSequecingPage(BasePage):
         """
 
         log.info(" 从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择")
-        lims_nub = read_excel_col(sj_file_path, '富集lims号')
+        lims_nub = read_excel_col(sj_file_path, 'lims号')
         print(lims_nub)
         if lims_nub:
             for lims in lims_nub:
@@ -122,7 +122,7 @@ class SjSequecingPage(BasePage):
         """
         log.info(" 从上一步流转Excel中获取上机样本号,根据样本lims号文本进行点击选择")
 
-        lims_nub = read_excel_col(sj_file_path, '富集lims号')
+        lims_nub = read_excel_col(sj_file_path, 'lims号')
         print(lims_nub)
 
         # 下面为滚动下拉进行判断

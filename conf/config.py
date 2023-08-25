@@ -57,9 +57,9 @@ def create_lab_excel():
 
     value = [["lims号", "实验室号", "当前节点", "任务单号"]]  # 其他
 
-    value1 = [["富集lims号", "上机分组号", "当前节点", "任务单号"]]  # 上机
-    value2 = [["富集lims号", "富集名称", "当前节点", "任务单号"]]  # 定量sr
-    value3 = [["lims号", "富集名称", "当前节点", "任务单号"]]  # 定量非sr
+    value1 = [["lims号", "上机分组号", "当前节点", "任务单号"]]  # 上机
+    value2 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量sr
+    value3 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量非sr
     value4 = [["lims号", "文库名称", "当前节点", "任务单号"]]  # 定量非sr
     write_excel_xlsx_by_openpyxl(pathologycheck_file_path, all_laboratorys[0], value)  # 病理检验数据流转Excel
     write_excel_xlsx_by_openpyxl(sampleprocessing_file_path, all_laboratorys[1], value)  # 样本处理数据流转Excel
