@@ -392,7 +392,7 @@ class SjSequecingPage(BasePage):
         self.clicks('css', after_concentration_adjustment_create_samplesheet_comfirm)
         self.wait_loading()
         self.sleep(1)
-        if self.isElementExists('css', after_concentration_adjustment_create_samplesheet_info_comfirm):
+        if self.isDisplayed('xpath', '//*[@class="el-dialog el-dialog--center dialog-sampleSheet-msg"]/parent::div'):
             print('True')
             self.clicks('css', after_concentration_adjustment_create_samplesheet_info_comfirm)
             self.sleep(1)
@@ -646,7 +646,7 @@ class SjSequecingPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', after_concentration_adjustment_create_samplesheet_comfirm)
         self.wait_loading()
-        if self.isElementExists('css', after_concentration_adjustment_create_samplesheet_info_comfirm):
+        if self.isDisplayed('xpath', '//*[@class="el-dialog el-dialog--center dialog-sampleSheet-msg"]/parent::div'):
             print('True')
             self.clicks('css', after_concentration_adjustment_create_samplesheet_info_comfirm)
             self.sleep(1)

@@ -203,9 +203,8 @@ class BasePage:
         :return:True or False
         """
         try:
-            if self.isElementExists(ele_type, element_loc):
-                element = self.findelement(ele_type, element_loc)
-                return element.is_displayed()
+            element = self.findelement(ele_type, element_loc)
+            return element.is_displayed()
         except Exception as e:
             raise ElementNotFound(e)
 
