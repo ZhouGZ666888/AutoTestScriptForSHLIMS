@@ -133,9 +133,12 @@ def getDataByRowColumn(path, rows, column):
     return str(ordreNumb)
 
 
-values = [['Es', 'Xs', 'Cs'],
-          [7, 8, 9, ],
-          ['e', 'f', 'g']]
+
+def delete_excel_data(path):
+    """清除Excel中除第一行外所有数据"""
+    df = pd.read_excel(path)
+    df = df.head(0)
+    df.to_excel(path, index=False)
 
 if __name__ == '__main__':
 

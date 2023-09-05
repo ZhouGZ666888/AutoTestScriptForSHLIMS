@@ -312,7 +312,7 @@ if __name__ == '__main__':
     now = time.strftime("%Y-%m-%d_%H-%M-%S")
     name = str(now) + '_report'
     test_suite = unittest.defaultTestLoader.discover(
-        test_dir, pattern='test4*.py')
+        test_dir, pattern='test0*.py')
     result = BeautifulReport(test_suite)
     result.report(filename=name, description='Lims系统自动化-用例执行情况',
                   log_path=test_report)

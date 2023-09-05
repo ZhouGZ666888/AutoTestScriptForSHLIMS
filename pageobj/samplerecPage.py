@@ -125,7 +125,7 @@ class SampleReceivePage(BasePage):
         骨冷冻组织
         DNA文库
         外部血浆
-        cDNA文库
+        cfDNA文库
         """
 
         def set_sampleType():
@@ -139,7 +139,6 @@ class SampleReceivePage(BasePage):
             self.sleep(1)
 
         log.info('添加5种样本，')
-
         total = specimen_list.values()
         n = 0
         for d in total:
@@ -195,7 +194,7 @@ class SampleReceivePage(BasePage):
             elif s_type == '外部血浆':
                 set_sampleType()
 
-            elif s_type == 'cDNA文库':
+            elif s_type == 'cfDNA文库':
                 set_sampleType()
             tips += num  # 每次循环取不同样本，所以各样本数量相加，取其排序下标，在页面中根据对应下标进行定位
 
@@ -242,12 +241,12 @@ class SampleReceivePage(BasePage):
                 self.clicks('xpath', laboratory_process_planned_chioce)
                 self.sleep(0.5)
                 self.clicks('xpath', laboratory_process_planned_comfirm)
-            self.sleep(0.5)
-            # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
-            for ib in range(1, len(sampleTotal) + 1):
-                specimenType = self.get_text('xpath', template_sample_type.format(ib))
-                if specimenType == sampleType:
-                    self.clicks('xpath', one_by_one_chioce_sample.format(ib))
+                self.sleep(0.5)
+                # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
+                for ib in range(1, len(sampleTotal) + 1):
+                    specimenType = self.get_text('xpath', template_sample_type.format(ib))
+                    if specimenType == sampleType:
+                        self.clicks('xpath', one_by_one_chioce_sample.format(ib))
             self.sleep(0.5)
 
         def expProcess_non_planne(sampleTotal, sampleType, expTemp, expType):
@@ -413,27 +412,45 @@ class SampleReceivePage(BasePage):
         sr_sample = executeSql.test_select_limsdb(get_sr_sample_lims.format(order['order_number']))
         sr_sampleLims = [list(i.values()) for i in sr_sample]
         print('接样的SR样本：', sr_sampleLims)
+
+        # SR样本信息导入数据
+        sr_sample_imp_data = [['J022'], ['靶向富集'], ['HiseqX'], ['PE150'], ['单'], ['不混样包Lane'], [1], ['G'], ['单梯度绝对'],
+                              [2100], [0.796],
+                              [2.3], [24], [330], ['双标签'], ['是'], ['是'], [2], ['否'], [12], ['暂无'], [2], [34], ['包埋文库'],
+                              ['F类'],
+                              ['备注'], ['2021.01.20'], [1], [2], ['否']]
+        sr_sample_sublibrary_imp_data = [['O01-004'], ['DC-013'], ['AGTCT'], ['DC-014'], ['DC-015'], ['J022']]
+
+        sr_sample_imp_file_r = load_workbook(sr_sample_imp_file)
+        sr_sample_sublibrary_imp_file_r = load_workbook(sr_sample_sublibrary_imp_file)
+
         lims = []
-        for i in range(len(sr_sampleLims)):
-            sr_sample_id_external = sr_sampleLims[i][0] + '_TEST_SR'  # 设置sr样本样本外部编号
-            # print(sr_sample_id_external)
+        for val in range(len(sr_sampleLims)):
 
-            log.info('把样本外部编号写入SR样本信息导入模板')
-            wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
-            ws = wb.active
-            ws.cell(2 + i, 2, sr_sample_id_external)  # 修改第k行，第index列值
-            wb.save(sr_sample_imp_file)
+            sample_id_external = [sr_sampleLims[val][0] + '_TEST_SR']
+            lims.append(sr_sampleLims[val][0])
+            sr_sample_imp_data.insert(1, sample_id_external)
+            sr_sample_sublibrary_imp_data.insert(0, sample_id_external)
 
-            log.info('把样本外部编号写入SR样本子文库导入模板')
-            wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
-            ws = wb.active
-            ws.cell(2 + i, 1, sr_sample_id_external)  # 修改第k行，第index列值
-            wb.save(sr_sample_sublibrary_imp_file)
+            table = sr_sample_imp_file_r.active
+            table1 = sr_sample_sublibrary_imp_file_r.active
+            nrows = table.max_row  # 获得行数
+            nrows1 = table1.max_row  # 获得行数
+            # 注意行业列下标是从1开始的
+            for i in range(1, len(sr_sample_imp_data) + 1):
+                for j in range(1, len(sr_sample_imp_data[i - 1]) + 1):
+                    table.cell(nrows + 1, i).value = sr_sample_imp_data[i - 1][j - 1]
+            sr_sample_imp_data.pop(1)
 
-            # 把样本外部编号写入到对应的SR样本在接样表的字段
-            executeSql.test_updateByParam(set_sr_sample_id_external.format(sr_sample_id_external, sr_sampleLims[i][0]))
+            for i in range(1, len(sr_sample_sublibrary_imp_data) + 1):
+                for j in range(1, len(sr_sample_sublibrary_imp_data[i - 1]) + 1):
+                    table1.cell(nrows1 + 1, i).value = sr_sample_sublibrary_imp_data[i - 1][j - 1]
+            sr_sample_sublibrary_imp_data.pop(0)
+            executeSql.test_updateByParam(
+                set_sr_sample_id_external.format(sample_id_external[0], sr_sampleLims[val][0]))
+        sr_sample_imp_file_r.save(sr_sample_imp_file)
+        sr_sample_sublibrary_imp_file_r.save(sr_sample_sublibrary_imp_file)
 
-            lims.append(sr_sampleLims[i][0])
         # 将sr样本保存到yaml文件，在SR样本信息登记模块使用
         datas = read_yaml(SR_sample_for_import_path)
         datas["rec_sr_sample_for_sr_import"] = lims

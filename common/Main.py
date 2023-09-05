@@ -33,7 +33,7 @@ class MyTest(unittest.TestCase):
 
     # 登录功能封装，调试用
     def initialize(self):
-        self.lg.login_console(name='guoqi.dong')
+        # self.lg.login_console(name='guoqi.dong')
         pass
 
     def initializes(self):
@@ -50,8 +50,8 @@ class MyTest(unittest.TestCase):
         cls.driver.refresh()
         cls.basepage.wait_loading()
          # 调试用
-        cls.driver.close()
-        cls.driver.quit()
+        # cls.driver.close()
+        # cls.driver.quit()
 
 
 if __name__ == '__main__':

@@ -1,4 +1,4 @@
-import datetime,xlrd
+import datetime, xlrd
 import re
 
 from openpyxl import load_workbook
@@ -12,6 +12,7 @@ from common.xlsx_excel import *
 
 # from pageobj.pathologycheckPage import now_time
 from data.sql_action.execute_sql_action import *
+
 
 def wait_loading():
     """
@@ -116,16 +117,17 @@ ORDER BY
 # print(now)
 from common.all_path import *
 
-
 sqldata = "SELECT box_name FROM sample_box_info_t t WHERE t.box_name LIKE '盒子_20%'   ORDER BY creation_date DESC;"
 # print(sqldata)
 # ret = execute_sql.test_select_limsdb(sqldata)
 # # print(ret)
 # print(ret)
-box_name='盒子_2023-02-22-19:31:08'
+box_name = '盒子_2023-02-22-19:31:08'
 sqlData = "SELECT task_id FROM sample_transfer_item_t t1 LEFT JOIN sample_box_info_t t2 ON (" \
           "t1.box_id=t2.box_id) WHERE t2.box_name  IN (" + "'" + box_name + "'" + ")"
 ybcl_detail_sql = "UPDATE exp_preparation_item_t set position_in_box='1' where task_id='{}';"
+
+
 # from common.xlsx_excel import padnas_get_column_rows
 # sql_first_step.test_updateByParam(ybcl_detail_sql.format('YBCL2023022300001'))
 # import pandas as pd
@@ -205,18 +207,22 @@ ybcl_detail_sql = "UPDATE exp_preparation_item_t set position_in_box='1' where t
 #     print(i['source_field_name'])
 
 class ABC:
-    S=1234534534535345
+    S = 1234534534535345
+
     def tester(self):
-        s=self.S
+        s = self.S
         print(s)
+
 
 class Student:
     score = 99.95
+
     def __init__(self):
         pass
-    def test(self):
 
+    def test(self):
         print(self.score)
+
 
 # dic1 = {'order_number':'fdfdsdgdfgd423423423',
 #                         'patient_name': '张三'
@@ -230,29 +236,28 @@ class Student:
 # else:
 #     print(';fdsfds')
 def get_data(max):
-    a=0
-    while a<max:
-
+    a = 0
+    while a < max:
         yield a
-        a+=1
+        a += 1
 
 
 def my_openpyxl(sheet):
     path = csps_file_path
-    wb= load_workbook(path)
+    wb = load_workbook(path)
     wt = wb[sheet]
-    test_data =[]
-    for x in range(2,len(tuple(wt.rows))+1):
-        data =[]
-        for y in range(2,7):
-            data.append(wt.cell(row=x,column=y).value)
+    test_data = []
+    for x in range(2, len(tuple(wt.rows)) + 1):
+        data = []
+        for y in range(2, 7):
+            data.append(wt.cell(row=x, column=y).value)
         test_data.append(data)
     return test_data
 
 
-
 key_to_find = "properties"
-key_to_find2='sms_code'
+key_to_find2 = 'sms_code'
+
 
 def find_key1(key_to_find, nested_json):
     item1 = {}
@@ -274,11 +279,10 @@ def find_key1(key_to_find, nested_json):
             elif isinstance(value, (dict, list)):
                 result = find_key1(key_to_find, value)
                 if result:
-                    print('this is ',result)
+                    print('this is ', result)
                     for k, v in result.items():
                         item1[k] = v['type']
                     return item1
-
 
 
 def find_key(key_to_find, nested_json):
@@ -304,8 +308,6 @@ def find_key(key_to_find, nested_json):
                     return result
 
 
-
-
 def find_key_new(key, json_obj):
     """
 
@@ -324,13 +326,15 @@ def find_key_new(key, json_obj):
     #     pass
     return result
 
+
 testdata = read_yaml(sampledata_path)
 order = read_yaml(orderNub_path)  # 获取订单号
 import pandas as pd
+
+
 def wer():
     df = pd.read_csv(mutation_file_path, encoding='utf-8', )
     print(df.loc[:, 'id'])
-
 
 
 def sr_sample_import():
@@ -338,11 +342,8 @@ def sr_sample_import():
     准备sr样本数据，在sr信息登记模块使用。选取一条sr样本，设置sr样本的外部样本编号，并存入对应的导入模板
     """
 
-
-
     now_time = datetime.datetime.now()
     sr_sample_id_external = now_time.strftime('%Y%m%d%H%M') + '_TEST_SR'  # 按时间规则生成外部样本编号
-
 
     wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
     ws = wb.active
@@ -363,33 +364,34 @@ def sr_sample_import():
     # 将修改后的sr样本的lims号，存到临时文件，在SR样本信息登记模块使用
     datas = read_yaml(sampledata_path)
     datas["rec_sr_sample_for_sr_import"] = sr_sample_nub[0][0]
-    save_yaml(sampledata_path,datas)
-
+    save_yaml(sampledata_path, datas)
 
 
 def test1():
     sr_sample = executeSql.test_select_limsdb(get_sr_sample_lims.format('99991489'))
     sr_sampleLims = [list(i.values()) for i in sr_sample]
     print('选中的SR样本：', sr_sampleLims)
-    lims=[]
+    lims = []
     for i in range(len(sr_sampleLims)):
-        sr_sample_id_external= sr_sampleLims[i][0] + '_TEST_SR'
+        sr_sample_id_external = sr_sampleLims[i][0] + '_TEST_SR'
         print(sr_sample_id_external)
 
         wb = load_workbook(filename=sr_sample_imp_file)  # 打开excel文件
         ws = wb.active
-        ws.cell(2+i, 2, sr_sample_id_external)  # 修改第k行，第index列值
+        ws.cell(2 + i, 2, sr_sample_id_external)  # 修改第k行，第index列值
         wb.save(sr_sample_imp_file)
 
         wb = load_workbook(filename=sr_sample_sublibrary_imp_file)  # 打开excel文件
         ws = wb.active
-        ws.cell(2+i, 1, sr_sample_id_external)  # 修改第k行，第index列值
+        ws.cell(2 + i, 1, sr_sample_id_external)  # 修改第k行，第index列值
         wb.save(sr_sample_sublibrary_imp_file)
         executeSql.test_updateByParam(set_sr_sample_id_external.format(sr_sample_id_external, sr_sampleLims[i][0]))
         lims.append(sr_sampleLims[i][0])
     datas = read_yaml(SR_sample_for_import_path)
     datas["rec_sr_sample_for_sr_import"] = lims
     save_yaml(SR_sample_for_import_path, datas)
+
+
 from itertools import product
 
 
@@ -405,6 +407,8 @@ def eee():
         new_list = i + list1
         impData.append(new_list)
     pandas_write_excel(impData, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
+
+
 def redf():
     data = [['GS2307210003J001', 'KA237L0003-L000J006-APP-A-1'],
             ['GS2307210003J004', 'KA237L0003-L000J006-APP-A-4'],
@@ -414,13 +418,14 @@ def redf():
     df = pd.DataFrame(data)
 
     # Write to Excel
-    df.to_excel("my_data.xlsx",  index=False, header=False)
+    df.to_excel("my_data.xlsx", index=False, header=False)
 
     # Read from Excel
-    new_df = pd.read_excel("my_data.xlsx",header=None)
+    new_df = pd.read_excel("my_data.xlsx", header=None)
     # for i in new_df:
     #     imp_data = '\t'.join(map(str, i))
     print(new_df)
+
 
 def test22():
     # enrichment_nub = read_excel_col(wkdl_sr_file_path, 'lims号')
@@ -442,6 +447,7 @@ def test22():
     lims_count = [item[key] for item in lims_id for key in item]
     sr_samples = read_excel_col(wkdl_hdsr_file_path, 'lims号')
     print(enrichment_nub)
+
 
 def read_sr_import_data():
     """
@@ -471,6 +477,7 @@ def read_sr_import_data():
         num_list.append(imp_data)
     print("\n".join(map(str, num_list)))
 
+
 def get_non_sr_sample_from_excel(col_name):
     """
      从对应的Excel中获取上一步流传下来的本节点的待选表lims样本号
@@ -478,15 +485,76 @@ def get_non_sr_sample_from_excel(col_name):
     :return:lims_nub
     """
 
-
     lims_nub = read_excel_col(wkdl_non_sr_file_path, col_name)
     print(lims_nub)
     if lims_nub:
         return lims_nub
     else:
         return None
+
+
+import re
+from bs4 import BeautifulSoup
+
+html = r'C:\Users\admin\Desktop\html1.html'
+
+
+def extract_chinese(html):
+    soup = BeautifulSoup(html, 'html.parser')
+    text = soup.get_text()
+    chinese = re.findall(r'[\u4e00-\u9fff]+', text)
+    return chinese
+
+
+def test111():
+    sr_sampleLims = [['GS2309050069'], ['GS2309050071'], ['GS2309050072']]
+    sr_sample_imp_data = [['J022'], ['靶向富集'], ['HiseqX'], ['PE150'], ['单'], ['不混样包Lane'], [1], ['G'], ['单梯度绝对'], [2100], [0.796],
+              [2.3], [24], [330], ['双标签'], ['是'], ['是'], [2], ['否'], [12], ['暂无'], [2], [34], ['包埋文库'], ['F类'],
+              ['备注'], ['2021.01.20'], [1], [2], ['否']]
+
+    sr_sample_sublibrary_imp_data = [['O01-004'], ['DC-013'], ['AGTCT'], ['DC-014'], ['DC-015'], ['J022']]
+    sr_sample_imp_file_r = load_workbook(sr_sample_imp_file)
+    sr_sample_sublibrary_imp_file_r = load_workbook(sr_sample_sublibrary_imp_file)
+    # 取第一张表
+
+    lims = []
+    for val in range(len(sr_sampleLims)):
+
+        sample_id_external = [sr_sampleLims[val][0] + '_TEST_SR']
+        lims.append(sr_sampleLims[val][0])
+
+        sr_sample_imp_data.insert(1, sample_id_external)
+        sr_sample_sublibrary_imp_data.insert(0, sample_id_external)
+
+        table = sr_sample_imp_file_r.active
+        table1 = sr_sample_sublibrary_imp_file_r.active
+        nrows = table.max_row  # 获得行数
+        nrows1 = table1.max_row  # 获得行数
+        # 注意行业列下标是从1开始的
+        for i in range(1, len(sr_sample_imp_data) + 1):
+            for j in range(1, len(sr_sample_imp_data[i - 1]) + 1):
+                table.cell(nrows + 1, i).value = sr_sample_imp_data[i - 1][j - 1]
+        sr_sample_imp_data.pop(1)
+
+        for i in range(1, len(sr_sample_sublibrary_imp_data) + 1):
+            for j in range(1, len(sr_sample_sublibrary_imp_data[i - 1]) + 1):
+                table1.cell(nrows1 + 1, i).value = sr_sample_sublibrary_imp_data[i - 1][j - 1]
+        sr_sample_sublibrary_imp_data.pop(0)
+        executeSql.test_updateByParam(set_sr_sample_id_external.format(sample_id_external[0], sr_sampleLims[val][0]))
+    sr_sample_imp_file_r.save(sr_sample_imp_file)
+    sr_sample_sublibrary_imp_file_r.save(sr_sample_sublibrary_imp_file)
+    datas = read_yaml(SR_sample_for_import_path)
+    datas["rec_sr_sample_for_sr_import"] = lims
+    save_yaml(SR_sample_for_import_path, datas)
+
+
+def test22ss():
+    delete_excel_data(sr_sample_imp_file)
+    delete_excel_data(sr_sample_sublibrary_imp_file)
+
 if __name__ == '__main__':
-    get_non_sr_sample_from_excel('文库名称')
+    html = r'C:\Users\admin\Desktop\html1.html'
+    test22ss()
 
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)

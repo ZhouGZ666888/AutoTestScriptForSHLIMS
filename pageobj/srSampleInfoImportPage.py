@@ -31,14 +31,9 @@ class SrSampleInfoImp(BasePage):
         # 点击上传按钮
         self.clicks('css', sr_sample_imp_upload)  # 点击上传
 
-
-
-
-
     def sr_sample_childrenImport(self):
         """
         外部样本信息登记详情页，上传子文库信息，选择sr样本
-
         """
         log.info("导入子文库")
         self.wait_loading()
