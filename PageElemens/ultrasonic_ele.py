@@ -167,6 +167,12 @@ changeProject_choice = (
 changeProject_comfirm = (
     '.dialog-select-project .el-dialog__footer .baseClass-btn-confirm')
 
+#样本分管选择上机平台按钮
+sequencing_platform='.dialog-divided-next .divided-btn-sequencing_platform'
+
+#样本分管选择上机平台下拉值选择
+sequencing_platform_choice='//ul[@class="el-dropdown-menu el-popper el-dropdown-menu--medium"]/descendant::li[text()="Illumina"]'
+
 # 明细表分管弹框分管后确认按钮
 aliquot_sample_last_step_comfirm = (
     '.dialog-divided-next .dialog-footer .baseClass-btn-confirm')

@@ -158,39 +158,26 @@ class UltrasonicPage(BasePage):
         self.clicks('css', aliquot_number_batch_edit)  # 分管弹框分管数文本录入后批量填入按钮
         self.clicks('css', aliquot_sample_next)  # 分管弹框下一步按钮
         self.sleep(1)
-
+        log.info('样本分管最后步骤')
         self.clicks('css', aliquot_sample_last_step_all_choice)  # 分管最后步骤弹框全选
         self.sleep(0.5)
         self.moved_to_element('css', aliquot_sample_last_step)  # 分管弹框最后步骤下拉框
         self.sleep(0.5)
         self.clicks('xpath', aliquot_sample_last_step_choice)  # 分管弹框最后步骤下拉值选择
         self.sleep(0.5)
+        log.info('样本分管选择上级平台')
+        self.clicks('css', sequencing_platform)  # 分管弹框最后步骤下拉框
+        self.sleep(1)
+        self.clicks('xpath', sequencing_platform_choice)  # 分管弹框最后步骤下拉值选择
+        self.sleep(0.5)
         self.clicks('css', changeProject)  # 修改项目信息
+        self.sleep(0.5)
         self.clicks('css', changeProject_comfirm)  # 修改项目信息弹框确认按钮
         self.sleep(0.5)
         self.clicks('css', aliquot_sample_last_step_comfirm)  # 明细表分管弹框分管后确认按钮
         self.wait_loading()
-        self.sleep(0.5)
 
-        log.info('选择优化项目')
-        # 选择优化项目弹框全选按钮
-        self.clicks('css', dialog_parOpt_all_choice)
-        # 选择优化项目按钮
-        self.clicks('css', dialog_parOpt_btn)
-        # 选择优化项目弹框录入
-        self.input('css', dialog_parOpt_input, 'M')
-        # 选择优化项目弹框搜索
-        self.clicks('css', dialog_parOpt_search)
-        self.wait_loading()
-        # 选择优化项目弹框选择第一条
-        self.clicks('css', dialog_parOpt_choice)
-        # 选择优化项目内弹框确定
-        self.clicks('css', dialog_parOpt_comfirm)
-        # 选择优化项目大弹框确定
-        self.clicks('css', dialog_parOpt_comfirm_comfirm)
 
-        self.wait_loading()
-        self.sleep(1)
 
     def goback_detail(self):
         """
