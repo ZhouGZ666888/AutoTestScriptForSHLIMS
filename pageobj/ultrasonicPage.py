@@ -165,26 +165,40 @@ class UltrasonicPage(BasePage):
         self.sleep(0.5)
         self.clicks('xpath', aliquot_sample_last_step_choice)  # 分管弹框最后步骤下拉值选择
         self.sleep(0.5)
-        log.info('样本分管选择上级平台')
+        log.info('样本分管选择上机平台')
         self.clicks('css', sequencing_platform)  # 分管弹框最后步骤下拉框
         self.sleep(1)
         self.clicks('xpath', sequencing_platform_choice)  # 分管弹框最后步骤下拉值选择
         self.sleep(0.5)
+        log.info('样本分管修改项目信息')
         self.clicks('css', changeProject)  # 修改项目信息
         self.sleep(0.5)
         self.clicks('css', changeProject_comfirm)  # 修改项目信息弹框确认按钮
         self.sleep(0.5)
         self.clicks('css', aliquot_sample_last_step_comfirm)  # 明细表分管弹框分管后确认按钮
         self.wait_loading()
-
+        self.sleep(0.5)
+        log.info('样本分管选择优化项目')
+        # 选择优化项目弹框全选按钮
+        self.clicks('css', dialog_parOpt_all_choice)
+        # 选择优化项目按钮
+        self.clicks('css', dialog_parOpt_btn)
+        # 选择优化项目弹框录入
+        self.input('css', dialog_parOpt_input, 'M')
+        # 选择优化项目弹框搜索
+        self.clicks('css', dialog_parOpt_search)
+        self.wait_loading()
+        # 选择优化项目弹框选择第一条
+        self.clicks('css', dialog_parOpt_choice)
+        # 选择优化项目内弹框确定
+        self.clicks('css', dialog_parOpt_comfirm)
+        # 选择优化项目大弹框确定
+        self.clicks('css', dialog_parOpt_comfirm_comfirm)
+        self.wait_loading()
 
 
     def goback_detail(self):
-        """
-        返回明细表
-
-        """
-
+        """返回明细表"""
         urldata = editYaml.read_yaml(functionpageURL_path)
         log.info('点击按钮返回明细表')
         self.click_by_js('css', goback_detail)
