@@ -10,31 +10,29 @@ class SampleReceive(MyTest):
     def setUp(self) -> None:
         self.src = SampleReceivePage(self.driver)
 
-    # def test01_serachOrder(self):
-    #     """
-    #     测试接样列表搜索订单号
-    #     """
-    #     self.initialize()
-    #     log.info('登录系统，进入样本接收页面')
-    #     EnterTab.enter_samplereceive(self.basepage)
-    #     log.info("搜索订单号")
-    #     self.src.search_order()
-    #
-    # def test02_addOrderProductProject(self):
-    #     """测试接样明细编辑订单产品、项目信息"""
-    #     log.info("添加样本的项目信息类型")
-    #     self.src.add_sample_type()
-    #
-    # def test03_addorderSample(self):
-    #     """测试接样新增样本，选择样本类型"""
-    #     log.info("添加样本并为样本选择样本类型")
-    #     self.src.sampleRec_sampleDetail()
+    def test01_serachOrder(self):
+        """
+        测试接样列表搜索订单号
+        """
+        self.initialize()
+        log.info('登录系统，进入样本接收页面')
+        EnterTab.enter_samplereceive(self.basepage)
+        log.info("搜索订单号")
+        self.src.search_order()
+
+    def test02_addOrderProductProject(self):
+        """测试接样明细编辑订单产品、项目信息"""
+        log.info("添加样本的项目信息类型")
+        self.src.add_sample_type()
+
+    def test03_addorderSample(self):
+        """测试接样新增样本，选择样本类型"""
+        log.info("添加样本并为样本选择样本类型")
+        self.src.sampleRec_sampleDetail()
 
     def test04_addgenerate_laboratory_process(self):
         """测试接样生成实验流程"""
         log.info("为样本选择实验流程")
-        self.initialize()
-        self.basepage.enter_func_page()
         self.src.generate_laboratory_process()
 
     def test05_fillSampleinfo(self):

@@ -2,6 +2,7 @@
 # @Time    : 2021/11/11
 # @Author  : guanzhong.zhou
 # @File    : 样本接收页面功能封装
+from datetime import datetime
 
 from openpyxl import load_workbook
 from PageElemens.sampleRec_ele import *
@@ -418,7 +419,7 @@ class SampleReceivePage(BasePage):
                               [2100], [0.796],
                               [2.3], [24], [330], ['双标签'], ['是'], ['是'], [2], ['否'], [12], ['暂无'], [2], [34], ['包埋文库'],
                               ['F类'],
-                              ['备注'], ['2021.01.20'], [1], [2], ['否']]
+                              ['备注'], [datetime.now().strftime('%Y.%m.%d')], [1], [2], ['否']]
         sr_sample_sublibrary_imp_data = [['O01-004'], ['DC-013'], ['AGTCT'], ['DC-014'], ['DC-015'], ['J022']]
 
         sr_sample_imp_file_r = load_workbook(sr_sample_imp_file)
