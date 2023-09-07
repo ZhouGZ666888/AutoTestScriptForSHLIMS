@@ -3,6 +3,7 @@
 # @Author  : guanzhong.zhou
 # @File    : 上机模块页面功能封装
 import pyperclip, xlrd, yaml, time
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 from PageElemens.sj_sequecing_ele import *
 from common import editYaml
@@ -46,6 +47,10 @@ class SjSequecingPage(BasePage):
 
         self.input('css', sequencing_batch_number, str_time + "批次")
         log.info("录入上机批次号:%s" % str_time + "批次")
+        self.sleep(0.5)
+
+        log.info("选择芯片号")
+        self.input('css',chipNo,'testNO1')
         self.sleep(0.5)
 
         log.info("选择测序仪")
@@ -222,8 +227,12 @@ class SjSequecingPage(BasePage):
         """
         浓度调整前明细表生成结果操作
         """
-        self.clicks('css', before_concentration_adjustment_create_concentration_adjustment_result)  # 生成结果按钮
-        self.wait_loading()
+        try:
+            self.clicks('css', before_concentration_adjustment_create_concentration_adjustment_result)  # 生成结果按钮
+            self.wait_loading()
+        except TimeoutException as a:
+            log.error(a)
+            self.refresh()
         # 调用自定义截图方法
         Screenshot(self.driver).get_img("浓度调整前明细表生成结果操作 ")
         self.sleep(0.5)

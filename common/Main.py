@@ -1,7 +1,7 @@
 from pageobj.loginPage import LoginPage
 from uitestframework.basepageTools import BasePage
 from selenium import webdriver
-from common.logs import log
+# from common.logs import log
 import unittest, warnings
 from common.all_path import *
 
@@ -26,14 +26,14 @@ class MyTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls, driver=dr):
         cls.driver = driver
-        log.info("------TestCase Start!------")
+        # log.info("------TestCase Start!------")
         cls.driver.implicitly_wait(1.5)
         cls.basepage = BasePage(cls.driver)
         cls.lg = LoginPage(cls.driver)
 
     # 登录功能封装，调试用
     def initialize(self):
-        self.lg.login_console(name='guoqi.dong')
+        # self.lg.login_console(name='guoqi.dong')
         pass
 
     def initializes(self):
@@ -50,8 +50,8 @@ class MyTest(unittest.TestCase):
         cls.driver.refresh()
         cls.basepage.wait_loading()
          # 调试用
-        cls.driver.close()
-        cls.driver.quit()
+        # cls.driver.close()
+        # cls.driver.quit()
 
 
 if __name__ == '__main__':

@@ -43,6 +43,10 @@ task_type_choice_huada = '//span[text()="华大上机"]'
 sequencing_batch_number = (
     '.sequencingDetail-form-seqBatchNo input')
 
+#芯片号
+chipNo='.createTask_content_choose .sequencingDetail-form-chipNo input'
+
+
 # 选择测序仪按钮
 instrument = (
     '.createTask_content_choose .baseClass-btn-instrument')

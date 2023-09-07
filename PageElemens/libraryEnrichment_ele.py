@@ -262,7 +262,8 @@ result_samples_lims = (
 
 # 获取所有样本富集名称
 result_enrichment_library_name = (
-    '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(5)')
+    '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) '
+    'td:nth-child(6)')
 
 # 选中全部样本数量,用来计总数
 result_samples_for_total = (

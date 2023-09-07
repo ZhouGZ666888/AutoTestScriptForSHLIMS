@@ -64,6 +64,7 @@ class NucleicAcidExtraction(MyTest):
         返回明细表提交、入库,完成任务单
         """
 
+
         self.hstq.detail_submit()  # 明细表提交操作
         pageinfo = self.hstq.detail_into_storage()  # 明细表样本入库操作
 

@@ -91,16 +91,16 @@ class LibraryenrichmentPage(BasePage):
         pageinfo = self.get_pageinfo()
         self.wait_loading()
 
-        # 判断子sop样本数据数否需要录入
-        result = self.driver.execute_script(
-            'return document.getElementsByClassName("commonTaskDetail-commonTaskDetailBtn-sopSampleNumber")[0].disabled')
-        if not result:
-            self.clicks('css', sopSampleNumber_btn)  # 点击子sop样本数量
-            self.wait_loading()
-            self.clicks('css', sopSampleNumber)  # 子sop样本数量弹框中点击数量录入框
-            self.input('css', sopSampleNumber_input, 10)
-            self.clicks('css', sopSampleNumber_confirm)
-            self.wait_loading()
+        # # 判断子sop样本数据数否需要录入
+        # result = self.driver.execute_script(
+        #     'return document.getElementsByClassName("commonTaskDetail-commonTaskDetailBtn-sopSampleNumber")[0].disabled')
+        # if not result:
+        #     self.clicks('css', sopSampleNumber_btn)  # 点击子sop样本数量
+        #     self.wait_loading()
+        #     self.clicks('css', sopSampleNumber)  # 子sop样本数量弹框中点击数量录入框
+        #     self.input('css', sopSampleNumber_input, 10)
+        #     self.clicks('css', sopSampleNumber_confirm)
+        #     self.wait_loading()
 
         return pageinfo
 
@@ -305,14 +305,12 @@ class LibraryenrichmentPage(BasePage):
         wb = load_workbook(filename=wkfj_result_import_path)  # 打开excel文件
         # 把流程中的样本号写入待导入模板
         for i in range(0, len(samples)):
-            j = i + 1
-            k = i + 2
             self.sleep(0.5)
-            samples_id = self.get_text('css', result_enrichment_library_name.format(j))
+            samples_id = self.get_text('css', result_enrichment_library_name.format(i + 1))
             ws = wb.active
             # 根据需要修改表格数据
-            ws.cell(k, 2, samples_id)  # 修改第k行，第index列值
-            ws.cell(k, 16, str(str_time))
+            ws.cell(i + 2, 2, samples_id)  # 修改第k行，第index列值
+            ws.cell(i + 2, 17, str(str_time))
         wb.save(wkfj_result_import_path)
         self.sleep(1)
         # 从模板中复制出修改后的待导入数据
@@ -326,7 +324,7 @@ class LibraryenrichmentPage(BasePage):
             imp_data = '\t'.join(map(str, vals))
             num_list.append(imp_data)
         pyperclip.copy("\n".join(map(str, num_list)))
-
+        print("\n".join(map(str, num_list)))
         self.clicks('css', result_batch_paste_import)
         self.sleep(0.5)
         self.clicks('css', result_batch_paste_import_package_textarea)
