@@ -32,7 +32,7 @@ class SampleReceivePage(BasePage):
         """
         order = read_yaml(orderNub_path)  # 获取订单号
         log.info('接样页面点击搜索按钮')
-
+        create_lab_excel()  # 初始化样本存储Excel文件
         self.click_by_js('css', search_btn)
         self.sleep(0.5)
 
@@ -333,7 +333,7 @@ class SampleReceivePage(BasePage):
         把所有样本信息保存到Excel中
         """
         log.info('样本信息保存到对应流程的Excel中')
-        create_lab_excel()
+
         lists = self.findelements('xpath', all_samples)
 
         def write_excel(filePath):
@@ -415,9 +415,11 @@ class SampleReceivePage(BasePage):
         print('接样的SR样本：', sr_sampleLims)
 
         # SR样本信息导入数据
-        sr_sample_imp_data = [['J022'], ['靶向富集'], ['HiseqX'], ['PE150'], ['单'], ['不混样包Lane'], [1], ['G'], ['单梯度绝对'],
+        sr_sample_imp_data = [['J022'], ['靶向富集'], ['HiseqX'], ['PE150'], ['单'], ['不混样包Lane'], [1], ['G'],
+                              ['单梯度绝对'],
                               [2100], [0.796],
-                              [2.3], [24], [330], ['双标签'], ['是'], ['是'], [2], ['否'], [12], ['暂无'], [2], [34], ['包埋文库'],
+                              [2.3], [24], [330], ['双标签'], ['是'], ['是'], [2], ['否'], [12], ['暂无'], [2], [34],
+                              ['包埋文库'],
                               ['F类'],
                               ['备注'], [datetime.now().strftime('%Y.%m.%d')], [1], [2], ['否']]
         sr_sample_sublibrary_imp_data = [['O01-004'], ['DC-013'], ['AGTCT'], ['DC-014'], ['DC-015'], ['J022']]

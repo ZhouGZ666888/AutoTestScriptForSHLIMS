@@ -64,6 +64,7 @@ class APPAPage(BasePage):
         pageinfo = self.get_pageinfo()
         self.wait_loading()
         self.clicks('css', enter_detail_list_btn)  # 进入明细表
+        self.wait_loading()
         return pageinfo
 
     # 样本分管操作

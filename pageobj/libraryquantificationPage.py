@@ -55,8 +55,8 @@ class LibraryQuantificationPage(BasePage):
         新建文库定量任务单
         """
         # 判断是否存在建库电子实验记录待签字交接提示信息
-        if self.isElementExists('css', electronic_experiment_record_signed_tips):
-            self.clicks('css', electronic_experiment_record_signed_tips)
+        # if self.isElementExists('css', electronic_experiment_record_signed_tips):
+        #     self.clicks('css', electronic_experiment_record_signed_tips)
         log.info("文库定量首页，点击新建按钮，进入样本待选表，新增文库定量任务")
         self.clicks('css', add_sample_process_task)
         self.wait_loading()
