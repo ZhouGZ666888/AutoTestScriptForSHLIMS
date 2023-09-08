@@ -342,6 +342,7 @@ class SampleReceivePage(BasePage):
             elif samples_type == "cfDNA文库":
                 write_excel(app_a_file_path)
 
+
     def input_sampleamt(self):
         """
         录入样本包装量和样本计量
