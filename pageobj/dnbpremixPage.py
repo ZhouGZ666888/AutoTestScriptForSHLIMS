@@ -143,9 +143,25 @@ class DnbpremixPage(BasePage):
         """明细表自动计算"""
         log.info("DNB制备明细表明细表自动计算")
         self.clicks('css', detail_autoComplete_btn)
+
         pageinfo = self.get_pageinfo()
+
         self.wait_loading()
+
         return pageinfo
+
+    # DNB制备明细表自动计算
+    # def detail_autoComplete(self):
+    #     """明细表自动计算"""
+    #     log.info("DNB制备明细表明细表自动计算")
+    #     self.clicks('css', detail_autoComplete_btn)
+    #     if
+    #         pageinfo = self.get_pageinfo()
+    #     re.search(r'存在以下SR样本，其子文库信息未录入或未匹配', self.get_source):
+    #     return '存在以下SR样本，其子文库信息未录入或未匹配'
+    #     self.wait_loading()
+    #
+    #     return pageinfo
 
     # DNB制备明细表保存
     def detail_save(self):
