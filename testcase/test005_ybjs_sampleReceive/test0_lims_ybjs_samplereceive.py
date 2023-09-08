@@ -59,32 +59,5 @@ class SampleReceive(MyTest):
         self.src.batch_review()
 
 
-'''
-FBI提醒，本处test04注释代码，为流转表设置富集时间用，平时不用，需要时可放开注释
-FBI提醒，本处test04注释代码，为流转表设置富集时间用，平时不用，需要时可放开注释
-FBI提醒，本处test04注释代码，为流转表设置富集时间用，平时不用，需要时可放开注释
-FBI提醒，本处test04注释代码，为流转表设置富集时间用，平时不用，需要时可放开注释
-
-
-'''
-# def test04_set_poollingtime(self):
-#     """
-#     进入流转表设置富集节点的预计富集时间
-#     uesrname="guanzhong.zhou"
-#     """
-#     # 调用登录
-#     Lims_Login_sccuess(self.driver).login_single('guanzhong.zhou')
-#
-#     self.basepage.wait_loading()
-#     EnterTab.enter_workflow(self.basepage)#点击【流转表】
-#     self.basepage.wait_loading()
-#     EnterTab.enter_single_workflow(self.basepage)#点击【单样本流转表】
-#
-#     tomorrow = (datetime.datetime.now() + datetime.timedelta(days=+2)).strftime('%Y.%m.%d')
-#     print(tomorrow)
-#     test = SampleReceivePage(self.driver)#调用流转表设置富集预计时间
-#     test.set_estimated_generated_time(tomorrow)
-
-
 if __name__ == '__main__':
     unittest.main()

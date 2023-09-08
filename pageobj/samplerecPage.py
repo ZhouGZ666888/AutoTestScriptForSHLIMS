@@ -250,29 +250,6 @@ class SampleReceivePage(BasePage):
                         self.clicks('xpath', one_by_one_chioce_sample.format(ib))
             self.sleep(0.5)
 
-        def expProcess_non_planne(sampleTotal, sampleType, expTemp, expType):
-            """把生成实验流程方法封装，此方法不设置探针"""
-            for ic in range(1, len(sampleTotal) + 1):  # 从所有存在于实验流程弹框中的样本，根据样本类型值，与列表取值进行比对
-                specimenType = self.get_text('xpath', template_sample_type.format(ic))
-                if specimenType == sampleType:  # 如果页面列表中，样本类型值与列表循环出的一致，则在页面弹框选中
-                    self.clicks('xpath', one_by_one_chioce_sample.format(ic))  # 先选中对应样本
-            self.clicks('xpath', laboratory_process_temp_btn)  # 点击选择实验流程按钮
-            self.sleep(1)
-            self.click_by_js('css', expTemp)  # 切换到Illumina或华大模版
-            self.sleep(0.5)
-            # 选中样本类型对应的实验流程
-            self.clicks('xpath', LibProcessVisible.format(expType))
-            print("选中")
-            self.sleep(0.5)
-            self.clicks('xpath', LibProcessVisible_btn)  # 选择实验流程弹框确认按钮
-            self.sleep(0.5)
-            # 把前面已完成操作的样本进行取消选中，接下来选中其它类型的样本
-            for ib in range(1, len(sampleTotal) + 1):
-                specimenType = self.get_text('xpath', template_sample_type.format(ib))
-                if specimenType == sampleType:
-                    self.clicks('xpath', one_by_one_chioce_sample.format(ib))
-            self.sleep(0.5)
-
         # laboratory_pro = ['核酸提取-破碎', '样本处理-样本分离', '21基因', '文库定量']
         log.info('选中样本生成实验流程')
         self.clicks('css', all_chioce)  # 全选样本
@@ -335,6 +312,7 @@ class SampleReceivePage(BasePage):
         log.info('样本信息保存到对应流程的Excel中')
 
         lists = self.findelements('xpath', all_samples)
+        self.sleep(0.5)
 
         def write_excel(filePath):
             """写入Excel方法封装"""
@@ -355,23 +333,12 @@ class SampleReceivePage(BasePage):
                 add_write_excel_xlsx(pathologycheck_file_path, lims_list_values)
             elif samples_type == "EDTA抗凝血":
                 write_excel(sampleprocessing_file_path)
-                # data2 = []
-                # sample_lims = self.get_text('xpath', one_lims_num.format(i))
-                # sample_lab = self.get_text('xpath', one_laboratory_num.format(i))  # 实验室号
-                # data2.append(sample_lims)
-                # data2.append(sample_lab)
-                # lims_list_values.append(data2)
-                # add_write_excel_xlsx(sampleprocessing_file_path, lims_list_values)
-
             elif samples_type == "骨冷冻组织":
                 write_excel(hstq_file_path)
-
             elif samples_type == "DNA文库":
                 write_excel(wkdl_sr_file_path)
-
             elif samples_type == "外部血浆":
                 write_excel(hstq_file_path)
-
             elif samples_type == "cfDNA文库":
                 write_excel(app_a_file_path)
 
@@ -523,46 +490,3 @@ class SampleReceivePage(BasePage):
 
         self.wait_loading()
 
-    # def set_estimated_generated_time(self,predata):
-    #     """
-    #     接样审核通过后，需要在流转表设置富集预计生成时间，这样可以不做实验流程直接到报告基本信息任务分配页面，同步到数据
-    #     predata:调用时需要传入日期数值
-    #     """
-    #     lims_id1 = []
-    #     lims_id2 = []
-    #     lims_nub1 = read_excel_xlsx_list_col(all_path.sampleprocessing_file_path, 0, 'lims号')
-    #     lims_nub2 = read_excel_xlsx_list_col(all_path.hstq_file_path, 0, 'lims号')
-    #     for i in lims_nub1:
-    #         lims_id1.append(i[0])
-    #     for i in lims_nub2:
-    #         lims_id2.append(i[0])
-    #     lims_id_str1 = "\n".join(lims_id1)
-    #     lims_id_str2 = "\n".join(lims_id2)
-    #     all_lims_id = lims_id_str1 + "\n" + lims_id_str2
-    #
-    #     print(all_lims_id)
-    #
-    #     self.clicks('css', sample_search_button)#点击搜索按钮
-    #     self.sleep(1)
-    #     self.clicks('css', search_lims_code)  # 点击订单号输入框
-    #     self.sleep(0.5)
-    #     self.clicks('css', search_order_code_text)  # 点击右侧弹出的输入框
-    #     self.sleep(0.5)
-    #     self.input('css', search_order_code_text,all_lims_id)  # 右侧输入框输入订单号
-    #     self.sleep(0.5)
-    #     self.clicks('css', search_order_code_confirm)  # 右侧点击确定按钮
-    #     self.sleep(1)
-    #     self.clicks('css', lzb_search_confirm)  # 点击最外层的确定按钮
-    #     self.wait_loading()#等待搜索完毕
-    #
-    #     self.clicks('xpath', poolling_check_box)  # 全选富集节点的复选框
-    #     self.sleep(2)
-    #     self.clicks('css', modify_pretime_button)  # 点击【修改预计生成时间】按钮
-    #     self.wait_loading()
-    #     self.sleep(1)
-    #     self.input('css', modify_pretime_value,predata)  # 输入日期
-    #     self.sleep(1)
-    #     self.clicks('css', modify_pretime_confirm)  # 点击确定
-    #
-    #     self.wait_loading()#等待搜索完毕
-    #     self.sleep(1)
