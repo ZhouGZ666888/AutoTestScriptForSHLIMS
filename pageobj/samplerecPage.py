@@ -32,7 +32,7 @@ class SampleReceivePage(BasePage):
         """
         order = read_yaml(orderNub_path)  # 获取订单号
         log.info('接样页面点击搜索按钮')
-        create_lab_excel()  # 初始化样本存储Excel文件
+
         self.click_by_js('css', search_btn)
         self.sleep(0.5)
 
@@ -310,7 +310,9 @@ class SampleReceivePage(BasePage):
         把所有样本信息保存到Excel中
         """
         log.info('样本信息保存到对应流程的Excel中')
-
+        create_lab_excel()  # 初始化样本存储Excel文件
+        # 准备sr样本数据
+        self.sr_sample_import()
         lists = self.findelements('xpath', all_samples)
         self.sleep(0.5)
 
@@ -361,8 +363,7 @@ class SampleReceivePage(BasePage):
         self.clicks('xpath', sample_amt_input_comfirm_btn)
         self.sleep(0.5)
 
-        # 准备sr样本数据
-        self.sr_sample_import()
+
 
         log.info('录入样本基本数据后，样本信息保存')
         self.clicks('css', save_btn)
