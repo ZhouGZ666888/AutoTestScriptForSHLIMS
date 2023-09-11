@@ -7,7 +7,7 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.keys import Keys
 from PageElemens.sj_sequecing_ele import *
 from common import editYaml
-from common.all_path import  functionpageURL_path, position_in_box_path, sj_fc_quality_control_result
+from common.all_path import functionpageURL_path, position_in_box_path, sj_fc_quality_control_result
 from common.screenshot import Screenshot
 from common.DataBaseConfig import executeSql
 from common.xlsx_excel import read_excel_col, pandas_write_excel
@@ -50,7 +50,7 @@ class SjSequecingPage(BasePage):
         self.sleep(0.5)
 
         log.info("选择芯片号")
-        self.input('css',chipNo,'testNO1')
+        self.input('css', chipNo, 'testNO1')
         self.sleep(0.5)
 
         log.info("选择测序仪")
@@ -548,6 +548,10 @@ class SjSequecingPage(BasePage):
         log.info("录入上机批次号:%s" % str_time + "批次")
         self.sleep(0.5)
 
+        log.info("选择芯片号")
+        self.input('css', chipNo, 'testNO1')
+        self.sleep(0.5)
+
         log.info("选择测序仪")
         self.clicks('css', instrument)
         self.wait_loading()
@@ -623,25 +627,23 @@ class SjSequecingPage(BasePage):
     def hd_detail_autoCompleteLabel(self):
         """自动计算标签"""
         log.info(" 华大上机明细表自动计算标签")
-        self.clicks('css',hd_autoCompleteLabel)
+        self.clicks('css', hd_autoCompleteLabel)
         self.wait_loading()
-        return self.get_text('css','tr:nth-child(1) .sequencingSchedule-tableCol-labelType')
+        return self.get_text('css', 'tr:nth-child(1) .sequencingSchedule-tableCol-labelType')
 
     # 华大上机明细表生成上机分组号
     def hd_detail_generateNo(self):
         """华大上机生成上机分组号"""
-        self.clicks('css',hd_generateNo)
+        self.clicks('css', hd_generateNo)
         info = self.get_pageinfo()
         self.sleep(0.5)
         return info
 
-
     # 华大上机明细表确认上机
     def hd_detail_confirm(self):
         """华大上机确认上机"""
-        self.clicks('css',hd_sequencingSchedule_confirm)
+        self.clicks('css', hd_sequencingSchedule_confirm)
         self.wait_loading()
-
 
     # 华大上机明细表生成samplesheet
     def hd_detail_create_samplesheet(self):
@@ -663,9 +665,9 @@ class SjSequecingPage(BasePage):
     # 华大上机明细表明细表提交
     def hd_detail_sumbit(self):
         """华大上机明细表提交"""
-        self.clicks('css',hd_detail_sumbit)
+        self.clicks('css', hd_detail_sumbit)
         self.sleep(1)
-        self.clicks('css',hd_detail_sumbit_confirm)
+        self.clicks('css', hd_detail_sumbit_confirm)
         info = self.get_pageinfo()
         self.sleep(0.5)
         return info
@@ -674,11 +676,11 @@ class SjSequecingPage(BasePage):
     def hd_sj_result(self):
         """华大上机结果表"""
         log.info('进入上机结果表')
-        self.clicks('css',after_concentration_adjustment_submit_enter_the_result_list)
+        self.clicks('css', after_concentration_adjustment_submit_enter_the_result_list)
         self.wait_loading()
         log.info('上机结果表添加条目')
-        self.clicks('css',hd_result_add_tips)
+        self.clicks('css', hd_result_add_tips)
         self.sleep(1)
         log.info('上机结果表完成任务单')
-        self.clicks('css',hd_result_complete_task)
+        self.clicks('css', hd_result_complete_task)
         self.wait_loading()
