@@ -33,11 +33,11 @@ class MyTest(unittest.TestCase):
 
     # 登录功能封装，调试用
     def initialize(self):
-        self.lg.login_console(name='guoqi.dong')
+        # self.lg.login_console(name='guoqi.dong')
         pass
 
     def initializes(self):
-        # self.lg.login_console(name='guoqi.dong')
+        # self.lg.login_console(name='guanzhong.zhou')
         pass
 
     # 单个登录功能,接样审批切换用户时调用

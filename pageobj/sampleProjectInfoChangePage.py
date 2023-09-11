@@ -28,7 +28,7 @@ class SampleProInfoChangePage(BasePage):
         self.sleep(1)
 
     # 新增任务单
-    def add_task(self, search_by, index, search_by_tab, input_tab):
+    def add_task(self, search_by, search_by_tab, input_tab):
         """
         新建样本项目信息修改任务单
         """
@@ -50,7 +50,7 @@ class SampleProInfoChangePage(BasePage):
         # 点击选择待修改样本-按lims号检索tab页
         self.clicks('css', search_by_tab)
         # 选择待修改样本-按lims号检索文本录入框录入lims号
-        self.input('css', input_tab, lims_nub[index])
+        self.input('css', input_tab, lims_nub[0])
         self.sleep(0.5)
         self.clicks('css', search_sample_comfirm)
         self.wait_loading()

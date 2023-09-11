@@ -22,11 +22,11 @@ class SampleProInfoChange(MyTest):
         """
         测试样本项目信息修改，按样本lims号检索后，导出、导入修改模板，核对导入后数据库样本项目信息更新状态
         """
-        self.initialize()
+        self.initializes()
 
         EnterTab.sample_project_info_change(self.basepage)
         log.info('样本项目信息修改---新建任务单，按lims号检索样本信息，并导出样本-项目信息')
-        self.spic.add_task('lims号', 4, search_by_lims_tab, search_by_lims)
+        self.spic.add_task('lims号', search_by_lims_tab, search_by_lims)
 
         log.info('样本项目信息，修改导出的样本-项目信息模板，更新样本项目号')
         self.spic.edit_download_info()
@@ -41,7 +41,7 @@ class SampleProInfoChange(MyTest):
         """
 
         log.info('样本项目信息修改---新建任务单，按实验室号检索样本信息，并导出样本-项目信息')
-        self.spic.add_task('实验室号', 5, search_by_labCode_tab, search_by_labCode)
+        self.spic.add_task('实验室号', search_by_labCode_tab, search_by_labCode)
 
         log.info('样本项目信息，修改导出的样本-项目信息模板，更新样本项目号')
         self.spic.edit_download_info()
