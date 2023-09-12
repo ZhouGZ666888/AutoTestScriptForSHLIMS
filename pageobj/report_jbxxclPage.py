@@ -299,9 +299,11 @@ class ReportBasicInfoProcessingPage(BasePage):
                 for i in range(0, 11):
                     # 每页展示11条数据，每条数据为50个像素，每次下拉11条数据的像素，即11*50个像素；再下拉11条数据后，在页面上从第1条开始读数
                     laboratorys = self.get_text('css', lab_num.format(i + 1))
+                    print(laboratorys)
                     self.sleep(0.5)
                     # 判断是否符合条件（内部血浆）
-                    if laboratorys[:2] == sample_type and laboratorys in laboratory_list and laboratorys not in used_list:  #
+                    if laboratorys[:2] == sample_type and laboratorys.strip()[:10] in laboratory_list and laboratorys\
+                            not in used_list:  #
                         # 判定当前取值是否与上次一样，以此来判断是否下拉到底
                         print('发现样本，%s' % laboratorys)
                         self.click_by_js('css', lab_num.format(i + 1))
