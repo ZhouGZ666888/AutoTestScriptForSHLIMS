@@ -551,11 +551,11 @@ def test111():
 
 
 def test22ss():
-    delete_excel_data(sr_sample_imp_file)
-    delete_excel_data(sr_sample_sublibrary_imp_file)
+    s='KA239A0007-XXXXXXBXDF03F5-J022'
+    print(s.strip()[:11])
 
 if __name__ == '__main__':
-    html = r'C:\Users\admin\Desktop\html1.html'
+    # html = r'C:\Users\admin\Desktop\html1.html'
     test22ss()
 
     # nested_json=open('cstest.json','r',encoding='utf8')

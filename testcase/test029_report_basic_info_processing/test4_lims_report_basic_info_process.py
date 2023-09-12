@@ -50,25 +50,31 @@ class ReportBasicInfoProcessing(MyTest):
         self.assertNotEqual(result3, 0, "按订单号查询无结果！！！")
 
     def test04_edit_sample_info(self):
-        """
-        测试新增报告任务，录入产品信息、写入报告上机/不上机样本，选择生信阴性对照、报告形式、报告归属、报告模板
-        """
-
+        """测试新增报告任务，录入产品信息、写入报告上机/不上机样本"""
         log.info('批量选择负责人、录入【写入报告的不上机样本】和【写入报告的上机样本】')
         self.rbip.edit_sample_info()
+    def test05_(self):
+        """测试选择生信阴性对照"""
         log.info('选择生信阴性对照')
         self.rbip.bioinformatic_negative()
+
+    def test06_(self):
+        """测试选择报告形式"""
         log.info('选择报告形式')
         self.rbip.choice_report_style()
+
+    def test07_(self):
+        """测试选择报告归属"""
         log.info('选择报告归属')
         self.rbip.choice_report_belongTo()
+
+    def test08_(self):
+        """测试选择报告模板"""
         log.info('选择报告模板')
         self.rbip.choice_report_TemplateName()
 
-    def test05_view_and_update_medical(self):
-        """
-        测试点击查看样本信息和修改病历
-        """
+    def test09_view_and_update_medical(self):
+        """测试点击查看样本信息和修改病历"""
         log.info('点击并查看样本信息')
         result1 = self.rbip.click_to_view()
         log.info('点击修改病历，打开并进入病历修改页面，获取页面title')
