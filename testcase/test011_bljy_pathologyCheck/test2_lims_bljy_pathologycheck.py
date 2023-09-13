@@ -23,11 +23,10 @@ class PathologyCheck(MyTest):
         log.info('病理待选表，选择HE病理类型')
         self.bljy.select_tasktype_sop(1)
         self.bljy.check_lims_num()
-        self.bljy.add_select_task_or_save()
-        result = self.bljy.findelement('xpath', '//*[contains(text(),"任务单保存成功")]')
+        info=self.bljy.add_select_task_or_save()
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("病理检验待选表添加HE病理任务")
-        self.assertIsNotNone(result)
+
+        self.assertEqual(info, "任务单保存成功", "保存样本到明细表失败！！")
 
     def test02_edit_HE_pathology_result(self):
         """

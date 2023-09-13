@@ -642,8 +642,13 @@ class SjSequecingPage(BasePage):
     # 华大上机明细表确认上机
     def hd_detail_confirm(self):
         """华大上机确认上机"""
-        self.clicks('css', hd_sequencingSchedule_confirm)
-        self.wait_loading()
+        try:
+            self.clicks('css', hd_sequencingSchedule_confirm)
+            self.wait_loading()
+        except TimeoutException as a:
+            log.error(a)
+            self.refresh()
+            self.clicks('css', after_concentration_adjustment_all_choice)  # 全选样本
 
     # 华大上机明细表生成samplesheet
     def hd_detail_create_samplesheet(self):

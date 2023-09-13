@@ -245,7 +245,7 @@ class PostcyclmixPage(BasePage):
         self.wait_loading()
         self.clicks('css', result_complete_task_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
+        Screenshot(self.driver).get_img("环化后混合明细表完成任务单")
         self.clicks('css', result_complete_task_confirm_btn)
         self.wait_loading()
         taskstatus = self.get_text('css', result_task_status)

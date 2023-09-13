@@ -6,6 +6,7 @@ import  datetime
 from PageElemens.pathologycheck_ele import *
 from common.editYaml import *
 from common.all_path import pathologycheck_file_path, functionpageURL_path
+from common.screenshot import Screenshot
 from common.xlsx_excel import get_lims_for_excel, read_excel_col
 from uitestframework.basepageTools import BasePage
 from common.logs import log
@@ -72,6 +73,9 @@ class WorkSheet(BasePage):
         self.clicks('css', all_chioce)
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
+        pageinfo = self.get_pageinfo()
+        Screenshot(self.driver).get_img("病理检验待选表添加HE病理任务")
+        return pageinfo
 
     def enter_result_list(self):
         """
