@@ -127,15 +127,18 @@ class ReportBasicInfoProcessingPage(BasePage):
         self.clicks('xpath', choice_bioinformatic_negative_lab_num)
         # 报告任务项-【选择生信阴信对照】弹框确认按钮
         self.clicks('xpath', choice_bioinformatic_negative_comfirm)
-
         self.wait_loading()
-
         self.sleep(1)
 
     def choice_report_style(self):
         """
         选择报告形式
         """
+        lens = self.search_by_order()  # 调用按订单号搜索方法
+        print(lens)
+        self.sleep(0.5)
+        self.click_by_js('css', add_report_task)  # 添加报告任务
+        self.wait_loading()
         log.info("选择报告形式")
         self.clicks('css', report_style)  # 报告任务项-【报告形式】表单定位
         self.clicks('css', report_style_select)  # 报告任务项-【报告形式】表单下拉

@@ -6,6 +6,7 @@ import yaml
 from PageElemens.sampleProcessing_ele import *
 from common import editYaml
 from common.all_path import functionpageURL_path, sampledata_path
+from common.editYaml import read_yaml, save_yaml
 from common.screenshot import Screenshot
 from common.xlsx_excel import get_lims_for_excel, read_excel_col
 from data.sql_action.execute_sql_action import next_step_sql, ybcl_detail_sql
@@ -238,6 +239,14 @@ class SampleProcessingPage(BasePage):
         Screenshot(self.driver).get_img("样本处理明细表入库")
         self.clicks('css', storage_next)  # 入库弹框点击下一步按钮
         self.wait_loading()
+
+        # 获取一条写入报告的上机样本的实验室号
+        bioinformatic_negative = self.get_text('css', detail_labNub)
+        print('获取一条写入报告的上机样本的实验室号', bioinformatic_negative)
+        datas = read_yaml(sampledata_path)
+        datas["bioinformatic_negative_lab_num"] = bioinformatic_negative
+        save_yaml(sampledata_path, datas)
+
         self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=1890')
         self.sleep(0.5)
         samples_status = self.get_text('css', submit_status)
