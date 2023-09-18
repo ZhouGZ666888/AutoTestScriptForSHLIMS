@@ -4,6 +4,7 @@
 # @File    : 报告-基本信息处理模块页面方法封装
 from datetime import datetime
 from PageElemens.report_jbxxcl_ele import *
+from common.DataBaseConfig import executeSql
 from common.editYaml import *
 from common.all_path import sampledata_path, orderNub_path
 from common.screenshot import Screenshot
@@ -123,12 +124,11 @@ class ReportBasicInfoProcessingPage(BasePage):
         save_yaml(sampledata_path,datas)
         print("写入后的数据", datas)
 
-        # 报告任务项-【选择生信阴信对照】弹框样本列表，原始样本号
-        self.clicks('xpath', choice_bioinformatic_negative_lab_num)
-        # 报告任务项-【选择生信阴信对照】弹框确认按钮
-        self.clicks('xpath', choice_bioinformatic_negative_comfirm)
+        # 报告任务项-【选择生信阴信对照】弹框样本列表，勾选右侧样本第一条
+        self.clicks('css', choice_bioinformatic_negative_sample)
+        # 报告任务项-【选择生信阴信对照】弹框添加
+        self.clicks('css', choice_bioinformatic_negative_comfirm)
         self.wait_loading()
-        self.sleep(1)
 
     def choice_report_style(self):
         """
@@ -289,7 +289,7 @@ class ReportBasicInfoProcessingPage(BasePage):
         log.info("数据库取出样本处理结果表中的样本号和实验室号")
         # 读取存在临时文件中的样本处理结果表任务单号
         taskID_nub = read_yaml(sampledata_path)
-        sql_data = self.select_sql(ybcl_detail_sql2.format(taskID_nub['sampleprocessing_reportprocess_taskid']))
+        sql_data = executeSql.test_select_limsdb(ybcl_detail_sql2.format(taskID_nub['sampleprocessing_reportprocess_taskid']))
         laboratory_list = [(i['sample_main_lab_code']) for i in sql_data]
         print(laboratory_list)
 
@@ -305,17 +305,17 @@ class ReportBasicInfoProcessingPage(BasePage):
                     print(laboratorys)
                     self.sleep(0.5)
                     # 判断是否符合条件（内部血浆）
-                    if laboratorys[:2] == sample_type and laboratorys.strip()[:10] in laboratory_list and laboratorys\
-                            not in used_list:  #
+                    if laboratorys[:2] == sample_type  and laboratorys not in used_list and any(laboratorys.strip()[:10] in ele for ele in laboratory_list):  #
                         # 判定当前取值是否与上次一样，以此来判断是否下拉到底
                         print('发现样本，%s' % laboratorys)
                         self.click_by_js('css', lab_num.format(i + 1))
                         self.sleep(0.5)
+                        used_list.append(laboratorys)
                         scoll = False
                         break
                     elif laboratorys in used_list:  # 到底页后，判断是数据否已加入列表
                         scoll = False
-                    used_list.append(laboratorys)
+
                 self.executeJscript(
                     'document.querySelector(".dialog-report-sample .vxe-table--main-wrapper .vxe-table--body-wrapper.body--wrapper").scrollTop=50+550*{}'.format(
                         nubs))

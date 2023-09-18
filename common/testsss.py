@@ -551,13 +551,35 @@ def test111():
 
 
 def test22ss():
-    s='KA239A0007-XXXXXXBXDF03F5-J022'
-    print(s.strip()[:11])
+    used_list=[]
+    sample_type='PB'
+    taskID_nub = read_yaml(sampledata_path)
+    sql_data = executeSql.test_select_limsdb(ybcl_detail_sql2.format(taskID_nub['sampleprocessing_reportprocess_taskid']))
+    laboratory_list = [(i['sample_main_lab_code']) for i in sql_data]
+    print(laboratory_list)
+    laboratorys='PB239E0035-DF03DF03A83XDF03F1-J022'
+    # laboratory_list=['PB239E0035-DF03DF03A83XDF03F1-J022','BC239E0035-DF03DF03A83XDF03F1-J022']
+    # print(laboratorys[:2])
+    # print(laboratorys.strip()[:10])
+    if laboratorys[:2] == sample_type  and laboratorys not in used_list and any(laboratorys.strip()[:10] in ele for ele in laboratory_list):
+         # laboratorys.strip()[:10] in laboratory_list
+        print(laboratorys[:2])
+        print(laboratorys.strip()[:10])
+
+def check_partial_string(lst, sub_str):
+    return any(sub_str in ele for ele in lst)
+
 
 if __name__ == '__main__':
     # html = r'C:\Users\admin\Desktop\html1.html'
     test22ss()
-
+    # example usage
+    # lst = ['apple', 'banana', 'cherry']
+    # sub_str = 'app'
+    # print(check_partial_string(lst, sub_str))  # returns True
+    #
+    # sub_str = 'peach'
+    # print(check_partial_string(lst, sub_str))  # returns False
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)
     # nested_json.close()

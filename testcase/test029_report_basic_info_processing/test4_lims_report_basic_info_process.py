@@ -49,31 +49,32 @@ class ReportBasicInfoProcessing(MyTest):
         result3 = self.rbip.search_by_order()
         self.assertNotEqual(result3, 0, "按订单号查询无结果！！！")
 
-    # def test04_edit_sample_info(self):
-    #     """测试新增报告任务，录入产品信息、写入报告上机/不上机样本"""
-    #     log.info('批量选择负责人、录入【写入报告的不上机样本】和【写入报告的上机样本】')
-    #     self.rbip.edit_sample_info()
-    # def test05_(self):
-    #     """测试选择生信阴性对照"""
-    #     log.info('选择生信阴性对照')
-    #     self.rbip.bioinformatic_negative()
+    def test04_edit_sample_info(self):
+        """测试新增报告任务，录入产品信息、写入报告上机/不上机样本"""
+        log.info('批量选择负责人、录入【写入报告的不上机样本】和【写入报告的上机样本】')
+        self.rbip.edit_sample_info()
 
-    def test04_choice_report_style(self):
+    def test05_bioinformatic_negative(self):
+        """测试选择生信阴性对照"""
+        log.info('选择生信阴性对照')
+        self.rbip.bioinformatic_negative()
+
+    def test06_choice_report_style(self):
         """测试选择报告形式"""
         log.info('选择报告形式')
         self.rbip.choice_report_style()
 
-    def test05_choice_report_belongTo(self):
+    def test07_choice_report_belongTo(self):
         """测试选择报告归属"""
         log.info('选择报告归属')
         self.rbip.choice_report_belongTo()
 
-    def test06_(self):
+    def test08_choice_report_TemplateName(self):
         """测试选择报告模板"""
         log.info('选择报告模板')
         self.rbip.choice_report_TemplateName()
 
-    def test07_view_and_update_medical(self):
+    def test09_view_and_update_medical(self):
         """测试点击查看样本信息和修改病历"""
         log.info('点击并查看样本信息')
         result1 = self.rbip.click_to_view()
