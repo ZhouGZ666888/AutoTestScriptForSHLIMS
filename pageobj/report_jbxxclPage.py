@@ -117,7 +117,7 @@ class ReportBasicInfoProcessingPage(BasePage):
         self.wait_loading()
 
         # 获取一条写入报告的上机样本的实验室号
-        bioinformatic_negative = self.get_text('xpath', choice_bioinformatic_negative_lab_num)
+        bioinformatic_negative = self.get_text('css', choice_bioinformatic_negative_lab_num)
         print('获取一条写入报告的上机样本的实验室号', bioinformatic_negative)
         datas = read_yaml(sampledata_path)
         datas["bioinformatic_negative_lab_num"] = bioinformatic_negative

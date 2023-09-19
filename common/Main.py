@@ -37,7 +37,7 @@ class MyTest(unittest.TestCase):
         pass
 
     def initializes(self):
-        # self.lg.login_console(name='guanzhong.zhou')
+        self.lg.login_console(name='guanzhong.zhou')
         pass
 
     # 单个登录功能,接样审批切换用户时调用

@@ -569,10 +569,33 @@ def test22ss():
 def check_partial_string(lst, sub_str):
     return any(sub_str in ele for ele in lst)
 
+def test0919():
+    lims_nub = read_excel_col(sampleprocessing_file_path, 'lims号')
+    print(lims_nub[-1])
+    # 获取用做修改的样本项目号
+
+
+    # 获取修改后的样本项目号
+    projectIdafter = executeSql.test_select_limsdb(sampleProId.format(lims_nub[-1]))
+    projectids = [list(dct.values()) for dct in projectIdafter]
+    print(projectids)
+    projectIdList = executeSql.test_select_limsdb(project_id)
+    projectid = [i[item] for i in projectIdList for item in i]
+
+    # 获取修改后的样本项
+
+
+    for i in projectids:
+        if i[0] == projectid[1] and i[1] == '1':
+            print("修改样本项目信息成功")
+            return i[0], projectid[1]
+
+        else:
+            print("原样本信息已置为无效")
 
 if __name__ == '__main__':
     # html = r'C:\Users\admin\Desktop\html1.html'
-    test22ss()
+    test0919()
     # example usage
     # lst = ['apple', 'banana', 'cherry']
     # sub_str = 'app'

@@ -29,7 +29,7 @@ class SampleProInfoChange(MyTest):
         self.spic.add_task('lims号', search_by_lims_tab, search_by_lims)
 
         log.info('样本项目信息，修改导出的样本-项目信息模板，更新样本项目号')
-        self.spic.edit_download_info()
+        self.spic.edit_download_info(8)
 
         log.info('导入修改后样本-项目信息')
         pageinfo = self.spic.upload_sampleinfo()
@@ -44,7 +44,7 @@ class SampleProInfoChange(MyTest):
         self.spic.add_task('实验室号', search_by_labCode_tab, search_by_labCode)
 
         log.info('样本项目信息，修改导出的样本-项目信息模板，更新样本项目号')
-        self.spic.edit_download_info()
+        self.spic.edit_download_info(11)
 
         log.info('导入修改后样本-项目信息')
         pageinfo = self.spic.upload_sampleinfo()

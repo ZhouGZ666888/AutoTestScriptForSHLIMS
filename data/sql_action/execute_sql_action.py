@@ -200,7 +200,7 @@ sample_info_t t
 INNER JOIN sample_receive_item_t t2 ON (t.original_sample_id_lims = t2.sample_id_lims AND t.is_valid = '1') 
 INNER JOIN sample_info_t tp ON (t.previous_sample_id_lims = tp.sample_id_lims) LEFT JOIN sample_id_lab_v t3 ON 
 (t.previous_sample_id_lims = t3.sample_id_lims) LEFT JOIN bas_sample_type_t t4 ON (tp.sample_type = t4.sample_type_id) 
-WHERE t.is_valid = '1' AND t.current_step = '{}' AND t.workflow_status = '04' AND t.sample_status IS NULL """
+WHERE t.is_valid = '1' AND t.current_step = '{}' AND t.workflow_status = '04' AND t.sample_status IS NULL ORDER BY T.creation_date desc """
 
 # 通过系统检索出，F，T大类的样本，在流转表设置病理任务，否则无法设置,('C2012120800006','C2012120800003')分别代表F,T大类,且当前还没有设置过病理任务的
 lzb_get_sql2 = """SELECT DISTINCT t.previous_sample_id_lims AS sampleIdLims, t3.sample_id_lab AS sampleIdLab FROM 

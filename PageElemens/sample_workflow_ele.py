@@ -92,7 +92,7 @@ set_blrw_select_type = (
 
 # 下拉框中，选择选项比如【HE】
 set_blrw_select_type_value = (
-    '.el-select-dropdown .el-scrollbar .el-scrollbar__wrap .hover')
+    '//span[text()="HE"]')
 
 # 点击【保存修改】按钮
 set_blrw_save = (

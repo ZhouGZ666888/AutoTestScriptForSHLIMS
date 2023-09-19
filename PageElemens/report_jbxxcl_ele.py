@@ -89,8 +89,7 @@ choice_bioinformatic_negative_sample = '.el-dialog__body >div:nth-child(1) >div:
 choice_bioinformatic_negative_lab_num='.el-dialog__body >div:nth-child(1) >div:nth-child(2) .contrast-sample-left-table .vxe-table--main-wrapper tr:nth-child(1) td:nth-child(3)'
 
 # 报告任务项-【选择生信阴信对照】弹框确认按钮
-choice_bioinformatic_negative_comfirm = (
-    '.el-dialog .el-dialog__footer .qcResult-btn-confirm')
+choice_bioinformatic_negative_comfirm = '.el-dialog .el-dialog__footer .qcResult-btn-confirm'
 
 # 报告任务项-【报告形式】表单定位
 report_style = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportStyle div'
