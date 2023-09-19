@@ -117,7 +117,8 @@ postcyclmixSchedul_next_step="SELECT sample_id_lims, postcyclmix_name, 'DNB制�
 
 #DNB制备明细表更新分管数据
 dnbPremixItem_data="UPDATE exp_dnbpremix_item_t SET fragment_len=50,conversion_rate=5,postcyclmix_data_amt=10 " \
-                      "WHERE fragment_len is NULL and task_id='{}';"
+                      "WHERE fragment_len is NULL and task_id='{}';update exp_dnbpremix_item_t set label_type='01' " \
+                   "where task_id='{}';"
 
 # DNB制备中间表数据更新
 dnbPremixResults_mid_data="UPDATE exp_dnbpremix_result_t SET actual_molar_concentration=5," \

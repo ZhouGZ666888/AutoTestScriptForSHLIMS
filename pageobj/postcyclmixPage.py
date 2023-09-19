@@ -89,7 +89,6 @@ class PostcyclmixPage(BasePage):
         pageinfo = self.get_pageinfo()
         self.wait_loading()
         return pageinfo
-        # 样本分管成功
 
     # 批量数据
     def detail_batch_data(self):
@@ -110,7 +109,6 @@ class PostcyclmixPage(BasePage):
         self.clicks('css', detail_batch_data_btn_confirm)
         depositType = self.get_text('css', 'tr:nth-child(1) .postcyclmixSchedule-tableCol-depositType')
         return depositType
-        # 明细表生成产物
 
     def detail_generate_product(self):
         """明细表生成混合产物产物"""
