@@ -1,9 +1,9 @@
-application_num: XGSJ202204150759
-bioinformatic_negative_lab_num: PB239E0035-DF03DF03A83XDF03F1-J022
-datachange_extraction_taskId: HSTQ2023091500006
-datachange_url: http://172.16.18.69/lim#/ExperimentCenter/extraction-schedule?taskCode=HSTQ2023091500006&type=created
-extraction_taskId: ''
+application_num: XGSJ202309180993
+bioinformatic_negative_lab_num: BA239H0003-J022
+datachange_extraction_taskId: HSTQ2023091800002
+datachange_url: http://172.16.18.67/lim#/ExperimentCenter/extraction-schedule?taskCode=HSTQ2023091800002&type=created
+extraction_taskId: HSTQ2023091800002
 sample_outsend_task_id: YBWS2023021400165
-samplemsgnotice: GS2309130065
-sampleprocessing_reportprocess_taskid: YBCL2023091500003
-twentyonegene_lims: GS2309150036B001
+samplemsgnotice: GS2309130066
+sampleprocessing_reportprocess_taskid: YBCL2023091800001
+twentyonegene_lims: GS2309180004B001

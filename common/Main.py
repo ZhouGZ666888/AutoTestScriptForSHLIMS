@@ -50,8 +50,8 @@ class MyTest(unittest.TestCase):
         cls.driver.refresh()
         cls.basepage.wait_loading()
          # 调试用
-        # cls.driver.close()
-        # cls.driver.quit()
+        cls.driver.close()
+        cls.driver.quit()
 
 
 if __name__ == '__main__':
