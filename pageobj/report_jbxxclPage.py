@@ -126,7 +126,8 @@ class ReportBasicInfoProcessingPage(BasePage):
 
         # 报告任务项-【选择生信阴信对照】弹框样本列表，勾选右侧样本第一条
         self.clicks('css', choice_bioinformatic_negative_sample)
-        # 报告任务项-【选择生信阴信对照】弹框添加
+        self.sleep(0.5)
+        # 报告任务项-【选择生信阴信对照】弹框点击添加按钮
         self.clicks('css', choice_bioinformatic_negative_comfirm)
         self.wait_loading()
 
