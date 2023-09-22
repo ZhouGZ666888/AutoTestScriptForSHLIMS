@@ -53,7 +53,7 @@ report_belong_choice=(
 
 # 复审人表单定位
 rehearing_person = (
-    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr/td[15]/div/div/div')
+    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr/td[16]/div/div/div')
 
 # 复审人弹框文本录入
 rehearing_person_input = (
@@ -69,7 +69,7 @@ rehearing_person_comfirm = (
 
 # 报告文件编辑表单定位
 report_file_btn = (
-    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr[1]/td[17]/div/button')
+    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr[1]/td[19]/div/button')
 
 # 报告文件上传按钮
 report_upload_btn = (
@@ -89,7 +89,7 @@ report_upload_comfirm = (
 
 # 突变文件编辑表单定位
 mutation_file_btn = (
-    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr/td[18]/div/button')
+    '//*[@class="vxe-table--main-wrapper"]/descendant::tbody/tr/td[20]/div/button')
 
 # 突变文件上传按钮
 mutation_file_upload_btn = (

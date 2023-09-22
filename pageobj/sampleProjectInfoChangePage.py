@@ -13,9 +13,7 @@ import pandas as pd
 
 
 class SampleProInfoChangePage(BasePage):
-    """
-    样本项目信息修改模块页面功能封装
-    """
+    """样本项目信息修改模块页面功能封装"""
 
     # 打开指定页面
     def enter_function_page(self, url):
@@ -28,7 +26,7 @@ class SampleProInfoChangePage(BasePage):
         self.sleep(1)
 
     # 新增任务单
-    def add_task(self, search_by, index, search_by_tab, input_tab):
+    def add_task(self, search_by, search_by_tab, input_tab):
         """
         新建样本项目信息修改任务单
         """
@@ -50,7 +48,7 @@ class SampleProInfoChangePage(BasePage):
         # 点击选择待修改样本-按lims号检索tab页
         self.clicks('css', search_by_tab)
         # 选择待修改样本-按lims号检索文本录入框录入lims号
-        self.input('css', input_tab, lims_nub[index])
+        self.input('css', input_tab, lims_nub[-1])
         self.sleep(0.5)
         self.clicks('css', search_sample_comfirm)
         self.wait_loading()
@@ -64,7 +62,7 @@ class SampleProInfoChangePage(BasePage):
         Screenshot(self.driver).get_img("点击样本项目信息修改，点击导出样本-项目信息","导出样本信息成功")
         self.clicks('css', download_sampleInfo_comfirm)
 
-    def edit_download_info(self):
+    def edit_download_info(self,col):
         """
         编辑导出的样本-项目信息，修改项目号
         """
@@ -78,7 +76,7 @@ class SampleProInfoChangePage(BasePage):
         # 把符合条件的项目信息写入导出的样本项目信息修改文件
         data = pd.read_excel(filepath, engine='xlrd')
         print(projectid[1])
-        data.iloc[1, 8] = projectid[1]
+        data.iloc[1, col] = projectid[1]
         data.to_excel(filepath, header=True, index=False)
 
     def upload_sampleinfo(self):
@@ -121,7 +119,7 @@ class SampleProInfoChangePage(BasePage):
         projectid = [i[item] for i in projectIdList for item in i]
 
         # 获取修改后的样本项目号
-        projectIdafter = self.select_sql(sampleProId.format(lims_nub[4]))
+        projectIdafter = self.select_sql(sampleProId.format(lims_nub[-1]))
         projectids = [list(dct.values()) for dct in projectIdafter]
         print(projectids)
 

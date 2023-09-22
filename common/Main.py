@@ -37,7 +37,7 @@ class MyTest(unittest.TestCase):
         pass
 
     def initializes(self):
-        # self.lg.login_console(name='guoqi.dong')
+        self.lg.login_console(name='guanzhong.zhou')
         pass
 
     # 单个登录功能,接样审批切换用户时调用
@@ -50,8 +50,8 @@ class MyTest(unittest.TestCase):
         cls.driver.refresh()
         cls.basepage.wait_loading()
          # 调试用
-        # cls.driver.close()
-        # cls.driver.quit()
+        cls.driver.close()
+        cls.driver.quit()
 
 
 if __name__ == '__main__':

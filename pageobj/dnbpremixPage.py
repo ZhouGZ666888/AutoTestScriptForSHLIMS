@@ -91,12 +91,13 @@ class DnbpremixPage(BasePage):
         return pageinfo
         # 样本分管成功
 
-    # DNB制备明细表生成中间产物
+    # 明细表生成中间产物
     def detail_generate_product(self):
         """明细表生成中间产物"""
         # 更新分管数据文库长度值
         taskid = self.get_text('css', result_task_id)
-        executeSql.test_updateByParam(dnbPremixItem_data.format(re.findall(r'[A-Za-z0-9]+', taskid)[0]))
+        taskId=re.findall(r'[A-Za-z0-9]+', taskid)[0]
+        executeSql.test_updateByParam(dnbPremixItem_data.format(taskId,taskId))
         self.refresh()
 
         self.clicks('css', detail_all_choice)  # 全选样本
@@ -143,11 +144,8 @@ class DnbpremixPage(BasePage):
         """明细表自动计算"""
         log.info("DNB制备明细表明细表自动计算")
         self.clicks('css', detail_autoComplete_btn)
-
         pageinfo = self.get_pageinfo()
-
         self.wait_loading()
-
         return pageinfo
 
     # DNB制备明细表自动计算

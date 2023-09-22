@@ -117,7 +117,8 @@ postcyclmixSchedul_next_step="SELECT sample_id_lims, postcyclmix_name, 'DNB制�
 
 #DNB制备明细表更新分管数据
 dnbPremixItem_data="UPDATE exp_dnbpremix_item_t SET fragment_len=50,conversion_rate=5,postcyclmix_data_amt=10 " \
-                      "WHERE fragment_len is NULL and task_id='{}';"
+                      "WHERE fragment_len is NULL and task_id='{}';update exp_dnbpremix_item_t set label_type='01' " \
+                   "where task_id='{}';"
 
 # DNB制备中间表数据更新
 dnbPremixResults_mid_data="UPDATE exp_dnbpremix_result_t SET actual_molar_concentration=5," \
@@ -199,7 +200,7 @@ sample_info_t t
 INNER JOIN sample_receive_item_t t2 ON (t.original_sample_id_lims = t2.sample_id_lims AND t.is_valid = '1') 
 INNER JOIN sample_info_t tp ON (t.previous_sample_id_lims = tp.sample_id_lims) LEFT JOIN sample_id_lab_v t3 ON 
 (t.previous_sample_id_lims = t3.sample_id_lims) LEFT JOIN bas_sample_type_t t4 ON (tp.sample_type = t4.sample_type_id) 
-WHERE t.is_valid = '1' AND t.current_step = '{}' AND t.workflow_status = '04' AND t.sample_status IS NULL """
+WHERE t.is_valid = '1' AND t.current_step = '{}' AND t.workflow_status = '04' AND t.sample_status IS NULL ORDER BY T.creation_date desc """
 
 # 通过系统检索出，F，T大类的样本，在流转表设置病理任务，否则无法设置,('C2012120800006','C2012120800003')分别代表F,T大类,且当前还没有设置过病理任务的
 lzb_get_sql2 = """SELECT DISTINCT t.previous_sample_id_lims AS sampleIdLims, t3.sample_id_lab AS sampleIdLab FROM 

@@ -141,20 +141,15 @@ class SampleWorkflowPage(BasePage):
                 self.clicks('xpath', set_blrw_select_type)
                 self.sleep(2)
                 log.info("选择HE选项")
-                print(set_blrw_select_type_value)
-                get_ele = self.isElementExists('css', set_blrw_select_type_value)
-                if get_ele:
-                    print(get_ele)
-                    self.clicks('css', set_blrw_select_type_value)
+                if self.isElementExists('xpath', set_blrw_select_type_value):
+                    self.clicks('xpath', set_blrw_select_type_value)
                     self.sleep(2)
                     log.info("点击【保存修改】按钮")
                     self.clicks('xpath', set_blrw_save)
-                    self.sleep(0.5)
                     log.info("设置完成")
                     self.wait_loading()
                 else:
                     pass
-
             else:
                 print("元素不可见")
 
