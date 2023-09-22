@@ -60,7 +60,7 @@ class DnbpremixPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("DNB制备待选表 ")
+        Screenshot(self.driver).get_img("点击新建按钮，进入DNB制备待选表 ","进入待选表成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -289,7 +289,7 @@ class DnbpremixPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
-        Screenshot(self.driver).get_img("DNB制备明细表入库")
+        Screenshot(self.driver).get_img("DNB制备明细表点击入库按钮，在弹框中录入库位信息和盒位信息后点击下一步","样本入库成功")
 
         self.clicks('xpath', storage_next)
         self.wait_loading()

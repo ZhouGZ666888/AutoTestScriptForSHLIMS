@@ -65,7 +65,7 @@ class SampleKwgl(BasePage):
         self.sleep(2)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("库位管理，新增临时库")
+        Screenshot(self.driver).get_img("库位管理，点击新增临时库，录入库位信息后保存","新建库位成功")
 
         log.info('确认修改库位信息，完成修改')
         self.clicks('xpath', kwgl_list_add_ls_confirm)

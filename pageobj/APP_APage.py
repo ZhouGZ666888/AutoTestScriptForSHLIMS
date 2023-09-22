@@ -59,7 +59,7 @@ class APPAPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("APP-A待选表 ")
+        Screenshot(self.driver).get_img("点击新增按钮，进入APP-A待选表","进入待选表成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -167,7 +167,7 @@ class APPAPage(BasePage):
         self.clicks('css', detail_batch_paste_import_package_btn)
         self.findelement('css', detail_batch_paste_import_package_input).send_keys(Keys.CONTROL, 'v')
         self.sleep(0.5)
-        Screenshot(self.driver).get_img("APP-A明细表批量粘贴导入")
+        Screenshot(self.driver).get_img("点击APP-A明细表批量粘贴导入按钮，在弹框中录入导入信息，点击确认按钮","导入数据成功")
         self.clicks('css', detail_batch_paste_import_package_input_confirm)
         self.sleep(1)
 
@@ -230,7 +230,7 @@ class APPAPage(BasePage):
         self.clicks('css', result_batch_paste_import_package)
         self.findelement('css', result_batch_paste_import_package_input).send_keys(Keys.CONTROL, 'v')
         self.sleep(0.5)
-        Screenshot(self.driver).get_img("APP-A结果表批量粘贴导入")
+        Screenshot(self.driver).get_img("在APP-A结果表点击批量粘贴导入按钮，在弹框中录入导入的数据后，点击确认","导入数据成功")
         self.clicks('css', result_batch_paste_import_package_confirm)
         self.sleep(1)
 
@@ -312,7 +312,7 @@ class APPAPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
-        Screenshot(self.driver).get_img("APP-A明细表入库")
+        Screenshot(self.driver).get_img("APP-A明细表点击入库按钮，在入库弹框中选择样本盒、录入盒内位置后，点击下一步","样本入库成功")
 
         self.clicks('xpath', storage_next)
         self.wait_loading()
@@ -327,7 +327,7 @@ class APPAPage(BasePage):
         self.wait_loading()
         self.clicks('css', result_complete_task_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
+        Screenshot(self.driver).get_img("文库富集结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
         self.clicks('css', result_complete_task_confirm_btn)
         self.wait_loading()
         taskstatus = self.get_text('css', result_task_status)

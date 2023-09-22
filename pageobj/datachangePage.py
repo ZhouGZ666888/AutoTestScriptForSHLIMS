@@ -49,7 +49,7 @@ class DataChangePage(BasePage):
         self.wait_loading()
         self.sleep(0.5)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("搜索任务单号")
+        Screenshot(self.driver).get_img("在搜索框中，根据任务单号进行搜索","搜索结果为该任务单下对应任务")
 
         log.info("获取查询结果，任务单号及任务单状态")
         search_task_id = self.get_text('css', first_task_id)
@@ -79,7 +79,7 @@ class DataChangePage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("数据修改审核页面")
+        Screenshot(self.driver).get_img("点击待办任务页面，进入数据修改审核页面","进入数据修改待审核页")
 
         log.info('点击审核')
         self.clicks('css', complete_edit)
@@ -125,7 +125,7 @@ class DataChangePage(BasePage):
         self.wait_loading()
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("选择数据进行审核弹框")
+        Screenshot(self.driver).get_img("选择数据后点击发起审核按钮","弹出进行审核确认弹框")
 
         log.info('发起修改弹框，指定审核人下拉框')
         self.clicks('css', placeHolder_select_btn)

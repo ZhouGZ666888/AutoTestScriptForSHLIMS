@@ -59,7 +59,7 @@ class CycliPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("环化待选表 ")
+        Screenshot(self.driver).get_img("点击新建按钮，进入环化待选表","进入待选表成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -234,7 +234,7 @@ class CycliPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
-        Screenshot(self.driver).get_img("环化明细表入库")
+        Screenshot(self.driver).get_img("环化明细表点击入库按钮，在弹框中录入样本盒信息、盒内位置信息后点击下一步","样本入库成功")
 
         self.clicks('xpath', storage_next)
         self.wait_loading()
@@ -250,7 +250,7 @@ class CycliPage(BasePage):
         self.wait_loading()
         self.clicks('css', result_complete_task_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
+        Screenshot(self.driver).get_img("文库富集结果表点击完成任务单按钮","任务单完成，状态改为完成")
         self.clicks('css', result_complete_task_confirm_btn)
         self.wait_loading()
         taskstatus = self.get_text('css', result_task_status)

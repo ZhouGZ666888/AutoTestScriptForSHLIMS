@@ -7,7 +7,6 @@ import unittest
 from common.enter_tab import EnterTab
 from pageobj.kwglPage import *
 from pageobj.ybhykPage import SampleYbyk
-from common.logs import log
 from common.Main import MyTest
 
 

@@ -107,7 +107,7 @@ class LibconstructionPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
 
-        Screenshot(self.driver).get_img("文库构建待选表核对lims号功能，并保存任务单号")
+        Screenshot(self.driver).get_img("文库构建待选表点击核对lims号录入，并保存任务单号")
         pageInfo = self.get_pageinfo()
         self.wait_loading()
         # 判断子sop样本数据数否需要录入

@@ -6,7 +6,6 @@
 import unittest, time
 from common.enter_tab import EnterTab
 from pageobj.kwglPage import *
-from common.logs import log
 from common.Main import MyTest
 
 

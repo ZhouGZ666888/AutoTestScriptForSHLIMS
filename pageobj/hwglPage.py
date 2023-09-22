@@ -83,7 +83,7 @@ class SampleHwgl(BasePage):
         # 这里调用自定义截图方法
 
         self.clicks('xpath', hwgl_detail_box_add_confirm)
-        Screenshot(self.driver).get_img("盒位管理，新增样本盒")
+        Screenshot(self.driver).get_img("盒位管理，点击新增样本盒，录入样本盒信息后点击保存","新增样本盒成功")
         self.wait_loading()
         self.sleep(2)  # 等会一会，防止数据库还没写入，就去执行查询SQL了
 

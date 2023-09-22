@@ -54,7 +54,7 @@ class LimsOrder(MyTest):
         result = self.od.set_mian_order_number()
         self.od.save_add_order()
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("保存订单")
+        Screenshot(self.driver).get_img("订单详情页面，关联主订单号","关联主订单成功")
         self.assertIsNotNone(result)
 
 

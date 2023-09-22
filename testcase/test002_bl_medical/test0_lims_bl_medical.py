@@ -57,7 +57,7 @@ class LimsMedical(MyTest):
         log.info('保存病历')
         self.mp.save_medical()
         self.mp.wait_loading()
-        Screenshot(self.driver).get_img("保存病历")
+        Screenshot(self.driver).get_img("病历详情页面，录入病历信息后，点击保存按钮","保存病历成功")
         # 获取新建病历号
         result = self.driver.execute_script(
             'return document.getElementsByClassName("medicalDetail-formPatientInfo-patientId")[0].getElementsByClassName("el-input__inner")[0].value')

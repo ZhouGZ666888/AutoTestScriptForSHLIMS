@@ -39,7 +39,7 @@ class PathologyCheck(MyTest):
 
         self.bljy.submit_result(result_all_chioce, submit_success)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("HE病理任务结果表提交")
+        Screenshot(self.driver).get_img("HE病理任务表单录入完成后，点击提交按钮进行结果表提交","提交任务单成功，状态为完成")
 
         result = self.bljy.findelement('xpath', '//*[contains(text(),"保存成功")]')  # 提交任务单页面提示信息为“保存成功”
         self.assertIsNotNone(result)
@@ -57,7 +57,7 @@ class PathologyCheck(MyTest):
         # 调用自定义截图方法
 
         result = self.bljy.findelement('xpath', '//*[contains(text(),"任务单保存成功")]')
-        Screenshot(self.driver).get_img("病理检验待选表添加PD-L1(28-8)病理任务")
+        Screenshot(self.driver).get_img("病理检验待选表，把接样的病理样本添加进PD-L1(28-8)病理任务","添加样本成功")
         self.assertIsNotNone(result)
 
     def test04_edit_PD_L1_pathology_result(self):
@@ -72,7 +72,7 @@ class PathologyCheck(MyTest):
         # 调用自定义截图方法
 
         result = self.bljy.findelement('xpath', '//*[contains(text(),"任务提交成功")]')  # 提交任务单页面提示信息为“任务提交成功”
-        Screenshot(self.driver).get_img("PD-L1(28-8)病理任务结果表提交")
+        Screenshot(self.driver).get_img("PD-L1(28-8)病理任务表单录入完成后，点击提交按钮进行结果表提交","提交任务单成功，任务状态为完成")
         self.assertIsNotNone(result)
 
     def test5_search(self):

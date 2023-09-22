@@ -17,9 +17,7 @@ from common.logs import log
 
 
 class Genes21Page(BasePage):
-    """
-    21基因页面方法封装
-    """
+    """21基因页面方法封装"""
 
     # 打开指定页面
     def enter_function_page(self, url):
@@ -49,7 +47,7 @@ class Genes21Page(BasePage):
         """
         # 这里调用自定义截图方法
         self.sleep(1)
-        Screenshot(self.driver).get_img("21基因任务列表")
+        Screenshot(self.driver).get_img("点击左侧导航栏，进入21基因任务模块","进入21基因模块成功，展示数据列表")
 
         log.info("21基因首页，点击新建按钮，进入样本待选表，新增21基因任务")
         self.clicks('css', add_task)
@@ -84,7 +82,7 @@ class Genes21Page(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因待选表选择样本")
+        Screenshot(self.driver).get_img("点击新建按钮，进入21基因待选表，选择样本","进入待选表勾选样本后保存成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -173,7 +171,7 @@ class Genes21Page(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因明细表提交")
+        Screenshot(self.driver).get_img("21基因明细表点击提交按钮","弹出提交确认提示框")
         self.clicks('css', detail_submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
         self.sleep(1)
@@ -209,7 +207,7 @@ class Genes21Page(BasePage):
                 self.switch_to_window(handle)
         # 这里调用自定义截图方法
         self.sleep(3)
-        Screenshot(self.driver).get_img("进入21基因分析结果表")
+        Screenshot(self.driver).get_img("点击进入21基因分析结果表按钮","进入结果表成功")
         log.info("---21基因分析任务信息页面，录入详情数据---")
         log.info("21基因分析任务信息页面，录入算法版本")
 
@@ -257,7 +255,7 @@ class Genes21Page(BasePage):
         self.clicks('css', twentyonegene_analysis_complete)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因分析结果表,完成操作")
+        Screenshot(self.driver).get_img("21基因分析结果表,点击完成按钮","分析结果表完成操作")
 
         self.wait_loading()
         self.sleep(0.5)
@@ -289,7 +287,7 @@ class Genes21Page(BasePage):
         self.clicks('css', result_submit)
         self.sleep(1)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因结果表,提交任务单")
+        Screenshot(self.driver).get_img("21基因结果表,点击提交任务单","弹出提交确认弹框")
         self.clicks('css', result_submit_comfirm)
         self.wait_loading()
         self.sleep(0.5)
@@ -302,7 +300,7 @@ class Genes21Page(BasePage):
         self.clicks('css', result_complete_task_btn)
         self.wait_loading()
         self.sleep(1)
-        Screenshot(self.driver).get_img("21基因结果表,完成任务单")
+        Screenshot(self.driver).get_img("21基因结果表,点击完成任务单","任务单完成，状态改为完成")
         taskstatus = self.get_text('css', detail_task_status)
         return taskstatus[6:].strip()
 
