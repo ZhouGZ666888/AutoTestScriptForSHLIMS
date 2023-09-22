@@ -83,65 +83,52 @@ choice_bioinformatic_negative = (
     '.el-card__body div.sample_receive_detail:nth-child(1) .reportBaseInfoProcessing-table tr:nth-child(1) td.reportBaseInfoProcessing-tableCol-sampleIdLabCode')
 
 # 报告任务项-【选择生信阴信对照】弹框样本列表，原始样本号
-choice_bioinformatic_negative_lab_num = (
-    '//*[@class="el-dialog__wrapper dialog-contrast-sample"]/descendant::tbody/tr[1]/td[2]')
+choice_bioinformatic_negative_sample = '.el-dialog__body >div:nth-child(1) >div:nth-child(2) .contrast-sample-left-table .vxe-table--main-wrapper tr:nth-child(1) .vxe-radio--unchecked-icon'
+
+# 报告任务项-【选择生信阴信对照】弹框样本列表，原始样本号
+choice_bioinformatic_negative_lab_num='.el-dialog__body >div:nth-child(1) >div:nth-child(2) .contrast-sample-left-table .vxe-table--main-wrapper tr:nth-child(1) td:nth-child(3)'
 
 # 报告任务项-【选择生信阴信对照】弹框确认按钮
-choice_bioinformatic_negative_comfirm = (
-    '//*[@class="el-dialog__wrapper dialog-contrast-sample"]/descendant::button[child::span[text()="确 定"]]')
+choice_bioinformatic_negative_comfirm = '.dialog-contrast-sample .el-dialog__footer .qcResult-btn-confirm'
 
 # 报告任务项-【报告形式】表单定位
-report_style = (
-    '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportStyle div')
+report_style = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportStyle div'
 
 # 报告任务项-【报告形式】表单下拉
-report_style_select = (
-    '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportStyle input')
+report_style_select = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportStyle input'
 
 # 报告任务项-【报告形式】表单下拉选项
-report_style_choice = (
-    '//*[@class="el-select-dropdown el-popper"]/descendant::li[child::span[text()="正常"]]')
+report_style_choice = '//*[@class="el-select-dropdown el-popper"]/descendant::li[child::span[text()="正常"]]'
 
 # 报告任务项-【报告归属】表单定位
-report_belongTo = (
-    '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-belongTo div')
+report_belongTo = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-belongTo div'
 
 # 报告任务项-【报告归属】表单下拉
-report_belongTo_select = (
-    '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-belongTo input')
+report_belongTo_select = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-belongTo input'
 
 # 报告任务项-【报告归属】表单下拉选项
-report_belongTo_choice = (
-    '//*[@class="el-select-dropdown el-popper"]/descendant::li[child::span[text()="世和"]]')
+report_belongTo_choice = '//*[@class="el-select-dropdown el-popper"]/descendant::li[child::span[text()="世和"]]'
 
 # 报告任务项-【报告模板】表单定位
-report_TemplateName = (
-    '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportTemplateName div')
+report_TemplateName = '.el-card__body div:nth-child(1).sample_receive_detail .reportBaseInfoProcessing-tableCol-reportTemplateName div'
 
 # 报告任务项-【报告模板】弹框，搜索文本录入框
-report_TemplateName_input = (
-    '.report-template-dialog .el-dialog__body .filter-container input')
+report_TemplateName_input ='.report-template-dialog .el-dialog__body .filter-container input'
 
 # 报告任务项-【报告模板】弹框,搜索按钮
-report_TemplateName_search_btn = (
-    '.report-template-dialog .el-dialog__body .baseClass-btn-search')
+report_TemplateName_search_btn = '.report-template-dialog .el-dialog__body .baseClass-btn-search'
 
 # 报告任务项-【报告模板】弹框搜索结果选择，第一条
-report_TemplateName_choice = (
-    '.report-template-table .el-table__body-wrapper tbody tr:nth-child(1)')
+report_TemplateName_choice ='.report-template-table .el-table__body-wrapper tbody tr:nth-child(1)'
 
 # 报告任务项-【报告模板】弹框,确认按钮
-report_TemplateName_search_comfirm = (
-    '.report-template-dialog .el-dialog__footer .el-button--primary')
+report_TemplateName_search_comfirm = '.report-template-dialog .el-dialog__footer .el-button--primary'
 
 # 点击查看按钮
-click_view = (
-    '//*[@class="first_line"]/descendant::div/descendant::a[text()="点击查看"]')
+click_view = '//*[@class="first_line"]/descendant::div/descendant::a[text()="点击查看"]'
 # 点击查看，样本信息列表数
-sample_info = (
-    '//*[@class="el-dialog__wrapper dialog-sample-info"]/descendant::tbody/tr')
+sample_info = '//*[@class="el-dialog__wrapper dialog-sample-info"]/descendant::tbody/tr'
 
 # 点击查看，样本信息弹框确认
-click_view_comfirm = (
-    '.dialog-sample-info .el-dialog__footer .baseClass-btn-confirm')
+click_view_comfirm = '.dialog-sample-info .el-dialog__footer .baseClass-btn-confirm'
 # ***********************************************************************

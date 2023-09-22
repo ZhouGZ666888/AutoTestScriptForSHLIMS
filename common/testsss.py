@@ -551,13 +551,58 @@ def test111():
 
 
 def test22ss():
-    delete_excel_data(sr_sample_imp_file)
-    delete_excel_data(sr_sample_sublibrary_imp_file)
+    used_list=[]
+    sample_type='PB'
+    taskID_nub = read_yaml(sampledata_path)
+    sql_data = executeSql.test_select_limsdb(ybcl_detail_sql2.format(taskID_nub['sampleprocessing_reportprocess_taskid']))
+    laboratory_list = [(i['sample_main_lab_code']) for i in sql_data]
+    print(laboratory_list)
+    laboratorys='PB239E0035-DF03DF03A83XDF03F1-J022'
+    # laboratory_list=['PB239E0035-DF03DF03A83XDF03F1-J022','BC239E0035-DF03DF03A83XDF03F1-J022']
+    # print(laboratorys[:2])
+    # print(laboratorys.strip()[:10])
+    if laboratorys[:2] == sample_type  and laboratorys not in used_list and any(laboratorys.strip()[:10] in ele for ele in laboratory_list):
+         # laboratorys.strip()[:10] in laboratory_list
+        print(laboratorys[:2])
+        print(laboratorys.strip()[:10])
+
+def check_partial_string(lst, sub_str):
+    return any(sub_str in ele for ele in lst)
+
+def test0919():
+    lims_nub = read_excel_col(sampleprocessing_file_path, 'lims号')
+    print(lims_nub[-1])
+    # 获取用做修改的样本项目号
+
+
+    # 获取修改后的样本项目号
+    projectIdafter = executeSql.test_select_limsdb(sampleProId.format(lims_nub[-1]))
+    projectids = [list(dct.values()) for dct in projectIdafter]
+    print(projectids)
+    projectIdList = executeSql.test_select_limsdb(project_id)
+    projectid = [i[item] for i in projectIdList for item in i]
+
+    # 获取修改后的样本项
+
+
+    for i in projectids:
+        if i[0] == projectid[1] and i[1] == '1':
+            print("修改样本项目信息成功")
+            return i[0], projectid[1]
+
+        else:
+            print("原样本信息已置为无效")
 
 if __name__ == '__main__':
-    html = r'C:\Users\admin\Desktop\html1.html'
-    test22ss()
-
+    # html = r'C:\Users\admin\Desktop\html1.html'
+    test0919()
+    # example usage
+    # lst = ['apple', 'banana', 'cherry']
+    # sub_str = 'app'
+    # print(check_partial_string(lst, sub_str))  # returns True
+    #
+    # sub_str = 'peach'
+    # print(check_partial_string(lst, sub_str))  # returns False
     # nested_json=open('cstest.json','r',encoding='utf8')
     # data = json.load(nested_json)
     # nested_json.close()

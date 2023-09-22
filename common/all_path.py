@@ -36,7 +36,9 @@ conffile_path = os.path.join(os.path.join(dir_name, "data"))
 excel_doc_file_path = os.path.join(os.path.join(dir_name, "data"), 'download_file')
 
 # ===========================sql执行数据================================
-report_views_refresh_sql = os.path.join(os.path.join(dir_name, "data"), 'report_view_refresh.txt')  # 配置文件路径
+report_views_refresh_sql = os.path.join(os.path.join(os.path.join(dir_name, "data"),'sql_action'), 'report_view_refresh.txt')
+#
+# 配置文件路径
 # 批量粘贴盒内位置导入文件
 position_in_box_path = os.path.join(os.path.join(os.path.join(dir_name, "data"), 'excel_doc'),
                                     'position_in_box_lims.xlsx')

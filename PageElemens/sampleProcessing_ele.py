@@ -172,6 +172,8 @@ storage_all_choice = (
 storage_next = (
     '.dialog-check-storage .dialog-footer .baseClass-btn-next')
 
+detail_labNub='.vxe-table--fixed-left-wrapper table tbody tr:nth-child(1) td:nth-child(4)'
+
 # 提交状态文本
 submit_status = (
     '.createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(16)')
