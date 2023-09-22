@@ -31,6 +31,7 @@ class SrSampleInfoImp(BasePage):
         # 点击上传按钮
         self.clicks('css', sr_sample_imp_upload)  # 点击上传
 
+        Screenshot(self.driver).get_img("点击sr信息导入按钮，上传SR信息","上传成功")
     def sr_sample_childrenImport(self):
         """
         外部样本信息登记详情页，上传子文库信息，选择sr样本
@@ -50,6 +51,7 @@ class SrSampleInfoImp(BasePage):
         self.clicks('css', sr_sample_imp_upload)  # 点击上传
         self.wait_loading()
 
+        Screenshot(self.driver).get_img("点击上传子文库信息按钮，上传子文库", "上传成功")
 
     def match_lims(self):
         """一键匹配LIMS号"""

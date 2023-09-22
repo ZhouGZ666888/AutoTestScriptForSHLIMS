@@ -234,7 +234,7 @@ class SjSequecingPage(BasePage):
             log.error(a)
             self.refresh()
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("浓度调整前明细表生成结果操作 ")
+        Screenshot(self.driver).get_img("浓度调整前明细表点击生成结果","生成结果成功")
         self.sleep(0.5)
 
     # 浓度调整前明细表提交
@@ -248,7 +248,7 @@ class SjSequecingPage(BasePage):
         self.clicks('css', before_concentration_adjustment_submit)  # 提交按钮
         self.sleep(0.5)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("浓度调整前明细表提交操作 ")
+        Screenshot(self.driver).get_img("浓度调整前明细表点击提交按钮","弹出提交确认按钮")
         self.clicks('css', before_concentration_adjustment_submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
         self.sleep(1)
@@ -312,7 +312,7 @@ class SjSequecingPage(BasePage):
         self.sleep(1)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("浓度调整前明细表入库操作 ")
+        Screenshot(self.driver).get_img("浓度调整前明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -382,7 +382,7 @@ class SjSequecingPage(BasePage):
         try:
             self.wait_loading()
             # 调用自定义截图方法
-            Screenshot(self.driver).get_img("浓度调整后明细表确认上机 ")
+            Screenshot(self.driver).get_img("浓度调整后明细表点击确认上机","确认上机成功")
         except Exception as a:
             log.error(a)
             self.refresh()
@@ -420,7 +420,7 @@ class SjSequecingPage(BasePage):
         self.clicks('css', after_concentration_adjustment_submit)
         self.sleep(0.5)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("浓度调整后明细表 提交 ")
+        Screenshot(self.driver).get_img("浓度调整后明细表点击提交按钮","弹出提交确认按钮")
         self.clicks('css', after_concentration_adjustment_submit_comfirm)
         self.wait_loading()
         self.sleep(1)
@@ -484,7 +484,7 @@ class SjSequecingPage(BasePage):
         self.sleep(1)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("浓度调整后明细表入库 ")
+        Screenshot(self.driver).get_img("浓度调整后明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -520,7 +520,7 @@ class SjSequecingPage(BasePage):
         try:
             self.wait_loading()
             # 调用自定义截图方法
-            Screenshot(self.driver).get_img("上机结果表完成任务单 ")
+            Screenshot(self.driver).get_img("上机结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
         except Exception as a:
             log.error(a)
             self.refresh()

@@ -242,7 +242,7 @@ class SampleWorkflowPage(BasePage):
             self.sleep(0.5)
 
             # 这里调用自定义截图方法
-            Screenshot(self.driver).get_img("在流转表对数据，出库")
+            Screenshot(self.driver).get_img("搜索样本，勾选接样节点的样本，点击出库按钮，录入出库信息，点击出库","流转表样本出库成功")
 
             log.info("全选样本")
             self.clicks('xpath', sample_ck_allcheckbox)

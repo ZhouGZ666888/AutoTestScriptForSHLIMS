@@ -33,7 +33,7 @@ class GetSampleCK(BasePage):
             self.sleep(0.5)
 
             # 这里调用自定义截图方法
-            Screenshot(self.driver).get_img("样本出库根据lims号搜索")
+            Screenshot(self.driver).get_img("样本出库列表，点击搜索按钮，根据lims号搜索","搜索样本信息成功")
 
             log.info("输入指定样本号")
             self.input('xpath', sample_ck_search_value, getSampleLimsId[0]['sample_id_lims'])
@@ -101,7 +101,7 @@ class GetSampleCK(BasePage):
             self.sleep(0.5)
 
             # 这里调用自定义截图方法
-            Screenshot(self.driver).get_img("样本出库信息录入")
+            Screenshot(self.driver).get_img("在样本出库信息弹框中录入出库信息","录入信息成功")
 
             log.info("点击保存全部，下一步按钮")
             self.clicks('xpath', sampleReceive_save_next_button)
@@ -116,7 +116,7 @@ class GetSampleCK(BasePage):
             log.info("点击确定按钮，出库成功")
             self.clicks('xpath', sample_ck_reason_confirm)
             self.wait_loading()
-
+            Screenshot(self.driver).get_img("出库弹框点击出库按钮", "出库成功")
             # 获取所有窗口句柄
             all_handles = self.get_all_windows()
             for handle in all_handles:

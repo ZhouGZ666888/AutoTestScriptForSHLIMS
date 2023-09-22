@@ -82,7 +82,7 @@ class MassspectrPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
 
-        Screenshot(self.driver).get_img("质谱仪上机待选表核对lims号功能，并保存任务单号")
+        Screenshot(self.driver).get_img("质谱仪上机待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         pageInfo = self.get_pageinfo()
         self.sleep(1)
         log.info('选中核对后的样本，进入明细表')
@@ -168,7 +168,7 @@ class MassspectrPage(BasePage):
             "document.querySelector('.dialog-csv-import .el-dialog__body input').style.setProperty('display','block','important');")
         self.sleep(1)
         self.input('css', upload_sampleInfo_btn, filepath)
-        Screenshot(self.driver).get_img("导入已编辑的样本列表Excel文件")
+        Screenshot(self.driver).get_img("明细表点击导入按钮，导入已编辑的样本列表Excel文件","导入文件成功")
         self.sleep(1)
         self.click_by_js('css', import_confirm_btn)
         self.sleep(1)
@@ -197,7 +197,7 @@ class MassspectrPage(BasePage):
         self.sleep(1)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("质谱仪上机明细表提交")
+        Screenshot(self.driver).get_img("质谱仪上机明细表点击提交按钮","弹出提交确认按钮")
         self.clicks('css', submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
 
@@ -252,7 +252,7 @@ class MassspectrPage(BasePage):
             self.sleep(1)
             self.clicks('css', batch_copy_BoxPosition_comfirm)
             self.sleep(0.5)
-            Screenshot(self.driver).get_img("质谱仪上机明细表入库")
+            Screenshot(self.driver).get_img("质谱仪上机明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
             self.clicks('css', storage_next)
             self.wait_loading()

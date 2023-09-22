@@ -9,9 +9,7 @@ from common.logs import log
 
 
 class SampleYbyk(BasePage):
-    """
-    列表页，详情页的动作封装
-    """
+    """列表页，详情页的动作封装"""
 
     def ybhyk_change_role(self, userid, role_id, vaild):
         """
@@ -97,7 +95,7 @@ class SampleYbyk(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("新建样本移库任务")
+        Screenshot(self.driver).get_img("点击新建按钮，选择样本移库任务，选择样本库-库外到临时库","新建任务成功，跳转到任务详情页")
 
         log.info("点击确定")
         self.clicks('xpath', ybhyk_list_select_confirm)
@@ -156,7 +154,7 @@ class SampleYbyk(BasePage):
             self.wait_loading()
 
             # 这里调用自定义截图方法
-            Screenshot(self.driver).get_img("样本移库选择库位")
+            Screenshot(self.driver).get_img("样本移库详情页，点击选择库位按钮，选择要移的库位添加到明细表","添加库位信息成功")
 
             log.info("弹框中，输入指定的库位信息：{}".format(storage_name))
             self.clicks('xpath', ybhyk_detail_list_select_storage_value)
@@ -317,6 +315,6 @@ class SampleYbyk(BasePage):
 
 if __name__ == '__main__':
     test = SampleYbyk(BasePage)
-    s=test.ybyk_select_lsk_sample()
+    s = test.ybyk_select_lsk_sample()
     # test.ybhyk_change_role('2535','2001','0')
     print(s)

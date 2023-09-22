@@ -26,7 +26,7 @@ class PathologyCheck(MyTest):
         self.bljy.add_select_task_or_save()
         result = self.bljy.findelement('xpath', '//*[contains(text(),"任务单保存成功")]')
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("病理检验待选表添加HE病理任务")
+        Screenshot(self.driver).get_img("病理检验待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         self.assertIsNotNone(result)
 
     def test02_edit_HE_pathology_result(self):
