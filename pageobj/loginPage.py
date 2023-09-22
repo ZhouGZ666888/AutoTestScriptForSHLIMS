@@ -48,6 +48,7 @@ class LoginPage(BasePage):
         js = "arguments[0].value=''"
         self.executeJscript(js, username_input)
 
+
     def clear_password_by_js(self):
         """清空用户名输入框方法"""
 

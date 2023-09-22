@@ -79,7 +79,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取待选表")
+        Screenshot(self.driver).get_img("核酸提取待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -155,7 +155,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', aliquot_sample)  # 点击分管按钮
         self.sleep(0.5)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表分管")
+        Screenshot(self.driver).get_img("核酸提取明细表点击分管按钮，进行分管操作","分管成功")
 
         self.clicks('css', aliquot_sample_all_choice)  # 分管弹框全选按钮
         self.sleep(0.5)
@@ -271,7 +271,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.wait_loading()
         self.sleep(1)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表提交")
+        Screenshot(self.driver).get_img("核酸提取明细表点击提交按钮","弹出提交确认按钮")
 
     # 明细表入库
     def detail_into_storage(self):
@@ -329,7 +329,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.sleep(0.5)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表入库")
+        Screenshot(self.driver).get_img("核酸提取明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -420,7 +420,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', result_submit)  # 提交按钮
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取结果表提交")
+        Screenshot(self.driver).get_img("核酸提取结果表点击提交按钮","弹出提交确认按钮")
 
         self.wait_loading()
         self.sleep(0.5)
@@ -486,7 +486,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.sleep(3)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取结果表完成任务单")
+        Screenshot(self.driver).get_img("核酸提取结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
 
         taskstatus = self.get_text('css', task_status)
         print(taskstatus)

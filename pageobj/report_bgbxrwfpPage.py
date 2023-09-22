@@ -88,7 +88,7 @@ class ReportWritingTaskAssignmentPage(BasePage):
         self.clicks('css', select_writer_bulk_choice)  # 编写人选择
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("报告编写任务分配,批量选择编写人")
+        Screenshot(self.driver).get_img("报告编写任务分配页面,勾选报告任务，切换到批量选择编写人，选择编写人","选择编写人成功，对应表单填充所选编写人")
 
         pageinfo = self.get_pageinfo()  # 获取页面提示信息
         self.wait_loading()
@@ -105,7 +105,7 @@ class ReportWritingTaskAssignmentPage(BasePage):
         self.clicks('css', all_choice)  # 全选按钮
         self.clicks('css', batch_selection_examiner_choice)  # 审核人选择
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("报告编写任务分配,批量选择初审人")
+        Screenshot(self.driver).get_img("报告编写任务分配页面,勾选报告任务，切换到批量选择审核人，选择审核人","选择审核人成功，对应表单填充所选审核人")
         pageinfo = self.get_pageinfo()  # 获取页面提示信息
         self.wait_loading()
         self.sleep(0.5)

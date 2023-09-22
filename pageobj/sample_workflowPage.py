@@ -36,7 +36,7 @@ class SampleWorkflowPage(BasePage):
         self.input('xpath', workflow_samplesearch_sample_value, sample_lims_id)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("流转表根据lims号进行搜索")
+        Screenshot(self.driver).get_img("点击流转表检索弹框，在lims号文本框中录入样本lims好，点击搜索","根据样本lims号检索出结果")
 
         self.sleep(0.5)
         log.info("点击确定按钮")

@@ -171,7 +171,7 @@ class LibraryQuantificationPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库定量待选表")
+        Screenshot(self.driver).get_img("文库定量待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         pageinfo = self.get_pageinfo()
         self.wait_loading()
         # 判断子sop样本数据数否需要录入
@@ -412,7 +412,7 @@ class LibraryQuantificationPage(BasePage):
             self.clicks('css', create_result)
 
             # 调用自定义截图方法
-            Screenshot(self.driver).get_img("文库定量明细表生成结果")
+            Screenshot(self.driver).get_img("文库定量明细表点击生成结果按钮","生成结果成功")
 
             self.wait_loading()
 
@@ -481,7 +481,7 @@ class LibraryQuantificationPage(BasePage):
         self.clicks('css', detail_submit)  # 提交按钮
         self.sleep(0.5)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库定量明细表提交")
+        Screenshot(self.driver).get_img("文库定量明细表点击提交按钮","弹出提交确认按钮")
 
         self.clicks('css', detail_submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
@@ -539,7 +539,7 @@ class LibraryQuantificationPage(BasePage):
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库定量明细表入库 ")
+        Screenshot(self.driver).get_img("文库定量明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -757,7 +757,7 @@ class LibraryQuantificationPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库定量结果表提交 ")
+        Screenshot(self.driver).get_img("文库定量结果表结果表点击提交按钮","弹出提交确认按钮")
 
         self.clicks('css', result_submit_comfirm)  # 提交确认按钮
         pageinfo = self.get_pageinfo()
@@ -791,7 +791,7 @@ class LibraryQuantificationPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库定量结果表完成任务单 ")
+        Screenshot(self.driver).get_img("文库定量点击完成任务单按钮","完成任务单成功，状态改为完成")
 
         self.sleep(0.5)
 

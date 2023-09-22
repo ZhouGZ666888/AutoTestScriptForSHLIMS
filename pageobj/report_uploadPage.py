@@ -2,7 +2,7 @@
 # @Time    : 2021/12/31
 # @Author  : guanzhong.zhou
 # @File    : 报告上传模块页面方法封装
-import os
+
 from datetime import datetime
 import openpyxl
 from PageElemens.report_upload_ele import *
@@ -145,7 +145,7 @@ class ReportUploadPage(BasePage):
         report_file_path = os.path.abspath(excel_doc_file_path + '/' + '{}.xlsx'.format(file_name))
         self.input('css', report_upload_btn, report_file_path)  # 用send_keys方法上传文件
         report_info = self.get_save_info()
-        Screenshot(self.driver).get_img("报告上传，上传报告文件")
+        Screenshot(self.driver).get_img("报告上传弹框，点击上传报告文件，上传报告文件","上传报告文件成功")
         self.sleep(1)
         return report_info
 
@@ -161,7 +161,7 @@ class ReportUploadPage(BasePage):
         decode_file_path = os.path.abspath(excel_doc_file_path + '/' + '{}_解读文件.txt'.format(file_name))
         self.input('css', decode_upload_btn, decode_file_path)  # 用send_keys方法上传文件
         decode_info = self.get_save_info()
-        Screenshot(self.driver).get_img("报告上传，上传解读文件")
+        Screenshot(self.driver).get_img("报告上传弹框，点击上传解读文件，上传解读文件","上传解读文件成功")
         self.sleep(1)
         return decode_info
         # 这里调用自定义截图方法
@@ -178,7 +178,7 @@ class ReportUploadPage(BasePage):
         self.input('css', other_upload_btn, other_file_path)  # 用send_keys方法上传文件
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("报告上传，上传其他文件")
+        Screenshot(self.driver).get_img("报告上传弹框，点击上传其他文件，上传其他文件","上传其他文件成功")
         self.sleep(1)
 
         self.clicks('css', report_upload_comfirm)  # 上传文件弹框确认按钮
@@ -209,7 +209,7 @@ class ReportUploadPage(BasePage):
 
         self.sleep(1)
         mutation_file_info = self.get_save_info()
-        Screenshot(self.driver).get_img("报告上传，突变文件上传")
+        Screenshot(self.driver).get_img("点击上传突变文件按钮，上传突变文件，上传突变文件","上传突变文件成功")
         self.clicks('css', mutation_file_upload_comfirm)
         self.sleep(1)
         print("突变文件上传", mutation_file_info)

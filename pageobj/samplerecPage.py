@@ -43,7 +43,7 @@ class SampleReceivePage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本接收，根据lims号搜素")
+        Screenshot(self.driver).get_img("样本接收列表，点击搜索按钮，根据lims号搜索","搜索出订单号")
 
         self.clicks('xpath', chioce_result)
         self.sleep(0.5)
@@ -204,7 +204,7 @@ class SampleReceivePage(BasePage):
         self.wait_loading()
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本样本接收，保存新增样本")
+        Screenshot(self.driver).get_img("样本接收详情页，点击新增样本，点击保存新增样本","保存新增样本成功")
 
     def generate_laboratory_process(self):
         """
@@ -259,7 +259,7 @@ class SampleReceivePage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本接收，点击生成实验流程")
+        Screenshot(self.driver).get_img("样本接收，录入样本类型后，勾选样本，点击生成实验流程按钮","打开实验流程配置弹框")
 
         lists = self.findelements('xpath', template_sample_all)  # 实验流程弹框中，全部样本数量
 
@@ -478,7 +478,7 @@ class SampleReceivePage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本接收，审核页面")
+        Screenshot(self.driver).get_img("样本接收，勾选待审核样本，点击批量完成审核，录入审核信息后点击确认","审核样本成功")
 
         # 弹出框录入用户密码
         self.input('xpath', password_inpt, 1)

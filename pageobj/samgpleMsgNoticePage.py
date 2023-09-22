@@ -63,7 +63,7 @@ class SampleMsgNoticePage(BasePage):
         self.input('css', notice_info_input, '测试通知消息')
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本消息通知，新建样本通知消息任务")
+        Screenshot(self.driver).get_img("样本消息通知，点击新建按钮，新建样本通知消息任务","打开新建消息通知弹框成功")
 
         self.clicks('css', comfirm_send_btn)
         self.wait_loading()
@@ -108,7 +108,7 @@ class SampleMsgNoticePage(BasePage):
         if self.isElementExists('css', samplemsgnotice):  # 核酸提取明细表收到通知消息
 
             # 这里调用自定义截图方法
-            Screenshot(self.driver).get_img("样本消息通知，明细表查看样本通知消息")
+            Screenshot(self.driver).get_img("样本消息通知，核酸提取明细表点击查看收到的样本通知消息","收到的样本消息与发送的消息一致")
 
             msg = self.get_text('css', samplemsgnotice_notice_msg)
             print(msg)

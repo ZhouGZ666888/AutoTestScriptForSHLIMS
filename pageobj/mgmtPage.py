@@ -79,7 +79,7 @@ class MGMTPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("MGMT待选表 ")
+        Screenshot(self.driver).get_img("MGMT待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -154,7 +154,7 @@ class MGMTPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("MGMT明细表提交 ")
+        Screenshot(self.driver).get_img("MGMT明细表点击提交按钮","弹出提交确认按钮")
 
         self.clicks('css', detail_submit_comfirm)
         self.wait_loading()
@@ -218,7 +218,7 @@ class MGMTPage(BasePage):
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("MGMT明细表入库")
+        Screenshot(self.driver).get_img("MGMT明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -290,7 +290,7 @@ class MGMTPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("MGMT结果表提交")
+        Screenshot(self.driver).get_img("MGMT结果表点击提交按钮","弹出提交确认按钮")
 
         ele = self.isElementExists('css', laboratory_auditor)
         if ele:
@@ -322,7 +322,7 @@ class MGMTPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("MGMT结果表完成任务单")
+        Screenshot(self.driver).get_img("MGMT结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
 
         self.sleep(1)
 

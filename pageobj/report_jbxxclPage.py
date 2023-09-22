@@ -163,7 +163,7 @@ class ReportBasicInfoProcessingPage(BasePage):
         self.wait_loading()
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("报告基本信息处理选择报告模板")
+        Screenshot(self.driver).get_img("报告基本信息处理页面，勾选报告任务，点击报告模版弹框，选择报告模板","选择报告模版成功")
 
         self.clicks('css', report_TemplateName_choice)  # 报告任务项-【报告模板】弹框搜索结果选择，第一条
         self.clicks('css', report_TemplateName_search_comfirm)  # 报告任务项-【报告模板】弹框,确认按钮

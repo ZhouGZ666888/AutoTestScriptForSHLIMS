@@ -150,7 +150,7 @@ class SjSequecingPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
         pageinfo = self.get_pageinfo()
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("上机待选表选择样本加入并保存 ")
+        Screenshot(self.driver).get_img("上机待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         self.wait_loading()
         if self.isElementExists('css', sopSampleNumber1):
             if self.isClickable('css', sopSampleNumber1):

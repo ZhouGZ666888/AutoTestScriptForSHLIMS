@@ -55,7 +55,7 @@ class OrderPage(BasePage):
                 self.sleep(0.5)
 
                 # 调用自定义截图方法
-                Screenshot(self.driver).get_img("新建订单")
+                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认","新增订单号成功")
 
                 self.clicks('css', add_confirm)
                 self.wait_loading()
@@ -77,7 +77,7 @@ class OrderPage(BasePage):
                 self.sleep(0.5)
 
                 # 调用自定义截图方法
-                Screenshot(self.driver).get_img("新建订单")
+                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认","新增订单号成功")
                 self.clicks('css', add_confirm)
                 self.wait_loading()
                 log.info("将新订单号写入文件")

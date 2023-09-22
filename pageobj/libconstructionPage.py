@@ -107,7 +107,7 @@ class LibconstructionPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
 
-        Screenshot(self.driver).get_img("文库构建待选表点击核对lims号录入，并保存任务单号")
+        Screenshot(self.driver).get_img("文库构建待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         pageInfo = self.get_pageinfo()
         self.wait_loading()
         # 判断子sop样本数据数否需要录入
@@ -248,7 +248,7 @@ class LibconstructionPage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("文库构建明细表提交")
+        Screenshot(self.driver).get_img("文库构建明细表点击提交按钮","弹出提交确认按钮")
         self.clicks('css', submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
         self.sleep(1)
@@ -312,7 +312,7 @@ class LibconstructionPage(BasePage):
             self.sleep(1)
             self.clicks('css', batch_copy_BoxPosition_comfirm)
             self.sleep(0.5)
-            Screenshot(self.driver).get_img("文库构建明细表入库")
+            Screenshot(self.driver).get_img("文库构建明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
             self.clicks('css', storage_next)
             self.wait_loading()
@@ -492,7 +492,7 @@ class LibconstructionPage(BasePage):
         self.wait_loading()
         self.sleep(0.5)
 
-        Screenshot(self.driver).get_img("文库构建结果表提交")
+        Screenshot(self.driver).get_img("文库构建结果表点击提交按钮","弹出提交确认按钮")
 
         self.clicks('css', result_submit_comfirm)  # 提交确认按钮
         self.wait_loading()
@@ -523,7 +523,7 @@ class LibconstructionPage(BasePage):
             self.wait_loading()
 
             # 调用自定义截图方法
-            Screenshot(self.driver).get_img("文库构建结果表完成任务单")
+            Screenshot(self.driver).get_img("文库构建结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
 
             taskstatus = self.get_text('css', task_status)
             print(taskstatus)

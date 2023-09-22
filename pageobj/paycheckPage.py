@@ -29,7 +29,7 @@ class PaycheckPage(BasePage):
         self.wait_loading()
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("款项核对搜索订单")
+        Screenshot(self.driver).get_img("款项核对搜索框，录入订单号进行搜索","搜索出录入的订单信息")
 
         log.info('根据录入的订单号筛选订单')
         self.clicks('css', screen_button)

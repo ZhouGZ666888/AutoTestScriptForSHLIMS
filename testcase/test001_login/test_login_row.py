@@ -65,11 +65,11 @@ class LimsLogin(MyTest):
             log.warning("登录这里报错了 ：%s" % r)
         self.basepage.wait_loading()
         self.basepage.sleep(1)
-        Screenshot(self.driver).get_img("登录系统")
+
         log.info('登录成功后校验当前地址正确')
         current_url = self.basepage.get_current_url()
         self.assertIn("home", current_url)
-
+        Screenshot(self.driver).get_img("用户录入账号密码登录系统", "登录系统成功")
 
 if __name__ == '__main__':
     unittest.main()

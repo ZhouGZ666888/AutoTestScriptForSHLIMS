@@ -23,13 +23,13 @@ class SampleOutSendPage(BasePage):
         新建样本外送任务
         """
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本外送列表")
+
 
         log.info('点击新建按钮新建样本外送任务，进入样本外详情页面')
         self.clicks('css', add_task)
         self.wait_loading()
         self.sleep(0.5)
-
+        Screenshot(self.driver).get_img("点击新建按钮新建样本外送任务，进入样本外详情页面","进入外送详情页成功")
         log.info('外送申请单详情页，选择外送类型：样本回寄')
         self.click_by_js('css', outsend_type)
         self.sleep(0.5)
@@ -70,7 +70,7 @@ class SampleOutSendPage(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本外送明细详情页")
+        Screenshot(self.driver).get_img("样本外送明细详情页选择样本回寄方式，录入外送申请单详细信息后保存","保存外送申请单成功")
 
     # 待选样本表选择样本至明细表
     def add_sample_to_task(self):
@@ -135,7 +135,7 @@ class SampleOutSendPage(BasePage):
             yaml.safe_dump(urldata, fs, allow_unicode=True)
         print("写入后的URL地址", urldata)
 
-        Screenshot(self.driver).get_img("样本外送明细表添加样本处理")
+        Screenshot(self.driver).get_img("样本外送明细表添加外送样本，点击添加按钮，选中样本，点击添加到明细表","添加到明细表成功")
         task_status = self.get_text('css', detail_task_status)
         return task_status[3:].strip()
 
@@ -147,14 +147,15 @@ class SampleOutSendPage(BasePage):
         self.into_pending_task()
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本外送明细审核页面")
+        Screenshot(self.driver).get_img("点击待办模块进入样本外送审核页面", "审核页面进入成功")
+
 
         log.info('点击完成审核')
         self.clicks('css', finishAudit_btn)
         self.wait_loading()
         self.sleep(0.5)
-        Screenshot(self.driver).get_img("样本外送审核")
 
+        Screenshot(self.driver).get_img("部门审核人角色审核任务单，样本外送明细审核页面，点击审核按钮", "审核人审核成功，状态改为取样中")
         log.info('获取审核后的申请单号和状态')
         application_num = self.get_text('css', detail_task_id)
         application_status = self.get_text('css', detail_task_status)  # 取样中
@@ -201,7 +202,7 @@ class SampleOutSendPage(BasePage):
         log.info('进入审核后的样本外送详情页，点击取样确认按钮')
         self.clicks('css', check_btn)
         self.wait_loading()
-        Screenshot(self.driver).get_img("样本外送取样确认")
+        Screenshot(self.driver).get_img("部门审核人角色审核任务单，样本外送明细审核页面，点击审核按钮", "审核人审核成功，状态改为待寄送")
 
         log.info('获取取样寄送后的申请单状态')
         application_status = self.get_text('css', detail_task_status)  # 待寄送
@@ -213,12 +214,10 @@ class SampleOutSendPage(BasePage):
         在取样完成后，有权限用户进行待寄送确认操作
         """
         # self.into_pending_task()
-        # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("样本外送明细待寄送页面")
         log.info('完成寄送操作')
         self.clicks('css', sendfinish_btn)
         self.wait_loading()
-        Screenshot(self.driver).get_img("样本外完成寄送")
+        Screenshot(self.driver).get_img("有权限用户进行待寄送确认操作，点击待寄送按钮","完成寄送，任务状态改为完成")
 
         log.info('获取完成寄送后的申请单状态')
         application_status = self.get_text('css', detail_task_status)  # 完成

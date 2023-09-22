@@ -54,7 +54,7 @@ class ReportBasicInfoTaskAssignmentPage(BasePage):
         self.input('css', charge_person_input, 'zgz')  # 弹框中录入负责人名称
         self.wait_loading()
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("报告信息任务分配，批量选择负责人")
+        Screenshot(self.driver).get_img("报告信息任务分配，勾选报告任务，点击批量选择负责人，录入负责人姓名，选择对应名称","选择负责人成功")
         self.clicks('xpath', charge_person_choice)
         self.clicks('css', batch_choice_person_charge_comfirm)  # 选择负责人后确认
         pageinfo = self.get_page_info()

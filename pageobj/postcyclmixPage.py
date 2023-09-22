@@ -60,7 +60,7 @@ class PostcyclmixPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("环化后混合待选表 ")
+        Screenshot(self.driver).get_img("环化后混合待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -230,7 +230,7 @@ class PostcyclmixPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
-        Screenshot(self.driver).get_img("环化后混合明细表入库")
+        Screenshot(self.driver).get_img("环化后混合明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
 
         self.clicks('xpath', storage_next)
         self.wait_loading()
@@ -245,7 +245,7 @@ class PostcyclmixPage(BasePage):
         self.wait_loading()
         self.clicks('css', result_complete_task_btn)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("文库富集结果表完成任务单")
+        Screenshot(self.driver).get_img("文库富集结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
         self.clicks('css', result_complete_task_confirm_btn)
         self.wait_loading()
         taskstatus = self.get_text('css', result_task_status)
