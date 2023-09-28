@@ -74,7 +74,7 @@ class WorkSheet(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
         pageinfo = self.get_pageinfo()
-        Screenshot(self.driver).get_img("病理检验待选表添加HE病理任务")
+        Screenshot(self.driver).get_img("病理检验待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
         return pageinfo
 
     def enter_result_list(self):
