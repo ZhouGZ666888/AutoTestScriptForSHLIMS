@@ -181,6 +181,9 @@ hd_sj_data_update="UPDATE exp_sequencing_item_adjusted_t set actual_lane_num='5'
 # 明细表设置样本浓度、体积、总量
 twentyonegene_sql1 = "UPDATE exp_twentyonegene_item_t set actual_consistence_amt=5,actual_volume_amt=10,actual_total_amt=50 WHERE task_id='{}';"
 
+# 21基因明细表查询样本lims号
+twentyonegene_sql3 = "SELECT sample_id_lims from exp_twentyonegene_item_t where task_id='{}';"
+
 # 结果表设置进入体积、进入总量
 twentyonegene_sql2 = "UPDATE exp_twentyonegene_result_t set volume_amt=5,total_amt=25 WHERE task_id='{}';"
 

@@ -118,6 +118,15 @@ lcmsModel = '.massSpectroSchedule-formBatchData-lcmsModel input'
 # 液质联用仪器号选择
 lcmsModel_choice = '//span[contains(text(),"Vanquish Flex-OE480")]'
 
+#检测项目
+detectionItem='.massSpectroSchedule-formBatchData-detectionItem input'
+
+#计量余量
+remainingVolumeAmt='.massSpectroSchedule-formBatchData-remainingVolumeAmt input'
+
+#检测项目选择
+detectionItem_choice='//span[text()="Lable-Free DDA"]'
+
 # 批量数据---扫描模式
 scanMethod = '.massSpectroSchedule-formBatchData-scanMethod input'
 

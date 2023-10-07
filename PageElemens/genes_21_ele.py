@@ -159,6 +159,75 @@ detail_save_result = (
 enter_result_list_btn = (
     '.createTask_content .baseClass-btn-goResult')
 
+# /************************入库****************************
+# 入库按钮
+deposit_into_storage = (
+    '.button-list .libconstructionSchedule-btn-storage')
+
+# 入库弹框全选按钮
+storage_all_choice = (
+    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon')
+
+# 入库弹框选择入库类型下拉框
+target_storage_type = (
+    '.dialog-check-storage .checkStorageDialog-btn-targetLocation')
+
+# 入库弹框选择入库类型下拉值（临时库）
+target_storage_type_value = (
+    '//ul[@class="el-dropdown-menu el-popper el-dropdown-menu--medium"]/descendant::li[text()="临时库"]')
+
+# 入库弹框选择样本盒按钮
+batch_paste_sample_box = (
+    '.dialog-check-storage .checkStorageDialog-btn-selectBox')
+
+# 入库弹框选择样本盒弹框target storage 搜索文本录入框
+target_storage = (
+    '.boxSearch-boxSearchDialogForm-boxName input')
+
+# 入库弹框选择样本盒弹框t搜索按钮
+select_sample_box_search = (
+    '.dialog-box-search .baseClass-btn-search')
+
+# 入库弹框选选择样本盒值，默认选择列表第一条数据
+select_sample_box_choice = (
+    '.dialog-box-search .el-dialog__body .el-table__body-wrapper tbody tr:nth-child(1)')
+
+# 入库弹框选选择样本盒弹框，确认按钮
+select_sample_box_comfirm = (
+    '.dialog-box-search .dialog-footer .baseClass-btn-confirm')
+
+# 入库弹框样本总数
+all_select_sample_box = (
+    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr td:nth-child(7)')
+
+# 入库弹框盒内位置
+detail_position_in_box = (
+    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7)')
+
+# 入库弹框盒内位置文本框
+detail_position_in_box_input = (
+    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7) input')
+
+# 批量粘贴盒内位置
+batch_copy_BoxPosition = (
+    '.dialog-check-storage .checkStorageDialog-btn-batchCopyBoxPosition')
+
+# 批量粘贴盒内位置确认按钮
+batch_copy_BoxPosition_comfirm = (
+    '.dialog-position-box .dialog-footer .baseClass-btn-confirm')
+
+# 批量粘贴盒内位置文本录入
+batch_copy_BoxPosition_input = (
+    '.dialog-position-box textarea')
+
+# 入库弹框下一步按钮
+storage_next = (
+    '.dialog-check-storage .dialog-footer .baseClass-btn-next')
+
+
+
+
+
 """
 21基因结果表元素定位
 """

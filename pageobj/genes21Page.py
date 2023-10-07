@@ -4,14 +4,16 @@
 # @File    : 21基因模块页面功能封装
 
 
-import pyperclip, xlrd, yaml,re
+import pyperclip, xlrd, yaml, re
 from selenium.webdriver.common.keys import Keys
 from PageElemens.genes_21_ele import *
 from common import editYaml
-from common.all_path import esyjy_file_path, functionpageURL_path, sampledata_path, twentyonegene_file_path
+from common.DataBaseConfig import executeSql
+from common.all_path import esyjy_file_path, functionpageURL_path, sampledata_path, twentyonegene_file_path, \
+    position_in_box_path
 from common.screenshot import Screenshot
-from common.xlsx_excel import get_lims_for_excel, read_excel_col
-from data.sql_action.execute_sql_action import twentyonegene_sql1, twentyonegene_sql2
+from common.xlsx_excel import get_lims_for_excel, read_excel_col, pandas_write_excel
+from data.sql_action.execute_sql_action import twentyonegene_sql1, twentyonegene_sql2, twentyonegene_sql3
 from uitestframework.basepageTools import BasePage
 from common.logs import log
 
@@ -47,7 +49,7 @@ class Genes21Page(BasePage):
         """
         # 这里调用自定义截图方法
         self.sleep(1)
-        Screenshot(self.driver).get_img("点击左侧导航栏，进入21基因任务模块","进入21基因模块成功，展示数据列表")
+        Screenshot(self.driver).get_img("点击左侧导航栏，进入21基因任务模块", "进入21基因模块成功，展示数据列表")
 
         log.info("21基因首页，点击新建按钮，进入样本待选表，新增21基因任务")
         self.clicks('css', add_task)
@@ -82,7 +84,7 @@ class Genes21Page(BasePage):
         self.sleep(0.5)
         self.clicks('css', addSelect_or_save_btn)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("点击新建按钮，进入21基因待选表，选择样本","进入待选表勾选样本后保存成功")
+        Screenshot(self.driver).get_img("点击新建按钮，进入21基因待选表，选择样本", "进入待选表勾选样本后保存成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -171,10 +173,82 @@ class Genes21Page(BasePage):
         self.sleep(0.5)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因明细表点击提交按钮","弹出提交确认提示框")
+        Screenshot(self.driver).get_img("21基因明细表点击提交按钮", "弹出提交确认提示框")
         self.clicks('css', detail_submit_comfirm)  # 提交弹框确认按钮
         self.wait_loading()
         self.sleep(1)
+
+    # 明细表入库
+    def detail_into_storage(self):
+        """
+        21基因明细表样本入库操作
+        """
+        try:
+            log.info('21基因明细表，样本入库操作')
+
+            self.clicks('css', deposit_into_storage)  # 入库按钮
+            self.sleep(0.5)
+            self.clicks('css', storage_all_choice)  # 入库弹框全选按钮
+
+            log.info('21基因明细表，样本入库选择入库类型临时库')
+            self.moved_to_element('css', target_storage_type)  # 入库弹框选择入库类型下拉框
+            self.sleep(1)
+            if self.isElementExists('xpath', target_storage_type_value):
+                self.click_by_js('xpath', target_storage_type_value)  # 入库弹框选择入库类型下拉值（临时库）
+                self.sleep(0.5)
+
+            log.info('21基因明细表，样本入库选择入样本盒')
+            self.clicks('css', batch_paste_sample_box)  # 入库弹框选择样本盒按钮
+            self.wait_loading()
+            self.input('css', target_storage, '自动化测试用(勿删)')
+            self.sleep(0.5)
+            self.clicks('css', select_sample_box_search)
+            self.wait_loading()
+            self.clicks('css', select_sample_box_choice)  # 入库弹框选选择样本盒值，默认选择列表第一条数据
+            self.clicks('css', select_sample_box_comfirm)  # 入库弹框选选择样本盒弹框，确认按钮
+            self.sleep(0.5)
+
+            log.info('21基因明细表，样本入库录入盒内位置')
+
+            taskstatus = self.get_text('css', detail_task_id)  # 获取任务单号
+            lims_id = executeSql.test_select_limsdb(
+                twentyonegene_sql3.format(taskstatus[5:].strip()))  # 从数据库获取当前任务单号下样本lims号
+
+            lims_list = [item[key] for item in lims_id for key in item]  # 把获取的lims号转换为一维列表
+            nub_list = [str(i) for i in range(1, len(lims_list) + 1)]  # 根据lims样本数量，生成数字列表，作为盒内位置编号用
+            res = [list(i) for i in zip(lims_list, nub_list)]  # 将lims号和数字编号转换为二维列表格式，写入Excel
+            print(res)
+            pandas_write_excel(res, position_in_box_path)  # 把样本号和盒内位置编号写入Excel模板
+
+            data = xlrd.open_workbook(position_in_box_path)  # 从Excel读取模板样本号和盒内位置编号
+            num_list = []
+            for index in range(0, len(lims_list)):
+                tables = data.sheets()[0]
+                # allrows = tables.nrows
+                vals = tables.row_values(index)
+                imp_data = '\t'.join(map(str, vals))
+                num_list.append(imp_data)
+            print("\n".join(map(str, num_list)))
+            pyperclip.copy("\n".join(map(str, num_list)))
+
+            # 粘贴到【批量粘贴盒内位置】文本框
+            self.clicks('css', batch_copy_BoxPosition)
+            self.findelement('css', batch_copy_BoxPosition_input).send_keys(Keys.CONTROL, 'v')
+            self.sleep(1)
+            self.clicks('css', batch_copy_BoxPosition_comfirm)
+            self.sleep(0.5)
+            Screenshot(self.driver).get_img("21基因明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步", "样本入库成功")
+
+            self.clicks('css', storage_next)
+            self.wait_loading()
+
+            self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=3000')
+            self.sleep(0.5)
+            pageInfo = self.get_text('css', sumbit_status)
+            print(pageInfo)
+            return pageInfo
+        except Exception as info:
+            print(info)
 
     # 结果表表单录入
     def result_twentyonegene_date(self):
@@ -207,7 +281,7 @@ class Genes21Page(BasePage):
                 self.switch_to_window(handle)
         # 这里调用自定义截图方法
         self.sleep(3)
-        Screenshot(self.driver).get_img("点击进入21基因分析结果表按钮","进入结果表成功")
+        Screenshot(self.driver).get_img("点击进入21基因分析结果表按钮", "进入结果表成功")
         log.info("---21基因分析任务信息页面，录入详情数据---")
         log.info("21基因分析任务信息页面，录入算法版本")
 
@@ -240,7 +314,6 @@ class Genes21Page(BasePage):
         self.clicks('css', batchImport_comfirm)
         self.sleep(1)
 
-
     # 21基因结果分析保存并完成
     def result_twentyonegene_analysis_complete(self):
         """
@@ -255,7 +328,7 @@ class Genes21Page(BasePage):
         self.clicks('css', twentyonegene_analysis_complete)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因分析结果表,点击完成按钮","分析结果表完成操作")
+        Screenshot(self.driver).get_img("21基因分析结果表,点击完成按钮", "分析结果表完成操作")
 
         self.wait_loading()
         self.sleep(0.5)
@@ -287,7 +360,7 @@ class Genes21Page(BasePage):
         self.clicks('css', result_submit)
         self.sleep(1)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("21基因结果表,点击提交任务单","弹出提交确认弹框")
+        Screenshot(self.driver).get_img("21基因结果表,点击提交任务单", "弹出提交确认弹框")
         self.clicks('css', result_submit_comfirm)
         self.wait_loading()
         self.sleep(0.5)
@@ -300,7 +373,7 @@ class Genes21Page(BasePage):
         self.clicks('css', result_complete_task_btn)
         self.wait_loading()
         self.sleep(1)
-        Screenshot(self.driver).get_img("21基因结果表,点击完成任务单","任务单完成，状态改为完成")
+        Screenshot(self.driver).get_img("21基因结果表,点击完成任务单", "任务单完成，状态改为完成")
         taskstatus = self.get_text('css', detail_task_status)
         return taskstatus[6:].strip()
 
