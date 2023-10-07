@@ -185,9 +185,12 @@ chioce_department = (
 chioce_physician_confirm = (
     '.dialog-choiceDoctor .el-dialog__footer .baseClass-btn-confirm')
 
-# 销售人员姓名，
-sales_information = (
-    '.orderDetail-formSalesInfo-doctorName input')
+# 修改销售按钮
+sales_information = '//button/span[text()="修改销售"]'
+
+#修改销售弹框文本录入
+sales_input='.dialog-change-order .orderDetail-formSalesInfo-salesName input'
+
 
 # 选择销售人员，默认选中第一条
 chioce_sale = (

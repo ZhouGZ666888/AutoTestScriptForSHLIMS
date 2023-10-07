@@ -165,9 +165,11 @@ class OrderPage(BasePage):
         self.clicks('css', chioce_physician_confirm)
         self.sleep(1)
         log.info('录入销售代表和款项信息')
-        self.clicks('css', sales_information)
-        self.input('css', sales_information, '董国奇')
+        self.clicks('xpath', sales_information)
         self.sleep(0.5)
+        self.clicks('css',sales_input)
+        self.input('css', sales_input, '董国奇')
+        self.sleep(1)
 
         self.clicks('xpath', chioce_sale)
         self.sleep(0.5)
