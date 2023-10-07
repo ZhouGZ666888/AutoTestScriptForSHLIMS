@@ -175,7 +175,7 @@ class OrderPage(BasePage):
         self.sleep(0.5)
         self.clicks('xpath',chioce_sale_confirm)
         self.sleep(0.5)
-        self.clicks('xpath',choice_tips)
+        self.clicks('css',choice_tips)
         self.wait_loading()
         log.info('录入款项金额')
         self.clicks('css', payment_due)
