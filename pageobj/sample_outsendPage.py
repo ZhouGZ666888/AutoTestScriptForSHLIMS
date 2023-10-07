@@ -79,7 +79,7 @@ class SampleOutSendPage(BasePage):
         """
         log.info('从实验模块-取核酸提取结果表样本数据当做外送样本')
         lims_nub = read_excel_col(csps_file_path, 'lims号')
-        lims_id_str = "\n".join(lims_nub[:2])  # 取出Excel表中样本，拼接成字符串录入到检索文本中,取后面两条
+        lims_id_str = "\n".join(lims_nub[:1])  # 取出Excel表中样本，拼接成字符串录入到检索文本中,取后面两条
         print(lims_id_str)
 
         log.info("点击样本筛选按钮，录入样本lims号，筛选出外送样本")

@@ -39,7 +39,7 @@ class SampleOutSend(MyTest):
         self.login_action('guanzhong.zhou')
         EnterTab.enter_unresolve_job(self.basepage)
 
-        log.info(' 部门审核人角色审核任务单')
+        log.info('部门审核人角色审核任务单')
         task_statue = self.sos.task_for_review()
         self.assertEqual(task_statue, '取样中', "部门审核人审核审核失败")
 
@@ -59,9 +59,6 @@ class SampleOutSend(MyTest):
         """
         测试对待寄送外送样本进行寄送操作
         """
-        # self.sos.batch_submit_for_review()
-        # self.login_action('guoqi.dong')
-        # EnterTab.enter_unresolve_job(self.basepage)
         log.info(' 在取样完成后，有权限用户进行待寄送确认操作')
         application_status = self.sos.sample_send()
 
