@@ -174,9 +174,10 @@ class OrderPage(BasePage):
         self.clicks('xpath', chioce_sale)
         self.sleep(0.5)
         self.clicks('xpath',chioce_sale_confirm)
+        self.sleep(0.5)
         self.clicks('xpath',choice_tips)
         self.wait_loading()
-
+        log.info('录入款项金额')
         self.clicks('css', payment_due)
         self.sleep(0.5)
         self.input('css', fee_after_amendment, '10000')
