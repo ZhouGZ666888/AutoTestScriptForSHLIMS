@@ -91,6 +91,15 @@ ele_chioce_confirm = (
 chioce_and_confirm = (
     '.el-message-box .el-message-box__btns button:nth-child(2)')
 
+#所属套餐
+productPkgId='.orderDetail-formMedicalBaseInfo-productPkgId input'
+
+#所属套餐选项
+productPkgId_choice='//span[text()="脉搏计划"]'
+
+#动态监测次数
+pulseplanCount='.orderDetail-formMedicalBaseInfo-pulseplanCount input'
+
 # 报告是否体现医院信息下拉选择，元素定位
 is_hospital_info_displayed = (
     '.orderDetail-formMedicalBaseInfo-isDisplayHos input')
@@ -117,17 +126,6 @@ formMedicalBaseInfoChoice='/html/body/div[last()]/div[1]/div[1]/ul/li[1]'
 
 
 # 选择主订单号文本框，元素定位
-#选择所属套餐
-productPkgId=(
-    '.orderDetail-formMedicalBaseInfo-productPkgId input')
-#所属套餐下拉值
-productPkgId_choice=(
-    '//*[@class="el-select-dropdown__wrap el-scrollbar__wrap"]/descendant::li[span[text()="脉搏计划"]]')
-
-#动态检测次数
-pulseplanCount=(
-    '.orderDetail-formMedicalBaseInfo-pulseplanCount input')
-
 
 main_order_number = (
     '.orderDetail-formMedicalBaseInfo-pulseplanParent input')
