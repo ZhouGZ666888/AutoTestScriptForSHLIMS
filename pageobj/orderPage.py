@@ -96,7 +96,7 @@ class OrderPage(BasePage):
         self.wait_loading()
 
         self.click_by_js('css', first_order)
-        self.sleep(0.2)
+        self.sleep(0.5)
         self.clicks('css', edit_order)
         self.wait_loading()
 
@@ -105,6 +105,7 @@ class OrderPage(BasePage):
         """进行病历关联，不进行主订单的选择"""
         order = read_yaml(orderNub_path)
         log.info('选择癌种')
+        self.sleep(1)
         self.clicks('css', cancer_type_chioce)
         self.sleep(0.2)
         self.clicks('css', cancer_type)
@@ -170,9 +171,12 @@ class OrderPage(BasePage):
         self.clicks('css',sales_input)
         self.input('css', sales_input, '董国奇')
         self.sleep(1)
-
         self.clicks('xpath', chioce_sale)
         self.sleep(0.5)
+        self.clicks('xpath',chioce_sale_confirm)
+        self.clicks('xpath',choice_tips)
+        self.wait_loading()
+
         self.clicks('css', payment_due)
         self.sleep(0.5)
         self.input('css', fee_after_amendment, '10000')

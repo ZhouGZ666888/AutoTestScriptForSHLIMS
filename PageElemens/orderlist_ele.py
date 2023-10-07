@@ -196,6 +196,12 @@ sales_input='.dialog-change-order .orderDetail-formSalesInfo-salesName input'
 chioce_sale = (
     '/html/body/div[last()]/div[1]/div[1]/ul/li[1]')
 
+#选择销售弹框确认按钮
+chioce_sale_confirm='//*[@aria-label="修改销售"]/descendant::button[child::span[text()="确定"]]'
+
+#选择销售后提示确认
+choice_tips='.el-message-box__wrapper .el-message-box__btns button:nth-child(2)'
+
 # 应收金额弹框文本
 payment_due = (
     '.orderDetail-formSalesInfo-paymentDue input')
