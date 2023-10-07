@@ -91,14 +91,14 @@ ele_chioce_confirm = (
 chioce_and_confirm = (
     '.el-message-box .el-message-box__btns button:nth-child(2)')
 
-#所属套餐
-productPkgId='.orderDetail-formMedicalBaseInfo-productPkgId input'
+# 所属套餐
+productPkgId = '.orderDetail-formMedicalBaseInfo-productPkgId input'
 
-#所属套餐选项
-productPkgId_choice='//span[text()="脉搏计划"]'
+# 所属套餐选项
+productPkgId_choice = '//span[text()="脉搏计划"]'
 
-#动态监测次数
-pulseplanCount='.orderDetail-formMedicalBaseInfo-pulseplanCount input'
+# 动态监测次数
+pulseplanCount = '.orderDetail-formMedicalBaseInfo-pulseplanCount input'
 
 # 报告是否体现医院信息下拉选择，元素定位
 is_hospital_info_displayed = (
@@ -116,11 +116,11 @@ report_receiver_button = (
 report_receiver = (
     '//*[@class="el-select-dropdown el-popper"]/descendant::li[child::span[text()="患者家属"]]')
 
-#报告是否寄送纸质版下拉框
-formMedicalBaseInfo='.orderDetail-formMedicalBaseInfo-isSendPaper input'
+# 报告是否寄送纸质版下拉框
+formMedicalBaseInfo = '.orderDetail-formMedicalBaseInfo-isSendPaper input'
 
-#报告是否寄送纸质版下拉框选择
-formMedicalBaseInfoChoice='/html/body/div[last()]/div[1]/div[1]/ul/li[1]'
+# 报告是否寄送纸质版下拉框选择
+formMedicalBaseInfoChoice = '/html/body/div[last()]/div[1]/div[1]/ul/li[1]'
 
 ####选择主订单号弹框####
 
@@ -186,19 +186,18 @@ chioce_physician_confirm = (
 # 修改销售按钮
 sales_information = '//button/span[text()="修改销售"]'
 
-#修改销售弹框文本录入
-sales_input='.dialog-change-order .orderDetail-formSalesInfo-salesName input'
-
+# 修改销售弹框文本录入
+sales_input = '.dialog-change-order .orderDetail-formSalesInfo-salesName input'
 
 # 选择销售人员，默认选中第一条
 chioce_sale = (
     '/html/body/div[last()]/div[1]/div[1]/ul/li[1]')
 
-#选择销售弹框确认按钮
-chioce_sale_confirm='//*[@aria-label="修改销售"]/descendant::button[child::span[text()="确定"]]'
+# 选择销售弹框确认按钮
+chioce_sale_confirm = '//*[@aria-label="修改销售"]/descendant::button[child::span[text()="确定"]]'
 
-#选择销售后提示确认
-choice_tips='.el-message-box__wrapper .el-message-box__btns button:nth-child(2)'
+# 选择销售后提示确认
+choice_tips = '.el-message-box__wrapper .el-message-box__btns button:nth-child(2)'
 
 # 应收金额弹框文本
 payment_due = (
@@ -219,4 +218,3 @@ change_fee_confirm = (
 # 保存成功提示信息
 save_success_info = (
     '.el-message.el-message--success')
-

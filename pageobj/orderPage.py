@@ -4,7 +4,7 @@
 # @File    : 订单模块页面功能封装
 from PageElemens.orderlist_ele import *
 from common.editYaml import *
-from common.all_path import  orderNub_path
+from common.all_path import orderNub_path
 from common.screenshot import Screenshot
 from data.sql_action.execute_sql_action import order_isexists_sql
 from uitestframework.basepageTools import BasePage
@@ -43,7 +43,7 @@ class OrderPage(BasePage):
         order = read_yaml(orderNub_path)
 
         try:
-            if  'order_number' not in order:
+            if 'order_number' not in order:
                 first_order_num = '92090001'
                 # 验证订单号是否可用
                 order_nub = self.check_order_isExists(first_order_num)
@@ -55,7 +55,7 @@ class OrderPage(BasePage):
                 self.sleep(0.5)
 
                 # 调用自定义截图方法
-                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认","新增订单号成功")
+                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认", "新增订单号成功")
 
                 self.clicks('css', add_confirm)
                 self.wait_loading()
@@ -77,11 +77,11 @@ class OrderPage(BasePage):
                 self.sleep(0.5)
 
                 # 调用自定义截图方法
-                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认","新增订单号成功")
+                Screenshot(self.driver).get_img("点击新增按钮，在弹框中录入订单号和用户名，点击确认", "新增订单号成功")
                 self.clicks('css', add_confirm)
                 self.wait_loading()
                 log.info("将新订单号写入文件")
-                order['order_number']=str(new_ordernum)
+                order['order_number'] = str(new_ordernum)
                 save_yaml(orderNub_path, order)  # 订单号写入临时文件
                 self.sleep(1)
         except Exception as e:
@@ -99,7 +99,6 @@ class OrderPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', edit_order)
         self.wait_loading()
-
 
     def bl_dd_associate(self):
         """进行病历关联，不进行主订单的选择"""
@@ -153,11 +152,11 @@ class OrderPage(BasePage):
         self.sleep(1)
 
         log.info('选择报告所属套餐')
-        self.clicks('css',productPkgId)
+        self.clicks('css', productPkgId)
         self.sleep(0.5)
-        self.clicks('css',productPkgId_choice)
+        self.clicks('css', productPkgId_choice)
         self.sleep(0.5)
-        self.input('css',pulseplanCount,1)
+        self.input('css', pulseplanCount, 1)
         self.sleep(0.5)
 
         log.info('选择报告是否体现医院信息')
