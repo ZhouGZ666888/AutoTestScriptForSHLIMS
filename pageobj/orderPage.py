@@ -154,7 +154,7 @@ class OrderPage(BasePage):
         log.info('选择报告所属套餐')
         self.clicks('css', productPkgId)
         self.sleep(0.5)
-        self.clicks('css', productPkgId_choice)
+        self.clicks('xpath', productPkgId_choice)
         self.sleep(0.5)
         self.input('css', pulseplanCount, 1)
         self.sleep(0.5)
