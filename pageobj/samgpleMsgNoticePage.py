@@ -94,7 +94,7 @@ class SampleMsgNoticePage(BasePage):
 
         log.info('选中核对后的样本，点击【加入选中样本&保存】,并进入待选表')
         self.click_by_js('css', all_choice)
-        self.sleep(0.5)
+        self.sleep(1)
         self.clicks('css', addSelect_or_save_btn)
         self.wait_loading()
         self.clicks('css', enter_detail_list_btn)
