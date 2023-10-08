@@ -468,10 +468,8 @@ class LibconstructionPage(BasePage):
         urldata = editYaml.read_yaml(functionpageURL_path)
         log.info('点击按钮返回明细表')
         self.click_by_js('css', goback_detail)
-
         self.clicks('css', goback_page_info)
         self.wait_loading()
-        self.sleep(0.5)
 
         url = self.get_current_url()  # 获取当前页面URL地址
         print('获取的URL地址', url)

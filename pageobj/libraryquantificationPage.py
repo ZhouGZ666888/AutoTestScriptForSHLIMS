@@ -198,8 +198,6 @@ class LibraryQuantificationPage(BasePage):
         self.clicks('css', ele)
         log.info('点击按钮进入{}'.format(page))
         self.wait_loading()
-        self.wait_loading()
-        self.sleep(2)
 
         url = self.get_current_url()  # 获取当前页面URL地址
         print('获取的URL地址', url)

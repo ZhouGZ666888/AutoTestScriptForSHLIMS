@@ -42,6 +42,14 @@ class Genes21Page(BasePage):
 
         return self.get_text('xpath', page_success_info)
 
+    def goback_detail(self):
+        """返回明细表"""
+        log.info('点击按钮返回明细表')
+        self.click_by_js('css', goback_detail)
+        self.sleep(0.5)
+        self.clicks('css', goback_page_info)
+        self.wait_loading()
+
     # 新增任务单
     def add_task(self):
         """
@@ -103,9 +111,7 @@ class Genes21Page(BasePage):
         self.clicks('css', ele)
         log.info('点击按钮进入{}'.format(page))
         self.wait_loading()
-        self.wait_loading()
         self.sleep(2)
-
         url = self.get_current_url()  # 获取当前页面URL地址
         print('获取的URL地址', url)
         urldata["url"] = url
@@ -124,13 +130,35 @@ class Genes21Page(BasePage):
         self.updata_sql(sql1)
         self.sleep(0.5)
         self.refresh()
+        self.clicks('css', detail_save_result)
         self.wait_loading()
+
+    # 21基因明细表选择批量入库类型、录入批量包装余量
+    def detail_twentyonegene_batchdate(self):
+        """21基因明细表选择批量入库类型、录入批量包装余量"""
+        self.clicks('css', detail_all_choice)
         self.sleep(0.5)
+        log.info('21基因明细表，批量样本入库类型---余样入库')
+        self.moved_to_element('css', batchStorageType)  # 入库弹框选择入库类型下拉框
+        self.sleep(1)
+        self.click_by_js('xpath', batchStorageType_choice)  # 入库弹框选择入库类型下拉值（临时库）
+        self.sleep(0.5)
+        log.info('21基因明细表，批量包装余量')
+        self.clicks('css', handleBatchData)
+        self.sleep(0.5)
+        self.input('css', handleBatchData_input, 1)
+        self.sleep(0.5)
+        self.clicks('css', handleBatchData_confirm)
+        self.sleep(0.5)
+        log.info('21基因明细表，保存数据')
+        self.clicks('css', detail_save_result)
+        return self.get_pageinfo()
 
     # 明细表合并分析
     def detail_twentyonegene_merge(self):
         log.info(" 21基因明细表，明细表合并分析操作")
         # 样本全选
+        self.sleep(2)
         self.clicks("css", detail_all_choice)
         log.info(" 21基因明细表，点击合并分析按钮")
         self.clicks('css', merge)
@@ -141,7 +169,7 @@ class Genes21Page(BasePage):
         # 取出设置主样本的lims号，存到临时文件，在明细表中取出进行提交
         lims_nub = self.get_text('css', merge_main_sample)
         datas = editYaml.read_yaml(sampledata_path)
-        print(datas["twentyonegene_lims"])
+        print(lims_nub)
         datas["twentyonegene_lims"] = lims_nub
         with open(sampledata_path, 'w', encoding='utf-8') as fs:  # 写入模式
             yaml.safe_dump(datas, fs, allow_unicode=True)
@@ -150,15 +178,13 @@ class Genes21Page(BasePage):
         self.clicks('css', merge_main_btn)
         log.info("合并分析弹框点击继续")
         self.clicks('css', merge_main_continue_btn)
+        info = self.get_pageinfo()
         self.wait_loading()
+        return info
 
     # 明细表提交
     def detail_sumbit(self):
-        """
-        21基因明细表，样本提交操作
-        :return:
-        """
-        log.info("21基因明细表样本提交")
+        """21基因明细表，样本提交操作"""
         log.info("21基因明细表样本提交---读取保存的合并分析主样本")
         datas = editYaml.read_yaml(sampledata_path)
         all_lims = self.findelements('css', all_samples)
@@ -167,35 +193,32 @@ class Genes21Page(BasePage):
             lims_nub = self.get_text('css', samples_lims.format(i))
             if lims_nub == datas["twentyonegene_lims"]:
                 self.clicks('css', samples_lims.format(i))
-
         log.info("点击提交按钮")
         self.clicks('css', detail_submit_btn)  # 提交按钮
         self.sleep(0.5)
-
         # 这里调用自定义截图方法
         Screenshot(self.driver).get_img("21基因明细表点击提交按钮", "弹出提交确认提示框")
         self.clicks('css', detail_submit_comfirm)  # 提交弹框确认按钮
+        info = self.get_pageinfo()
         self.wait_loading()
-        self.sleep(1)
+        return info
 
     # 明细表入库
     def detail_into_storage(self):
-        """
-        21基因明细表样本入库操作
-        """
+        """21基因明细表样本入库操作"""
+        datas = editYaml.read_yaml(sampledata_path)
+        all_lims = self.findelements('css', all_samples)
+        log.info("21基因明细表样本入库---明细表判断主样本，并点击选中主样本")
+        for i in range(1, len(all_lims) + 1):
+            lims_nub = self.get_text('css', samples_lims.format(i))
+            if lims_nub == datas["twentyonegene_lims"]:
+                self.clicks('css', samples_lims.format(i))
         try:
             log.info('21基因明细表，样本入库操作')
 
             self.clicks('css', deposit_into_storage)  # 入库按钮
             self.sleep(0.5)
             self.clicks('css', storage_all_choice)  # 入库弹框全选按钮
-
-            log.info('21基因明细表，样本入库选择入库类型临时库')
-            self.moved_to_element('css', target_storage_type)  # 入库弹框选择入库类型下拉框
-            self.sleep(1)
-            if self.isElementExists('xpath', target_storage_type_value):
-                self.click_by_js('xpath', target_storage_type_value)  # 入库弹框选择入库类型下拉值（临时库）
-                self.sleep(0.5)
 
             log.info('21基因明细表，样本入库选择入样本盒')
             self.clicks('css', batch_paste_sample_box)  # 入库弹框选择样本盒按钮
@@ -261,8 +284,6 @@ class Genes21Page(BasePage):
         self.updata_sql(sql1)
         self.sleep(0.5)
         self.refresh()
-        self.wait_loading()
-        self.sleep(0.5)
 
     # 21基因结果分析
     def result_twentyonegene_analysis(self):

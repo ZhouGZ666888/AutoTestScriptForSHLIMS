@@ -335,6 +335,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.wait_loading()
 
         self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=3080')
+        self.sleep(0.5)
         samples_status = self.get_text('css', submit_status)
         self.sleep(1)
         return samples_status
@@ -437,6 +438,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.wait_loading()
 
         self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=2400')
+        self.sleep(0.5)
         submit_info = self.get_text('css', result_sample_status)
         print('样本处理结果表提交状态', submit_info)
         return submit_info

@@ -95,8 +95,8 @@ detail_all_choice = (
 all_samples = (
     '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr')
 
-#获取样本lims号
-samples_lims=(
+# 获取样本lims号
+samples_lims = (
     '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(2)')
 
 # Qubit浓度（实测）ng/μL*表单定位
@@ -139,13 +139,28 @@ merge_main_btn = (
 merge_main_continue_btn = (
     '.dialog-attention .el-dialog__footer .baseClass-btn-continue')
 
-#明细表提交按钮
-detail_submit_btn=(
+# 明细表提交按钮
+detail_submit_btn = (
     '.createTask_content .sampleDetail_header .baseClass-btn-submit')
 
-#明细表提交确认按钮
-detail_submit_comfirm=(
+# 明细表提交确认按钮
+detail_submit_comfirm = (
     '.dialog-commit .dialog-footer .baseClass-btn-confirm')
+
+# 批量入库类型
+batchStorageType = '.geneSchedule-btn-batchStorageType'
+
+# 入库类型选择余样入库
+batchStorageType_choice = '//ul/descendant::li[text()="余样入库"]'
+
+# 批量包装余量
+handleBatchData = '.geneSchedule-btn-handleBatchData'
+
+# 批量包装余量弹框，录入余量文本框
+handleBatchData_input = '.dialog-batchData .geneSchedule-dialogBatchData-remainingSamplePkgAmt input'
+
+# 批量包装余量弹框，确认按钮
+handleBatchData_confirm = '.dialog-batchData .el-dialog__footer .baseClass-btn-confirm'
 
 # 样本列表滚动条
 scroll_line = (
@@ -162,7 +177,7 @@ enter_result_list_btn = (
 # /************************入库****************************
 # 入库按钮
 deposit_into_storage = (
-    '.button-list .libconstructionSchedule-btn-storage')
+    '.button-list .geneSchedule-btn-storage')
 
 # 入库弹框全选按钮
 storage_all_choice = (
@@ -196,18 +211,6 @@ select_sample_box_choice = (
 select_sample_box_comfirm = (
     '.dialog-box-search .dialog-footer .baseClass-btn-confirm')
 
-# 入库弹框样本总数
-all_select_sample_box = (
-    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr td:nth-child(7)')
-
-# 入库弹框盒内位置
-detail_position_in_box = (
-    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7)')
-
-# 入库弹框盒内位置文本框
-detail_position_in_box_input = (
-    '.dialog-check-storage .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(7) input')
-
 # 批量粘贴盒内位置
 batch_copy_BoxPosition = (
     '.dialog-check-storage .checkStorageDialog-btn-batchCopyBoxPosition')
@@ -224,9 +227,8 @@ batch_copy_BoxPosition_input = (
 storage_next = (
     '.dialog-check-storage .dialog-footer .baseClass-btn-next')
 
-
-
-
+#明细表样本状态
+sumbit_status='.createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(14)'
 
 """
 21基因结果表元素定位
@@ -236,60 +238,60 @@ storage_next = (
 result_all_choice = (
     '.createTask_content .show--head .vxe-table--fixed-left-wrapper .vxe-table--header-wrapper .vxe-checkbox--icon.vxe-checkbox--unchecked-icon')
 
-#21基因结果分析按钮
-result_analysis=(
+# 21基因结果分析按钮
+result_analysis = (
     '.createTask_content_table .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) .type--button')
 
-#算法版本下拉框定位
-aly=(
+# 算法版本下拉框定位
+aly = (
     '.aly-form-sopId input')
 
-#算法版本下拉值
-aly_choice=(
+# 算法版本下拉值
+aly_choice = (
     '.sopId-unique .el-scrollbar__view.el-select-dropdown__list li:nth-child(1)')
 
-#对照基因组Cq平均值
-refCqAvgValue=(
+# 对照基因组Cq平均值
+refCqAvgValue = (
     '.aly-form-refCqAvgValue input')
 
-#21基因结果内参平均值是否合格下拉框
-isEligible=(
+# 21基因结果内参平均值是否合格下拉框
+isEligible = (
     '.aly-form-isEligible input')
 
-#21基因结果内参平均值是否合格下拉值
-isEligible_choice=(
+# 21基因结果内参平均值是否合格下拉值
+isEligible_choice = (
     '.isEligible-unique .el-scrollbar__view.el-select-dropdown__list li:nth-child(1)')
 
 # RSU值
-rsu=(
+rsu = (
     '.aly-form-rsuValue input')
 
-#RS值
-rs=(
+# RS值
+rs = (
     '.aly-form-rsValue input')
 
-#批量导入数据按钮
-batchImport=(
+# 批量导入数据按钮
+batchImport = (
     '.is-always-shadow .baseClass-btn-batchImport')
 
-#批量导入数据录入框
-batchImport_input=(
+# 批量导入数据录入框
+batchImport_input = (
     '.dialog-channel textarea')
 
-#批量导入数据弹框确认按钮
-batchImport_comfirm=(
+# 批量导入数据弹框确认按钮
+batchImport_comfirm = (
     '.dialog-channel .el-dialog__footer .qcResult-btn-confirm')
 
-#21基因分析任务信息页保存按钮
-twentyonegene_analysis_save=(
+# 21基因分析任务信息页保存按钮
+twentyonegene_analysis_save = (
     '.app-main .filter-container .baseClass-btn-save')
 
-#21基因分析任务信息页完成按钮
-twentyonegene_analysis_complete=(
+# 21基因分析任务信息页完成按钮
+twentyonegene_analysis_complete = (
     '.app-main .filter-container .baseClass-btn-finish')
 
 # 21基因分析任务信息页面导入成功提示信息
-import_data=(
+import_data = (
     '.el-message.el-message--success.el-message-fade-enter-active.el-message-fade-enter-to')
 
 # 结果表提交按钮
@@ -299,8 +301,6 @@ result_submit = (
 # 结果表提交确认按钮
 result_submit_comfirm = (
     '.dialog-result-commit .el-dialog__footer .qcResult-btn-confirm')
-
-
 
 # 完成任务单按钮
 result_complete_task_btn = (
@@ -321,3 +321,13 @@ result_task_id = (
 # 任务单状态
 detail_task_status = (
     '.createTask .clearfix div span:nth-child(3)')
+
+# 页面提示信息，元素定位
+page_info = (
+    '//*[@class="el-message el-message--success"]')
+
+# 返回明细表
+goback_detail = '.createTask_content .baseClass-btn-backToPrev'
+
+# 返回明细表确认
+goback_page_info = '.dialog-msg .el-dialog__footer .el-button--primary'

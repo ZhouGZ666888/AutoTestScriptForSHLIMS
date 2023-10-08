@@ -132,6 +132,7 @@ class ReportUploadPage(BasePage):
         # 执行JS，修改上传控件样式，由不显示变为显示，以便上传文件
         self.executeJscript(
             "document.querySelector('.card-report-file .el-upload input').style.setProperty('display','block','important');")
+        self.sleep(0.5)
 
         # 上传报告文件需要包含患者姓名和订单号，分别取出保存为文件名
         file_name = create_upload_path()
@@ -155,6 +156,7 @@ class ReportUploadPage(BasePage):
         file_name = create_upload_path()
         self.executeJscript(
             "document.querySelector('.card-decode-file .el-upload input').style.setProperty('display','block','important');")
+        self.sleep(0.5)
         # 创建TXT类型的解读文件
         with open(excel_doc_file_path + '/' + '{}_解读文件.txt'.format(file_name), 'w', encoding='utf-8') as f:
             f.write('自动化测试解读文件上传')

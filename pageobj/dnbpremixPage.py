@@ -136,6 +136,7 @@ class DnbpremixPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', detail_batch_data_btn_confirm)
         self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=6000')
+        self.sleep(0.5)
         depositType = self.get_text('css', 'tr:nth-child(1) .dnbPreparationSchedule-tableCol-depositType')
         return depositType
 
