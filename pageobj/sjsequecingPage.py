@@ -645,7 +645,7 @@ class SjSequecingPage(BasePage):
         try:
             self.clicks('css', hd_sequencingSchedule_confirm)
             self.wait_loading()
-        except TimeoutException as a:
+        except Exception as a:
             log.error(a)
             self.refresh()
             # self.clicks('css', after_concentration_adjustment_all_choice)  # 全选样本
