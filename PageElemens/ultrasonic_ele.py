@@ -339,6 +339,9 @@ result_all_choice = (
 # 修改产物类型
 result_change_product_type = (
     '.sampleDetail_header .button-list .ultrafracResults-btn-changeResultType')
+
+#产物类型
+
 # 修改产物类型弹框数据选择，默认选择第一条
 result_change_product_type_choice = (
     '//*[@class="el-dialog el-dialog--center dialog-product-type"]/descendant::tr[child::td[div[text()="石蜡组织DNA"]]]')

@@ -332,9 +332,9 @@ class UltrasonicPage(BasePage):
         """
         log.info("超声破碎结果表，修改产物类型")
         self.clicks('css', result_all_choice)  # 样本列表数据全选按钮
-        self.sleep(0.5)
+        self.sleep(1)
         self.clicks('css', result_change_product_type)  # 修改产物类型
-        self.sleep(0.5)
+        self.wait_loading()
         self.clicks('xpath', result_change_product_type_choice)  # 修改产物类型弹框数据选择，默认选择石蜡组织DNA
         self.sleep(0.5)
         self.clicks('css', result_change_product_type_comfirm)  # 修改产物类型弹框数据选择，确认
