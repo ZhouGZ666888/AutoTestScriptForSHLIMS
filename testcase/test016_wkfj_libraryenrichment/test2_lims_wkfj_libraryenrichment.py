@@ -41,10 +41,10 @@ class LibraryenrichMent(MyTest):
 
         log.info("文库富集明细表批量粘贴导入实验数据")
         self.wkfj.detail_libraryenrichment()
-        log.info("批量数据后生成结果")
-        self.wkfj.detail_create_result()
         log.info("自动判断子文库录入情况")
         self.wkfj.detail_automatic_judge_sublibrary_entry()
+        log.info("批量数据后生成结果")
+        self.wkfj.detail_create_result()
         log.info('进入文库富集结果表')
         self.wkfj.enter_result_list(enter_result_list_btn, '文库富集结果表')  # 进入文库富集结果表
 
