@@ -50,6 +50,19 @@ select_sop = (
 select_sop_choice = (
     '.sopId-unique .el-select-dropdown__list ul:nth-child(1) .el-select-group li:nth-child(1)')
 
+
+#原始样本保存冰箱
+sample_fridge='//div[contains(text(),"原始样本保存冰箱")]/following-sibling::div/descendant::input'
+
+#原始样本保存冰箱选项
+riginalSampleFridge='.originalSampleFridgeCode-unique ul li:nth-child(1)'
+
+#DNA保存冰箱
+dna_fridge='//div[contains(text(),"DNA保存冰箱")]/following-sibling::div/descendant::input'
+
+#DNA保存冰箱选项
+dnaSampleFridgeCode='.dnaSampleFridgeCode-unique ul li:nth-child(2)'
+
 # 选择实验室值班主管下拉框
 select_dutySupervisors = (
     '.extractionDetail-form-dutySupervisors input')

@@ -49,6 +49,18 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', select_sop_choice)
         self.wait_loading()
 
+        log.info("原始样本保存冰箱")
+        self.clicks('xpath', sample_fridge)
+        self.sleep(0.5)
+        self.clicks('css', riginalSampleFridge)
+        self.sleep(0.5)
+
+        log.info("DNA保存冰箱")
+        self.clicks('xpath', dna_fridge)
+        self.sleep(0.5)
+        self.clicks('css', dnaSampleFridgeCode)
+        self.sleep(0.5)
+
         log.info("选择 实验室值班主管 ")
         self.clicks('css', select_dutySupervisors)
         self.sleep(0.5)

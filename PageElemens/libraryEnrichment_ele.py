@@ -152,6 +152,12 @@ submit_btn = (
 submit_comfirm = (
     '.dialog-commit .dialog-footer .baseClass-btn-confirm')
 
+#自动判断子文库录入情况
+automatic_judge_sublibrary_entry_btn='.button-list .baseClass-btn-subLibEntryStatus'
+
+
+
+
 # /************************入库****************************
 # 入库按钮
 deposit_into_storage = (

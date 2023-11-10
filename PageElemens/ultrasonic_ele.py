@@ -369,6 +369,16 @@ result_sample_amount_unit_choice = (
 result_number_of_labels_printed = (
     '.ultrafracResults-page-noOfLabels input')
 
+# 批量数据弹框，破碎仪编号*
+ultrafracResults_libInstrumentCode='.ultrafracResults-page-libInstrumentCode input'
+
+# 批量数据弹框，破碎仪编号选择
+ultrafracResults_libInstrumentCode_choice='/html/body/div[6]/descendant::li[1]'
+
+# 批量数据弹框，循环数录入框
+loopNum='.ultrafracResults-dialogBatchData-loopNum input'
+
+
 # 批量数据弹框，确认按钮
 result_batch_data_comfirm = (
     '.el-dialog__wrapper.dialog-batchData .el-dialog__footer .baseClass-btn-confirm')

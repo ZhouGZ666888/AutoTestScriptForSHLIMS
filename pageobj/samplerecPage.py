@@ -274,13 +274,13 @@ class SampleReceivePage(BasePage):
                 elif s_type == '骨冷冻组织':
                     expProcess_planne(lists, '骨冷冻组织', Illumina, '21基因')
 
-                elif s_type == 'DNA文库':
+                elif s_type == 'DNA文库':#SR样本
                     expProcess_planne(lists, 'DNA文库', Illumina, '文库定量')
 
                 elif s_type == '外部血浆':
                     expProcess_planne(lists, '外部血浆', Illumina, '提取-质谱仪上机')
 
-                elif s_type == 'cfDNA文库':
+                elif s_type == 'cfDNA文库':#SR样本
                     expProcess_planne(lists, 'cfDNA文库', huada, '华大-APP-A')
 
         # 获取当前窗口句柄

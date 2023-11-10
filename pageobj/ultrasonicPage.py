@@ -64,13 +64,11 @@ class UltrasonicPage(BasePage):
         self.clicks('css', task_type_choice)
         self.wait_loading()
 
-
         log.info("选择操作方式")
         self.click_by_js('css', OperationType)
         self.sleep(0.5)
         self.clicks('xpath', OperationType_choice)
         self.sleep(0.5)
-
 
         log.info("选择sop")
         self.clicks('css', select_sop)
@@ -83,7 +81,7 @@ class UltrasonicPage(BasePage):
         self.wait_loading()
         self.clicks('xpath', slaverUser_input)
         self.sleep(0.5)
-        self.input('xpath', slaverUser_input,'周官钟')
+        self.input('xpath', slaverUser_input, '周官钟')
         self.wait_loading()
         self.clicks('xpath', slaverUser_choice)
         self.sleep(0.5)
@@ -93,7 +91,6 @@ class UltrasonicPage(BasePage):
         self.sleep(0.5)
         self.clicks('xpath', slaverUser_confirm_btn)
         self.sleep(0.5)
-
 
     # 待选表校验lims号
     def check_lims_num(self):
@@ -115,7 +112,7 @@ class UltrasonicPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("超声破碎待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
+        Screenshot(self.driver).get_img("超声破碎待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号", "保存任务单成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -196,7 +193,6 @@ class UltrasonicPage(BasePage):
         self.clicks('css', dialog_parOpt_comfirm_comfirm)
         self.wait_loading()
 
-
     def goback_detail(self):
         """返回明细表"""
         urldata = editYaml.read_yaml(functionpageURL_path)
@@ -259,7 +255,7 @@ class UltrasonicPage(BasePage):
         self.clicks('css', submit_btn)  # 提交按钮
 
         self.sleep(0.5)
-        Screenshot(self.driver).get_img("超声破碎明细表点击提交按钮","弹出提交确认按钮")
+        Screenshot(self.driver).get_img("超声破碎明细表点击提交按钮", "弹出提交确认按钮")
         # 这里调用自定义截图方法
         self.sleep(1)
         self.clicks('css', submit_comfirm)  # 提交弹框确认按钮
@@ -276,7 +272,6 @@ class UltrasonicPage(BasePage):
         self.clicks('css', deposit_into_storage)  # 入库按钮
         self.sleep(0.5)
         self.clicks('css', storage_all_choice)  # 入库弹框全选按钮
-
 
         log.info('超声破碎明细表，样本入库选择入样本盒')
         self.clicks('css', batch_paste_sample_box)  # 入库弹框选择样本盒按钮
@@ -317,7 +312,7 @@ class UltrasonicPage(BasePage):
         self.clicks('css', batch_copy_BoxPosition_comfirm)
         self.sleep(1)
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("超声破碎明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
+        Screenshot(self.driver).get_img("超声破碎明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步", "样本入库成功")
         self.clicks('css', storage_next)
         result = self.findelement('xpath', '//p[contains(text(),"样本入库成功")]')
 
@@ -358,6 +353,13 @@ class UltrasonicPage(BasePage):
         self.sleep(0.5)
         self.input('css', result_number_of_labels_printed, 1)  # 批量数据弹框，标签打印份数文本框
         self.sleep(0.5)
+        self.clicks('css', ultrafracResults_libInstrumentCode)  # 批量数据弹框，破碎仪编号
+        self.sleep(0.5)
+        self.clicks('css', ultrafracResults_libInstrumentCode_choice)
+        self.sleep(0.5)
+        self.input('css', loopNum, 7)  # 批量数据弹框，循环数录入
+        self.sleep(0.5)
+
         self.clicks('css', result_batch_data_comfirm)  # 批量数据弹框，确认按钮
         self.sleep(1.5)
 
@@ -392,7 +394,7 @@ class UltrasonicPage(BasePage):
         self.wait_loading()
 
         # 这里调用自定义截图方法
-        Screenshot(self.driver).get_img("超声破碎结果表结果表点击提交按钮","弹出提交确认按钮")
+        Screenshot(self.driver).get_img("超声破碎结果表结果表点击提交按钮", "弹出提交确认按钮")
 
         self.clicks('css', result_submit_comfirm)  # 提交确认按钮
         pageinfo = self.get_pageinfo()
@@ -427,7 +429,7 @@ class UltrasonicPage(BasePage):
             self.sleep(2)
 
             # 调用自定义截图方法
-            Screenshot(self.driver).get_img("超声破碎结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
+            Screenshot(self.driver).get_img("超声破碎结果表点击完成任务单按钮", "完成任务单成功，状态改为完成")
 
             taskstatus = self.get_text('css', task_status)
             print(taskstatus)

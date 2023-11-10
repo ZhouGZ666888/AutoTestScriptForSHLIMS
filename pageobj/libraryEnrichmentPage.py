@@ -161,7 +161,6 @@ class LibraryenrichmentPage(BasePage):
     def goback_detail(self):
         """
         返回明细表
-
         """
 
         urldata = editYaml.read_yaml(functionpageURL_path)
@@ -208,10 +207,15 @@ class LibraryenrichmentPage(BasePage):
     def detail_create_result(self):
         log.info("批量数据后生成结果")
         self.click_by_js('css', create_result)
-
         self.wait_loading()
         Screenshot(self.driver).get_img("文库富集明细表点击生成结果按钮","生成结果成功")
         self.sleep(1)
+
+    def detail_automatic_judge_sublibrary_entry(self):
+        """自动判断子文库录入情况"""
+        self.clicks('css',automatic_judge_sublibrary_entry_btn)
+        self.wait_loading()
+
 
     # 明细表提交
     def detail_submit(self):
