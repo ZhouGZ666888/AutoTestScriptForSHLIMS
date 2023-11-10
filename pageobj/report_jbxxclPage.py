@@ -135,11 +135,11 @@ class ReportBasicInfoProcessingPage(BasePage):
         """
         选择报告形式
         """
-        lens = self.search_by_order()  # 调用按订单号搜索方法
-        print(lens)
-        self.sleep(0.5)
-        self.click_by_js('css', add_report_task)  # 添加报告任务
-        self.wait_loading()
+        # lens = self.search_by_order()  # 调用按订单号搜索方法
+        # print(lens)
+        # self.sleep(0.5)
+        # self.click_by_js('css', add_report_task)  # 添加报告任务
+        # self.wait_loading()
         log.info("选择报告形式")
         self.clicks('css', report_style)  # 报告任务项-【报告形式】表单定位
         self.clicks('css', report_style_select)  # 报告任务项-【报告形式】表单下拉
