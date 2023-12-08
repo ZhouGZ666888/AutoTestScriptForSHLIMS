@@ -37,7 +37,6 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', task_type_choice)
         self.wait_loading()
 
-
         log.info("操作方式")
         self.clicks('css', action_type)
         self.clicks('xpath', operationType_choice)
@@ -49,17 +48,18 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', select_sop_choice)
         self.wait_loading()
 
-        log.info("原始样本保存冰箱")
-        self.clicks('xpath', sample_fridge)
-        self.sleep(0.5)
-        self.clicks('css', riginalSampleFridge)
-        self.sleep(0.5)
-
-        log.info("DNA保存冰箱")
-        self.clicks('xpath', dna_fridge)
-        self.sleep(0.5)
-        self.clicks('css', dnaSampleFridgeCode)
-        self.sleep(0.5)
+        # 该功能删除
+        # log.info("原始样本保存冰箱")
+        # self.clicks('xpath', sample_fridge)
+        # self.sleep(0.5)
+        # self.clicks('css', riginalSampleFridge)
+        # self.sleep(0.5)
+        #
+        # log.info("DNA保存冰箱")
+        # self.clicks('xpath', dna_fridge)
+        # self.sleep(0.5)
+        # self.clicks('css', dnaSampleFridgeCode)
+        # self.sleep(0.5)
 
         log.info("选择 实验室值班主管 ")
         self.clicks('css', select_dutySupervisors)
@@ -91,7 +91,8 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', addSelect_or_save_btn)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
+        Screenshot(self.driver).get_img("核酸提取待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号",
+                                        "保存任务单成功")
 
         pageinfo = self.get_pageinfo()
         self.wait_loading()
@@ -167,7 +168,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', aliquot_sample)  # 点击分管按钮
         self.sleep(0.5)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表点击分管按钮，进行分管操作","分管成功")
+        Screenshot(self.driver).get_img("核酸提取明细表点击分管按钮，进行分管操作", "分管成功")
 
         self.clicks('css', aliquot_sample_all_choice)  # 分管弹框全选按钮
         self.sleep(0.5)
@@ -191,7 +192,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', changeProject_comfirm)  # 修改项目信息弹框确认按钮
         self.sleep(0.5)
-        self.clicks('css', aliquot_sample_last_step_comfirm)  # 明细表分管弹框分管后确认按钮
+        self.click_by_js('css', aliquot_sample_last_step_comfirm)  # 明细表分管弹框分管后确认按钮
         self.wait_loading()
 
         log.info('选择优化项目')
@@ -283,7 +284,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.wait_loading()
         self.sleep(1)
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表点击提交按钮","弹出提交确认按钮")
+        Screenshot(self.driver).get_img("核酸提取明细表点击提交按钮", "弹出提交确认按钮")
 
     # 明细表入库
     def detail_into_storage(self):
@@ -296,7 +297,6 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', deposit_into_storage)  # 入库按钮
         self.sleep(0.5)
         self.clicks('css', storage_all_choice)  # 入库弹框全选按钮
-
 
         log.info('核酸提取明细表，样本入库选择入样本盒')
         self.clicks('css', batch_paste_sample_box)  # 入库弹框选择样本盒按钮
@@ -341,7 +341,8 @@ class NucleicAcidExtractionPage(BasePage):
         self.sleep(0.5)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步","样本入库成功")
+        Screenshot(self.driver).get_img("核酸提取明细表点击入库按钮，在弹框中录入库位信息和盒内位置后点击下一步",
+                                        "样本入库成功")
 
         self.clicks('css', storage_next)
         self.wait_loading()
@@ -433,7 +434,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', result_submit)  # 提交按钮
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取结果表点击提交按钮","弹出提交确认按钮")
+        Screenshot(self.driver).get_img("核酸提取结果表点击提交按钮", "弹出提交确认按钮")
 
         self.wait_loading()
         self.sleep(0.5)
@@ -500,7 +501,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.sleep(3)
 
         # 调用自定义截图方法
-        Screenshot(self.driver).get_img("核酸提取结果表点击完成任务单按钮","完成任务单成功，状态改为完成")
+        Screenshot(self.driver).get_img("核酸提取结果表点击完成任务单按钮", "完成任务单成功，状态改为完成")
 
         taskstatus = self.get_text('css', task_status)
         print(taskstatus)
