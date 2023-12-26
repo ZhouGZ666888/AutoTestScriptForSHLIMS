@@ -355,7 +355,7 @@ class UltrasonicPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', ultrafracResults_libInstrumentCode)  # 批量数据弹框，破碎仪编号
         self.sleep(0.5)
-        self.clicks('css', ultrafracResults_libInstrumentCode_choice)
+        self.clicks('xpath', ultrafracResults_libInstrumentCode_choice)
         self.sleep(0.5)
         self.input('css', loopNum, 7)  # 批量数据弹框，循环数录入
         self.sleep(0.5)

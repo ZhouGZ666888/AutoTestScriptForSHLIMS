@@ -539,7 +539,7 @@ class SjSequecingPage(BasePage):
         log.info("上机首页，点击新建按钮，进入样本待选表，新增上机任务")
         self.clicks('css', add_task)
         self.wait_loading()
-        log.info('选择上机任务类型：illumina上机')
+        log.info('选择上机任务类型：华大上机')
         self.clicks('css', task_type)
         self.sleep(0.5)
         self.clicks('xpath', task_type_choice_huada)
@@ -636,7 +636,7 @@ class SjSequecingPage(BasePage):
         """华大上机生成上机分组号"""
         self.clicks('css', hd_generateNo)
         info = self.get_pageinfo()
-        self.sleep(0.5)
+        self.sleep(2)
         return info
 
     # 华大上机明细表确认上机
@@ -670,6 +670,8 @@ class SjSequecingPage(BasePage):
     # 华大上机明细表明细表提交
     def hd_detail_sumbit(self):
         """华大上机明细表提交"""
+        # self.clicks('css', after_concentration_adjustment_all_choice)  # 全选样本
+        self.sleep(1)
         self.clicks('css', hd_detail_sumbit)
         self.sleep(1)
         self.clicks('css', hd_detail_sumbit_confirm)

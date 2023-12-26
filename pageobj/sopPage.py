@@ -110,7 +110,7 @@ class SopPage(BasePage):
         self.sleep(2)
 
         log.info("详情页，默认选择首选项")
-        self.clicks('css', sop_detail_original_sample_type_search_result)
+        self.click_by_js('css', sop_detail_original_sample_type_search_result)
         self.sleep(1)
 
         log.info("详情页，点击确定")
