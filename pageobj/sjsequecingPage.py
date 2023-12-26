@@ -149,9 +149,9 @@ class SjSequecingPage(BasePage):
         log.info(" 选中核对后的样本，点击【加入选中样本&保存】")
         self.clicks('css', addSelect_or_save_btn)
         pageinfo = self.get_pageinfo()
+        self.wait_loading()
         # 调用自定义截图方法
         Screenshot(self.driver).get_img("上机待选表点击核对lims号，录入样本号进行查询，勾选查询结果，并保存任务单号","保存任务单成功")
-        self.wait_loading()
         if self.isElementExists('css', sopSampleNumber1):
             if self.isClickable('css', sopSampleNumber1):
                 self.set_sopSampleNumber(sopSampleNumber1)
@@ -629,6 +629,8 @@ class SjSequecingPage(BasePage):
         log.info(" 华大上机明细表自动计算标签")
         self.clicks('css', hd_autoCompleteLabel)
         self.wait_loading()
+        Screenshot(self.driver).get_img("华大上机明细表点击自动计算标签",
+                                        "展示计算结果")
         return self.get_text('css', 'tr:nth-child(1) .sequencingSchedule-tableCol-labelType')
 
     # 华大上机明细表生成上机分组号
@@ -636,6 +638,8 @@ class SjSequecingPage(BasePage):
         """华大上机生成上机分组号"""
         self.clicks('css', hd_generateNo)
         info = self.get_pageinfo()
+        Screenshot(self.driver).get_img("华大上机明细表点击生成上机分组号",
+                                        "展示生成结果")
         self.sleep(2)
         return info
 
@@ -645,6 +649,8 @@ class SjSequecingPage(BasePage):
         try:
             self.clicks('css', hd_sequencingSchedule_confirm)
             self.wait_loading()
+            Screenshot(self.driver).get_img("华大上机明细表点击确认上机",
+                                            "展示上机结果")
         except Exception as a:
             log.error(a)
             self.refresh()
@@ -662,6 +668,8 @@ class SjSequecingPage(BasePage):
         self.sleep(0.5)
         self.clicks('css', after_concentration_adjustment_create_samplesheet_comfirm)
         self.wait_loading()
+        Screenshot(self.driver).get_img("华大上机明细表点击生成samplesheet",
+                                        "展示生成samplesheet结果")
         if self.isDisplayed('xpath', '//*[@class="el-dialog el-dialog--center dialog-sampleSheet-msg"]/parent::div'):
             print('True')
             self.clicks('css', after_concentration_adjustment_create_samplesheet_info_comfirm)
