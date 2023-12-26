@@ -288,7 +288,7 @@ class LibraryenrichmentPage(BasePage):
         self.clicks('css', storage_next)
         self.wait_loading()
 
-        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=5000')
+        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=6000')
         self.sleep(1)
         pageinfo = self.get_text('css', detail_sumbit_status)
         print(pageinfo)

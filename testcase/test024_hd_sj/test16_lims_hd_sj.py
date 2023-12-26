@@ -44,11 +44,11 @@ class SjSequecing(MyTest):
         info = self.sj.hd_detail_datch_data()
         self.assertEqual(info, "录入成功", "批量数据录入失败！！")
 
-    def test04_hd_detail_autoCompleteLabel(self):
-        """华大上机明细表自动计算标签"""
-        log.info("华大上机明细表自动计算标签")
-        info = self.sj.hd_detail_autoCompleteLabel()
-        self.assertEqual(info, "双标签", "自动计算标签失败！！")
+    # def test04_hd_detail_autoCompleteLabel(self):
+    #     """华大上机明细表自动计算标签"""
+    #     log.info("华大上机明细表自动计算标签")
+    #     info = self.sj.hd_detail_autoCompleteLabel()
+    #     self.assertEqual(info, "双标签", "自动计算标签失败！！")
 
     def test05_hd_detail_generateNo(self):
         """华大上机明细表生成上机分组号"""

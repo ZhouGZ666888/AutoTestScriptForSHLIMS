@@ -225,7 +225,7 @@ storage_next = (
 
 # 提交状态文本定位
 detail_sumbit_status = (
-    '.createTask_content .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(14)')
+    '.createTask_content .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1) td:nth-child(15)')
 
 # 样本列表滚动条
 scroll_line = (
