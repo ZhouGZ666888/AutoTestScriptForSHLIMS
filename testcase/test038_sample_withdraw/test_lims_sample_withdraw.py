@@ -21,7 +21,7 @@ class SampleWithdraw(MyTest):
         """
         测试在出库列表页搜索指定样本
         """
-        self.initialize()
+        self.initializes()
         EnterTab.enter_storage_center(self.basepage)
         EnterTab.enter_withdraw(self.basepage)
         log.info('登录系统，测试在出库列表页搜索指定样本')

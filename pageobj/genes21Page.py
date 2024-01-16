@@ -191,6 +191,7 @@ class Genes21Page(BasePage):
         log.info("21基因明细表样本提交---明细表判断主样本，并点击选中主样本")
         for i in range(1, len(all_lims) + 1):
             lims_nub = self.get_text('css', samples_lims.format(i))
+            self.sleep(0.5)
             if lims_nub == datas["twentyonegene_lims"]:
                 self.clicks('css', samples_lims.format(i))
         log.info("点击提交按钮")
@@ -211,6 +212,7 @@ class Genes21Page(BasePage):
         log.info("21基因明细表样本入库---明细表判断主样本，并点击选中主样本")
         for i in range(1, len(all_lims) + 1):
             lims_nub = self.get_text('css', samples_lims.format(i))
+            self.sleep(0.5)
             if lims_nub == datas["twentyonegene_lims"]:
                 self.clicks('css', samples_lims.format(i))
         try:

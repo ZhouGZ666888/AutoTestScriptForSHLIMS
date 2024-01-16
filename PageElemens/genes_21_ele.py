@@ -97,7 +97,8 @@ all_samples = (
 
 # 获取样本lims号
 samples_lims = (
-    '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) td:nth-child(2)')
+    '.createTask_content_table .vxe-table--fixed-left-wrapper .vxe-table--body-wrapper tbody tr:nth-child({}) '
+    'td:nth-child(3)')
 
 # Qubit浓度（实测）ng/μL*表单定位
 actual_qubit_concentration = (

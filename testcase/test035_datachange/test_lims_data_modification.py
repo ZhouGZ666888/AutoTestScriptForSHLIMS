@@ -39,7 +39,7 @@ class DateModification(MyTest):
         """
         测试提取明细表，对样本数据进行修改并提交审核
         """
-        self.initialize()
+        self.initializes()
         self.enter_func_page()
         log.info('核酸提取明细表数据修改操作')
         self.dc.extraction_detail_datachange()

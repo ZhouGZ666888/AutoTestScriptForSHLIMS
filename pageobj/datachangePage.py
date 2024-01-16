@@ -5,7 +5,6 @@
 
 
 import yaml
-
 from common.all_path import sampledata_path
 from common.editYaml import read_yaml
 from common.screenshot import Screenshot
@@ -128,7 +127,7 @@ class DataChangePage(BasePage):
         Screenshot(self.driver).get_img("选择数据后点击发起审核按钮","弹出进行审核确认弹框")
 
         log.info('发起修改弹框，指定审核人下拉框')
-        self.clicks('css', placeHolder_select_btn)
+        self.click_by_js('css', placeHolder_select_btn)
 
         log.info('发起修改弹框，选择审核人：董国奇')
         self.clicks('xpath', choice_placeHolder.format('董国奇'))

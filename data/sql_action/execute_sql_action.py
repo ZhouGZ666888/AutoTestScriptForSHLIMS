@@ -262,11 +262,8 @@ AND t2.project_id IS NOT NULL
 AND workflow_status ='01' AND t.original_sample_id_lims=t.sample_id_lims AND sample_type='C2012120800006'"""
 
 # 查询提取节点可出库的样本
-ybck_get_sql3 = """SELECT t.sample_id_lims FROM sample_info_t t
-LEFT JOIN exp_result_sample_project_t t2 ON (t.sample_id_lims=t2.sample_id_lims)
-WHERE t.sample_id_lims LIKE 'GS%' AND t.sample_status ='01' 
-AND workflow_status ='01' AND t.current_step='extraction' 
-AND t2.project_id IS NOT NULL"""
+ybck_get_sql3 = """SELECT T.sample_id_lims	FROM sample_info_t	T LEFT JOIN exp_result_sample_project_t t2 ON ( T.sample_id_lims = t2.sample_id_lims ) 	JOIN sample_box_info_t t3 ON T.box_id = t3.box_id	JOIN sample_storage_info_t t4 ON t4.storage_id = t3.storage_id 	WHERE	T.sample_id_lims LIKE'GS%' 
+	AND T.sample_status = '01' 	AND workflow_status = '01' 	AND T.current_step = 'extraction' 	AND t2.project_id IS NOT NULL AND t4.storage_type='02';"""
 
 # 查询富集节点可出库的样本
 ybck_get_sql4 = """SELECT t.libquant_lims_id FROM sample_info_t t 
