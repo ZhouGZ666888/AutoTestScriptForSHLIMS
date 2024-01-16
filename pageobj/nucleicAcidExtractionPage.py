@@ -198,6 +198,8 @@ class NucleicAcidExtractionPage(BasePage):
 
         log.info('选择优化项目')
         # 选择优化项目弹框全选按钮
+        self.clicks('css',addProject)
+        self.sleep(1)
         self.clicks('css', dialog_parOpt_all_choice)
         # 选择优化项目按钮
         self.clicks('css', dialog_parOpt_btn)

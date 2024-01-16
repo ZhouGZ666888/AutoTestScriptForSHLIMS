@@ -222,6 +222,8 @@ changeProject_comfirm = (
 # 明细表分管弹框分管后确认按钮
 aliquot_sample_last_step_comfirm = (
     '.dialog-divided-next .dialog-footer .baseClass-btn-confirm')
+#添加优化项目按钮
+addProject='.button-list .extractionSchedule-btn-addProject'
 
 # 选择优化项目弹框全选按钮
 dialog_parOpt_all_choice = (
