@@ -23,7 +23,7 @@ class ReportBasicInfoProcessing(MyTest):
         测试基本信息处理模块，根据项目号搜索待处理任务
         """
         log.info('登录系统，进入报告基本信息处理页面')
-        self.initialize()
+        self.initializes()
         EnterTab.enter_report_center(self.basepage)  # 点击报告任务列表
         EnterTab.enter_report_basictask_deal(self.basepage)  # 点击基本信息任务分配
         # 传入驱动

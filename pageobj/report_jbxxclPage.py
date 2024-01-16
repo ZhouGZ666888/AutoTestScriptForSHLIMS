@@ -141,7 +141,7 @@ class ReportBasicInfoProcessingPage(BasePage):
         # self.click_by_js('css', add_report_task)  # 添加报告任务
         # self.wait_loading()
         log.info("选择报告形式")
-        self.clicks('css', report_style)  # 报告任务项-【报告形式】表单定位
+        self.click_by_js('css', report_style)  # 报告任务项-【报告形式】表单定位
         self.clicks('css', report_style_select)  # 报告任务项-【报告形式】表单下拉
         self.clicks('xpath', report_style_choice)  # 报告任务项-【报告形式】表单下拉选项
         self.sleep(1)

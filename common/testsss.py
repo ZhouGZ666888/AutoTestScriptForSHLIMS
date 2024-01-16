@@ -592,6 +592,25 @@ def test0919():
 
         else:
             print("原样本信息已置为无效")
+import base64
+import io
+from PIL import Image
+
+
+
+def jpgtest():
+
+    # 假设你的base64字符串是base64_string
+    base64_string = "����"
+    # 将base64字符串解码为字节
+    image_bytes = base64.b64decode(base64_string)
+    # 创建一个BytesIO对象
+    image_io = io.BytesIO(image_bytes)
+    # 使用PIL库从BytesIO对象中读取图片
+    image = Image.open(image_io)
+    # 显示图片
+    image.show()
+
 
 if __name__ == '__main__':
     # html = r'C:\Users\admin\Desktop\html1.html'

@@ -21,7 +21,7 @@ class ReportWritingTaskAssignment(MyTest):
         测试报告编写任务分配模块，根据项目号搜索待处理任务
         """
         log.info('登录系统，进入报告编写任务分配页面')
-        self.initialize()
+        self.initializes()
         EnterTab.enter_report_center(self.basepage)  # 点击报告任务列表
         EnterTab.enter_report_edittask_distribution(self.basepage)  # 点击基本信息任务分配
 

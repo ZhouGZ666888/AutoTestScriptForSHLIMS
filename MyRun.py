@@ -253,12 +253,12 @@ def Auto_sendmail():
     # os.system('python MyRun.py')#执行MyRun文件
     # 收件人邮箱账号,逗号隔开，发送多人邮件
     # 收件人（'guoqi.dong@geneseeq.com,...,xxxx@163.com'）
-    receive_user = 'guoqi.dong@geneseeq.com'
-    # receive_user = 'guoqi.dong@geneseeq.com,guanzhong.zhou@geneseeq.com,benjamin.yan@geneseeq.com'
+    # receive_user = 'guoqi.dong@geneseeq.com'
+    receive_user = 'guoqi.dong@geneseeq.com,guanzhong.zhou@geneseeq.com,benjamin.yan@geneseeq.com'
     # 抄送人（'1923180362@qq.com,...,xxxx@163.com'）
-    acc = 'guanzhong.zhou@geneseeq.com'
-    # acc = 'yongxiang.wang@geneseeq.com,xiaojun.cheng@geneseeq.com,yanshou.gao@geneseeq.com,qingjun.zhang@geneseeq.com,' \
-    # 'wei.hu@geneseeq.com,yuanbin.tang@geneseeq.com'
+    # acc = 'guanzhong.zhou@geneseeq.com'
+    acc = 'yongxiang.wang@geneseeq.com,xiaojun.cheng@geneseeq.com,yanshou.gao@geneseeq.com,qingjun.zhang@geneseeq.com,' \
+    'wei.hu@geneseeq.com,yuanbin.tang@geneseeq.com'
     email_title = "您有一份世和LIMS系统的自动化测试报告，请查收"  # 邮件标题
     # 调用取最新报告文件的截图方法
     get_report = get_image(img_path + '\\' + 'report_shot.png')
@@ -307,13 +307,18 @@ def Creat_auto_shotfile():
 
 if __name__ == '__main__':
     # 运行前先清空文件夹下过期的图片
-    shutil.rmtree(img_path)
-    os.mkdir(img_path)
-    now = time.strftime("%Y-%m-%d_%H-%M-%S")
-    name = str(now) + '_report'
-    test_suite = unittest.defaultTestLoader.discover(
-        test_dir, pattern='test11*.py')
-    result = BeautifulReport(test_suite)
-    result.report(filename=name, description='Lims系统自动化-用例执行情况',
-                  log_path=test_report)
-    Creat_auto_shotfile()
+
+    #
+    # shutil.rmtree(img_path)
+    # os.mkdir(img_path)
+    # now = time.strftime("%Y-%m-%d_%H-%M-%S")
+    # name = str(now) + '_report'
+    # test_suite = unittest.defaultTestLoader.discover(
+    #     test_dir, pattern='test*.py')
+    # result = BeautifulReport(test_suite)
+    # result.report(filename=name, description='Lims系统自动化-用例执行情况',
+    #               log_path=test_report)
+    # Creat_auto_shotfile()
+
+
+    Auto_sendmail()

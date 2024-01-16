@@ -620,7 +620,7 @@ class SjSequecingPage(BasePage):
         self.input('css', after_concentration_adjustment_datch_data_sequencer_read_length, 150)  # 浓度调整后明细表批量数据,测序读长
         self.clicks('css', after_concentration_adjustment_datch_data_comfirm)  # 浓度调整后明细表批量数据弹框确认
         info = self.get_pageinfo()
-        self.sleep(1)
+        self.sleep(5)
         return info
 
     # 华大上机明细表自动计算标签
