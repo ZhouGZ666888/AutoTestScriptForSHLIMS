@@ -109,11 +109,7 @@ class SampleProcessingPage(BasePage):
         print("写入后的URL地址", urldata)
 
     def goback_detail(self):
-        """
-        返回明细表
-
-        """
-
+        """返回明细表"""
         urldata = editYaml.read_yaml(functionpageURL_path)
         log.info('点击按钮返回明细表')
         self.click_by_js('css', goback_detail)

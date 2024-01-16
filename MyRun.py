@@ -307,18 +307,13 @@ def Creat_auto_shotfile():
 
 if __name__ == '__main__':
     # 运行前先清空文件夹下过期的图片
-
-    #
-    # shutil.rmtree(img_path)
-    # os.mkdir(img_path)
-    # now = time.strftime("%Y-%m-%d_%H-%M-%S")
-    # name = str(now) + '_report'
-    # test_suite = unittest.defaultTestLoader.discover(
-    #     test_dir, pattern='test*.py')
-    # result = BeautifulReport(test_suite)
-    # result.report(filename=name, description='Lims系统自动化-用例执行情况',
-    #               log_path=test_report)
-    # Creat_auto_shotfile()
-
-
-    Auto_sendmail()
+    shutil.rmtree(img_path)
+    os.mkdir(img_path)
+    now = time.strftime("%Y-%m-%d_%H-%M-%S")
+    name = str(now) + '_report'
+    test_suite = unittest.defaultTestLoader.discover(
+        test_dir, pattern='test11*.py')
+    result = BeautifulReport(test_suite)
+    result.report(filename=name, description='Lims系统自动化-用例执行情况',
+                  log_path=test_report)
+    Creat_auto_shotfile()

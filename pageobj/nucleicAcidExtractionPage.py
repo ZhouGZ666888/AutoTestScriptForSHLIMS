@@ -188,7 +188,8 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('xpath', aliquot_sample_last_step_choice)  # 分管弹框最后步骤下拉值选择
         self.sleep(0.5)
         self.clicks('css', changeProject)  # 修改项目信息
-        # self.clicks('css', changeProject_choice)  # 修改项目信息全选按钮
+        self.sleep(0.5)
+        self.clicks('css', changeProject_choice)  # 修改项目信息全选按钮
         self.sleep(0.5)
         self.clicks('css', changeProject_comfirm)  # 修改项目信息弹框确认按钮
         self.sleep(0.5)

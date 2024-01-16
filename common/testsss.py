@@ -1,5 +1,6 @@
 import datetime, xlrd
 import re
+from threading import Thread
 
 from openpyxl import load_workbook
 from selenium import webdriver
@@ -612,9 +613,28 @@ def jpgtest():
     image.show()
 
 
+
+
+def test_url():
+    driver = webdriver.Chrome()
+    driver.get("http://www.baidu.com")
+    # 在此处添加你的页面操作代码
+    # ...
+    time.sleep(1)  # 等待1秒
+    driver.quit()
+
+def pgn():
+    from PIL import Image
+    # 打开PNG图片
+    img = Image.open(r'C:\Users\admin\Desktop\Jmeter脚本\世和脚本\testocr.png')
+    # 使用convert方法转换为RGB格式（因为PNG可能包含透明度通道，而JPG不支持）
+    rgb_img = img.convert('RGB')
+    # 保存为JPG格式
+    rgb_img.save(r'C:\Users\admin\Desktop\Jmeter脚本\世和脚本\testocr1.jpg', 'JPEG')
+
 if __name__ == '__main__':
-    # html = r'C:\Users\admin\Desktop\html1.html'
-    test0919()
+    pgn()
+    # test0919()
     # example usage
     # lst = ['apple', 'banana', 'cherry']
     # sub_str = 'app'
