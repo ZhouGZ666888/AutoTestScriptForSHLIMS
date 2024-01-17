@@ -271,6 +271,8 @@ class NucleicAcidExtractionPage(BasePage):
         log.info('核酸提取明细表，自动计算')
         self.clicks('css', detail_auto_calculate)  # 自动计算按钮
         self.sleep(1)
+        self.clicks('css',detail_save_result)
+        self.wait_loading()
 
     # 明细表提交
     def detail_submit(self):
@@ -350,7 +352,7 @@ class NucleicAcidExtractionPage(BasePage):
         self.clicks('css', storage_next)
         self.wait_loading()
 
-        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=3080')
+        self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=5080')
         self.sleep(0.5)
         samples_status = self.get_text('css', submit_status)
         self.sleep(1)
@@ -438,10 +440,7 @@ class NucleicAcidExtractionPage(BasePage):
 
         # 调用自定义截图方法
         Screenshot(self.driver).get_img("核酸提取结果表点击提交按钮", "弹出提交确认按钮")
-
         self.wait_loading()
-        self.sleep(0.5)
-
         if self.isElementExists('css', nextProcessorId):
             self.sleep(1)
             self.clicks('css', nextProcessorId)

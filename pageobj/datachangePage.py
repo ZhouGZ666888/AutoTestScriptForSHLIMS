@@ -127,6 +127,7 @@ class DataChangePage(BasePage):
         Screenshot(self.driver).get_img("选择数据后点击发起审核按钮","弹出进行审核确认弹框")
 
         log.info('发起修改弹框，指定审核人下拉框')
+        self.sleep(1)
         self.click_by_js('css', placeHolder_select_btn)
 
         log.info('发起修改弹框，选择审核人：董国奇')

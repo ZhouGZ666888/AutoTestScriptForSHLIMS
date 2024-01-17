@@ -8,7 +8,7 @@ bl_sql = "SELECT count(*) from crm_patient_t where identification_no ='{}';"
 # 订单模块查询订单表是否存在新建订单号
 order_isexists_sql = "select count(*) from order_info_t where order_code='{}'; "
 # 接样写入备注
-ybjs_sql = "UPDATE sample_receive_item_t set remarks='自动化测试数据' where order_code='{}';"
+ybjs_sql = "UPDATE sample_receive_item_t set remarks='测试用数据' where order_code='{}';	UPDATE sample_receive_item_t SET ffpe_length=2.5, ffpe_width=2.4 WHERE sample_type='C2012120800006' and order_code='{}'; "
 
 # 获取sr样本lims号
 get_sr_sample_lims = "select sample_id_lims from sample_receive_item_t where order_code='{}' and  sample_type in ('C2016120700002','C2017042000002');"
@@ -23,7 +23,8 @@ ybcl_detail_sql = "UPDATE exp_preparation_item_t set position_in_box=1 where tas
 ybcl_detail_sql2 = "SELECT t1.sample_id_lims,t1.sample_main_lab_code from sample_id_lab_v t1 WHERE t1.sample_id_lims in (SELECT t2.sample_id_lims from exp_preparation_result_t t2 where t2.task_id ='{}');"
 
 # 核酸提取明细表
-hstq_detail_sql = "UPDATE exp_extraction_item_t set actual_sample_amt={},actual_sample_pkg_amt=1 where task_id='{}';"
+hstq_detail_sql = "UPDATE exp_extraction_item_t set actual_sample_amt={},actual_sample_pkg_amt=1," \
+                  "remaining_sample_amt=18 where task_id='{}';"
 
 # 查询提取明细表样本lims号
 hstq_detail_sql2 = "SELECT sample_id_lims from exp_extraction_item_t where task_id='{}';"

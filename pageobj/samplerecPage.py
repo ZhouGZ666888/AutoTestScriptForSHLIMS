@@ -22,20 +22,14 @@ import re
 
 
 class SampleReceivePage(BasePage):
-    """
-    样本接收类页面基础方法
-    """
+    """样本接收类页面基础方法"""
 
     def search_order(self):
-        """
-        查询已存在订单号，对该订单号进行接样
-        """
+        """查询已存在订单号，对该订单号进行接样"""
         order = read_yaml(orderNub_path)  # 获取订单号
         log.info('接样页面点击搜索按钮')
-
         self.click_by_js('css', search_btn)
         self.sleep(0.5)
-
         log.info('搜索框录入订单号：%s' % order['order_number'])
         self.input('css', order_numb, order['order_number'])
         self.sleep(1)
@@ -60,9 +54,7 @@ class SampleReceivePage(BasePage):
             self.refresh()
 
     def add_sample_type(self):
-        """
-        样本接收详情页面，增加样本项目信息
-        """
+        """样本接收详情页面，增加样本项目信息"""
 
         pro_name = self.get_text('xpath', project_name_chioce)  # 查看项目号是否有值，若没有则重新选择
         if len(pro_name) == 0:
@@ -99,9 +91,7 @@ class SampleReceivePage(BasePage):
             self.sleep(1)
 
     def chioce_specimen(self, specimenList):
-        """
-        封装选择样本类型方法
-        """
+        """封装选择样本类型方法"""
         self.sleep(0.5)
         # 样本类型选择按钮，元素定位
         self.clicks('xpath', sample_TypeName)
@@ -267,19 +257,14 @@ class SampleReceivePage(BasePage):
             for s_type, num in specimen_list.items():  # 取出样本类型及其数量
                 if s_type == 'FFPE白片':  # 判断从列表循环取出本的类型
                     expProcess_planne(lists, 'FFPE白片', Illumina, '核酸提取-破碎')
-
                 elif s_type == 'EDTA抗凝血':
                     expProcess_planne(lists, 'EDTA抗凝血', Illumina, '样本处理-样本分离')
-
                 elif s_type == '骨冷冻组织':
                     expProcess_planne(lists, '骨冷冻组织', Illumina, '21基因')
-
                 elif s_type == 'DNA文库':#SR样本
                     expProcess_planne(lists, 'DNA文库', Illumina, '文库定量')
-
                 elif s_type == '外部血浆':
                     expProcess_planne(lists, '外部血浆', Illumina, '提取-质谱仪上机')
-
                 elif s_type == 'cfDNA文库':#SR样本
                     expProcess_planne(lists, 'cfDNA文库', huada, '华大-APP-A')
 
@@ -345,11 +330,8 @@ class SampleReceivePage(BasePage):
                 write_excel(app_a_file_path)
 
     def input_sampleamt(self):
-        """
-        录入样本包装量和样本计量
-        """
+        """录入样本包装量和样本计量"""
         log.info('录入样本包装量')
-
         self.clicks('css', all_chioce)
         self.sleep(0.5)
         self.clicks('xpath', sample_PkgAmt)
@@ -363,8 +345,6 @@ class SampleReceivePage(BasePage):
         self.clicks('xpath', sample_amt_input_comfirm_btn)
         self.sleep(0.5)
 
-
-
         log.info('录入样本基本数据后，样本信息保存')
         self.clicks('css', save_btn)
         self.wait_loading()
@@ -376,7 +356,7 @@ class SampleReceivePage(BasePage):
         """
         order = read_yaml(orderNub_path)  # 获取订单号
         log.info('录入样本备注')
-        self.updata_sql(ybjs_sql.format(order['order_number']))
+        self.updata_sql(ybjs_sql.format(order['order_number'],order['order_number']))
         log.info('获取订单接样表中所有的SR样本')
         sr_sample = executeSql.test_select_limsdb(get_sr_sample_lims.format(order['order_number']))
         sr_sampleLims = [list(i.values()) for i in sr_sample]
