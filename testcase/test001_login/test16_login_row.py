@@ -64,8 +64,7 @@ class LimsLogin(MyTest):
         except Exception as r:
             log.warning("登录这里报错了 ：%s" % r)
         self.basepage.wait_loading()
-        self.basepage.sleep(1)
-
+        self.basepage.sleep(3)
         log.info('登录成功后校验当前地址正确')
         current_url = self.basepage.get_current_url()
         self.assertIn("home", current_url)
