@@ -68,7 +68,7 @@ sop_detail_sopname_module = (
     '//*[@class="el-form-item is-required el-form-item--medium"]//input')
 
 # 详情页，sop所属模块下拉框，调用时循环写入
-sop_detail_sopname_module_value = '//*[@class="el-select-dropdown el-popper"]//descendant::ul[@class="el-scrollbar__view el-select-dropdown__list"]//descendant::li[@class="el-select-dropdown__item" and span[text()="{}"]]'
+sop_detail_sopname_module_value = '//body/div[6]/div[@class="el-scrollbar"]/descendant::li[span[text()="{}"]]'
 
 # 详情页，选择操作方式下拉框
 sop_detail_work_type = '//*[@class="el-select SOPversionDetail-form-operationType el-select--medium"]//input'

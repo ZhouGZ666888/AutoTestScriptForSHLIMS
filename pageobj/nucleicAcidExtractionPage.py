@@ -449,7 +449,7 @@ class NucleicAcidExtractionPage(BasePage):
             self.wait_loading()
             self.clicks('css', nextProcessorId_choice)
         self.sleep(0.5)
-        self.clicks('css', result_submit_comfirm)  # 提交确认按钮
+        self.click_by_js('css', result_submit_comfirm)  # 提交确认按钮
         self.wait_loading()
 
         self.executeJscript('document.getElementsByClassName("vxe-table--body-wrapper")[0].scrollLeft=2400')
