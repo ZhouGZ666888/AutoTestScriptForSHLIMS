@@ -40,6 +40,10 @@ select_sop = (
 select_sop_choice = (
     '.sopId-unique .el-select-group li:nth-child(1)')
 
+# 实验室值班主管
+dutySupervisors = '.createTask_content_choose .extractionDetail-form-dutySupervisors'
+# 选择实验室值班主管
+select_dutySupervisors = '//*[@class="el-select-dropdown el-popper"]/descendant::span[text()="杜长琬"]'
 # 核对lims样本号按钮
 check_lims_sample_num = (
     '.createTask_content_choose .commonTaskDetail-btn-judgeLims')
@@ -172,7 +176,7 @@ storage_all_choice = (
 storage_next = (
     '.dialog-check-storage .dialog-footer .baseClass-btn-next')
 
-detail_labNub='.vxe-table--fixed-left-wrapper table tbody tr:nth-child(1) td:nth-child(4)'
+detail_labNub = '.vxe-table--fixed-left-wrapper table tbody tr:nth-child(1) td:nth-child(4)'
 
 # 提交状态文本
 submit_status = (

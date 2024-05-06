@@ -373,7 +373,7 @@ result_number_of_labels_printed = (
 ultrafracResults_libInstrumentCode='.ultrafracResults-page-libInstrumentCode input'
 
 # 批量数据弹框，破碎仪编号选择
-ultrafracResults_libInstrumentCode_choice='/html/body/div[6]/descendant::li[1]'
+ultrafracResults_libInstrumentCode_choice='//*[@class="el-select-dropdown el-popper"]/descendant::ul/descendant::span[contains(text(),"Ge-")][1]'
 
 # 批量数据弹框，循环数录入框
 loopNum='.ultrafracResults-dialogBatchData-loopNum input'

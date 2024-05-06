@@ -38,12 +38,24 @@ class SampleProcessingPage(BasePage):
         self.wait_loading()
         self.sleep(0.5)
 
+        log.info("选择实验室值班主管")
+        self.clicks('css', dutySupervisors)
+        self.sleep(0.5)
+        self.clicks('xpath', select_dutySupervisors)
+        self.sleep(1)
+
         log.info("选择sop")
         self.clicks('css', select_sop)
         self.sleep(0.5)
         self.clicks('css', select_sop_choice)
         self.wait_loading()
         self.sleep(1)
+
+
+
+
+
+
 
     # 待选表校验lims号
     def check_lims_num(self):

@@ -56,7 +56,7 @@ class SjSequecingPage(BasePage):
         log.info("选择测序仪")
         self.clicks('css', instrument)
         self.wait_loading()
-        self.clicks('css', instrument_choice)
+        self.clicks('xpath', instrument_choice)
         self.clicks('css', instrument_comfirm)
         self.sleep(0.5)
 
@@ -555,7 +555,7 @@ class SjSequecingPage(BasePage):
         log.info("选择测序仪")
         self.clicks('css', instrument)
         self.wait_loading()
-        self.clicks('css', instrument_choice)
+        self.clicks('xpath', instrument_choice)
         self.clicks('css', instrument_comfirm)
         self.sleep(0.5)
 

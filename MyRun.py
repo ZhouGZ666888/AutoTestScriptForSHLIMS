@@ -316,4 +316,5 @@ if __name__ == '__main__':
     result = BeautifulReport(test_suite)
     result.report(filename=name, description='Lims系统自动化-用例执行情况',
                   log_path=test_report)
-    # Creat_auto_shotfile()
+    Creat_auto_shotfile()
+    # Auto_sendmail()

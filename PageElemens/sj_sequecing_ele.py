@@ -53,7 +53,7 @@ instrument = (
 
 # 选择测序仪弹框，选择第一条
 instrument_choice = (
-    '.multi-table-dialog .vxe-table--main-wrapper .vxe-table--body-wrapper tbody tr:nth-child(1)')
+    '//*[@aria-label="测序仪"]/descendant::span[text()="Hiseq4000-3"]')
 
 # 选择测序仪弹框，确认按钮
 instrument_comfirm = (

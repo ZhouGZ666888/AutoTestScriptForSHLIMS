@@ -502,7 +502,7 @@ result_auto_calculate_promote = (
 
 # 提交按钮
 result_submit = (
-    '.button-list .extractionResults-btn-submit')
+    '//*[@class="sampleDetail_header"]/descendant::span[text()="提交样本"]')
 
 # 临时库实验室审核人录入框
 nextProcessorId = (

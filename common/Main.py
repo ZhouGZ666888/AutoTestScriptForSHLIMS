@@ -17,7 +17,10 @@ class MyTest(unittest.TestCase):
     # download.default_directory设置下载路径
     prefs = {
         "profile.default_content_settings.popups": 0,
-        "download.default_directory": excel_doc_file_path}
+        "download.default_directory": excel_doc_file_path# 默认文件下载路径
+    }
+
+
     options.add_experimental_option("prefs", prefs)
     dr = webdriver.Chrome(chrome_options=options)
     basepage = None
@@ -31,15 +34,6 @@ class MyTest(unittest.TestCase):
         cls.basepage = BasePage(cls.driver)
         cls.lg = LoginPage(cls.driver)
 
-    # 登录功能封装，调试用
-    def initialize(self):
-        self.lg.login_console(name='guoqi.dong')
-        pass
-
-    def initializes(self):
-        self.lg.login_console(name='guanzhong.zhou')
-        pass
-
     # 单个登录功能,接样审批切换用户时调用
     def login_action(self, loginUser):
         self.lg.witchUsers(loginUser)  # 常用，正式运行时打开
@@ -49,10 +43,16 @@ class MyTest(unittest.TestCase):
         cls.driver = driver
         cls.basepage = BasePage(cls.driver)
         cls.basepage.refresh()
-         # 调试用
-        cls.driver.close()
-        cls.driver.quit()
+        # 调试用
+        # cls.driver.close()
+        # cls.driver.quit()
 
-
+    # 登录功能封装，调试用
+    def initialize(self):
+        # self.lg.login_console(name='guoqi.dong')
+        pass
+    def initializes(self):
+        # self.lg.login_console(name='guanzhong.zhou')
+        pass
 if __name__ == '__main__':
     unittest.main()

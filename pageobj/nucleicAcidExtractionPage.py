@@ -436,7 +436,7 @@ class NucleicAcidExtractionPage(BasePage):
         结果表提交
         """
         log.info(' 核酸提取结果表,点击提交')
-        self.clicks('css', result_submit)  # 提交按钮
+        self.clicks('xpath', result_submit)  # 提交按钮
 
         # 调用自定义截图方法
         Screenshot(self.driver).get_img("核酸提取结果表点击提交按钮", "弹出提交确认按钮")
